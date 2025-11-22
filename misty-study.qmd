@@ -1,0 +1,62 @@
+# STUDY NOTES
+
+## TUESDAY - 3
+
+P12 - EXPERIMENTAL - kfan@laurentian.ca - CHECK - accent
+P14 - CONTROL - bituaobaitua@laurentian.ca - CHECK - slight accent
+P17 - EXPERIMENTAL - jomiadeleye14@gmail.com - CHECK - accent
+
+## WEDNESDAY - 7 - All showed up + more
+
+P27 - CONTROL - RAmon@laurentian.ca (11:00 AM) - CHECK - accent
+P28 - EXPERIMENTAL - ejarvis@laurentan.ca (12:00 PM) - CHECK 
+P29 - CONTROL - unisar@laurentian.ca (1:00 PM) - accent
+P30 - CONTROL - cminn@laurentian.ca (2:00 PM) - substantial accent
+P31 - EXPERIMENTAL - Brook Vrbanic brooke.vrbanic@gmail.com (2:40 ish)
+P32 - EXPERIMENTAL - lji@laurentian.ca (this one comes after ywang54 timewise) (3:40 ish) - substantial accent
+P33 - EXPERIMENTAL - ywang54@laurentian.ca (3:00ish) - substantial accent
+
+## Thursday - 4
+
+P35 - EXPERIMENTAL - ccui1@laurentian.ca (10am) - CHECK - This session went VERY long (45 mins) - substantial accent
+EXPERIMENTAL - aisrail@laurentian.ca (1pm) - NO-SHOW
+EXPERIMENTAL - ybarot@laurentian.ca (2pm) - NO-SHOW
+P36 - CONTROL - kspriggs@laurentian.ca (also 2pm) - CHECK - FORGOT HIS TIMMIES
+P37 - EXPERIMENTAL - bvachon@laurentian.ca (3pm) - CHECK - PSYCH student
+P38 - CONTROL - pvyas@laurentian.ca (3:30)  - CHECK - accent
+
+## Friday (4) - 18 so far
+
+Need to figure out what happened; somehow, despite selecting CONTROL, it served up RESPONSIVE mode
+P40 - CONTROL - bomoyele@laurentian.ca (10aml)- CHECK - accent - checked logs and looks lke it ran EXPERIMENTAL
+P41 - CONTROL - gluoma@laurentian.ca (11am) - psych student - checked logs and looks like it ran EXPERIMENTAL 
+P42 - EXPERIMENTAL - sxie2@laurentian.ca (12pm) - RAN AS CONTROL TO BALANCE but it still ran RESPONSIVE I THINK
+P43 - EXPERIMENTAL -  Myan (1:20pm) - Think I figured out the prob
+
+:::
+Kyle Spriggs - 2pm Thursday
+
+- multi-robot collaboration
+
+
+DAY OF NOTES:
+- Gemini model isdsue with accents
+- research solutions--pretrained w/better non-native english detection/decoding
+- how often does model react/utilize the emotion info from the s
+  modell
+- evaluate the quality of translations of native vs non-native english speakers
+- how often did model ignore/not react to emotional states of Human 
+  - robot/AI would get "lost" sometimes and think that it was the researcher
+  - langgraph may have been better or a RAG system depending on volume of 'known-data'
+    - a fine-tuned rag may have been better to train on its role / also dividing out the two roles (culd be leakage)
+- realized that inn 
+
+  - another study could look at how cultural differences influence perception of responsiveness in robots human trust 
+
+# Potential Journals
+
+THRI  
+1. CM Transactions on Human-Robot Interaction
+2. IEEE Transactions on Robotics (T-RO)
+3. International Journal of Social Robotics
+4. Nature: Machine Intelligence
