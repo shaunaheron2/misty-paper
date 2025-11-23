@@ -1,0 +1,74 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+library(tidyverse)
+library(janitor)
+
+session_df <- read_csv("full_session_data.csv")
+survey_df <- read_csv("survey_data.csv")
+
+```
+
+```{r}
+
+```
+
+
+## Task Performance Scoring
+Participants completed two binary subtasks: suspect identification and location zone identification (coded zone_correct = 1 if “Loading bay”). A combined accuracy score (total_correct = suspect_correct + zone_correct; range 0–2) was computed. A proportional score can be defined as prop_correct = total_correct / 2. (If additional components—status, building, floor—are intended but not yet coded into total_correct, adjust the formula and descriptive text accordingly.)
+
+## Descriptive Statistics
+Group means in total correct answers (CONTROL vs EXPERIMENTAL): 3.12 vs 2.92 (these appear to assume a 5‑item scale; reconcile with the current 0–2 construction).  
+By native English status: Non‑native (n = 15) M = 2.6; Native (n = 6) M = 4.0 (again, verify scale alignment).
+
+(Recommend regenerating descriptives after fixing total_correct definition.)
+
+## Group Difference: Native English
+Welch’s t-test: t(8.34) = –2.36, p = 0.044; Hedges’ g = –1.06, 95% CI [–2.05, –0.03]. Sign indicates ordering (first level has lower mean). Large absolute effect; wide interval and small, unbalanced sample reduce precision. Bayesian test: BF10 = 2.94 (anecdotal to moderate evidence).
+
+## Multiple Regression
+Model: total_correct ~ group + native_english + duration_mins + n_frust + n_neg + n_engaged + n_silence  
+R² = 0.53, Adjusted R² = 0.27, F(7,13) = 2.07, p = 0.122.
+
+| Predictor        | Estimate | SE      | t      | p       |
+|------------------|---------:|--------:|-------:|--------:|
+| (Intercept)      | 4.176    | 0.727   | 5.743  | < .001  |
+| group (EXP)      | -0.760   | 0.568   | -1.338 | 0.204   |
+| native_english1  | -0.666   | 0.329   | -2.021 | 0.064   |
+| duration_mins    | 0.030    | 0.071   | 0.419  | 0.682   |
+| n_frust          | -0.816   | 0.373   | -2.186 | 0.048   |
+| n_neg            | 0.042    | 0.308   | 0.135  | 0.894   |
+| n_engaged        | 0.169    | 0.174   | 0.970  | 0.350   |
+| n_silence        | -0.135   | 0.133   | -1.020 | 0.327   |
+
+Interpretation: Higher frustration count is associated with lower accuracy (p < .05). Native English shows a trend (p = .064). Experimental vs Control difference is not statistically reliable. Other session metrics show no association. Given small n (21) and many predictors (7), potential overfitting and unstable estimates are concerns; consider a reduced model or penalized approach.
+
+## Multiple Regression (Reduced Model)
+
+A reduced linear model examined group (Experimental vs Control) and native English status as predictors of total task accuracy. The model explained 29.8% of the variance (R² = 0.30; adjusted R² = 0.22), F(2, 18) = 3.81, p = 0.042.
+
+| Predictor              | Estimate | SE     | t      | p      |
+|------------------------|---------:|-------:|-------:|-------:|
+| (Intercept)            | 3.72     | 0.46   | 8.06   | < .001 |
+| group (EXPERIMENTAL)   | -0.61    | 0.54   | -1.14  | 0.270  |
+| native_english1        | -0.79    | 0.29   | -2.73  | 0.014  |
+
+Interpretation: Native English participants scored higher (coefficient negative due to sum contrast coding: level “1” sits above the grand mean). The Experimental group did not differ reliably from Control (p = 0.27). The effect associated with native English status is moderate to large given the scale range, but precision is limited by small and unbalanced sample sizes.
+
+Report: “In the reduced model, native English status predicted higher accuracy (β = -0.79, SE = 0.29, p = .014), whereas Experimental vs Control condition did not (β = -0.61, SE = 0.54, p = .27), R² = .30.”
+
+(If scale definition for total_correct is 0–2 rather than 0–5, reconcile before final reporting; current intercept suggests a wider scale.)
+
+## Cautions
+- Scale definition inconsistency (reported means exceed possible range if total_correct truly maxes at 2). Recompute total_correct or revise descriptive section.
+- Small, unbalanced groups inflate standard errors; effect sizes should be emphasized with CIs.
+- Potential multicollinearity among affect counts (n_frust, n_neg, n_engaged, n_silence); inspect variance inflation factors before final reporting.
+
+## Summary
+Evidence suggests a performance difference by native English status and a negative association with frustration, but intervention group effects were not supported. Results should be interpreted cautiously due to sample size and measurement inconsistencies.
+
+## Example Reporting Sentence
+“Frustration count was a significant negative predictor of task accuracy (β = -0.82, p = 0.048), while native English status showed a trend (p = 0.064); no effect of experimental condition was observed (p = 0.20). Overall model fit was moderate (R² = 0.53), but estimates are imprecise given n = 21.”

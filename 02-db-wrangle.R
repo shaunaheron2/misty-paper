@@ -77,7 +77,6 @@ session_aggregates <- turns |>
       units = "mins"
     ))
   )
-# filter(total_duration > 4)
 
 stage_aggregates <- session_aggregates |>
   group_by(session_id, stage) |>
@@ -97,3 +96,7 @@ stage_aggs_wide <- stage_aggregates |>
     values_from = c(n_turns, duration_mins, avg_response_ms),
     values_fill = 0
   )
+
+sessions2 <- sessions |>
+  select(-start_time, -participant_name) |>
+  left_join(stage_aggregates, by = 'session_id')
