@@ -1,0 +1,307 @@
+---
+title: "Untitled"
+format: html
+---
+
+```{r}
+library(tidyverse)
+```
+
+::: callout-warning
+These are preliminary results and analyses. Please do not distribute or cite without permission of the authors.
+:::
+
+
+```{r}
+#this is a test
+#
+#
+```
+
+Several Generalized Linear Mixed Effects Models with random intercepts for participant and post-test trust items were fit with fixed effects for treatment group (responsive misty vs control), trust items, and their interaction, controlling for pre-test Negative Attitudes Towards Robots (NARS) and Need For Cognition (NFC) Scores. Even after controlling for language background (native English speaker) and prior experience with robots the treatment effect (responsive versus control) remained significant, predicting higher trust ratings after interacting with the responsive Misty compared to the control Misty (p < 0.002). The best fit is summarized in Table 3. (will add model tests here also, showing improvement of fit with addition of terms and interactions)
+
+
+
+```{r}
+# this is some more `text`
+robot_trust ~ group *
+  trust_items +
+  nars_pre +
+  nfc_pre +
+  (1 | session_id) +
+  (1 | trust_items)
+```
+
+```{r}
+#
+
+library(lme4)
+library(lmerTest)
+library(ggeffects)
+# mixed models
+
+scores_df <- df2 |>
+  select(
+    session_id,
+    group,
+    gender,
+    age,
+    program,
+    robot_xp,
+    contains("what_percent"),
+    native_english:n_frust
+  ) |>
+  pivot_longer(
+    what_percent_of_the_time_was_the_robot_dependable:what_percent_of_the_time_did_this_robot_answer_the_questions_asked,
+    names_to = "trust_items",
+    values_to = "robot_trust"
+  ) |>
+  left_join(
+    df_flat_scores_final |>
+      select(session_id, contains('nars_'), contains('nfc_')),
+    by = "session_id"
+  ) |>
+  mutate(trust_items = factor(trust_items)) |>
+  mutate(group = factor(group, levels = c("CONTROL", "EXPERIMENTAL"))) |>
+  mutate(program = as_factor(program)) |>
+  mutate(robot_xp = as_factor(robot_xp)) |>
+  mutate(
+    native_english = factor(native_english, levels = c("FALSE", "TRUE"))
+  ) |>
+  mutate(robot_trust_c = robot_trust - mean(robot_trust, na.rm = TRUE))
+hist(scores_df$robot_trust)
+hist(scores_df$robot_trust_c)
+
+
+#mutate(robot_trust = rescale(nfc_value, to = c(1, 5)))
+
+base <- lm(robot_trust ~ group + nars_pre + nfc_pre, data = scores_df)
+
+mod1 <- lmer(
+  robot_trust ~ group +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+
+mod2 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+
+mod3 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id),
+  data = scores_df
+)
+
+
+mod4 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    native_english +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+
+mod5 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    native_english +
+    robot_xp +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+
+mod6 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    native_english +
+    robot_xp +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  # na.action=na.exclude,
+  data = scores_df
+)
+
+mod7 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    native_english +
+    robot_xp +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+
+
+# tbl_regression(mod2) |>
+#   bold_labels() |>
+#   bold_p()
+
+# tbl_regression(mod5) |>
+#   bold_labels() |>
+#   bold_p()
+
+anova(mod1, mod2, mod3, mod4, mod5, mod6)
+plot(compare_performance(mod1, mod2, mod3, mod4, mod5, mod6, rank = TRUE))
+compare_performance(mod1, mod2, mod3, mod4, mod5, mod6, rank = TRUE)
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+accuracy_df <- df2 |>
+  select(
+    session_id,
+    group,
+    gender,
+    age,
+    program,
+    robot_xp,
+    the_way_the_robot_moved_made_me_uncomfortable:the_robot_seemed_to_care_about_helping_me,
+    native_english:n_frust
+  ) |>
+  pivot_longer(
+    suspect_correct:zone_correct,
+    names_to = "accuracy_items",
+    values_to = "accuracy",
+  ) |>
+  left_join(
+    df_flat_scores_final |>
+      select(session_id, contains('nars_'), contains('nfc_')),
+    by = "session_id"
+  ) |>
+  mutate(accuracy_items = factor(accuracy_items)) |>
+  mutate(group = factor(group, levels = c("CONTROL", "EXPERIMENTAL"))) |>
+  mutate(program = as_factor(program)) |>
+  mutate(robot_xp = as_factor(robot_xp)) |>
+  mutate(
+    native_english = factor(native_english, levels = c("FALSE", "TRUE"))
+  ) |>
+  select(-total_correct)
+
+
+base <- glm(
+  accuracy ~ group + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+base2 <- glm(
+  accuracy ~ group + accuracy_items + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+base3 <- glm(
+  accuracy ~ group * accuracy_items + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+base4 <- glm(
+  accuracy ~ group * native_english + accuracy_items + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+
+mod1 <- glmer(
+  accuracy ~ group +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | accuracy_items),
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+
+
+mod2 <- glmer(
+  accuracy ~ group +
+    accuracy_items +
+    native_english +
+    # robot_xp +
+    nars_pre +
+    nfc_pre +
+    (1 | accuracy_items) +
+    (1 | session_id),
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+tab_model(mod2)
+
+# predictions <- predict_response(mod2, terms = c("native_english", "group"))
+
+# plot(predictions, n_rows = 2) +
+#   theme(legend.position = "bottom") +
+#   scale_color_discrete()
+
+compare_performance(mod1, mod2, mod3, mod4, mod5, rank = TRUE)
+
+# grouped_ggbetweenstats(x = group, y = accuracy, grouping.var = native_english, accuracy_df)
+# mod3 <- lmer(
+#   robot_trust ~ group *
+#     trust_items +
+#     nars_pre +
+#     nars_pre_s1 +
+#     nars_pre_s2 +
+#     nars_pre_s3 +
+#     (1 | session_id),
+#   data = scores_df2
+# )
+
+# mod4 <- lmer(
+#   robot_trust ~ group *
+#     trust_items +
+#     native_english +
+#     nars_pre +
+#     nfc_pre +
+#     (1 | session_id),
+#   data = scores_df2
+# )
+
+# mod5 <- lmer(
+#   robot_trust ~ group *
+#     trust_items +
+#     robot_xp +
+#     native_english +
+#     nars_pre +
+#     nfc_pre +
+#     (1 | session_id),
+#   data = scores_df2
+# )
+```
+
+```{r}
+
+# ggbetweenstats(x = group, y = nars_pre, df_flat_scores_final)
+# ggbetweenstats(x = group, y = nars_pre_s1, df_flat_scores_final)
+# ggbetweenstats(x = group, y = nars_pre_s2, df_flat_scores_final)
+# ggbetweenstats(x = group, y = nars_pre_s3, df_flat_scores_final)
+
+#ggbetweenstats(x = group, y = post_trust, df_flat_scores_final)
+
+```

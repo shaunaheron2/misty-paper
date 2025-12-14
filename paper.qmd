@@ -1,14 +1,522 @@
 ---
-title: "Untitled"
-format: html
+title: "Responsive Robots"
+subtitle: "Preliminary Analysis of Trust and Performance Data"
+author: "Shauna Heron"
+date: today
+format: 
+    typst:
+        fontsize: 10pt
+warning: false
+message: false
+echo: false
 ---
+ 
+Need plots showing pre and post trust with NFC (high, low, moderate) and then facet w/robot experience and language and also compare with the other post trust scale and individual trust items (human, robot, ai)
 
 ```{r}
+
 library(tidyverse)
 library(janitor)
+library(scales)
+library(corrplot)
+library(sjPlot)
+library(ggstatsplot)
+library(psych)
+library(performance)
+library(Hmisc)
+library(haven)
+library(gtsummary)
 
-session_df <- read_csv("full_session_data.csv")
-survey_df <- read_csv("survey_data.csv")
+session_df <- readRDS("full_session_data.rds")
+survey_df <- readRDS("survey_data.rds") |>
+  arrange(post_date)
+
+
+set_gtsummary_theme(theme_gtsummary_journal("jama"))
+set_gtsummary_theme(theme_gtsummary_compact())
+
+df_flat_scores_final <- readRDS("full_dataset_with_items.rds") #|>
+# filter(!grepl('sprig', email))
+
+#saveRDS(df_flat_scores_final_with_items, 'full_dataset_with_items.rds')
+```
+
+::: callout-warning
+These are preliminary results and analyses. Please do not distribute or cite without permission of the authors.
+:::
+
+
+## Demographics and Baseline Characteristics
+
+The two groups look very similar on gender, age, program of study, prior robot experience, NARS, and Need for Cognition; none of these baseline differences are statistically significant; suggesting post-test differences are unlikely to be driven by obvious demographic or attitudinal imbalances.
+
+
+```{r}
+
+df_flat_scores_final |>
+  data.frame() |>
+  select(-post_date) |>
+  droplevels() |>
+  select(
+    group,
+    gender,
+    age,
+    program,
+    robot_xp,
+    native_english,
+    nars_pre,
+    nars_social_influence_robots,
+    nars_emotion_robots,
+    nars_interaction_robots,
+    nfc_pre,
+    robot_trust_pre,
+    ai_trust_pre,
+    human_trust_pre
+    #contains('trust')
+    #-mytrust_pre
+  ) |>
+  tbl_summary(
+    by = group,
+    type = list(
+      nars_pre ~ 'continuous',
+      nars_social_influence_robots ~ 'continuous',
+      nars_emotion_robots ~ 'continuous',
+      nars_interaction_robots ~ 'continuous',
+      human_trust_pre ~ 'continuous',
+      robot_trust_pre ~ 'continuous',
+
+      ai_trust_pre ~ 'continuous',
+      nfc_pre ~ 'continuous'
+    ),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      gender ~ "Gender",
+      age ~ "Age Group",
+      program ~ "Program",
+      robot_xp ~ "Experience w/Robots",
+      native_english ~ 'Native English Speaker',
+      nfc_pre ~ 'Need for Cognition',
+      nars_pre ~ "NARS Overall",
+      nars_social_influence_robots ~ "NARS: Social Influence",
+      nars_emotion_robots ~ "NARS: Emotions",
+      nars_interaction_robots ~ "NARS: Interaction"
+    ),
+    missing_text = ('Missing')
+  ) |>
+  add_n() |>
+  add_p() |>
+  #add_overall() |>
+  bold_p() |>
+  bold_labels() |>
+  modify_caption(
+    "Table 1. Participant Demographics and Baseline Characteristics by Group"
+  )
+
+post_table <- df_flat_scores_final |>
+  drop_na(gender) |>
+  select(group, contains('post'), contains('correct'), 63:76) |>
+  data.frame()
+
+post_table |>
+  tbl_summary(
+    by = group,
+    type = list(
+      post_trust_reliability ~ 'continuous',
+      post_trust_feelings ~ 'continuous',
+      post_trust_perception ~ 'continuous',
+      total_correct ~ 'continuous',
+      avg_response_ms ~ 'continuous',
+      prop_correct ~ 'continuous',
+      n_engaged ~ 'continuous',
+      n_frust ~ 'continuous',
+      n_neg ~ 'continuous'
+    ),
+    # missing=FALSE,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      suspect_correct ~ "Suspect ID Accuracy",
+      status_correct ~ "Status ID Accuracy",
+      duration_mins ~ "Avg Task Duration (mins)",
+
+      total_correct ~ "Total Task Accuracy",
+      n_turns ~ "Number of Dialogue Turns",
+      n_silence ~ "Number of Silent Periods",
+      avg_response_ms ~ "Avg Response Time (ms)",
+      prop_correct ~ "Overall Task Accuracy",
+      n_engaged ~ "Number of Engaged Responses",
+      n_frust ~ "Number of Frustrated Responses",
+      trust_perc_post ~ "Post-Task Trust Perception"
+    )
+  ) |>
+  add_n() |>
+  add_p() |>
+  # add_overall() |>
+  bold_p() |>
+  #bold_labels() |>
+  modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
+
+
+```
+
+##  Correlation Matrix of Key Variables
+```{r}
+#| fig-height: 7
+#| fig-width: 7
+
+df_flat <- df_flat_scores_final |>
+  mutate(group = factor(group, levels = c("CONTROL", "RESPONSIVE"))) |>
+  mutate(
+    native_english = factor(native_english, levels = c("FALSE", "TRUE"))
+  ) |>
+  select(
+    -contains('what_perc'),
+    -contains('i_'),
+    -contains('the_'),
+    -contains('something'),
+    -contains('thinking')
+  )
+
+# df_flat %>%
+#   group_by(group) %>%
+#   dplyr::summarise(
+#     correlation = cor(human_trust, robot_trust, method = "pearson", use = "pairwise.complete.obs"),
+#     .groups = "drop"
+#   )
+
+res2 <- rcorr(as.matrix(df_flat_scores_final %>% select(where(is.numeric))))
+
+corr <- cor(
+  df_flat %>% select(where(is.numeric)),
+  use = "pairwise.complete.obs"
+)
+
+testRes = cor.mtest(corr, conf.level = 0.95)
+#corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
+
+corrplot(
+  corr,
+  p.mat = testRes$p,
+  insig = 'label_sig',
+  sig.level = c(0.001, 0.01, 0.05),
+  pch.cex = 0.9,
+  pch.col = 'grey20'
+)
+
+#corrplot(corr, p.mat = testRes$p, insig = 'p-value')
+# ++++++++++++++++++++++++++++
+# flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat : matrix of the correlation coefficients
+# pmat : matrix of the correlation p-values
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor = (cormat)[ut],
+    p = pmat[ut]
+  )
+}
+
+flatmatrix <- flattenCorrMatrix(res2$r, res2$P)
+
+
+# https://sjdm.org/dmidi/Need_for_Cognition_short.html
+# Lins de Holanda Coelho G, H P Hanel P, J Wolf L. The Very Efficient Assessment of Need for
+#Cognition: Developing a Six-Item Version. Assessment. 2020 Dec;27(8):1870-1885. doi:
+#10.1177/1073191118793208. Epub 2018 Aug 10. PMID: 30095000; PMCID: PMC7545655
+# https://rins.st.ryukoku.ac.jp/~nomura/docs/NARS_AAAI06.pdf
+# items. hus, the minimum and maximum scores are 6 and
+#  https://uhra.herts.ac.uk/id/eprint/13608/1/SyrdalDDautenhahn.pdf <-- discusses problems using standardized scale cross-culturally
+```
+
+## Need for Cognition and NARS Correlation Matrix
+
+As expected, we find that higher Need for Cognition (NFC) scores are negatively correlated with Negative Attitudes Towards Robots (NARS) scores, indicating that individuals who enjoy effortful thinking tend to have more positive attitudes towards robots. This relationship is consistent with prior literature suggesting that cognitive engagement is associated with openness to new technologies. In terms of NARS subscales, NFC was negatively correlated with all three subscales, but was only Social Influence of Robots, Emotions in Interaction with Robots, and Situations of Interaction with Robots but correlation was weakest Social Influence of Robots and strongest with Interaction with Robots. In the literature, .............................. This suggests that individuals with higher NFC are less likely to hold negative attitudes across various dimensions of robot interaction.
+
+
+```{r}
+#| fig-height: 7
+#| fig-width: 7
+#|
+df_pre_cor <- df_flat_scores_final |>
+  drop_na(gender) |>
+  select(
+    session_id,
+    group,
+    age,
+    program,
+    robot_xp,
+    native_english,
+    contains('nars'),
+    contains('pre')
+  )
+
+res2 <- rcorr(as.matrix(df_pre_cor %>% select(where(is.numeric))))
+
+group_correlations <- df_pre_cor |>
+  group_by(native_english) |>
+  dplyr::summarize(cor = cor(nars_pre, nfc_pre))
+
+df_pre_cor |>
+  group_by(native_english) |>
+  summarise(
+    n = n(),
+    mean_nfc = mean(nfc_pre, na.rm = TRUE),
+    mean_nars = mean(nars_pre, na.rm = TRUE),
+    mean_nars_interation = mean(nars_interaction_robots, na.rm = TRUE),
+    mean_nars_emotion = mean(nars_emotion_robots, na.rm = TRUE),
+    mean_nars_social = mean(nars_social_influence_robots, na.rm = TRUE)
+  )
+
+ggbetweenstats(x = native_english, y = nfc_pre, df_pre_cor)
+
+df_pre_cor |>
+  group_by(program) |>
+  summarise(
+    n = n(),
+    mean_nfc = mean(nfc_pre, na.rm = TRUE),
+    mean_nars = mean(nars_pre, na.rm = TRUE),
+    mean_nars_interation = mean(nars_interaction_robots, na.rm = TRUE),
+    mean_nars_emotion = mean(nars_emotion_robots, na.rm = TRUE),
+    mean_nars_social = mean(nars_social_influence_robots, na.rm = TRUE)
+  )
+
+
+df_pre_cor |>
+  group_by(robot_xp) |>
+  summarise(
+    n = n(),
+    mean_nfc = mean(nfc_pre, na.rm = TRUE),
+    mean_nars = mean(nars_pre, na.rm = TRUE),
+    mean_nars_interation = mean(nars_interaction_robots, na.rm = TRUE),
+    mean_nars_emotion = mean(nars_emotion_robots, na.rm = TRUE),
+    mean_nars_social = mean(nars_social_influence_robots, na.rm = TRUE)
+  )
+
+ggbetweenstats(x = robot_xp, y = nfc_pre, df_pre_cor)
+ggbetweenstats(x = robot_xp, y = nars_pre, df_pre_cor)
+
+grouped_ggbetweenstats(
+  x = group,
+  y = nfc_pre,
+  df_pre_cor,
+  grouping.var = robot_xp
+)
+grouped_ggbetweenstats(
+  x = group,
+  y = nars_pre,
+  df_pre_cor,
+  grouping.var = robot_xp
+)
+
+corr <- cor(
+  df_pre_cor %>% select(where(is.numeric)),
+  use = "pairwise.complete.obs"
+)
+
+testRes = cor.mtest(corr, conf.level = 0.95)
+#corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
+
+corrplot(
+  corr,
+  p.mat = testRes$p,
+  insig = 'label_sig',
+  sig.level = c(0.001, 0.01, 0.05),
+  pch.cex = 0.9,
+  pch.col = 'grey20'
+)
+
+library("PerformanceAnalytics")
+chart.Correlation(
+  df_pre_cor |> select(where(is.numeric)),
+  histogram = TRUE,
+  pch = 19
+)
+
+hist(df_pre_cor$nfc_pre)
+hist(df_pre_cor$nars_pre)
+
+ggplot(df_pre_cor, aes(x = nfc_pre, fill = group)) +
+  geom_density(alpha = 0.5)
+
+ggplot(df_pre_cor, aes(x = nfc_pre, fill = group)) +
+  geom_histogram(color = 'grey30', fill = "white") +
+  facet_wrap(~group)
+#https://uc-r.github.io/histograms
+ggplot(df_pre_cor, aes(x = nars_pre, fill = group)) +
+  geom_histogram(color = 'grey30', fill = "white") +
+  facet_wrap(~group)
+#corrplot(corr, p.mat = testRes$p, insig = 'p-value')
+# ++++++++++++++++++++++++++++
+# flattenCorrMatrix
+# ++++++++++++++++++++++++++++
+# cormat : matrix of the correlation coefficients
+# pmat : matrix of the correlation p-values
+flattenCorrMatrix <- function(cormat, pmat) {
+  ut <- upper.tri(cormat)
+  data.frame(
+    row = rownames(cormat)[row(cormat)[ut]],
+    column = rownames(cormat)[col(cormat)[ut]],
+    cor = (cormat)[ut],
+    p = pmat[ut]
+  )
+}
+
+flatmatrix <- flattenCorrMatrix(res2$r, res2$P)
+
+
+# https://sjdm.org/dmidi/Need_for_Cognition_short.html
+# Lins de Holanda Coelho G, H P Hanel P, J Wolf L. The Very Efficient Assessment of Need for
+#Cognition: Developing a Six-Item Version. Assessment. 2020 Dec;27(8):1870-1885. doi:
+#10.1177/1073191118793208. Epub 2018 Aug 10. PMID: 30095000; PMCID: PMC7545655
+# https://rins.st.ryukoku.ac.jp/~nomura/docs/NARS_AAAI06.pdf
+# items. hus, the minimum and maximum scores are 6 and
+#  https://uhra.herts.ac.uk/id/eprint/13608/1/SyrdalDDautenhahn.pdf <-- discusses problems using standardized scale cross-culturally
+```
+
+
+## Post-test robot trust ratings
+
+On the overall post-interaction trust score, the responsive-Misty group reports substantially higher trust than the control group (M ≈ 78 vs 57; medium–large effect size, d ≈ 0.67). 
+
+In the mixed-effects models (random intercepts for participant and item, controlling for NARS and NFC), group remains a significant predictor of higher trust ratings even after we add native-English status and prior robot experience. Estimated group effect is around +26 trust points (on a scale of 0 to 100) for the responsive condition.
+
+Unexpectedly, being a native English speaker is also associated with higher trust ratings (≈ +21 points), and there are a few specific trust items (reliable, responsive, trustworthy) where the group × item interaction reaches significance, but the general pattern is that the responsive robot is trusted more across items. 
+
+## Task accuracy 
+
+For task *performance* (accuracy on the mystery task items), the biggest predictor isn’t group, it’s language: native English speakers have much higher odds of determing the correct answer (OR ≈ 8.2, 95% CI ~2–34). The treatment (responsive vs control) goes in the expected direction (OR < 1 for control) but isn’t statistically significant in this small sample. This suggests that speech recognition / accent issues and general language comprehension are strongly constraining task success, and may be masking any performance advantage of the responsive robot. On the other hand, both robots were using the same ASR and dialogue system with access to the same information, so we shouldn't necessarily see an effect here.
+
+## Interpretation so far
+
+Trust: despite the small sample, we already see a pretty robust treatment effect on perceived trust in the robot that holds up in the multilevel models after controlling for attitudes and language background.
+
+Performance: accuracy is dominated by language / accent effects, which we hadn’t explicitly designed for. This may be a useful finding in itself for HRI and ASR-based systems, but it complicates clean inferences about responsiveness → task performance. Though we do see a trend in a positive direction.
+
+My read is that these data are very encouraging as a pilot! We have evidence that the responsive, pro-active behaviour of the responsive manipulation was doing something psychologically meaningful (higher trust), even with only 21 participants and an imbalanced design (where it should be difficult to detect small effects!). We’ve also uncovered an important design issue: language background and STT quality are non-trivial confounds for both trust and performance, especially in an international / CS student population.
+
+## In terms of what to do now:
+
+If we can recruit a few more participants without too much pain, I'd love to top up the control group and try to get a better balance of native vs non-native speakers in each condition. This may not be possible in this current study iteration but maybe could expand to a larger thesis?? :) Even getting to something like ~12–15 per group would help the trust analyses and give us a bit more power on accuracy (hopefully our effect wouldn't disappear :D!).
+
+If we can't swing more recruitment, is it defensible to freeze the sample and explicitly frame this as a pilot study?: “trust effect looks promising; performance is constrained by language/ASR issues; next study will (a) stratify or screen on language background, and (b) adjust the dialogue / ASR pipeline to be more robust.”
+
+Either way, these results already give us a solid story: responsive Misty is perceived as more trustworthy, and the study has highlighted the need to take language and accent into account when designing HRI tasks that rely on spoken interaction.
+
+Take a look at some of the effect plots I added below:
+
+
+```{r}
+
+library(lme4)
+library(lmerTest)
+library(ggeffects)
+# mixed models
+
+scores_df <- df_flat_scores_final |>
+  #drop_na(gender) |>
+  select(
+    session_id,
+    email,
+    group,
+    gender,
+    age,
+    native_english,
+    program,
+    robot_xp,
+    nars_pre,
+    human_trust_pre,
+    robot_trust_pre,
+    ai_trust_pre,
+    nars_social_influence_robots,
+    nars_emotion_robots,
+    nars_interaction_robots,
+    nfc_pre,
+    contains("what_percent"),
+  ) |>
+  pivot_longer(
+    what_percent_of_the_time_was_the_robot_dependable:what_percent_of_the_time_did_this_robot_answer_the_questions_asked,
+    names_to = "trust_items",
+    values_to = "robot_trust_post"
+  ) |>
+  # scale continuous predictors
+  mutate(
+    robot_trust_post_c = scale(robot_trust_post, center = TRUE, scale = TRUE)
+  ) |>
+  mutate(nars_pre_c = scale(nars_pre, center = TRUE, scale = TRUE)) |>
+  mutate(robot_trust_c = scale(robot_trust_pre, center = TRUE, scale = TRUE)) |>
+  mutate(human_trust_c = scale(human_trust_pre, center = TRUE, scale = TRUE)) |>
+  mutate(ai_trust_c = scale(ai_trust_pre, center = TRUE, scale = TRUE)) |>
+  mutate(nfc_pre_c = scale(nfc_pre, center = TRUE, scale = TRUE)) |>
+  mutate(
+    nars_social_influence_robots_c = scale(
+      nars_social_influence_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(
+    nars_emotion_robots_c = scale(
+      nars_emotion_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(
+    nars_interaction_robots_c = scale(
+      nars_interaction_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(trust_items = factor(trust_items)) |>
+  mutate(robot_xp = relevel(robot_xp, ref = "No")) |>
+  mutate(native_english = factor(native_english))
+
+hist(scores_df$robot_trust_post)
+hist(scores_df$robot_trust_post_c)
+
+```
+
+```{r}
+
+base = lm(robot_trust_post ~ group, data = scores_df)
+mod1 <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id),
+  data = scores_df
+)
+
+mod2 <- lmer(
+  robot_trust_post ~ group +
+    #(1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+mod3 <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
+)
+mod4 <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id / robot_xp) +
+    (1 | trust_items),
+  data = scores_df
+)
+anova(mod1, mod2, mod3, mod4, base)
+tab_model(mod1, mod3)
+outliers_list <- check_outliers(mod3)
+plot(check_outliers(mod3))
+
 
 ```
 
@@ -16,59 +524,448 @@ survey_df <- read_csv("survey_data.csv")
 
 ```
 
+Main Hypothesis Test: Does group (responsive vs control) predict higher robot trust ratings?
 
-## Task Performance Scoring
-Participants completed two binary subtasks: suspect identification and location zone identification (coded zone_correct = 1 if “Loading bay”). A combined accuracy score (total_correct = suspect_correct + zone_correct; range 0–2) was computed. A proportional score can be defined as prop_correct = total_correct / 2. (If additional components—status, building, floor—are intended but not yet coded into total_correct, adjust the formula and descriptive text accordingly.)
 
-## Descriptive Statistics
-Group means in total correct answers (CONTROL vs EXPERIMENTAL): 3.12 vs 2.92 (these appear to assume a 5‑item scale; reconcile with the current 0–2 construction).  
-By native English status: Non‑native (n = 15) M = 2.6; Native (n = 6) M = 4.0 (again, verify scale alignment).
+```{r}
 
-(Recommend regenerating descriptives after fixing total_correct definition.)
+library(brms)
 
-## Group Difference: Native English
-Welch’s t-test: t(8.34) = –2.36, p = 0.044; Hedges’ g = –1.06, 95% CI [–2.05, –0.03]. Sign indicates ordering (first level has lower mean). Large absolute effect; wide interval and small, unbalanced sample reduce precision. Bayesian test: BF10 = 2.94 (anecdotal to moderate evidence).
+df <- scores_df |> mutate(trust_z = scale(robot_trust_post))
 
-## Multiple Regression
-Model: total_correct ~ group + native_english + duration_mins + n_frust + n_neg + n_engaged + n_silence  
-R² = 0.53, Adjusted R² = 0.27, F(7,13) = 2.07, p = 0.122.
+priors_trust <- c(
+  prior(normal(0, 0.5), class = "b"), # group effect
+  prior(normal(0, 1), class = "Intercept"), # grand mean
+  prior(exponential(1), class = "sd"), # random effects
+  prior(exponential(1), class = "sigma") # residual SD
+)
 
-| Predictor        | Estimate | SE      | t      | p       |
-|------------------|---------:|--------:|-------:|--------:|
-| (Intercept)      | 4.176    | 0.727   | 5.743  | < .001  |
-| group (EXP)      | -0.760   | 0.568   | -1.338 | 0.204   |
-| native_english1  | -0.666   | 0.329   | -2.021 | 0.064   |
-| duration_mins    | 0.030    | 0.071   | 0.419  | 0.682   |
-| n_frust          | -0.816   | 0.373   | -2.186 | 0.048   |
-| n_neg            | 0.042    | 0.308   | 0.135  | 0.894   |
-| n_engaged        | 0.169    | 0.174   | 0.970  | 0.350   |
-| n_silence        | -0.135   | 0.133   | -1.020 | 0.327   |
+fit_trust <- brm(
+  robot_trust_post ~ group + (1 | session_id),
+  data = df,
+  family = gaussian(),
+  # prior = priors_trust,
+  chains = 4,
+  iter = 4000,
+  cores = 10,
+  control = list(adapt_delta = 0.95)
+  #family=gaussian()
+)
 
-Interpretation: Higher frustration count is associated with lower accuracy (p < .05). Native English shows a trend (p = .064). Experimental vs Control difference is not statistically reliable. Other session metrics show no association. Given small n (21) and many predictors (7), potential overfitting and unstable estimates are concerns; consider a reduced model or penalized approach.
+fit_trust2 <- brm(
+  robot_trust_post ~ group + (1 | session_id) + (1 | trust_items),
+  data = df,
+  family = gaussian(),
+  # prior = priors_trust,
+  chains = 4,
+  iter = 4000,
+  cores = 10,
+  control = list(adapt_delta = 0.95)
+)
 
-## Multiple Regression (Reduced Model)
 
-A reduced linear model examined group (Experimental vs Control) and native English status as predictors of total task accuracy. The model explained 29.8% of the variance (R² = 0.30; adjusted R² = 0.22), F(2, 18) = 3.81, p = 0.042.
+posterior_summary(fit_trust, variable = "b_groupRESPONSIVE")
+# build a baseline flat model without random effects
+#base <- brm(robot_trust ~ group, data = scores_df)
 
-| Predictor              | Estimate | SE     | t      | p      |
-|------------------------|---------:|-------:|-------:|-------:|
-| (Intercept)            | 3.72     | 0.46   | 8.06   | < .001 |
-| group (EXPERIMENTAL)   | -0.61    | 0.54   | -1.14  | 0.270  |
-| native_english1        | -0.79    | 0.29   | -2.73  | 0.014  |
+post <- posterior_samples(fit_trust)
 
-Interpretation: Native English participants scored higher (coefficient negative due to sum contrast coding: level “1” sits above the grand mean). The Experimental group did not differ reliably from Control (p = 0.27). The effect associated with native English status is moderate to large given the scale range, but precision is limited by small and unbalanced sample sizes.
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
 
-Report: “In the reduced model, native English status predicted higher accuracy (β = -0.79, SE = 0.29, p = .014), whereas Experimental vs Control condition did not (β = -0.61, SE = 0.54, p = .27), R² = .30.”
 
-(If scale definition for total_correct is 0–2 rather than 0–5, reconcile before final reporting; current intercept suggests a wider scale.)
+```
 
-## Cautions
-- Scale definition inconsistency (reported means exceed possible range if total_correct truly maxes at 2). Recompute total_correct or revise descriptive section.
-- Small, unbalanced groups inflate standard errors; effect sizes should be emphasized with CIs.
-- Potential multicollinearity among affect counts (n_frust, n_neg, n_engaged, n_silence); inspect variance inflation factors before final reporting.
 
-## Summary
-Evidence suggests a performance difference by native English status and a negative association with frustration, but intervention group effects were not supported. Results should be interpreted cautiously due to sample size and measurement inconsistencies.
 
-## Example Reporting Sentence
-“Frustration count was a significant negative predictor of task accuracy (β = -0.82, p = 0.048), while native English status showed a trend (p = 0.064); no effect of experimental condition was observed (p = 0.20). Overall model fit was moderate (R² = 0.53), but estimates are imprecise given n = 21.”
+Pre-test measures (NARS overall and subscales; Need for Cognition) did not differ between groups at baseline (all ps > .33). Exploratory analyses including demographic variables (age, gender, major, English fluency, robot experience) also failed to improve model fit, suggesting that the observed group effect was not attributable to pre-existing differences between participants. Adding these variables as covariates to the mixed-effects model did not improve fit (ΔAIC = +3.9; χ²(2) = 0.06, p = .97). Therefore, the covariates were excluded from the final model.
+
+Model comparisons using AIC, BIC, and AIC weights indicated that the model including treatment group, native English status, and prior robot experience provided the best fit among all tested models (AIC weight = .90). Adding native English significantly improved fit relative to the base model (ΔAIC = –4.8, χ²(1) = 6.72, p = .010), while including the group × native English interaction did not (p = .997). Prior robot experience did not individually predict trust but contributed marginally to overall variance reduction when included alongside native English. Thus, `robot_trust ~ group + native_english + robot_xp + (1 | session_id) + (1 | trust_items)` was selected as the final model.
+
+
+To account for repeated trust ratings across items, we fit a mixed-effects model with random intercepts for participants and trust items. The model showed that participants in the responsive robot condition reported significantly higher trust than those in the control condition, b = 21.13, 95% CI [5.31, 36.95], p = .009. This represents an increase of approximately 21 percentage points in perceived robot trustworthiness.
+
+The intraclass correlation coefficient (ICC = .62) indicated that most variance in trust ratings was attributable to differences between participants rather than items. The marginal R² (.174) suggests that the experimental condition explained 17% of the variance in trust, while the full model accounted for 69% (conditional R² = .688).
+
+Adding pre-test measures (NARS subscales, Need for Cognition) as covariates did not improve model fit (ΔAIC = +3.9), and these variables did not differ between experimental groups, indicating that the trust effect is unlikely to be attributable to pre-existing attitudes or demographic differences.
+
+We next evaluated whether participants' native English status influenced trust ratings. Though we hadn't anticipated needing to control for this (explain eligibility screening procedure an dhow we noted that regardless people signed up and the we manually documented these cases). Adding native English as a covariate significantly improved model fit (ΔAIC = –4.8; χ²(1) = 6.72, p = .009), indicating that non-native English speakers reported lower trust overall (b = –20.55, 95% CI [–36.04, –5.05]). However, adding a group × native English interaction did not improve fit (p = .997), suggesting that the effect of robot responsiveness on trust was consistent across language backgrounds.
+
+Prior robot experience did not improve model fit (ΔAIC ≈ –1) and was therefore excluded from the final model.
+
+```{r}
+#| fig.height: 9
+#| fig.width: 6
+
+predictions <- predict_response(
+  mod7,
+  terms = c("group", "native_english", "robot_xp")
+)
+
+plot(predictions, n_rows = 1, connect_lines = TRUE, ci_style = 'dot') +
+  theme(legend.position = "bottom") +
+  scale_color_discrete() +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+
+plot(predictions, n_rows = 1, connect_lines = TRUE, ci_style = 'dot') +
+  theme(legend.position = "bottom") +
+  scale_color_discrete() +
+  ggtitle(
+    "Treatment x Native English Speaker (True vs False)"
+  ) +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+
+```
+
+```{r}
+
+ggbetweenstats(x = group, y = trust_perc_post, df_flat_scores_final)
+
+ggbetweenstats(x = group, y = post_trust, df_flat_scores_final)
+
+```
+
+'Several Generalized Linear Mixed Effects Models with random intercepts for participant and post-test trust items were fit with fixed effects for treatment group (responsive misty vs control), trust items, and their interaction, controlling for pre-test Negative Attitudes Towards Robots (NARS) and Need For Cognition (NFC) Scores. Even after controlling for language background (native English speaker) and prior experience with robots the treatment effect (responsive versus control) remained significant, predicting higher trust ratings after interacting with the responsive Misty compared to the control Misty (p < 0.002). The best fit is summarized in Table 3. (will add model tests here also, showing improvement of fit with addition of terms and interactions)'
+
+```{r}
+
+scores_df2 <- df_flat_scores_final |>
+  select(
+    session_id,
+    email,
+    group,
+    gender,
+    age,
+    native_english,
+    program,
+    robot_xp,
+    nars_pre,
+    human_trust_pre,
+    robot_trust_pre,
+    ai_trust_pre,
+    nars_social_influence_robots,
+    nars_emotion_robots,
+    nars_interaction_robots,
+    nfc_pre,
+    the_way_the_robot_moved_made_me_uncomfortable:the_robot_seemed_to_care_about_helping_me
+  ) |>
+  pivot_longer(
+    the_way_the_robot_moved_made_me_uncomfortable:the_robot_seemed_to_care_about_helping_me,
+    names_to = "trust_items",
+    values_to = "robot_trust_post"
+  ) |>
+  # scale continuous predictors
+  #mutate(robot_trust_c = scale(robot_trust, center=TRUE, scale=TRUE)) |>
+  mutate(nars_pre_c = scale(nars_pre, center = TRUE, scale = TRUE)) |>
+  mutate(nfc_pre_c = scale(nfc_pre, center = TRUE, scale = TRUE)) |>
+  mutate(
+    nars_social_influence_robots_c = scale(
+      nars_social_influence_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(
+    nars_emotion_robots_c = scale(
+      nars_emotion_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(
+    nars_interaction_robots_c = scale(
+      nars_interaction_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(trust_items = factor(trust_items)) |>
+  mutate(robot_xp = relevel(robot_xp, ref = "No")) |>
+  mutate(native_english = factor(native_english))
+
+
+```
+
+```{r}
+# put the other trust scale on the same 0-100 scale for easier interpretation
+# scores_df2$robot_trust_post <- (scores_df2$robot_trust2 - 1) / 4 * 100
+
+base <- lm(robot_trust_post ~ group, data = scores_df2)
+
+mod1 <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df2
+)
+
+mod2 <- lmer(
+  robot_trust_post ~ group +
+    nars_pre +
+    nfc_pre +
+
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df2
+)
+
+anova(mod1, mod2, base)
+
+grouped_ggbetweenstats(
+  x = group,
+  y = robot_trust_post,
+  grouping.var = trust_items,
+  scores_df2
+)
+
+grouped_ggbetweenstats(
+  x = group,
+  y = robot_trust_post,
+  grouping.var = trust_items,
+  scores_df
+)
+```
+
+Robot experience and native language predictors may overlap, as many of the participants with robot experience are international students.
+
+```{r}
+
+#| fig.height: 8
+#| fig.width: 6
+predictions <- predict_response(
+  mod5,
+  terms = c(
+    "group",
+    "trust_items",
+    #"native_english",
+    "robot_xp"
+  )
+)
+
+plot(predictions, n_rows = 1, connect_lines = TRUE, ci_style = 'dot') +
+  theme(legend.position = "bottom") +
+  scale_color_discrete() +
+  ggtitle(
+    "Treatment x Prior Robot Experience (Yes vs No)"
+  ) +
+  theme(legend.position = "bottom", legend.direction = "vertical")
+
+```
+
+```{r}
+
+```
+
+```{r}
+# put the likert scores on a 0-100 scale for easier interpretation
+
+base <- lm(robot_trust ~ group + nars_pre + nfc_pre, data = scores_df2)
+
+mod1 <- lmer(
+  robot_trust ~ group +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df2
+)
+
+mod2 <- lmer(
+  robot_trust ~ group *
+    #  trust_items +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df2
+)
+
+mod3 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    nars_pre +
+    nars_pre_s1 +
+    nars_pre_s2 +
+    nars_pre_s3 +
+    (1 | session_id),
+  data = scores_df2
+)
+
+mod4 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    native_english +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id),
+  data = scores_df2
+)
+
+
+mod5 <- lmer(
+  robot_trust ~ group *
+    trust_items +
+    robot_xp +
+    native_english +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id),
+  data = scores_df2
+)
+
+# predictions <- predict_response(mod2, terms = c("group", "trust_items"))
+
+# plot(predictions, n_rows = 2) +
+#   theme(legend.position = "bottom") +
+#   scale_color_discrete()
+
+#compare_performance(mod1, mod2, mod3, mod4, mod5, rank = TRUE)
+
+# grouped_ggbetweenstats(
+#   x = group,
+#   y = robot_trust,
+#   grouping.var = trust_items,
+#   data = scores_df2
+# )
+grouped_ggbetweenstats(
+  x = group,
+  y = robot_trust2,
+  grouping.var = trust_items,
+  scores_df_2
+)
+```
+
+The greatest predictor of success in completing tasks accurately was not group membership but whether someone was a native english speaker or not, suggesting that language comprehension and the quality of STT translations may have played a larger role in task performance than robot responsiveness. Future work should further explore how language background and robot dialogue systems interact to influence task performance. Solution to this problem could be improved ASR systems or simplified dialogue structures that are less reliant on complex language understanding.
+
+```{r}
+
+accuracy_df <- df2 |>
+  select(
+    session_id,
+    group,
+    gender,
+    age,
+    program,
+    robot_xp,
+    the_way_the_robot_moved_made_me_uncomfortable:the_robot_seemed_to_care_about_helping_me,
+    native_english:n_frust
+  ) |>
+  pivot_longer(
+    suspect_correct:zone_correct,
+    names_to = "accuracy_items",
+    values_to = "accuracy",
+  ) |>
+  left_join(
+    df_flat_scores_final |>
+      select(session_id, contains('nars_'), contains('nfc_')),
+    by = "session_id"
+  ) |>
+  mutate(accuracy_items = factor(accuracy_items)) |>
+  mutate(group = factor(group, levels = c("CONTROL", "EXPERIMENTAL"))) |>
+  mutate(program = as_factor(program)) |>
+  mutate(robot_xp = as_factor(robot_xp)) |>
+  mutate(
+    native_english = factor(native_english, levels = c("FALSE", "TRUE"))
+  ) |>
+  select(-total_correct)
+
+
+base <- glm(
+  accuracy ~ group + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+base2 <- glm(
+  accuracy ~ group + accuracy_items + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+base3 <- glm(
+  accuracy ~ group * accuracy_items + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+base4 <- glm(
+  accuracy ~ group * native_english + accuracy_items + nars_pre + nfc_pre,
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+
+mod1 <- glmer(
+  accuracy ~ group +
+    nars_pre +
+    nfc_pre +
+    (1 | session_id) +
+    (1 | accuracy_items),
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+
+
+mod2 <- glmer(
+  accuracy ~ group +
+    accuracy_items +
+    native_english +
+    # robot_xp +
+    nars_pre +
+    nfc_pre +
+    (1 | accuracy_items) +
+    (1 | session_id),
+  family = binomial(link = "logit"),
+  data = accuracy_df
+)
+tab_model(mod2)
+
+# predictions <- predict_response(mod2, terms = c("native_english", "group"))
+
+# plot(predictions, n_rows = 2) +
+#   theme(legend.position = "bottom") +
+#   scale_color_discrete()
+
+compare_performance(mod1, mod2, mod3, mod4, mod5, rank = TRUE)
+
+# grouped_ggbetweenstats(x = group, y = accuracy, grouping.var = native_english, accuracy_df)
+# mod3 <- lmer(
+#   robot_trust ~ group *
+#     trust_items +
+#     nars_pre +
+#     nars_pre_s1 +
+#     nars_pre_s2 +
+#     nars_pre_s3 +
+#     (1 | session_id),
+#   data = scores_df2
+# )
+
+# mod4 <- lmer(
+#   robot_trust ~ group *
+#     trust_items +
+#     native_english +
+#     nars_pre +
+#     nfc_pre +
+#     (1 | session_id),
+#   data = scores_df2
+# )
+
+# mod5 <- lmer(
+#   robot_trust ~ group *
+#     trust_items +
+#     robot_xp +
+#     native_english +
+#     nars_pre +
+#     nfc_pre +
+#     (1 | session_id),
+#   data = scores_df2
+# )
+```
+
+```{r}
+
+# ggbetweenstats(x = group, y = nars_pre, df_flat_scores_final)
+# ggbetweenstats(x = group, y = nars_pre_s1, df_flat_scores_final)
+# ggbetweenstats(x = group, y = nars_pre_s2, df_flat_scores_final)
+# ggbetweenstats(x = group, y = nars_pre_s3, df_flat_scores_final)
+
+#ggbetweenstats(x = group, y = post_trust, df_flat_scores_final)
+
+```

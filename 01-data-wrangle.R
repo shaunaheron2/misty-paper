@@ -2,36 +2,33 @@ library(tidyverse)
 library(janitor)
 library(haven)
 
-pre_in_progress <- read_sav('data/HRI-Responses-in-Progress.sav') |>
-  clean_names()
-
-pre <- read_sav('data/HRI-Experiment-Pre_November+22,+2025_09.13.sav') |>
-  clean_names() |>
-  select(login_id, recorded_date, email = q19, group, q1:q37_22) |>
-  filter(grepl('Control|Experimental', group))
-
-post <- read_sav('data/HRI-Experiment-Post_November+22,+2025_09.13.sav') |>
+post <- read_sav('data/HRI-Experiment-Post_December+13,+2025_09.23.sav') |>
   clean_names() |>
   select(response_id, recorded_date, email = recipient_email, q2_1:q4_7) |>
   filter(recorded_date >= '2025-11-18')
 
 valid_emails <- post |> pull(email) |> unique()
 
-pre_filt <- pre |>
-  filter(email %in% valid_emails)
+pre <- read_sav('data/HRI-Experiment-Pre_December+13,+2025_09.23.sav') |>
+  clean_names() |>
+  select(login_id, recorded_date, email = q19, group, q1:q37_22) %>%
+  mutate(across(where(is.character), ~ na_if(., ""))) |>
+  filter(email %in% valid_emails) |>
+  filter(!is.na(login_id))
+
 
 long_prefix <- "Please answer the following based on how much you agree or disagree with the\nfollowing statements: - "
 
 pre_item_names <- sjlabelled::get_label(
   pre_filt,
-  def.value = names(pre_filt)
+  def.value = names(pre)
 ) |>
   str_remove(long_prefix) |> # drop leading boilerplate if present
   janitor::make_clean_names() # ensure syntactic, unique
 
-names(pre_filt) <- pre_item_names
+names(pre) <- pre_item_names
 
-pre_filt2 <- pre_filt |>
+pre2 <- pre |>
   select(
     -contains('by_selecting'),
     -please_choose_a_date_and_time_for_your_session_from_the_available_options,
@@ -52,7 +49,7 @@ post_item_names <- sjlabelled::get_label(
 
 names(post) <- post_item_names
 
-final_df <- pre_filt2 |>
+final_df <- pre2 |>
   select(
     -login_id,
     pre_date = recorded_date,
@@ -69,6 +66,7 @@ final_df <- pre_filt2 |>
       ),
     by = join_by(email == recipient_email)
   ) |>
-  select(-group)
+  select(-group) |>
+  arrange(post_date)
 
-write_csv(final_df, 'survey_data.csv')
+saveRDS(final_df, 'survey_data.rds')
