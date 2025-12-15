@@ -106,7 +106,7 @@ Participants collaborated with a Misty-II robot in solving an immersive puzzle g
 
 In the control condition the robot followed a neutral interaction policy, while in the experimental condition the robot was prompted to adapt its behavior based on detected user affect, dialogue and demands of the task itself. Importantly, both conditions utilized the same robot and were subject to the same sensory and interaction limitations inherent to autonomous operation, including speech recognition variability and response timing constraints. The only difference was the interaction policy between conditions.
 
-**Between-subjects factor**: Robot Interaction Mode
+**Between-subjects factor**: Robot Interaction Policy
 
 1.  **RESPONSIVE** (experimental): Warm, emotionally engaged, proactive behavior with emotion-responsive adaptation
 2.  **CONTROL** (baseline): Neutral, reactive, information-only responses
@@ -124,7 +124,7 @@ In the control condition the robot followed a neutral interaction policy, while 
     -   determine missing robot location by collaborating with Misty-II to decipher system, wifi and sensor logs
 5.  **Wrap-up** (stage5): Debriefing and conclusion
 
-**Time constraints**: \~15 minutes total session duration, with configurable per-task timers
+**Time constraints**: \~15 minutes total session duration
 
 ### Task 1: Robot-dependent collaborative reasoning
 
@@ -135,8 +135,6 @@ This task was designed to establish an initial forced collaborative dynamic in w
 ### Task 2: Open-ended problem-solving with advisory robot support
 
 The second task involved a more complex problem-solving scenario in which participants had access to multiple technical logs presented via a simulated terminal interface to determine the location of the missing 'Atlas' robot. Unlike the first task, the robot did not possess ground-truth knowledge about the whereabouts of the robot. The robot’s assistance in this task was limited to general problem-solving support derived from language model’s prior training, such as explaining how to interpret log information, suggesting reasoning strategies, or helping participants reflect on inconsistencies across logs. The robot was explicitly constrained such that it was informed only that participants could view several logs, without access to the content of those logs or the correct answers to the task-related questions. The robot could ask the participant questions about what they found in the logs and the human could do the same.
-
-The second task was intentionally designed to be sufficiently challenging that completing it within the allotted time was difficult without assistance. This ensured that interaction with the robot represented a meaningful opportunity for collaboration rather than a trivial or purely optional exchange. By contrasting a robot-dependent task with an open-ended advisory task, the study examined trust formation across interaction contexts that varied in both informational asymmetry and reliance on the robot.
 
 Importantly, participants could complete the second task independently or choose to solicit assistance from the robot. As a result, the robot functioned as a collaborative reasoning partner rather than an authoritative source. Participants retained full control over decision-making and were free to accept, reject, or ignore the robot’s suggestions. This design allowed collaboration to emerge voluntarily, rather than being enforced by task structure [@lin2022].
 
@@ -379,6 +377,8 @@ Sensitivity analyses using alternative prior specifications yielded substantivel
 
 Mention language confounders!!
 
+The second task was intentionally designed to be sufficiently challenging that completing it within the allotted time was difficult without assistance. This ensured that interaction with the robot represented a meaningful opportunity for collaboration rather than a trivial or purely optional exchange. By contrasting a robot-dependent task with an open-ended advisory task, the study examined trust formation across interaction contexts that varied in both informational asymmetry and reliance on the robot.
+
 This pilot study examined trust outcomes following in-person interaction with an autonomous social robot under two interaction policies: a responsive, affect-adaptive condition and a neutral, non-responsive control condition. By leveraging a fully autonomous dialogue system integrated with speech recognition and affect detection, the study aimed to evaluate how robot responsiveness influences trust formation in realistic human–robot collaboration scenarios.
 
 Descriptive comparisons of post-interaction measures indicated that participants in the responsive condition reported consistently higher trust across all trust measures, with differences ranging from approximately 8 to 16 points on a 0–100 scale, although uncertainty remained high given the small sample. Notably, the responsive condition did not differ from control in objective task accuracy, suggesting that increased trust was not driven by improved task success. Instead, responsive interactions were characterized by longer durations, slower response times, and a higher number of AI-detected engaged responses, indicating a shift in interaction dynamics rather than performance.
@@ -522,7 +522,8 @@ This study implements a multi-stage collaborative task system where participants
 
 **Primary Dependencies**:
 
--   `misty-sdk` (Python SDK for Misty Robotics API)
+-   `misty-sdk` (Python SDK for Misty Robotics API) - Robot control and sensor access
+-   `deepgram-sdk` (4.8.1) - Speech-to-text processing
 -   `ffmpeg-python` (0.2.0) - Audio stream processing
 -   `flask` (3.1.2) + `flask-socketio` (5.5.1) - Web interface for task presentation
 -   `duckdb` (1.4.0) - Experimental data logging database
@@ -531,7 +532,7 @@ This study implements a multi-stage collaborative task system where participants
 
 **LLM Provider**:
 
-1.  **Google Gemini** (default):
+**Google Gemini**:
 
     -   Model: `gemini-2.5-flash-lite` (configurable via environment variable)
     -   Integration: `langchain-google-genai` with `google-generativeai` API
@@ -539,7 +540,7 @@ This study implements a multi-stage collaborative task system where participants
 
 **LLM Configuration**:
 
--   Temperature: 0.7 (default, configurable)
+-   Temperature: 0.7 (for balanced creativity and coherence)
 -   Memory: Conversation buffer memory with file-based persistence (`langchain.memory.ConversationBufferMemory`)
 -   Context window: Full conversation history maintained across interaction stages but reset between sessions.
 
