@@ -534,9 +534,9 @@ This study implements a multi-stage collaborative task system where participants
 
 **Google Gemini**:
 
-    -   Model: `gemini-2.5-flash-lite` (configurable via environment variable)
-    -   Integration: `langchain-google-genai` with `google-generativeai` API
-    -   Response format: JSON-only output (`response_mime_type: "application/json"`). This format is required by Misty-II for reliable parsing and for action execution.
+  -   Model: `gemini-2.5-flash-lite` (configurable via environment variable)
+  -   Integration: `langchain-google-genai` with `google-generativeai` API
+  -   Response format: JSON-only output (`response_mime_type: "application/json"`). This format is required by Misty-II for reliable parsing and for action execution.
 
 **LLM Configuration**:
 
@@ -590,7 +590,6 @@ Human Message Format:   {
 "frustration_note": "<optional_alert>",     
 "timer_expired": "<task_id>",     ...   }
 ```
-
 -   JSON-encoded context variables passed alongside user input
 -   Enables LLM to access environmental state without breaking message history
 
@@ -663,6 +662,7 @@ Alternatives considered: Direct API calls would reduce dependencies but require 
 
 **Expression System**: 25 custom action scripts combining:
 
+- LLM was prompted to choose an appropriate expression from a predefined set based on context.
 -   Facial displays (image eye-expression files on screen)
 -   LED color patterns (solid, breathe, blink)
 -   Arm movements (bilateral position control)
@@ -692,14 +692,6 @@ Alternatives considered: Direct API calls would reduce dependencies but require 
 
 4\. **Events table**: stage transitions, silence check-ins, timer expirations, detected emotions
 
-**Additional logs**:
-
-\- Prompt debugging logs (full LLM prompts with history)
-
-\- Audio recordings (MP3, timestamped by utterance)
-
-\- Real-time console logs with structured event markers
-
 ## Interaction Dynamics
 
 ### Silence Handling
@@ -722,34 +714,6 @@ Alternatives considered: Direct API calls would reduce dependencies but require 
 -   Celebratory language for curious/engaged states
 -   Momentum maintenance: "Yes! Great observation!"
 
-## System Requirements
-
-**Hardware**:
-
--   CUDA-capable GPU (optional, for emotion detection acceleration)
--   Network: Local HTTP server (port 8000 for audio serving, port 5000 for Flask GUI)
--   Misty II robot on same local network
-
-**Software**:
-
--   Python 3.10
--   PyTorch 2.9.0 with CUDA 12.8 support
--   FFmpeg system installation
-
-## Configuration
-
-**Environment Variables** (`.env` file):
-
--   `GPT_API_KEY`: OpenAI API key (required if using GPT or OpenAI TTS)
--   `DEEPGRAM_API_KEY`: Deepgram API key (required)
--   `GEMINI_API_KEY` / `GOOGLE_API_KEY`: Google Gemini API key (required if using Gemini)
--   `LLM_PROVIDER`: "GEMINI" or "OPENAI" (default: GEMINI)
--   `TTS_PROVIDER`: "misty", "openai", or "deepgram" (default: misty)
--   `ENABLE_EMOTION_DETECTION`: true/false (default: true)
--   `DEBUG_PROMPTS`: 0/1 - Enable full prompt logging
--   `LLM_TEMPERATURE`: 0.0-1.0 (default: 0.7)
--   `WRAP_TIMEOUT_SECONDS`: Auto-exit timeout (default: 60)
-
 **Run Mode**: Set programmatically in `mistyGPT_emotion.py` line 126:
 
 ``` python
@@ -762,7 +726,7 @@ Modular prompt system (PromptLoader class):
 
 -   core_system.md: Task framing, role description, output format schema
 -   role_responsive.md / role_control.md: Condition-specific personality instructions
--   stage1_greeting.md through stage5_wrap_up.md: Stage-specific task instructions
+-   stage1_greeting.md through stage5_wrap_up.md: Stage-specific task instructions.
 
 Context injection: Real-time contextual variables passed to LLM:
 
@@ -781,12 +745,4 @@ Flask REST API endpoints:
 -   GET /timer_expired_status: Detect timer expirations
 -   POST /stage: Update stage (facilitator override)
 -   POST /reset_timer: Clear timer expiration flags
-
-Reliability Features
-
--   Graceful shutdown handlers (SIGTERM, SIGINT)
--   Automatic session logging even on interruption
--   Fallback behaviors: CPU-only emotion detection, Misty TTS if cloud services fail
--   Deepgram speech_final detection with UtteranceEnd backup handler
-
 
