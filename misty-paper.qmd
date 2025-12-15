@@ -85,20 +85,46 @@ To achieve this we developed an autonomous spoken-language interaction system in
 
 By examining post-interaction trust using established trust measures alongside behavioral and task-level outcomes, this study aims to contribute empirical evidence on how trust might be shaped in fully autonomous HRI scenarios. Rather than seeking to demonstrate optimal performance under ideal conditions, the focus is on understanding trust as it is impacted during realistic human–robot interaction, where uncertainty, interactional breakdowns, and adaptive behavior are unavoidable. As such, this work provides insight into the practical implications of affect-responsive autonomy for trust in human–robot collaboration.
 
+## Hypothesese
+
 # Methods
 
 ## Sample and recruitment
 
-Participants (*n* = 29) were recruited from the Laurentian University community through word of mouth and via the SONA recruitment system. Eligible participants were adults (18+), fluent in english with normal to corrected hearing and vision and no experience interacting with the Misty-II robot. Participants received a \$15.00 gift card as compensation for their time. All procedures were approved by the university's Research Ethics Board.
+Participants (*n* = 29) were recruited from the Laurentian University community through word of mouth and via the SONA recruitment system. Eligible participants were adults (18+), fluent in english with normal to corrected hearing and vision and no experience interacting with the Misty-II robot. Participants received a \$15.00 gift card as compensation for their time. All procedures were approved by the university's Research Ethics Board. The Misty II robot was purchased with grant funding from the IAMGOLD President Innovation Fund.
 
 Sample characteristics are summarized in @tbl-pre.
 
-The Misty II robot was purchased with grant funding from the IAMGOLD President Innovation Fund.
-## Task design and procedure
+## Experimental design
 
-Participants collaborated with the robot in solving an immersive puzzle game where the robot served as a diegetic "game guide" and collaborative partner. In the game, the participant solves the mystery by interacting with the robot guide for hints, emotional support and advice on how to solve the puzzles. The game was composed of two sequential tasks designed to elicit interaction with the robot under differing knowledge and dependency conditions [@lin2022] . The robot autonomously monitored task progression through the interface and adapted its dialogue accordingly without real-time human intervention. 
+Participants interacted with the Misty-II robot in a shared physical workspace that included both the robot and a computer-based task interface. The interface was visible to participants and used to present brief task instructions, collect responses, and advance between task stages. Importantly, the robot autonomously monitored task progression and participant input through the interface, allowing it to adapt its dialogue and responses without human intervention.The interface served as a communication channel between the participant and the autonomous system rather than as a mechanism for remotely controlling robot behavior (See @fig-setup).
 
-In the control condition the robot followed a neutral interaction policy, while in the experimental condition the robot was prompted to adapt its behavior based on detected user affect, dialogue and demands of the task itself. Importantly, both conditions utilized the same robot subject to the same sensory and interaction limitations inherent to autonomous operation, including speech recognition variability and response timing constraints. The only difference was the interaction policy between conditions.The tasks were structured as follows:
+![Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input. No real-time human intervention occurred during the interaction.](images/misty-pullback.jpg){#fig-setup fig-align="center" width="482"}
+
+
+Participants collaborated with a Misty-II robot in solving an immersive puzzle game where the robot served as a diegetic "game guide" and collaborative partner. In the game, the participant solves the mystery by interacting with the robot guide for hints, emotional support and advice on how to solve the puzzles. The game was composed of two sequential tasks designed to elicit interaction with the robot under differing knowledge and dependency conditions [@lin2022] . The robot autonomously monitored task progression through the interface and adapted its dialogue accordingly without real-time human intervention. 
+
+In the control condition the robot followed a neutral interaction policy, while in the experimental condition the robot was prompted to adapt its behavior based on detected user affect, dialogue and demands of the task itself. Importantly, both conditions utilized the same robot and were subject to the same sensory and interaction limitations inherent to autonomous operation, including speech recognition variability and response timing constraints. The only difference was the interaction policy between conditions.
+
+**Between-subjects factor**: Robot Interaction Mode
+
+1.  **RESPONSIVE** (experimental): Warm, emotionally engaged, proactive behavior with emotion-responsive adaptation
+2.  **CONTROL** (baseline): Neutral, reactive, information-only responses
+
+### Task Structure
+
+**Five sequential stages**:
+
+1.  **Greeting** (stage1): Participant introduction and rapport building
+2.  **Mission Brief** (stage2): Task explanation and scenario framing
+3.  **Task 1** (stage3): Who dunnit task
+    -   Identify suspect from 4×6 grid (24 options) by asking robot Yes/No questions based on ground-truth
+    -   Ground truth features: red hair, glasses, no hat, long hair, pink hoodie
+4.  **Task 2** (stage4): Log analysis task
+    -   determine missing robot location by collaborating with Misty-II to decipher system, wifi and sensor logs
+5.  **Wrap-up** (stage5): Debriefing and conclusion
+
+**Time constraints**: \~15 minutes total session duration, with configurable per-task timers
 
 ### Task 1: Robot-dependent collaborative reasoning
 
@@ -108,36 +134,24 @@ This task was designed to establish an initial forced collaborative dynamic in w
 
 ### Task 2: Open-ended problem-solving with advisory robot support
 
-The second task involved a more complex problem-solving scenario in which participants had access to multiple technical logs presented via a simulated terminal interface to determine the location of the missing 'Atlas' robot. Unlike the first task, the robot did not possess ground-truth knowledge about the whereabouts of the robot. The robot’s assistance in this task was limited to general problem-solving support derived from language model’s prior training, such as explaining how to interpret log information, suggesting reasoning strategies, or helping participants reflect on inconsistencies across logs. The robot was explicitly constrained such that it was informed only that participants could view several logs, without access to the content of those logs or the correct answers to the task-related questions. The robot could ask the participant questions about what they found in the logs and the human could do the same.Importantly, participants could complete the second task independently or choose to solicit assistance from the robot. As a result, the robot functioned as a collaborative reasoning partner rather than an authoritative source. Participants retained full control over decision-making and were free to accept, reject, or ignore the robot’s suggestions. This design allowed collaboration to emerge voluntarily, rather than being enforced by task structure [@lin2022].
+The second task involved a more complex problem-solving scenario in which participants had access to multiple technical logs presented via a simulated terminal interface to determine the location of the missing 'Atlas' robot. Unlike the first task, the robot did not possess ground-truth knowledge about the whereabouts of the robot. The robot’s assistance in this task was limited to general problem-solving support derived from language model’s prior training, such as explaining how to interpret log information, suggesting reasoning strategies, or helping participants reflect on inconsistencies across logs. The robot was explicitly constrained such that it was informed only that participants could view several logs, without access to the content of those logs or the correct answers to the task-related questions. The robot could ask the participant questions about what they found in the logs and the human could do the same.
+
+The second task was intentionally designed to be sufficiently challenging that completing it within the allotted time was difficult without assistance. This ensured that interaction with the robot represented a meaningful opportunity for collaboration rather than a trivial or purely optional exchange. By contrasting a robot-dependent task with an open-ended advisory task, the study examined trust formation across interaction contexts that varied in both informational asymmetry and reliance on the robot.
+
+Importantly, participants could complete the second task independently or choose to solicit assistance from the robot. As a result, the robot functioned as a collaborative reasoning partner rather than an authoritative source. Participants retained full control over decision-making and were free to accept, reject, or ignore the robot’s suggestions. This design allowed collaboration to emerge voluntarily, rather than being enforced by task structure [@lin2022].
 
 ### Wrap-up and debrief
 
 Once all answers were submitted, the correct answers were shown to participants, letting them know how they did. At the wrap-up stage the robot and the participant had the chance to debrief on whether they were right or not, and then the task came to an end with the robot thanking them and prompting them to report to the principal investigator.
 
-### Task difficulty and collaborative intent
 
-The second task was intentionally designed to be sufficiently challenging that completing it within the allotted time was difficult without assistance. This ensured that interaction with the robot represented a meaningful opportunity for collaboration rather than a trivial or purely optional exchange. By contrasting a robot-dependent task with an open-ended advisory task, the study examined trust formation across interaction contexts that varied in both informational asymmetry and reliance on the robot.
-
-Across both tasks, the interface served as a shared workspace facilitating coordination between the participant and the autonomous robot, rather than as a mechanism for remotely controlling robot behavior. At no point during either task did a human operator intervene to guide the robot’s actions or manage task flow.
-
-## System overview and experimental setup
-
-Participants interacted with the Misty-II robot in a shared physical workspace that included both the robot and a computer-based task interface. The interface was visible to participants and used to present brief task instructions, collect responses, and advance between task stages. Importantly, the robot autonomously monitored task progression and participant input through the interface, allowing it to adapt its dialogue and responses without human intervention.The interface served as a communication channel between the participant and the autonomous system rather than as a mechanism for remotely controlling robot behavior (See @fig-setup) .
-
-### Experimental setup and interaction environment
+## In-person procedure
 
 Participants (*n* = 29) completed a pre-interaction questionnaire on Qualtrics where consent, demographics information, and a baseline measure of Negative Attitudes Towards Robot Scale and Need for Cognition (thinking style) were administered. Because of potential variability around timing of the pre-interaction tests and the in-person sessions, we elected not to use a formal pre-post test. Instead we took a general measure of attitudes towards robots as well as general thinking style to establish a baseline for later group comparison.
 
 At the in-person session, once the pre-interaction survey was complete, participants were seated in front of Misty and instructed to start the session by clicking the Start button on the dash. They were also instructed on basic communication tips with the robot: i.e., to wait until the blue light on the side of the robot's head was on before speaking. Finally, once the participant was ready to start, the researcher left the room and closed the door, leaving the robot and participant to complete the tasks together. Once complete the participant would exit the room and then complete a post-interaction survey containing the Trust Perception-HRI scale and the Trust in Industrial Human-robot Collaboration scale followed by a written debriefing and verbal debriefing with the primary researcher. Participants were informed they could leave the room and stop the session at any time, no questions asked. Once complete, participants were presented with a \$15.00 gift card as compensation for their time. All participants completed the tasks and remained for their full session which took an average of 30 minutes to complete.
 
-![Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input. No real-time human intervention occurred during the interaction.](images/misty-pullback.jpg){#fig-setup fig-align="center" width="482"}
 
-### Robotic system and autonomy pipeline
-
-
-### Interaction conditions
-
-Describe the responsive versus control conditions here briefly. Maybe give explanation of how that was handled with langchain?
 
 # Results
 
@@ -579,21 +593,6 @@ Human Message Format:   {
 -   JSON-encoded context variables passed alongside user input
 -   Enables LLM to access environmental state without breaking message history
 
-### LLM Invocation
-
-Provider-Specific Configuration:
-
--   Gemini (ChatGoogleGenerativeAI): model_kwargs={"response_mime_type": "application/json"}
-
-    -   Enforces JSON-only output at API level
-    -   Reduces parsing errors from markdown-wrapped responses
-
-Invocation Flow: messages → llm.invoke(messages) → response → memory.save_context()
-
-### Response Processing
-
-JSON Extraction Pipeline: 1. Handle polymorphic response content (string or list) 2. Attempt direct json.loads() (fast path) 3. Fallback: Scan for first balanced {...} object in response 4. Extract required keys: msg, expression, advance_stage (optional) 5. Default fallback: {"msg": content, "expression": "thinking"} if parsing fails
-
 ### Memory Persistence:
 
 -   Save after each turn: memory.save_context({"input": user_text}, {"output": llm_response})
@@ -658,30 +657,6 @@ Alternatives considered: Direct API calls would reduce dependencies but require 
 -   Hardware: CUDA GPU acceleration (automatic fallback to CPU)
 -   Output classes: joy, anger, sadness, fear, disgust, surprise, neutral
 -   Mapped to interaction states: positively engaged, irritated, disappointed, anxious, frustrated, curious, neutral
-
-## Experimental Design
-
-### Study Conditions
-
-**Between-subjects factor**: Robot Interaction Mode
-
-1.  **RESPONSIVE** (experimental): Warm, emotionally engaged, proactive behavior with emotion-responsive adaptation
-2.  **CONTROL** (baseline): Neutral, reactive, information-only responses
-
-### Task Structure
-
-**Five sequential stages**:
-
-1.  **Greeting** (stage1): Participant introduction and rapport building
-2.  **Mission Brief** (stage2): Task explanation and scenario framing
-3.  **Task 1** (stage3): Who dunnit task
-    -   Identify suspect from 4×6 grid (24 options) by asking robot Yes/No questions based on ground-truth
-    -   Ground truth features: red hair, glasses, no hat, long hair, pink hoodie
-4.  **Task 2** (stage4): Log analysis task
-    -   determine missing robot location by collaborating with Misty-II to decipher system, wifi and sensor logs
-5.  **Wrap-up** (stage5): Debriefing and conclusion
-
-**Time constraints**: \~15 minutes total session duration, with configurable per-task timers
 
 ### Multimodal Robot Behavior
 
