@@ -62,8 +62,18 @@ write_csv(df, "check_groups.csv")
 # rescale likert items to 1-5 for scoring
 
 df2 <- df |>
-  mutate(across(10:40, ~ as.numeric(.x))) |>
-  mutate(across(10:40, ~ scales::rescale(.x, to = c(1, 5))))
+  mutate(across(10:40, ~ as_factor(.x))) |>
+  mutate(across(
+    10:40,
+    ~ case_when(
+      .x == 'Strongly Disagree' ~ 1,
+      .x == 'Disagree' ~ 2,
+      .x == 'Neutral' ~ 3,
+      .x == 'Agree' ~ 4,
+      .x == 'Strongly Agree' ~ 5,
+      TRUE ~ as.numeric(NA)
+    )
+  ))
 
 # build scoring keys
 nfc_keys <- list(
@@ -238,5 +248,98 @@ df_flat_scores_final2 <- df_flat_scores_final |>
     by = join_by(session_id)
   )
 
-
 saveRDS(df_flat_scores_final2, 'full_dataset_with_items.rds')
+
+################################
+#### Long datasets for mixed models and plotting
+#######################
+
+dep1_df <- df_flat_scores_final |>
+  #drop_na(gender) |>
+  select(
+    session_id,
+    contains("what_percent"),
+  ) |>
+  pivot_longer(
+    what_percent_of_the_time_was_the_robot_dependable:what_percent_of_the_time_did_this_robot_answer_the_questions_asked,
+    names_to = "trust_items",
+    values_to = "robot_trust_post"
+  ) |>
+  mutate(scale = "HRI_perception_post")
+
+rev_key <- tibble(
+  trust_items = c(
+    "the_way_the_robot_moved_made_me_uncomfortable",
+    "the_way_the_robot_spoke_made_me_uncomfortable",
+    "talking_to_the_robot_made_me_uneasy"
+  ) # <-- your item names / IDs
+)
+
+dep2_df <- df_flat_scores_final |>
+  select(
+    session_id,
+    the_way_the_robot_moved_made_me_uncomfortable:the_robot_seemed_to_care_about_helping_me
+  ) |>
+  pivot_longer(
+    the_way_the_robot_moved_made_me_uncomfortable:the_robot_seemed_to_care_about_helping_me,
+    names_to = "trust_items",
+    values_to = "robot_trust_post"
+  ) %>%
+  left_join(
+    rev_key %>% mutate(reverse = TRUE),
+    by = join_by(trust_items)
+  ) %>%
+  mutate(
+    robot_trust_rev = if_else(
+      reverse %in% TRUE,
+      (min(robot_trust_post, na.rm = TRUE) +
+        max(robot_trust_post, na.rm = TRUE)) -
+        robot_trust_post,
+      robot_trust_post
+    )
+  ) %>%
+  select(-reverse) |>
+  mutate(
+    robot_trust_post = scales::rescale(
+      robot_trust_rev,
+      to = c(0, 100),
+      min_old = 1,
+      max_old = 5
+    )
+  ) |>
+  select(-robot_trust_rev) |>
+  mutate(scale = "HRI_collab_post")
+
+final_long <- bind_rows(dep1_df, dep2_df) |>
+  left_join(
+    df_flat_scores_final |>
+      select(
+        session_id,
+        group,
+        gender,
+        age,
+        program,
+        robot_xp,
+        human_trust_pre,
+        robot_trust_pre,
+        ai_trust_pre,
+        native_english,
+        contains('pre'),
+        contains('nars'),
+        contains('correct')
+      ),
+    by = join_by(session_id)
+  ) |>
+  mutate(age = as_factor(age))
+
+final_long %>%
+  #filter(item %in% c("Q2","Q5","Q9")) %>%
+  summarise(
+    raw_min = min(robot_trust_post, na.rm = TRUE),
+    raw_max = max(robot_trust_post, na.rm = TRUE),
+    scored_min = min(robot_trust_post, na.rm = TRUE),
+    scored_max = max(robot_trust_post, na.rm = TRUE)
+  )
+
+
+saveRDS(final_long, "full_dataset_long_trust_post.csv")

@@ -8,7 +8,7 @@ format: html
 -   **Student:** Shauna Heron
 -   **Faculty/Supervisor:** Dr. Meng Cheng Lau, School of Engineering and Computer Science / Director of Laurentian Intelligent Mobile Robotic Lab (LIMRL)
 
-Keywords: human-robot interaction, affect-detection, responsive robotics, socially assistive robotics, cobots, level of autonomy, artificial intelligence, Wizard of Oz,
+Keywords: human-robot interaction, affect-detection, responsive robotics, socially assistive robotics, cobots, level of autonomy, artificial intelligence, autonomous robot systems, trust in automation, large language models, spoken language interaction
 
 ## Project Description
 
@@ -36,51 +36,20 @@ This project aimed to develop and evaluate a multi-sensor Emotion-Adaptive AI Sy
 2.  Evaluate the impact of EAI on trust, perceived social intelligence, and task collaboration in two types of human-robot tasks.
 3.  Assess whether individual differences in human cognitive style (i.e., Need for Cognition) influences responses to adaptive robotic behaviour and trust in robots (before and after interaction)
 
-## Methodology
-
-### Participants
-
-We recruited 21 adults from Laurentian University. Ethics approval was obtained prior to participant recruitment.
-
-### Experimental Design
-
-A 2×2 between-subjects design will varied robot behaviour (EAI-enabled vs. EAI-disabled (control)) and task type (robot-dependent vs. robot-independent). Each participant completed two collaborative tasks with either EAI Misty or Neutral Misty:
-
--   **Whodunnit Task (structured):** human solves a who dunnit type task by asking Yes/No questions (process of elimination in 6x4 suspect grid) to the robot. Robot knows ground truth features of the suspect but can only answer Yes/No questions about suspect features. Can not directly describe the suspect or name them. (human can choose a random suspect to solve on their own but only 1 in 24 chance of being correct without robot help).
-    -   Designed to force information seeking from robot.
--   **Where is? Task (unstructured):** Human collaborates with robot to find a missing robot by deciphering cryptic system and sensor logs. Robot does not know the answer here and can only guide the human usinng its expertise and knowledge of computer systems and basic logical reasoning. (human can solve on their own but very difficult without robot help depending on participants technical background).
-    -   Designed to elicit moderate frustration, this scenario is ideal for assessing trust, help-seeking, and compliance.
-
-Misty adapts its real-time behaviour based on dialogue, questions, user affect in the EAI condition. In the neutral condition, Misty follows a fixed interaction script with consistent, non-adaptive responses. Bring in the role modes here.
-
 ### Measures
 
 We collected behavioural, self-report, and performance data:
 
--   **Trust and responsiveness will** be measured using:
+-   **Trust and responsiveness was** measured using:
 
-- The 14-item Trust Perception Scale-HRI [@bartneck2009].
+- The (adapted) 14-item Trust Perception Scale-HRI [@bartneck2009].
 - Trust in Industrial Human-Robot Collaboration [@charalambous].
 - **Engagement and behaviour:** Help-seeking, adherence, affect
 - **Task Performance:** Accuracy, fluency, task duration
-- **Moderator variables:** Need for Cognition (NFC) [@cacioppo1982]
+- **Potential Moderator variables:** Need for Cognition (NFC) [@cacioppo1982]
+- Negative Attitudes to Robots Scale (NARS) [@nomura2006]
 
-### Analysis
 
-Linear mixed-effects models will be used to test the effects of robot behaviour and task type on outcomes. Moderation analysis will explore whether individual cognitive traits influence the impact of the EAI on trust and engagement.
-
-## Timeline
-
-| Phase | Activities | Timeline |
-|------------------|-----------------------------|-------------------------|
-| Setup & Pilot | Task design, EAI development, ethics submission | May–June 2025 |
-| Data Collection | Participant recruitment and testing (n ≈ 60) | July–Sept 2025 |
-| Analysis | Quantitative and qualitative analysis | Oct–Nov 2025 |
-| Output | Final report, dissemination, manuscript prep | Dec 2025 |
-
-## Expected Contributions
-
-This study will provide empirical evidence on whether emotionally responsive robot behaviour improves user trust and collaboration, key barriers to automation adoption in industrial environments. Findings will support the design of AI-driven robotic systems that are not only functionally competent but also socially and behaviourally adaptive. These insights have direct relevance for the real-world deployment of collaborative robots in mining, particularly where human-robot teams work under high cognitive or emotional load.
 
 ## Budget Note
 
@@ -111,6 +80,7 @@ We developed an autonomous spoken-language interaction system integrated with a 
     -   STT: Deepgram API for real-time speech-to-text conversion.
     -   LLM: Gemini API for processing text input and generating contextually relevant responses in JSON format
     -   TTS: Misty-II text-to-speech (TTS) engine on 820 processor.
+    - DistilRoBERTa-base fine-tuned on emotion classification for emotion detection from user utterances
 
 3.  Langchain Dialogue Management: A system that manages the flow of conversation, ensuring coherent and contextually appropriate dialogue within a two-part collaborative task.
 

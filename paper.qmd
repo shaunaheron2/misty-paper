@@ -38,6 +38,7 @@ set_gtsummary_theme(theme_gtsummary_compact())
 df_flat_scores_final <- readRDS("full_dataset_with_items.rds") #|>
 # filter(!grepl('sprig', email))
 
+df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv")
 #saveRDS(df_flat_scores_final_with_items, 'full_dataset_with_items.rds')
 ```
 
@@ -45,15 +46,17 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") #|>
 These are preliminary results and analyses. Please do not distribute or cite without permission of the authors.
 :::
 
+# Results
 
-## Demographics and Baseline Characteristics
+## Participant characteristics and baseline measures
 
-The two groups look very similar on gender, age, program of study, prior robot experience, NARS, and Need for Cognition; none of these baseline differences are statistically significant; suggesting post-test differences are unlikely to be driven by obvious demographic or attitudinal imbalances.
-
+Participants in the control and responsive conditions were comparable with respect to demographic characteristics, academic background, prior experience with robots, and baseline attitudes toward robots (Table 1). In particular, baseline Negative Attitudes Towards Robots (NARS) and Need for Cognition scores were similar across groups, indicating that post-interaction differences were unlikely to reflect pre-existing attitudes.
 
 ```{r}
+#| tbl-cap: "Participant Demographics and Baseline Characteristics by Group"
 
 df_flat_scores_final |>
+  mutate(age = as_factor(age)) |>
   data.frame() |>
   select(-post_date) |>
   droplevels() |>
@@ -65,13 +68,13 @@ df_flat_scores_final |>
     robot_xp,
     native_english,
     nars_pre,
-    nars_social_influence_robots,
-    nars_emotion_robots,
-    nars_interaction_robots,
-    nfc_pre,
-    robot_trust_pre,
-    ai_trust_pre,
-    human_trust_pre
+    #nars_social_influence_robots,
+    #nars_emotion_robots,
+    #nars_interaction_robots,
+    nfc_pre
+    #robot_trust_pre,
+    #ai_trust_pre,
+    #human_trust_pre
     #contains('trust')
     #-mytrust_pre
   ) |>
@@ -79,13 +82,13 @@ df_flat_scores_final |>
     by = group,
     type = list(
       nars_pre ~ 'continuous',
-      nars_social_influence_robots ~ 'continuous',
-      nars_emotion_robots ~ 'continuous',
-      nars_interaction_robots ~ 'continuous',
-      human_trust_pre ~ 'continuous',
-      robot_trust_pre ~ 'continuous',
+      # nars_social_influence_robots ~ 'continuous',
+      # nars_emotion_robots ~ 'continuous',
+      # nars_interaction_robots ~ 'continuous',
+      #human_trust_pre ~ 'continuous',
+      #robot_trust_pre ~ 'continuous',
 
-      ai_trust_pre ~ 'continuous',
+      #ai_trust_pre ~ 'continuous',
       nfc_pre ~ 'continuous'
     ),
     statistic = list(
@@ -99,10 +102,10 @@ df_flat_scores_final |>
       robot_xp ~ "Experience w/Robots",
       native_english ~ 'Native English Speaker',
       nfc_pre ~ 'Need for Cognition',
-      nars_pre ~ "NARS Overall",
-      nars_social_influence_robots ~ "NARS: Social Influence",
-      nars_emotion_robots ~ "NARS: Emotions",
-      nars_interaction_robots ~ "NARS: Interaction"
+      nars_pre ~ "NARS Overall"
+      # nars_social_influence_robots ~ "NARS: Social Influence",
+      #nars_emotion_robots ~ "NARS: Emotions",
+      # nars_interaction_robots ~ "NARS: Interaction"
     ),
     missing_text = ('Missing')
   ) |>
@@ -115,10 +118,85 @@ df_flat_scores_final |>
     "Table 1. Participant Demographics and Baseline Characteristics by Group"
   )
 
+
+
+```
+
+##  Correlation Matrix of Key Variables
+
+```{r}
+#| fig-height: 7
+#| fig-width: 7
+
+df_flat <- df_flat_scores_final |>
+  select(
+    contains('pre'),
+    contains('post'),
+    total_correct,
+    n_turns,
+    duration_mins,
+    avg_response_ms,
+    n_silence,
+    n_engaged,
+    n_frust,
+    n_neg,
+    prop_correct,
+    suspect_correct,
+    building_correct,
+    zone_correct,
+    floor_correct
+  ) |>
+  select(-contains('i_would'))
+
+# df_flat %>%
+#   group_by(group) %>%
+#   dplyr::summarise(
+#     correlation = cor(human_trust, robot_trust, method = "pearson", use = "pairwise.complete.obs"),
+#     .groups = "drop"
+#   )
+
+res2 <- rcorr(as.matrix(df_flat %>% select(where(is.numeric))))
+
+corr <- cor(
+  df_flat %>% select(where(is.numeric)),
+  use = "pairwise.complete.obs"
+)
+
+testRes = cor.mtest(corr, conf.level = 0.95)
+#corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
+
+corrplot(
+  corr,
+  p.mat = testRes$p,
+  insig = 'label_sig',
+  sig.level = c(0.001, 0.01, 0.05),
+  pch.cex = 0.9,
+  pch.col = 'grey20'
+)
+
+
+# https://sjdm.org/dmidi/Need_for_Cognition_short.html
+# Lins de Holanda Coelho G, H P Hanel P, J Wolf L. The Very Efficient Assessment of Need for
+#Cognition: Developing a Six-Item Version. Assessment. 2020 Dec;27(8):1870-1885. doi:
+#10.1177/1073191118793208. Epub 2018 Aug 10. PMID: 30095000; PMCID: PMC7545655
+# https://rins.st.ryukoku.ac.jp/~nomura/docs/NARS_AAAI06.pdf
+# items. hus, the minimum and maximum scores are 6 and
+#  https://uhra.herts.ac.uk/id/eprint/13608/1/SyrdalDDautenhahn.pdf <-- discusses problems using standardized scale cross-culturally
+```
+
+## Post-interaction descriptive statistics
+
+```{r}
+#| tbl-cap: "Post-Interaction Outcome Measures by Group"
 post_table <- df_flat_scores_final |>
-  drop_na(gender) |>
+  #drop_na(gender) |>
   select(group, contains('post'), contains('correct'), 63:76) |>
-  data.frame()
+  data.frame() |>
+  mutate(across(
+    contains('post_trust'),
+    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
+  )) |>
+  select(-post_date)
 
 post_table |>
   tbl_summary(
@@ -160,82 +238,7 @@ post_table |>
   bold_p() |>
   #bold_labels() |>
   modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
-
-
 ```
-
-##  Correlation Matrix of Key Variables
-```{r}
-#| fig-height: 7
-#| fig-width: 7
-
-df_flat <- df_flat_scores_final |>
-  mutate(group = factor(group, levels = c("CONTROL", "RESPONSIVE"))) |>
-  mutate(
-    native_english = factor(native_english, levels = c("FALSE", "TRUE"))
-  ) |>
-  select(
-    -contains('what_perc'),
-    -contains('i_'),
-    -contains('the_'),
-    -contains('something'),
-    -contains('thinking')
-  )
-
-# df_flat %>%
-#   group_by(group) %>%
-#   dplyr::summarise(
-#     correlation = cor(human_trust, robot_trust, method = "pearson", use = "pairwise.complete.obs"),
-#     .groups = "drop"
-#   )
-
-res2 <- rcorr(as.matrix(df_flat_scores_final %>% select(where(is.numeric))))
-
-corr <- cor(
-  df_flat %>% select(where(is.numeric)),
-  use = "pairwise.complete.obs"
-)
-
-testRes = cor.mtest(corr, conf.level = 0.95)
-#corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
-
-corrplot(
-  corr,
-  p.mat = testRes$p,
-  insig = 'label_sig',
-  sig.level = c(0.001, 0.01, 0.05),
-  pch.cex = 0.9,
-  pch.col = 'grey20'
-)
-
-#corrplot(corr, p.mat = testRes$p, insig = 'p-value')
-# ++++++++++++++++++++++++++++
-# flattenCorrMatrix
-# ++++++++++++++++++++++++++++
-# cormat : matrix of the correlation coefficients
-# pmat : matrix of the correlation p-values
-flattenCorrMatrix <- function(cormat, pmat) {
-  ut <- upper.tri(cormat)
-  data.frame(
-    row = rownames(cormat)[row(cormat)[ut]],
-    column = rownames(cormat)[col(cormat)[ut]],
-    cor = (cormat)[ut],
-    p = pmat[ut]
-  )
-}
-
-flatmatrix <- flattenCorrMatrix(res2$r, res2$P)
-
-
-# https://sjdm.org/dmidi/Need_for_Cognition_short.html
-# Lins de Holanda Coelho G, H P Hanel P, J Wolf L. The Very Efficient Assessment of Need for
-#Cognition: Developing a Six-Item Version. Assessment. 2020 Dec;27(8):1870-1885. doi:
-#10.1177/1073191118793208. Epub 2018 Aug 10. PMID: 30095000; PMCID: PMC7545655
-# https://rins.st.ryukoku.ac.jp/~nomura/docs/NARS_AAAI06.pdf
-# items. hus, the minimum and maximum scores are 6 and
-#  https://uhra.herts.ac.uk/id/eprint/13608/1/SyrdalDDautenhahn.pdf <-- discusses problems using standardized scale cross-culturally
-```
-
 ## Need for Cognition and NARS Correlation Matrix
 
 As expected, we find that higher Need for Cognition (NFC) scores are negatively correlated with Negative Attitudes Towards Robots (NARS) scores, indicating that individuals who enjoy effortful thinking tend to have more positive attitudes towards robots. This relationship is consistent with prior literature suggesting that cognitive engagement is associated with openness to new technologies. In terms of NARS subscales, NFC was negatively correlated with all three subscales, but was only Social Influence of Robots, Emotions in Interaction with Robots, and Situations of Interaction with Robots but correlation was weakest Social Influence of Robots and strongest with Interaction with Robots. In the literature, .............................. This suggests that individuals with higher NFC are less likely to hold negative attitudes across various dimensions of robot interaction.
@@ -244,9 +247,9 @@ As expected, we find that higher Need for Cognition (NFC) scores are negatively 
 ```{r}
 #| fig-height: 7
 #| fig-width: 7
-#|
+
 df_pre_cor <- df_flat_scores_final |>
-  drop_na(gender) |>
+ # drop_na(gender) |>
   select(
     session_id,
     group,
@@ -283,7 +286,7 @@ df_pre_cor |>
     n = n(),
     mean_nfc = mean(nfc_pre, na.rm = TRUE),
     mean_nars = mean(nars_pre, na.rm = TRUE),
-    mean_nars_interation = mean(nars_interaction_robots, na.rm = TRUE),
+    mean_nars_interaction = mean(nars_interaction_robots, na.rm = TRUE),
     mean_nars_emotion = mean(nars_emotion_robots, na.rm = TRUE),
     mean_nars_social = mean(nars_social_influence_robots, na.rm = TRUE)
   )
@@ -324,26 +327,26 @@ corr <- cor(
 testRes = cor.mtest(corr, conf.level = 0.95)
 #corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
 
-corrplot(
-  corr,
-  p.mat = testRes$p,
-  insig = 'label_sig',
-  sig.level = c(0.001, 0.01, 0.05),
-  pch.cex = 0.9,
-  pch.col = 'grey20'
-)
+# corrplot(
+#   corr,
+#   p.mat = testRes$p,
+#   insig = 'label_sig',
+#   sig.level = c(0.001, 0.01, 0.05),
+#   pch.cex = 0.9,
+#   pch.col = 'grey20'
+# )
 
-library("PerformanceAnalytics")
-chart.Correlation(
-  df_pre_cor |> select(where(is.numeric)),
-  histogram = TRUE,
-  pch = 19
-)
+# library("PerformanceAnalytics")
+# chart.Correlation(
+#   df_pre_cor |> select(where(is.numeric)),
+#   histogram = TRUE,
+#   pch = 19
+# )
 
 hist(df_pre_cor$nfc_pre)
 hist(df_pre_cor$nars_pre)
 
-ggplot(df_pre_cor, aes(x = nfc_pre, fill = group)) +
+ggplot(, aes(x = nfc_pre, fill = group)) +
   geom_density(alpha = 0.5)
 
 ggplot(df_pre_cor, aes(x = nfc_pre, fill = group)) +
@@ -381,14 +384,55 @@ flatmatrix <- flattenCorrMatrix(res2$r, res2$P)
 #  https://uhra.herts.ac.uk/id/eprint/13608/1/SyrdalDDautenhahn.pdf <-- discusses problems using standardized scale cross-culturally
 ```
 
+## Descriptive Post-Test Results
 
+Descriptive comparisons of post-interaction measures indicated that participants in the responsive condition reported consistently higher trust across all trust measures, with differences ranging from approximately 8 to 16 points on the 0–100 scale, although uncertainty remained high given the small sample. Notably, the responsive condition did not differ from control in objective task accuracy, suggesting that increased trust was not driven by improved task success. Instead, responsive interactions were characterized by longer durations, slower response times, and a higher number of AI-detected engaged responses, indicating a shift in interaction dynamics rather than performance.
+
+```{r}
+
+```
+
+## Correlations
+
+Several behavioral and task-level measures were correlated with post-interaction trust, consistent with the interpretation that trust judgments were shaped by interaction quality; these variables were not included as covariates in primary models to avoid conditioning on potential mediators.
+
+Baseline negative attitudes toward robots were most strongly associated with affective components of trust rather than perceptions of reliability, suggesting that pre-existing attitudes primarily shape emotional responses to interaction rather than judgments of system competence. Conversely, objective task performance was selectively associated with perceived reliability, indicating that participants distinguished between affective and functional aspects of trust.
+
+Future work with larger samples could formally test mediation pathways linking robot responsiveness, interaction fluency, affective responses, and trust judgments, as well as moderation by baseline attitudes toward robots and need for cognition.
+
+Participants in the responsive condition also exhibited higher levels of AI-detected engagement during interaction, as indexed by a greater number of responses classified as positive affect (t-test result). This suggests that responsive behaviors altered the affective tone of the interaction itself.
+
+```{r}
+
+```
 ## Post-test robot trust ratings
 
-On the overall post-interaction trust score, the responsive-Misty group reports substantially higher trust than the control group (M ≈ 78 vs 57; medium–large effect size, d ≈ 0.67). 
+On the overall post-interaction trust score, the responsive-Misty group reports higher trust than the control group (M ≈ 73 vs M ≈ 63). 
 
-In the mixed-effects models (random intercepts for participant and item, controlling for NARS and NFC), group remains a significant predictor of higher trust ratings even after we add native-English status and prior robot experience. Estimated group effect is around +26 trust points (on a scale of 0 to 100) for the responsive condition.
+Bayesian hierarchical models indicated higher post-interaction trust scores in the responsive robot condition across both trust-related scales (posterior mean differences ≈ 7–8 points on a 0–100 scale). Although 95% credible intervals overlapped zero, the posterior probability that the responsive condition increased trust was high for both measures (≈0.95), suggesting a robust directional effect alongside substantial individual variability.Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification.
 
-Unexpectedly, being a native English speaker is also associated with higher trust ratings (≈ +21 points), and there are a few specific trust items (reliable, responsive, trustworthy) where the group × item interaction reaches significance, but the general pattern is that the responsive robot is trusted more across items. 
+In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was approximately 0.70, suggesting a moderate likelihood of a practically meaningful effect despite substantial individual variability.
+
+Descriptive comparisons of participant-level post-test scores indicated an approximately 10-point difference between conditions, although this did not reach conventional significance under a two-sample t-test, reflecting limited power (n = 29). Hierarchical Bayesian models that accounted for item-level structure yielded slightly smaller but consistent estimates (≈7–8 points) with high posterior probability of a positive effect. Notably, treating item-level responses as independent observations (i.e., ignoring nesting) substantially inflated apparent precision, underscoring that the observed uncertainty is primarily a function of sample size rather than absence of an effect. A larger sample would allow more precise estimation of the effect magnitude.
+
+Although the two post-test trust instruments differed in original response format, both were linearly rescaled to a 0–100 metric for interpretability and comparability. Analyses were conducted separately for each scale, and posterior predictive checks indicated that Gaussian hierarchical models adequately captured the central tendency and variability of scores despite discretization. Negative attitudes toward robots (NARS) were negatively correlated with post-interaction trust, consistent with prior literature, and likely contributed to between-participant variability in post-only estimates.
+
+
+```{r}
+ggbetweenstats(
+  x = group,
+  y = post_trust,
+  data = df_flat_scores_final
+)
+
+ggbetweenstats(
+  x = group,
+  y = trust_perc_post,
+  data = df_flat_scores_final
+)
+```
+
+
 
 ## Task accuracy 
 
@@ -420,36 +464,8 @@ library(lmerTest)
 library(ggeffects)
 # mixed models
 
-scores_df <- df_flat_scores_final |>
-  #drop_na(gender) |>
-  select(
-    session_id,
-    email,
-    group,
-    gender,
-    age,
-    native_english,
-    program,
-    robot_xp,
-    nars_pre,
-    human_trust_pre,
-    robot_trust_pre,
-    ai_trust_pre,
-    nars_social_influence_robots,
-    nars_emotion_robots,
-    nars_interaction_robots,
-    nfc_pre,
-    contains("what_percent"),
-  ) |>
-  pivot_longer(
-    what_percent_of_the_time_was_the_robot_dependable:what_percent_of_the_time_did_this_robot_answer_the_questions_asked,
-    names_to = "trust_items",
-    values_to = "robot_trust_post"
-  ) |>
-  # scale continuous predictors
-  mutate(
-    robot_trust_post_c = scale(robot_trust_post, center = TRUE, scale = TRUE)
-  ) |>
+scores_df <- df_long_scores_final |>
+  # filter(scale=='HRI_perception_post')|>
   mutate(nars_pre_c = scale(nars_pre, center = TRUE, scale = TRUE)) |>
   mutate(robot_trust_c = scale(robot_trust_pre, center = TRUE, scale = TRUE)) |>
   mutate(human_trust_c = scale(human_trust_pre, center = TRUE, scale = TRUE)) |>
@@ -478,18 +494,31 @@ scores_df <- df_flat_scores_final |>
   ) |>
   mutate(trust_items = factor(trust_items)) |>
   mutate(robot_xp = relevel(robot_xp, ref = "No")) |>
-  mutate(native_english = factor(native_english))
+  mutate(native_english = factor(native_english)) |>
+  mutate(scale = factor(scale))
 
 hist(scores_df$robot_trust_post)
 hist(scores_df$robot_trust_post_c)
 
+scores_df |>
+  group_by(group, scale) |>
+  summarise(
+    n = n_distinct(session_id),
+    mean_robot_trust = mean(robot_trust_post, na.rm = TRUE)
+  )
+
 ```
+
+Two participants did not complete pre-test measures and were excluded from analyses involving pre–post change but retained in post-test analyses. One participant omitted two post-test items; analyses used all available data without imputation.
 
 ```{r}
 
 base = lm(robot_trust_post ~ group, data = scores_df)
+
 mod1 <- lmer(
-  robot_trust_post ~ group +
+  robot_trust_post ~ group *
+    native_english +
+    (1 | trust_items) +
     (1 | session_id),
   data = scores_df
 )
@@ -500,75 +529,235 @@ mod2 <- lmer(
     (1 | trust_items),
   data = scores_df
 )
+
 mod3 <- lmer(
+  robot_trust_post ~ group + gender + (1 | session_id) + (1 | trust_items),
+  data = scores_df
+)
+
+mod4 <- lmer(
+  robot_trust_post ~ group + gender + (1 | session_id) + (1 | trust_items),
+  data = scores_df
+)
+
+# mod4 <- lmer(
+#   robot_trust_post ~ group + scale +
+#     (1 | session_id / robot_xp) +
+#     (1 | trust_items),
+#   data = scores_df
+# )
+anova(mod1, mod2, mod3, base)
+tab_model(mod1, mod3, mod4)
+#outliers_list <- check_outliers(mod3)
+#lot(check_outliers(mod3))
+
+```
+
+```{r}
+library(brms)
+priors <- c(
+  prior(normal(50, 25), class = "Intercept"), # trust score center-ish, wide
+  prior(normal(0, 10), class = "b"), # effects in points on 0-100
+  prior(exponential(1), class = "sd"), # RE SDs: subject/item
+  prior(exponential(1), class = "sigma") # residual SD
+)
+priors_null <- c(
+  prior(normal(50, 25), class = "Intercept"),
+  prior(exponential(1), class = "sd"),
+  prior(exponential(1), class = "sigma")
+)
+
+dep1 <- brm(
   robot_trust_post ~ group +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df
+  data = scores_df |> filter(scale == 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors_wide,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
 )
-mod4 <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id / robot_xp) +
-    (1 | trust_items),
-  data = scores_df
-)
-anova(mod1, mod2, mod3, mod4, base)
-tab_model(mod1, mod3)
-outliers_list <- check_outliers(mod3)
-plot(check_outliers(mod3))
 
+dep2 <- brm(
+  robot_trust_post ~ group +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df |> filter(scale != 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors_wide,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+```
+
+```{r}
+summary(dep1)
+summary(dep2)
+
+pp_check(dep1)
+pp_check(dep2)
+
+nuts_params(dep1) %>% count(Parameter == "divergent__")
+nuts_params(dep2) %>% count(Parameter == "divergent__")
+
+post <- posterior::as_draws_df(dep1)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+
+post <- posterior::as_draws_df(dep2)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+
+VarCorr(dep1)
+VarCorr(dep2)
 
 ```
 
 ```{r}
 
+dep1_null <- brm(
+  robot_trust_post ~ 1 + (1 | session_id) + (1 | trust_items),
+  data = scores_df |> filter(scale == 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors_null,
+  chains = 4,
+  cores = 4,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+dep2_null <- brm(
+  robot_trust_post ~ 1 + (1 | session_id) + (1 | trust_items),
+  data = scores_df |> filter(scale != 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors_null,
+  chains = 4,
+  cores = 4,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+loo_compare(loo(dep1_null), loo(dep1))
+loo_compare(loo(dep2_null), loo(dep2))
+
+# Leave-one-out cross-validation indicated similar predictive performance for models with and without the group effect, suggesting that while the estimated effect was directionally positive, gains in out-of-sample prediction were modest in this pilot sample.
+
 ```
+
+
+
+```{r}
+
+priors_wide <- c(
+  prior(normal(50, 40), class = "Intercept"),
+  prior(normal(0, 20), class = "b"),
+  prior(exponential(0.5), class = "sd"),
+  prior(exponential(0.5), class = "sigma")
+)
+priors_tight <- c(
+  prior(normal(50, 20), class = "Intercept"),
+  prior(normal(0, 7), class = "b"),
+  prior(exponential(1.5), class = "sd"),
+  prior(exponential(1.5), class = "sigma")
+)
+
+dep1_wide <- update(
+  dep1,
+  prior = priors_wide,
+  chains = 4,
+  cores = 4,
+  iter = 4000,
+  warmup = 1000
+)
+
+dep2_wide <- update(
+  dep2,
+  prior = priors_wide,
+  chains = 4,
+  cores = 4,
+  iter = 4000,
+  warmup = 1000
+)
+
+posterior_summary(dep1, variable = "b_groupRESPONSIVE")
+posterior_summary(dep2, variable = "b_groupRESPONSIVE")
+posterior_summary(dep1_wide, variable = "b_groupRESPONSIVE")
+posterior_summary(dep2_wide, variable = "b_groupRESPONSIVE")
+
+```
+
 
 Main Hypothesis Test: Does group (responsive vs control) predict higher robot trust ratings?
 
+The Trust Perception Scale–HRI is a validated self-report measure specifically developed for human–robot interactions, and has most frequently been deployed in pre–post designs to quantify trust changes induced by interactions. In those contexts, differences of approximately 10 points on the 0–100 scale have been observed. Our study extends this literature by examining post-interaction trust differences between conditions; as expected, between-group differences estimated here were somewhat smaller (≈7–8 points) than typical pre–post effects, likely reflecting baseline variability not accounted for in post-only analyses. While self-report measures remain common, systematic reviews highlight that they are often combined with behavioural or physiological metrics to capture multifaceted aspects of trust.
+
+Bayesian hierarchical models indicated higher post-interaction trust scores in the responsive robot condition across both trust-related scales (posterior mean differences ≈ 7–8 points on a 0–100 scale). Although 95% credible intervals overlapped zero, the posterior probability that the responsive condition increased trust was high for both measures (≈0.95), suggesting a robust directional effect alongside substantial individual variability.Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification.
+
+In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was approximately 0.70, suggesting a moderate likelihood of a practically meaningful effect despite substantial individual variability.
+
+Descriptive comparisons of participant-level post-test scores indicated an approximately 10-point difference between conditions, although this did not reach conventional significance under a two-sample t-test, reflecting limited power (n = 29). Hierarchical Bayesian models that accounted for item-level structure yielded slightly smaller but consistent estimates (≈7–8 points) with high posterior probability of a positive effect. Notably, treating item-level responses as independent observations (i.e., ignoring nesting) substantially inflated apparent precision, underscoring that the observed uncertainty is primarily a function of sample size rather than absence of an effect. A larger sample would allow more precise estimation of the effect magnitude.
+
+Although the two post-test trust instruments differed in original response format, both were linearly rescaled to a 0–100 metric for interpretability and comparability. Analyses were conducted separately for each scale, and posterior predictive checks indicated that Gaussian hierarchical models adequately captured the central tendency and variability of scores despite discretization. Negative attitudes toward robots (NARS) were negatively correlated with post-interaction trust, consistent with prior literature, and likely contributed to between-participant variability in post-only estimates.
+
+Several behavioral and task-level measures were correlated with post-interaction trust, consistent with the interpretation that trust judgments were shaped by interaction quality; these variables were not included as covariates in primary models to avoid conditioning on potential mediators.
+
+Baseline negative attitudes toward robots were most strongly associated with affective components of trust rather than perceptions of reliability, suggesting that pre-existing attitudes primarily shape emotional responses to interaction rather than judgments of system competence. Conversely, objective task performance was selectively associated with perceived reliability, indicating that participants distinguished between affective and functional aspects of trust.
+
+Future work with larger samples could formally test mediation pathways linking robot responsiveness, interaction fluency, affective responses, and trust judgments, as well as moderation by baseline attitudes toward robots and need for cognition.
+
+Participants in the responsive condition also exhibited higher levels of AI-detected engagement during interaction, as indexed by a greater number of responses classified as positive affect (t-test result). This suggests that responsive behaviors altered the affective tone of the interaction itself.
 
 ```{r}
 
-library(brms)
+```
 
-df <- scores_df |> mutate(trust_z = scale(robot_trust_post))
+```{r}
+fixef(dep1)
+fixef(dep2)
 
-priors_trust <- c(
-  prior(normal(0, 0.5), class = "b"), # group effect
-  prior(normal(0, 1), class = "Intercept"), # grand mean
-  prior(exponential(1), class = "sd"), # random effects
-  prior(exponential(1), class = "sigma") # residual SD
-)
+```
 
-fit_trust <- brm(
-  robot_trust_post ~ group + (1 | session_id),
-  data = df,
-  family = gaussian(),
-  # prior = priors_trust,
-  chains = 4,
-  iter = 4000,
-  cores = 10,
-  control = list(adapt_delta = 0.95)
-  #family=gaussian()
-)
+```{r}
+posterior_summary(dep1, variable = "b_groupRESPONSIVE")
+posterior_summary(dep2, variable = "b_groupRESPONSIVE")
+```
 
-fit_trust2 <- brm(
-  robot_trust_post ~ group + (1 | session_id) + (1 | trust_items),
-  data = df,
-  family = gaussian(),
-  # prior = priors_trust,
-  chains = 4,
-  iter = 4000,
-  cores = 10,
-  control = list(adapt_delta = 0.95)
-)
+```{r}
+posterior <- as_draws_df(dep1)
+mean(posterior$b_groupRESPONSIVE > 0)
 
+posterior <- as_draws_df(dep2)
+mean(posterior$b_groupRESPONSIVE > 0)
+```
 
-posterior_summary(fit_trust, variable = "b_groupRESPONSIVE")
-# build a baseline flat model without random effects
-#base <- brm(robot_trust ~ group, data = scores_df)
+```{r}
+post <- posterior::as_draws_df(dep1)
 
-post <- posterior_samples(fit_trust)
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+
+`
+`
+`
+`
+``
+{
+  r
+}
+
+post <- posterior::as_draws_df(dep2)
 
 mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
 mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
