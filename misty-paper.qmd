@@ -23,7 +23,7 @@ author:
     note: |
       Another author footnote, this is a very long footnote and it should be a really long footnote. But this footnote is not yet sufficiently long enough to make two lines of footnote text.
 abstract: |
-    This study implements a multi-stage collaborative task system where participants collaborate with the Misty II social robot to solve a who-dunnit type task. The system utilizes an autonomous, mixed-initiative dialogue architecture with affect-responsive capabilities.
+    This study implements a multi-stage collaborative task system where participants collaborate with the Misty-II social robot to solve a who-dunnit type task. The system utilizes an autonomous, mixed-initiative dialogue architecture with affect-responsive capabilities.
 keywords: 
   - keyword1
   - keyword2
@@ -81,15 +81,24 @@ Despite this growing literature, much of what is currently known about trust in 
 
 To address this gap, the current study leveraged a between-subjects design to evaluate trust following an in-person interaction with a robot operating autonomously within predefined behavioral constraints. Participants collaborated with the robot in solving an immersive puzzle game where the robot served as a diegetic "game guide" and collaborative partner. In the game, the participant solved the mystery by interacting with the game guide to obtain hints, moral support and advice on how to solve puzzles; the robot managing speech-based interaction, task progression, and affect-responsive behavior, all without human intervention.
 
-In the control condition the robot followed a neutral interaction policy, while in the experimental condition the robot was prompted to adapt its behavior based on detected user affect, dialogue and demands of the task itself. Importantly, both conditions utilized the same robot subject to the same sensory and interaction limitations inherent to autonomous operation, including speech recognition variability and response timing constraints. The only difference was the interaction policy between conditions.
-
 To achieve this we developed an autonomous spoken-language interaction system integrated with a speech recognition (ASR) pipeline, including affect detection with the Misty-II robot platform to allow the robot to engage in natural conversations with users. The system is capable of recognizing speech, managing dialogue, remembering what was said previously, and generating spoken responses and facial expressions and head and arm movement of the robot during dialogue.
 
 By examining post-interaction trust using established trust measures alongside behavioral and task-level outcomes, this study aims to contribute empirical evidence on how trust might be shaped in fully autonomous HRI scenarios. Rather than seeking to demonstrate optimal performance under ideal conditions, the focus is on understanding trust as it is impacted during realistic human–robot interaction, where uncertainty, interactional breakdowns, and adaptive behavior are unavoidable. As such, this work provides insight into the practical implications of affect-responsive autonomy for trust in human–robot collaboration.
 
-## Task Design
+# Methods
 
-Participants collaborated with the robot in solving an immersive puzzle game where the robot served as a diegetic "game guide" and collaborative partner. In the game, the participant solves the mystery by interacting with the robot guide for hints, emotional support and advice on how to solve the puzzles. The game was composed of two sequential tasks designed to elicit interaction with the robot under differing knowledge and dependency conditions [@lin2022] . The robot autonomously monitored task progression through the interface and adapted its dialogue accordingly without real-time human intervention. The tasks were structured as follows:
+## Sample and recruitment
+
+Participants (*n* = 29) were recruited from the Laurentian University community through word of mouth and via the SONA recruitment system. Eligible participants were adults (18+), fluent in english with normal to corrected hearing and vision and no experience interacting with the Misty-II robot. Participants received a \$15.00 gift card as compensation for their time. All procedures were approved by the university's Research Ethics Board.
+
+Sample characteristics are summarized in @tbl-pre.
+
+The Misty II robot was purchased with grant funding from the IAMGOLD President Innovation Fund.
+## Task design and procedure
+
+Participants collaborated with the robot in solving an immersive puzzle game where the robot served as a diegetic "game guide" and collaborative partner. In the game, the participant solves the mystery by interacting with the robot guide for hints, emotional support and advice on how to solve the puzzles. The game was composed of two sequential tasks designed to elicit interaction with the robot under differing knowledge and dependency conditions [@lin2022] . The robot autonomously monitored task progression through the interface and adapted its dialogue accordingly without real-time human intervention. 
+
+In the control condition the robot followed a neutral interaction policy, while in the experimental condition the robot was prompted to adapt its behavior based on detected user affect, dialogue and demands of the task itself. Importantly, both conditions utilized the same robot subject to the same sensory and interaction limitations inherent to autonomous operation, including speech recognition variability and response timing constraints. The only difference was the interaction policy between conditions.The tasks were structured as follows:
 
 ### Task 1: Robot-dependent collaborative reasoning
 
@@ -99,11 +108,9 @@ This task was designed to establish an initial forced collaborative dynamic in w
 
 ### Task 2: Open-ended problem-solving with advisory robot support
 
-The second task involved a more complex problem-solving scenario in which participants had access to multiple technical logs presented via a simulated terminal interface to determine the location of the missing 'Atlas' robot. Unlike the first task, the robot did not possess ground-truth knowledge about the whereabouts of the robot. The robot’s assistance in this task was limited to general problem-solving support derived from language model’s prior training, such as explaining how to interpret log information, suggesting reasoning strategies, or helping participants reflect on inconsistencies across logs. The robot was explicitly constrained such that it was informed only that participants could view several logs, without access to the content of those logs or the correct answers to the task-related questions. The robot could ask the participant questions about what they found in the logs and the human could do the same.
+The second task involved a more complex problem-solving scenario in which participants had access to multiple technical logs presented via a simulated terminal interface to determine the location of the missing 'Atlas' robot. Unlike the first task, the robot did not possess ground-truth knowledge about the whereabouts of the robot. The robot’s assistance in this task was limited to general problem-solving support derived from language model’s prior training, such as explaining how to interpret log information, suggesting reasoning strategies, or helping participants reflect on inconsistencies across logs. The robot was explicitly constrained such that it was informed only that participants could view several logs, without access to the content of those logs or the correct answers to the task-related questions. The robot could ask the participant questions about what they found in the logs and the human could do the same.Importantly, participants could complete the second task independently or choose to solicit assistance from the robot. As a result, the robot functioned as a collaborative reasoning partner rather than an authoritative source. Participants retained full control over decision-making and were free to accept, reject, or ignore the robot’s suggestions. This design allowed collaboration to emerge voluntarily, rather than being enforced by task structure [@lin2022].
 
-Importantly, participants could complete these tasks independently or choose to solicit assistance from the robot. As a result, the robot functioned as a collaborative reasoning partner rather than an authoritative source. Participants retained full control over decision-making and were free to accept, reject, or ignore the robot’s suggestions. This design allowed collaboration to emerge voluntarily, rather than being enforced by task structure [@lin2022].
-
-When @lin2022 et al., utilized a similar task they found that participants who engaged with a robot compared to a human guide had more fun, felt less judged and more connected with the robot while solving tasks compared to a human–though respondents mentioned that it would be helpful if the robot was more proactive in the help it provided. Though they utilized a WOz system, in our case, both tasks were completed autonomously in the presence of a shared task interface that displayed instructions, task materials, and participant inputs.
+### Wrap-up and debrief
 
 Once all answers were submitted, the correct answers were shown to participants, letting them know how they did. At the wrap-up stage the robot and the participant had the chance to debrief on whether they were right or not, and then the task came to an end with the robot thanking them and prompting them to report to the principal investigator.
 
@@ -127,9 +134,6 @@ At the in-person session, once the pre-interaction survey was complete, particip
 
 ### Robotic system and autonomy pipeline
 
-The task interface was adapted from prior work with a similar robotic platform in which a graphical interface was used to support Wizard-of-Oz control @lin2022 . In the present study, this idea was reimagined as a shared workspace for human–robot collaboration. Rather than serving as a control surface, an interface was developed to function as a shared task environment through which both the participant and the robot maintained awareness of task state and progress. Participant inputs were visible to the robot, allowing it to track task transitions and respond contextually, while all behavioral decisions were generated autonomously by the robot.
-
-The human participant could choose to work independently or solicit assistance from the robot, which provided guidance (both conditions), clarification (both conditions), and proactive, affective support (responsive condition only) but no definitive answers. This task was intentionally designed to be sufficiently challenging that completing it within the allotted time was difficult without assistance, thereby creating a meaningful opportunity for collaboration rather than a trivial interaction. The robot’s assistance was framed as collaborative support rather than authoritative guidance, and participants were not led to believe that the robot possessed complete or privileged knowledge during the second task. As a result, the robot’s role in the second task was that of a collaborative reasoning partner rather than an authoritative source.
 
 ### Interaction conditions
 
@@ -139,6 +143,674 @@ Describe the responsive versus control conditions here briefly. Maybe give expla
 
 ## Participant characteristics and baseline measures
 
-Participants in the control and responsive conditions were comparable with respect to demographic characteristics, academic background, prior experience with robots, and baseline attitudes toward robots. Importantly, Negative Attitudes Towards Robots (NARS) and Need for Cognition scores were similar across groups, indicating that post-interaction differences are unlikely to reflect pre-existing attitudes (see @tbl-pre).
+Participants in the control and responsive conditions were comparable with respect to pre-interaction demographic characteristics, academic background, prior experience with robots, and baseline attitudes toward robots. Importantly, Negative Attitudes Towards Robots (NARS) and Need for Cognition scores were similar across groups, indicating that post-interaction differences are unlikely to reflect pre-existing attitudes (see @tbl-pre).
 
-# References {.unnumbered}
+
+```{r}
+#| eval: false
+ggplot(
+  df_long_scores_final |>
+    filter(scale != 'HRI_perception_post'),
+  aes(x = robot_trust_post, fill = group)
+) +
+  geom_density(alpha = 0.5)
+
+ggplot(
+  df_long_scores_final |>
+    filter(scale == 'HRI_perception_post'),
+  aes(x = robot_trust_post, fill = group)
+) +
+  geom_density(alpha = 0.5)
+```
+
+```{r}
+# ggbetweenstats(
+#   x = group,
+#   y = robot_trust_post,
+#   #  grouping.var = trust_items,
+#   data = df_long_scores_final |>
+#     filter(scale != 'HRI_perception_post')
+# )
+
+# ggbetweenstats(
+#   x = group,
+#   y = robot_trust_post,
+#   # grouping.var = trust_items,
+#   data = df_long_scores_final |>
+#     filter(scale == 'HRI_perception_post')
+# )
+```
+
+## Post-Interaction Trust Differences
+
+Descriptive comparisons of participant-level post-test scores indicated an approximately 10 point difference in post-test Trust Perception Scale-HRI scores (M ≈ 73 vs M ≈ 63) and a 14 point difference in the Trust in Industrial Human-robot Collaboration scale (M ≈ 47 vs M ≈ 61) between conditions, although these differences did not reach conventional significance (p<.05) under a two-sample t-test (p = 0.09 and p = 0.14 respectively), reflecting our limited power (n = 29), Bayesian hierarchical models indicated higher post-interaction trust scores in the responsive robot condition across both trust-related scales (posterior mean differences ≈ 7–8 points on a 0–100 scale). 
+
+Although 95% credible intervals overlapped zero, the posterior probability that the responsive condition increased trust was 95% for both measures, suggesting a robust directional effect despite substantial individual variability. Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification. In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was 70%, suggesting a reasonable likelihood of a practically meaningful effect size. In a larger sample, these effects would likely reach conventional levels of statistical significance.
+
+
+```{r}
+#| eval: false
+ggbetweenstats(
+  x = group,
+  y = post_trust,
+  data = df_flat_scores_final,
+  type = "np"
+)
+# Although the second trust instrument was administered and scored in its original 5-point Likert format, for ease of interpretation it was linearly rescaled to the first scale's 0–100 metric for interpretability and comparability.
+
+ggbetweenstats(
+  x = group,
+  y = trust_perc_post,
+  data = df_flat_scores_final,
+  type = "np"
+)
+```
+
+## Trust subscale patterns
+
+Examination of trust subscales suggested that group differences were most pronounced for affective components of trust (e.g., trust feelings), whereas differences in perceived reliability were smaller. This pattern aligns with correlations showing that baseline negative attitudes toward robots were more strongly associated with affective trust than with reliability judgments.
+
+## Interaction dynamics and task performance
+
+```{r}
+post_table <- df_flat_scores_final |>
+  #drop_na(gender) |>
+  select(group, contains('post'), contains('correct'), 63:76) |>
+  data.frame() |>
+  mutate(across(
+    contains('post_trust'),
+    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
+  )) |>
+  select(-post_date)
+
+post_table |>
+  tbl_summary(
+    by = group,
+    type = list(
+      post_trust_reliability ~ 'continuous',
+      post_trust_feelings ~ 'continuous',
+      post_trust_perception ~ 'continuous',
+      total_correct ~ 'continuous',
+      avg_response_ms ~ 'continuous',
+      prop_correct ~ 'continuous',
+      n_engaged ~ 'continuous',
+      n_frust ~ 'continuous',
+      n_neg ~ 'continuous'
+    ),
+    # missing=FALSE,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      suspect_correct ~ "Suspect ID Accuracy",
+      status_correct ~ "Status Accuracy",
+      duration_mins ~ "Avg Task Duration (mins)",
+
+      total_correct ~ "Total Task Accuracy",
+      n_turns ~ "Dialogue Turns",
+      n_silence ~ "Silent Periods",
+      avg_response_ms ~ "Avg Response Time (ms)",
+      prop_correct ~ "Overall Task Accuracy",
+      n_engaged ~ "Engaged Responses",
+      n_frust ~ "Frustrated Responses",
+      trust_perc_post ~ "Post-Task Trust Perception"
+    )
+  ) |>
+  add_n() |>
+  add_p() |>
+  # add_overall() |>
+  bold_p() |>
+  #bold_labels() |>
+  modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
+```
+
+### Task performance
+
+Objective task accuracy did not differ between conditions across any task-level measures except suspect accuracy (robot dependendant task), indicating that increased trust was only attributable to improved task success when interaction was necessary to complete accurately.
+
+Despite similar task accuracy, interactions in the responsive condition were characterized by longer durations, slower response times, and a higher number of AI-detected engaged responses. These findings suggest that responsiveness altered the interaction dynamics and affective tone rather than task outcomes.
+
+## Individual differences and correlational patterns
+
+As expected, we found that higher Need for Cognition (NFC) scores were negatively associated with Negative Attitudes Towards Robots (NARS), indicating that individuals who enjoy effortful thinking tend to have more positive attitudes towards robots. This relationship is consistent with prior literature suggesting that cognitive engagement is associated with openness to new technologies. In terms of NARS subscales, NFC was negatively correlated with all three subscales, but significantly so only in the domain of Situations of Interaction with Robots. This suggests that individuals with higher NFC are less likely to hold negative attitudes across various dimensions of robot interaction but especially around direct interaction with robots.
+
+--\> how to talk about post-interaction correlations w/pre-interaction measures Several behavioral and task-level measures were correlated with post-interaction trust, consistent with the interpretation that trust judgments were shaped by interaction quality; these variables were not included as covariates in primary models to avoid conditioning on potential mediators.
+
+Baseline negative attitudes toward robots were negatively correlated with post-interaction trust, with the strongest associations observed for affective trust subscales. In contrast, objective task performance was selectively associated with perceived reliability. Need for cognition was negatively correlated with negative robot attitudes and interaction-level negative affect, suggesting that individual differences contributed to variability in trust responses.
+
+```{r}
+#| label: fig-corr
+#| fig-height: 7
+#| fig-width: 7
+
+df_flat <- df_flat_scores_final |>
+  select(
+    contains('pre'),
+    contains('nars'),
+    contains('post'),
+    total_correct,
+    n_turns,
+    duration_mins,
+    avg_response_ms,
+    n_silence,
+    n_engaged,
+    #n_frust,
+    n_neg,
+    #prop_correct,
+    suspect_correct,
+    #building_correct,
+    #zone_correct,
+    #floor_correct
+  ) |>
+  select(-contains('i_would'))
+
+# df_flat %>%
+#   group_by(group) %>%
+#   dplyr::summarise(
+#     correlation = cor(human_trust, robot_trust, method = "pearson", use = "pairwise.complete.obs"),
+#     .groups = "drop"
+#   )
+
+res2 <- rcorr(as.matrix(df_flat %>% select(where(is.numeric))))
+
+corr <- cor(
+  df_flat %>% select(where(is.numeric)),
+  use = "pairwise.complete.obs"
+)
+
+testRes = cor.mtest(corr, conf.level = 0.95)
+#corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
+
+# tab_corr(
+#   df_flat %>% select(where(is.numeric)),
+#   corr.method = "spearman",
+#   p.numeric = FALSE,
+#   triangle = 'lower'
+# )
+corrplot(
+  corr,
+  p.mat = testRes$p,
+  insig = 'label_sig',
+  sig.level = c(0.001, 0.01, 0.05),
+  pch.cex = 0.9,
+  pch.col = 'grey20'
+)
+
+```
+
+
+
+
+
+### Model robustness and predictive checks
+
+Sensitivity analyses using alternative prior specifications yielded substantively similar estimates, and leave-one-out cross-validation indicated comparable predictive performance between models with and without the group effect.
+
+::: callout-important
+## TO DO:
+- add subscale column to long format data
+- run an analysis of performance by robot-dependent versus robot-independent tasks
+- write up a future directions section for the planned larger study
+- talk about unexpected language issues with people signing up with difficultly speaking and understanding english which cuased problems with asr and interaction
+- run analysis of dialogue dynamics included Bertopic or some other analysis of the actual content of the conversations/interactions
+:::
+
+
+```{r}
+
+```
+
+# Discussion
+
+Mention language confounders!!
+
+This pilot study examined trust outcomes following in-person interaction with an autonomous social robot under two interaction policies: a responsive, affect-adaptive condition and a neutral, non-responsive control condition. By leveraging a fully autonomous dialogue system integrated with speech recognition and affect detection, the study aimed to evaluate how robot responsiveness influences trust formation in realistic human–robot collaboration scenarios.
+
+Descriptive comparisons of post-interaction measures indicated that participants in the responsive condition reported consistently higher trust across all trust measures, with differences ranging from approximately 8 to 16 points on a 0–100 scale, although uncertainty remained high given the small sample. Notably, the responsive condition did not differ from control in objective task accuracy, suggesting that increased trust was not driven by improved task success. Instead, responsive interactions were characterized by longer durations, slower response times, and a higher number of AI-detected engaged responses, indicating a shift in interaction dynamics rather than performance.
+
+Baseline negative attitudes toward robots were most strongly associated with affective components of trust rather than perceptions of reliability, suggesting that pre-existing attitudes primarily shape emotional responses to interaction rather than judgments of system competence. Conversely, objective task performance was selectively associated with perceived reliability, indicating that participants distinguished between affective and functional aspects of trust.
+
+Future work with larger samples could formally test mediation pathways linking robot responsiveness, interaction fluency, affective responses, and trust judgments, as well as moderation by baseline attitudes toward robots and need for cognition.
+
+Participants in the responsive condition also exhibited higher levels of AI-detected engagement during interaction, as indexed by a greater number of responses classified as positive affect (t-test result). This suggests that responsive behaviors altered the affective tone of the interaction itself.
+
+```{r}
+
+```
+
+
+
+# Appendix {
+  .appendix
+}
+
+
+```{r}
+#| label: tbl-pre
+
+df_flat_scores_final |>
+  #select(-)
+  mutate(age = as_factor(age)) |>
+  data.frame() |>
+  select(-post_date) |>
+  droplevels() |>
+  select(
+    group,
+    gender,
+    age,
+    program,
+    robot_xp,
+    native_english,
+    nars_pre,
+    #nars_social_influence_robots,
+    #nars_emotion_robots,
+    #nars_interaction_robots,
+    nfc_pre
+    #robot_trust_pre,
+    #ai_trust_pre,
+    #human_trust_pre
+    #contains('trust')
+    #-mytrust_pre
+  ) |>
+  tbl_summary(
+    by = group,
+    type = list(
+      nars_pre ~ 'continuous',
+      # nars_social_influence_robots ~ 'continuous',
+      # nars_emotion_robots ~ 'continuous',
+      # nars_interaction_robots ~ 'continuous',
+      #human_trust_pre ~ 'continuous',
+      #robot_trust_pre ~ 'continuous',
+
+      #ai_trust_pre ~ 'continuous',
+      nfc_pre ~ 'continuous'
+    ),
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      gender ~ "Gender",
+      age ~ "Age Group",
+      program ~ "Program",
+      robot_xp ~ "Experience w/Robots",
+      native_english ~ 'Native English Speaker',
+      nfc_pre ~ 'Need for Cognition',
+      nars_pre ~ "NARS Overall"
+      # nars_social_influence_robots ~ "NARS: Social Influence",
+      #nars_emotion_robots ~ "NARS: Emotions",
+      # nars_interaction_robots ~ "NARS: Interaction"
+    ),
+    missing = "no"
+  ) |>
+  add_n() |>
+  add_p() |>
+  #add_overall() |>
+  bold_p() |>
+  bold_labels() |>
+  modify_caption(
+    "Participant Demographics and Baseline Characteristics by Group"
+  )
+```
+
+## Key Components of the System
+
+This study implemented a multi-stage collaborative task system where participants collaborate with the Misty II social robot to solve a who-dunnit type task. The system utilizes an autonomous, mixed-initiative dialogue architecture via langchain with affect-responsive capabilities.
+
+1.  Misty-II Robot: A programmable robot platform equipped with sensors and actuators for interaction.
+
+2.  Automated Speech Recognition (ASR): A speech-to-speech pipeline that processes spoken input from users and converts it into text for LLM processing then back to speech for output on the robot.
+
+    -   STT: Deepgram API for real-time speech-to-text conversion.
+    - DistilRoBERTa-base fine-tuned on emotion classification for emotion detection from user utterances
+    -   LLM: Gemini API for processing text input and generating contextually relevant responses in JSON format
+    -   TTS: Misty-II text-to-speech (TTS) engine on 820 processor.
+    
+
+3.  Langchain Dialogue Management: A system that manages the flow of conversation, ensuring coherent and contextually appropriate dialogue within a two-part collaborative task.
+
+4.  Collaborative-Tasks
+
+    -   Task 1: Whodunnit style task where human and robot collaborate to find a missing robot via the human asking Yes/No questions (process of elimination in 6x4 suspect grid) to the robot. Robot knows ground truth but can only answer Yes/No questions about suspect features. Can not directly describe the suspect or name them. (human can choose a random suspect to solve on their own but only 1 in 24 chance of being correct without robot help)
+    -   Task 2: Where is Atlas? Robot collaborates with human to find Atlas by deciphering cryptic system and sensor logs. Robot does not know the answer here and can only guide the human usinng its expertise and knowledge of computer systems and basic logical reasoning. (human can solve on their own but very difficult without robot help depending on participants technical background).
+
+5.  Flask-gui dashboard interface: A web-based interface/dashboard that allowed participants to interact with the tasks, view task-related information and input their answers to the questions. Responses were sent to the robot to signal task progression.
+
+    -   Task 1 dashboard: Displays the suspect grid and allows the user to select suspects and view their features.
+    -   Task 2 dashboard: Displays system logs and allows the user to input their findings.
+
+6.  Pre and post tests:
+
+    -   PRE-TESTS: Need for Cognition Scale (short); Negative Attitudes to Robots Scale (NARS);
+    -   POST-TESTS: Trust Perception Scale-HRI; 9 custom questions adapted from Charalambous et al. (2020) on trust in industrial human-robot collaboration;
+
+# Technical Specifications
+
+## System Overview
+
+This study implements a multi-stage collaborative task system where participants collaborate with the Misty II social robot to solve a who-dunniti type task. The system utilizes an autonomous, mixed-initiative dialogue architecture with affect-responsive capabilities.
+
+## Hardware Platform
+
+**Robot**: Misty II Social Robot (Furhat Robotics)
+
+-   Mobile social robot platform with expressive display, arm actuators, and head movement
+-   RGB LED for state indication
+-   RTSP video streaming (1920×1080, 30fps) for audio capture
+-   Custom action scripting for synchronized multimodal expressions
+
+## Software Architecture
+
+### Core System Components
+
+**Programming Language**: Python 3.10
+
+**Primary Dependencies**:
+
+-   `misty-sdk` (Python SDK for Misty Robotics API)
+-   `ffmpeg-python` (0.2.0) - Audio stream processing
+-   `flask` (3.1.2) + `flask-socketio` (5.5.1) - Web interface for task presentation
+-   `duckdb` (1.4.0) - Experimental data logging database
+
+### Large Language Models
+
+**LLM Provider**:
+
+1.  **Google Gemini** (default):
+
+    -   Model: `gemini-2.5-flash-lite` (configurable via environment variable)
+    -   Integration: `langchain-google-genai` with `google-generativeai` API
+    -   Response format: JSON-only output (`response_mime_type: "application/json"`). This format is required by Misty-II for reliable parsing and for action execution.
+
+**LLM Configuration**:
+
+-   Temperature: 0.7 (default, configurable)
+-   Memory: Conversation buffer memory with file-based persistence (`langchain.memory.ConversationBufferMemory`)
+-   Context window: Full conversation history maintained across interaction stages but reset between sessions.
+
+## LangChain Framework Integration
+
+### Core LangChain Components
+
+**Framework Version**: `langchain-core` with modular provider packages 
+
+- `langchain` (meta-package) 
+- `langchain-community` (0.3.31)
+- `langchain-google-genai` Gemini integration
+
+### ConversationChain Architecture
+
+**Memory Management** (`ConversationChain` class in `conversation_chain.py`):
+
+1.  **Conversation Buffer Memory**:
+    -   Implementation: `langchain.memory.ConversationBufferMemory`
+    -   Storage: File-based persistent chat history (`FileChatMessageHistory`)
+    -   Format: JSON files in `.memory/` directory, one per participant session
+    -   Memory key: `"history"`
+    -   Return format: Message objects (full conversation context)
+2.  **Memory Reset Policy**:
+    -   Default: Reset on each new session launch
+    -   Archive previous session: Timestamped archive files stored in `.memory/archive/`
+    -   Configuration: `RESET_MEMORY` and `ARCHIVE_MEMORY` environment variables
+
+### Prompt Construction
+
+**Message Structure** 
+
+(LangChain message types): `python [SystemMessage, *history_messages, HumanMessage]` 
+
+System Message Assembly:
+
+-   Core instructions (task framing, role definition)
+-   Personality instructions (mode-specific behavior)
+-   Stage-specific instructions (current task context)
+-   Output format constraints (JSON schema specification)
+
+```
+Human Message Format:   {     
+"user": "<transcribed_speech>",     
+"stage": "<current_stage>",     
+"detected_emotion": "<emotion_label>",     
+"frustration_note": "<optional_alert>",     
+"timer_expired": "<task_id>",     ...   }
+```
+
+-   JSON-encoded context variables passed alongside user input
+-   Enables LLM to access environmental state without breaking message history
+
+### LLM Invocation
+
+Provider-Specific Configuration:
+
+-   Gemini (ChatGoogleGenerativeAI): model_kwargs={"response_mime_type": "application/json"}
+
+    -   Enforces JSON-only output at API level
+    -   Reduces parsing errors from markdown-wrapped responses
+
+Invocation Flow: messages → llm.invoke(messages) → response → memory.save_context()
+
+### Response Processing
+
+JSON Extraction Pipeline: 1. Handle polymorphic response content (string or list) 2. Attempt direct json.loads() (fast path) 3. Fallback: Scan for first balanced {...} object in response 4. Extract required keys: msg, expression, advance_stage (optional) 5. Default fallback: {"msg": content, "expression": "thinking"} if parsing fails
+
+### Memory Persistence:
+
+-   Save after each turn: memory.save_context({"input": user_text}, {"output": llm_response})
+-   Maintains conversational coherence across multi-stage interaction
+-   Enables LLM to reference previous exchanges (e.g., "As I mentioned earlier...")
+
+### LangChain Design Rationale
+
+Why LangChain for this application:
+
+1.  Memory abstraction: Automatic conversation history management without manual message list handling
+2.  Provider flexibility: Easy switching between Gemini and OpenAI without rewriting prompt logic
+3.  Message typing: Structured SystemMessage/HumanMessage/AIMessage types maintain role clarity
+4.  File persistence: Built-in FileChatMessageHistory enables session recovery and archiving
+5.  Future extensibility: Framework supports adding tools, retrieval, or multi-agent patterns if needed
+
+Alternatives considered: Direct API calls would reduce dependencies but require reimplementing conversation history management, prompt templating, and cross-provider compatibility layers.
+
+### LangChain Limitations in This Context
+
+-   No chains used: Despite name ConversationChain, this is a direct LLM wrapper (no LangChain Expression Language chains)
+-   No tools/agents: Simple request-response pattern (could extend for future tool-use capabilities)
+-   Custom JSON parsing: LangChain's built-in output parsers not used; custom extraction handles malformed responses more robustly
+
+### Speech Processing
+
+**Speech-to-Text (STT)**:
+
+-   Provider: Deepgram Nova-2 (`deepgram-sdk` 4.8.1)
+-   Model: `nova-2` with US English (`en-US`)
+-   Smart formatting enabled
+-   Interim results for real-time partial transcription
+-   Voice Activity Detection (VAD) events
+-   Adaptive endpointing: 200ms (conversational stages) / 500ms (log-reading task)
+-   Utterance end timeout: 1000ms (conversational) / 2000ms (log-reading)
+-   Audio processing: RTSP stream from Misty → FFmpeg MP3 encoding → Deepgram WebSocket
+
+**Text-to-Speech (TTS)** - Three options:
+
+1.  **Misty Onboard TTS** (this is the one we used): Native robot voice via onboard TTS
+
+2.  **OpenAI TTS**:
+
+    -   Model: `tts-1` (low-latency variant)
+    -   Voice: `sage`
+    -   Format: MP3, served via HTTP (port 8000)
+    -   Ultimately chose not to use because we wanted a more robotic, non-human voice
+    -   Didn't want the human voice influencing trust on its own (future research could look at trust in relation to type of voice)
+
+3.  **Deepgram Aura**:
+
+    -   Model: `aura-stella-en` (conversational female voice)
+    -   Format: MP3, served via HTTP
+    -   Ultimately chose not to use because we wanted a more robotic, non-human voice
+
+### Emotion Detection
+
+**Model**: DistilRoBERTa-base fine-tuned on emotion classification
+
+-   HuggingFace identifier: `j-hartmann/emotion-english-distilroberta-base`
+-   Framework: `transformers` (4.57.1) pipeline
+-   Hardware: CUDA GPU acceleration (automatic fallback to CPU)
+-   Output classes: joy, anger, sadness, fear, disgust, surprise, neutral
+-   Mapped to interaction states: positively engaged, irritated, disappointed, anxious, frustrated, curious, neutral
+
+## Experimental Design
+
+### Study Conditions
+
+**Between-subjects factor**: Robot Interaction Mode
+
+1.  **RESPONSIVE** (experimental): Warm, emotionally engaged, proactive behavior with emotion-responsive adaptation
+2.  **CONTROL** (baseline): Neutral, reactive, information-only responses
+
+### Task Structure
+
+**Five sequential stages**:
+
+1.  **Greeting** (stage1): Participant introduction and rapport building
+2.  **Mission Brief** (stage2): Task explanation and scenario framing
+3.  **Task 1** (stage3): Who dunnit task
+    -   Identify suspect from 4×6 grid (24 options) by asking robot Yes/No questions based on ground-truth
+    -   Ground truth features: red hair, glasses, no hat, long hair, pink hoodie
+4.  **Task 2** (stage4): Log analysis task
+    -   determine missing robot location by collaborating with Misty-II to decipher system, wifi and sensor logs
+5.  **Wrap-up** (stage5): Debriefing and conclusion
+
+**Time constraints**: \~15 minutes total session duration, with configurable per-task timers
+
+### Multimodal Robot Behavior
+
+**Expression System**: 25 custom action scripts combining:
+
+-   Facial displays (image eye-expression files on screen)
+-   LED color patterns (solid, breathe, blink)
+-   Arm movements (bilateral position control)
+-   Head movements (pitch, yaw, roll control)
+
+**Nonverbal Backchannel Behaviors** (RESPONSIVE mode only):
+
+-   Real-time listening cues triggered by partial transcripts (disfluencies, hesitation markers)
+-   Emotion-matched expressions (e.g., "concern" for hesitation, "excited" for breakthroughs)
+
+**LED State Indicators**:
+
+-   Blue (0, 199, 252): Actively listening (microphone open)
+-   Purple (100, 70, 160): Processing/speaking (microphone closed)
+
+## Data Collection
+
+**Database**: DuckDB relational database (`experiment_data.duckdb`)
+
+**Logged Data**:
+
+1\. **Sessions table**: participant ID (auto-incremented P01, P02...), condition assignment, timestamps, duration
+
+2\. **Dialogue turns table**: turn-by-turn user input, LLM response, expression, response latency (ms), behavioral flags
+
+3\. **Task responses table**: submitted answers with timestamps and time-on-task
+
+4\. **Events table**: stage transitions, silence check-ins, timer expirations, detected emotions
+
+**Additional logs**:
+
+\- Prompt debugging logs (full LLM prompts with history)
+
+\- Audio recordings (MP3, timestamped by utterance)
+
+\- Real-time console logs with structured event markers
+
+## Interaction Dynamics
+
+### Silence Handling
+
+**Silence detection**: 25-second threshold triggers check-in prompt
+
+-   RESPONSIVE: "Still working on it? No rush - I'm here if you need help!"
+-   CONTROL: "I am ready when you have a question."
+
+### Emotion-Responsive Behaviors (RESPONSIVE condition only)
+
+**Frustration tracking**:
+
+-   Consecutive detection of frustrated/anxious/irritated/disappointed states
+-   Threshold: ≥2 consecutive frustrated turns triggers proactive support
+-   RESPONSIVE adaptation: "This part can be tough. Want me to walk you through it?"
+
+**Positive emotion matching**:
+
+-   Celebratory language for curious/engaged states
+-   Momentum maintenance: "Yes! Great observation!"
+
+## System Requirements
+
+**Hardware**:
+
+-   CUDA-capable GPU (optional, for emotion detection acceleration)
+-   Network: Local HTTP server (port 8000 for audio serving, port 5000 for Flask GUI)
+-   Misty II robot on same local network
+
+**Software**:
+
+-   Python 3.10
+-   PyTorch 2.9.0 with CUDA 12.8 support
+-   FFmpeg system installation
+
+## Configuration
+
+**Environment Variables** (`.env` file):
+
+-   `GPT_API_KEY`: OpenAI API key (required if using GPT or OpenAI TTS)
+-   `DEEPGRAM_API_KEY`: Deepgram API key (required)
+-   `GEMINI_API_KEY` / `GOOGLE_API_KEY`: Google Gemini API key (required if using Gemini)
+-   `LLM_PROVIDER`: "GEMINI" or "OPENAI" (default: GEMINI)
+-   `TTS_PROVIDER`: "misty", "openai", or "deepgram" (default: misty)
+-   `ENABLE_EMOTION_DETECTION`: true/false (default: true)
+-   `DEBUG_PROMPTS`: 0/1 - Enable full prompt logging
+-   `LLM_TEMPERATURE`: 0.0-1.0 (default: 0.7)
+-   `WRAP_TIMEOUT_SECONDS`: Auto-exit timeout (default: 60)
+
+**Run Mode**: Set programmatically in `mistyGPT_emotion.py` line 126:
+
+``` python
+RUN_MODE = "RESPONSIVE"  # or "CONTROL"
+```
+
+## Prompt Engineering
+
+Modular prompt system (PromptLoader class):
+
+-   core_system.md: Task framing, role description, output format schema
+-   role_responsive.md / role_control.md: Condition-specific personality instructions
+-   stage1_greeting.md through stage5_wrap_up.md: Stage-specific task instructions
+
+Context injection: Real-time contextual variables passed to LLM:
+
+-   Current stage
+-   Detected emotion (if enabled)
+-   Task submission status
+-   Timer expiration notifications
+-   Silence check-in flags
+
+## Inter-process Communication
+
+Flask REST API endpoints:
+
+-   GET /stage_current: Synchronize stage state with facilitator GUI
+-   GET /task_submission_status: Detect participant task submissions
+-   GET /timer_expired_status: Detect timer expirations
+-   POST /stage: Update stage (facilitator override)
+-   POST /reset_timer: Clear timer expiration flags
+
+Reliability Features
+
+-   Graceful shutdown handlers (SIGTERM, SIGINT)
+-   Automatic session logging even on interruption
+-   Fallback behaviors: CPU-only emotion detection, Misty TTS if cloud services fail
+-   Deepgram speech_final detection with UtteranceEnd backup handler
+
+
