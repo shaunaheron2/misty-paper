@@ -1,0 +1,1421 @@
+% Options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  authoryear,
+  preprint]{elsarticle}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+
+
+
+
+
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+
+
+ 
+\usepackage[]{natbib}
+\bibliographystyle{elsarticle-harv}
+
+
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
+\definecolor{quarto-callout-color}{HTML}{909090}
+\definecolor{quarto-callout-note-color}{HTML}{0758E5}
+\definecolor{quarto-callout-important-color}{HTML}{CC1914}
+\definecolor{quarto-callout-warning-color}{HTML}{EB9113}
+\definecolor{quarto-callout-tip-color}{HTML}{00A047}
+\definecolor{quarto-callout-caution-color}{HTML}{FC5300}
+\definecolor{quarto-callout-color-frame}{HTML}{acacac}
+\definecolor{quarto-callout-note-color-frame}{HTML}{4582ec}
+\definecolor{quarto-callout-important-color-frame}{HTML}{d9534f}
+\definecolor{quarto-callout-warning-color-frame}{HTML}{f0ad4e}
+\definecolor{quarto-callout-tip-color-frame}{HTML}{02b875}
+\definecolor{quarto-callout-caution-color-frame}{HTML}{fd7e14}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\journal{Journal Name}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Trust in Autonomous Human--Robot Interaction},
+  pdfauthor={M.C. Lau; Shauna Heron},
+  pdfkeywords={keyword1, keyword2},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\setlength{\parindent}{6pt}
+\begin{document}
+
+\begin{frontmatter}
+\title{Trust in Autonomous Human--Robot Interaction \\\large{An
+In-Person Pilot Study} }
+\author[1]{M.C. Lau%
+\corref{cor1}%
+\fnref{fn1}}
+ \ead{mclau@laurentian.ca} 
+\author[1]{Shauna Heron%
+%
+\fnref{fn2}}
+ \ead{sheron@laurentian.ca} 
+
+\affiliation[1]{organization={Laurentian University, Bharti School of
+Engineering},,postcodesep={}}
+\affiliation[2]{organization={Laurentian University, School of Social
+Sciences},,postcodesep={}}
+
+\cortext[cor1]{Corresponding author}
+\fntext[fn1]{This is the first author footnote.}
+\fntext[fn2]{Another author footnote, this is a very long footnote and
+it should be a really long footnote. But this footnote is not yet
+sufficiently long enough to make two lines of footnote text.}
+        
+\begin{abstract}
+This study implements a multi-stage collaborative task system where
+participants collaborate with the Misty-II social robot to solve a
+who-dunnit type task. The system utilizes an autonomous,
+mixed-initiative dialogue architecture with affect-responsive
+capabilities.
+\end{abstract}
+
+
+
+
+
+\begin{keyword}
+    keyword1 \sep 
+    keyword2
+\end{keyword}
+\end{frontmatter}
+    
+
+\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, opacityback=0, rightrule=.15mm, colback=white, colframe=quarto-callout-important-color-frame, breakable, titlerule=0mm, toprule=.15mm, opacitybacktitle=0.6, coltitle=black, arc=.35mm, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}]
+
+Manually score each dialogue series.
+
+For each interaction:
+
+\begin{itemize}
+\tightlist
+\item
+  did the participant ask for help?
+\item
+  how many times?
+\item
+  did the robot give useful help?
+\item
+  did the robot give misleading or incorrect help?
+\item
+  did the robot stick to the policy?
+\end{itemize}
+
+For each task:
+
+\begin{itemize}
+\tightlist
+\item
+  is there evidence that the robot helped complete the task?
+\item
+  is there evidence that the participant solved the problem without
+  help?
+\end{itemize}
+
+\end{tcolorbox}
+
+Human--robot collaboration (HRC) has become a central topic across
+engineering, computer science, and the social sciences as robots
+increasingly move from controlled laboratory settings into everyday
+collaborative roles. In many emerging applications, collaboration
+depends not only on physical coordination but also on shared
+problem-solving through dialogue, where robots must reason, communicate,
+and adapt in real time. Understanding how humans perceive and respond to
+such systems is therefore critical for designing robots that can
+function as effective collaborators rather than passive tools.
+
+A key factor shaping successful collaboration in human--robot
+interaction (HRI) is trust. Trust influences whether users are willing
+to rely on robotic systems, accept their guidance, and remain engaged
+during joint tasks, particularly in situations characterized by
+uncertainty or incomplete information. Prior work has shown that trust
+affects both subjective perceptions---such as perceived reliability or
+intent---and objective outcomes including task performance, compliance,
+and cooperation. As a result, a substantial body of research has focused
+on measuring trust in HRI, leading to the development of standardized
+instruments for assessing users' evaluations of robot behaviour across
+industrial, medical, and social contexts.
+
+Despite this progress, much of the existing literature on trust in HRI
+is based on interactions conducted under highly controlled or simulated
+conditions. In many studies, robot behaviour is scripted, partially
+simulated, or mediated through Wizard-of-Oz paradigms, where a human
+operator covertly controls aspects of the robot's behaviour. While these
+approaches are valuable for isolating specific design factors and
+testing early hypotheses, they also mask many of the failures and
+inconsistencies that characterize autonomous systems in real-world use.
+Speech recognition errors, delayed or inappropriate responses,
+misinterpretations of user intent, and limitations of affect sensing are
+not peripheral issues but central features of deployed autonomous
+robots. These imperfections are likely to play a decisive role in
+shaping trust, yet they remain underexplored in empirical HRI research.
+
+The present pilot study addresses this gap by examining trust and
+collaboration in an in-person interaction with a fully autonomous social
+robot operating within predefined behavioural constraints. Using a
+between-subjects design, participants collaborated with a robot during
+an immersive, dialogue-driven puzzle game in which the robot acted as a
+diegetic game guide and partner. The task required shared
+problem-solving through conversation, with participants seeking hints,
+advice, and support from the robot while navigating the game
+environment. Crucially, all interaction management---including
+speech-based dialogue, task progression, and affect-responsive
+behaviour---was handled autonomously by the robot without human
+intervention.
+
+Two versions of the robot were compared. In one condition, the robot was
+designed to be proactive and responsive, adapting its behaviour based on
+participant affect and conversational cues. In the other condition, the
+robot provided assistance only when explicitly requested, offering a
+more reactive interaction style. This manipulation allowed us to examine
+reminder differences in autonomy and responsiveness influence trust
+perceptions and collaborative performance under otherwise identical task
+demands.
+
+To support this interaction, we developed an autonomous spoken-language
+system integrated with automatic speech recognition and affect detection
+on the Misty-II robot platform. The system we developed enables the
+robot to recognize speech, manage dialogue state, maintain
+conversational context, and generate coordinated verbal responses
+alongside facial expressions and head and arm movements. Rather than
+optimizing for flawless performance, the system was designed to reflect
+realistic capabilities and limitations of contemporary social robots.
+
+By combining post-interaction trust measures with behavioural and
+task-level outcomes, this study aims to contribute empirical evidence on
+how trust is shaped in fully autonomous HRI scenarios. The focus is not
+on demonstrating idealized interaction under perfect conditions, but on
+examining trust as it emerges through realistic human--robot
+collaboration, where uncertainty, interactional breakdowns, and adaptive
+behaviour are unavoidable. In doing so, this work seeks to inform the
+design and evaluation of affect-responsive autonomous robots intended
+for real-world collaborative settings.
+
+\subsection{Hypotheses}\label{hypotheses}
+
+The primary objective of this study was to examine how differences in
+robot interaction policy influence trust and collaboration during fully
+autonomous, in-person human--robot interaction. Based on prior work
+linking robot responsiveness, affective behavior, and trust in HRI, we
+formulated the following hypotheses.
+
+H1: Participants interacting with a responsive, affect-adaptive robot
+will report higher post-interaction trust than participants interacting
+with a neutral, reactive robot.
+
+H2: Participants in the responsive condition will demonstrate greater
+engagement with the robot during the collaborative tasks, reflected in
+increased voluntary interaction and reliance on robot input during
+problem solving.
+
+H3: Differences in trust and engagement will be most pronounced during
+the open-ended collaborative task, where assistance from the robot is
+optional rather than required.
+
+\subsection{Methods}\label{methods}
+
+\subsubsection{Sample and recruitment}\label{sample-and-recruitment}
+
+Participants (n = 29) were recruited from the Laurentian University
+community through word of mouth and the SONA participant recruitment
+system. Eligibility criteria required participants to be adults (18
+years or older), fluent in English, with normal or corrected-to-normal
+hearing and vision, and no prior experience interacting with the
+Misty-II robot. Participants received a \$15.00 gift card as
+compensation for their time. All procedures were approved by the
+university's Research Ethics Board. The Misty-II robot used in this
+study was purchased through grant funding from the IAMGOLD President's
+Innovation Fund. Sample characteristics are summarized in
+Table~\ref{tbl-pre}.
+
+\subsubsection{Experimental design}\label{experimental-design}
+
+The study employed a between-subjects design with robot interaction
+policy as the sole experimental factor. Participants interacted with the
+Misty-II robot in a shared physical workspace that included both the
+robot and a participant-facing computer interface. The interface was
+used to present brief task instructions, collect participant inputs, and
+manage transitions between task stages. Critically, the interface did
+not serve as a control mechanism for the robot. Instead, the robot
+autonomously monitored task state and participant inputs via the
+interface and adapted its dialogue and behavior accordingly, without any
+real-time human intervention (see Figure~\ref{fig-setup}).
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=5.02083in,height=\textheight,keepaspectratio]{images/misty-pullback.jpg}
+
+}
+
+\caption{\label{fig-setup}Experimental setup showing the autonomous
+robot and participant-facing task interface used during in-person
+sessions. Participants entered task responses and navigated between task
+stages using the interface, while the robot autonomously tracked task
+state and adapted its interaction based on participant input. No
+real-time human intervention occurred during the interaction.}
+
+\end{figure}%
+
+Participants collaborated with the robot during an immersive puzzle game
+in which the robot functioned as a diegetic game guide and collaborative
+partner. The interaction was fully autonomous in both conditions, and
+both versions of the robot were subject to the same sensory and
+interaction constraints inherent to real-world operation, including
+speech recognition variability and response timing delays. The only
+manipulation between conditions was the robot's interaction policy.
+
+Participants were randomly assigned to one of two conditions:
+
+RESPONSIVE (experimental): The robot adopted a warm, emotionally
+engaged, and proactive interaction style, adapting its responses based
+on detected participant affect, dialogue context, and task demands.
+
+CONTROL (baseline): The robot followed a neutral, reactive interaction
+policy, providing information and assistance only when explicitly
+requested, without affect-responsive adaptation.
+
+\subsubsection{Task structure}\label{task-structure}
+
+The game consisted of five sequential stages designed to elicit
+interaction under differing collaboration and dependency conditions,
+following established approaches in HRI task design \citep{lin2022}.
+Total session duration was approximately 15 minutes.
+
+Stage 1: Greeting. The robot introduced itself and engaged in brief
+rapport-building interaction.
+
+Stage 2: Mission brief. The robot explained the narrative context and
+overall objectives of the task.
+
+Stage 3: Task 1 (robot-dependent reasoning). Participants completed a
+constrained ``who-dunnit'' task.
+
+Stage 4: Task 2 (open-ended collaborative problem solving). Participants
+worked to determine the location of a missing robot using technical
+logs.
+
+Stage 5: Wrap-up. The robot provided feedback and concluded the
+interaction.
+
+\subsubsection{Task 1: Robot-dependent collaborative
+reasoning}\label{task-1-robot-dependent-collaborative-reasoning}
+
+In the first task, participants were required to identify a suspect from
+a 6 × 4 grid of 24 candidates by asking the robot a series of yes/no
+questions about the suspect's features (e.g., hair color, accessories,
+clothing). The grid was displayed on the interface, while questions were
+posed verbally to the robot. The robot possessed the ground-truth
+information necessary to evaluate each question and provide correct
+responses.
+
+Successful completion of this task was therefore dependent on
+interaction with the robot, creating a forced collaborative dynamic in
+which the robot served as an essential informational partner.
+Participants were required to coordinate questioning strategies with the
+robot to narrow down the correct suspect within a five-minute time
+limit. The structured nature of the task ensured consistent interaction
+demands across participants and conditions.
+
+\subsubsection{Task 2: Open-ended problem solving with advisory robot
+support}\label{task-2-open-ended-problem-solving-with-advisory-robot-support}
+
+The second task involved a more open-ended problem-solving scenario.
+Participants were presented with multiple technical logs through a
+simulated terminal interface and were asked to determine the location of
+a missing robot. Unlike Task 1, the robot did not have access to
+ground-truth information or the contents of the logs. The robot's
+assistance was limited to general problem-solving support derived from
+its language model, such as explaining how to interpret logs, suggesting
+reasoning strategies, or prompting participants to reflect on
+inconsistencies.
+
+Participants could complete this task independently or choose to solicit
+assistance from the robot. The robot could ask clarifying questions
+about what the participant observed in the logs, and participants could
+likewise ask the robot for guidance. This design positioned the robot as
+a collaborative reasoning partner rather than an authoritative source
+and allowed collaboration to emerge voluntarily rather than being
+enforced by task structure \citep{lin2022}.
+
+\subsubsection{Wrap-up and debrief}\label{wrap-up-and-debrief}
+
+After all responses were submitted, correct answers were displayed to
+participants. During the wrap-up stage, the robot engaged in a brief
+debriefing interaction, acknowledging task outcomes and thanking
+participants for their involvement before prompting them to report back
+to the researcher.
+
+\subsubsection{In-person procedure}\label{in-person-procedure}
+
+Participants completed a pre-interaction questionnaire administered via
+Qualtrics prior to their in-person session. This questionnaire included
+informed consent, demographic information, the Negative Attitudes Toward
+Robots Scale, and a measure of Need for Cognition. Balanced random
+assignment was also completed in this step (need mention no-shows that
+threw off the balance of the group assignments). Due to variability in
+timing between pre-interaction questionnaires and in-person sessions,
+these measures were treated as baseline covariates rather than formal
+pre-test measures.
+
+At the start of the in-person session, participants were seated in front
+of the Misty-II robot and instructed to begin the interaction by
+clicking a start button on the interface. They were given brief guidance
+on effective communication with the robot, including waiting for a
+visual indicator on the robot before speaking. Once participants
+indicated readiness, the researcher left the room and closed the door,
+leaving the participant and robot to complete the tasks without human
+presence.
+
+Following task completion, participants exited the room and completed a
+post-interaction survey assessing trust using the Trust Perception--HRI
+scale and the Trust in Industrial Human--Robot Collaboration scale.
+Participants then engaged in a written and verbal debrief with the
+researcher. Participants were informed that they could terminate the
+session at any time without penalty. All participants completed the full
+procedure, with total session duration averaging approximately 30
+minutes, and received compensation upon completion.
+
+\section{Results}\label{results}
+
+\subsection{Participant characteristics and baseline
+measures}\label{participant-characteristics-and-baseline-measures}
+
+Participants in the control and responsive conditions were comparable
+with respect to pre-interaction demographic characteristics, academic
+background, prior experience with robots, and baseline attitudes toward
+robots. Importantly, Negative Attitudes Towards Robots (NARS) and Need
+for Cognition scores were similar across groups, indicating that
+post-interaction differences are unlikely to reflect pre-existing
+attitudes (see Table~\ref{tbl-pre}).
+
+\subsection{Post-Interaction Trust
+Differences}\label{post-interaction-trust-differences}
+
+Descriptive comparisons of participant-level post-test scores indicated
+an approximately 10 point difference in post-test Trust Perception
+Scale-HRI scores (M ≈ 73 vs M ≈ 63) and a 14 point difference in the
+Trust in Industrial Human-robot Collaboration scale (M ≈ 47 vs M ≈ 61)
+between conditions, although these differences did not reach
+conventional significance (p\textless.05) under a two-sample t-test (p =
+0.09 and p = 0.14 respectively), reflecting our limited power (n = 29),
+Bayesian hierarchical models indicated higher post-interaction trust
+scores in the responsive robot condition across both trust-related
+scales (posterior mean differences ≈ 7--8 points on a 0--100 scale).
+
+Although 95\% credible intervals overlapped zero, the posterior
+probability that the responsive condition increased trust was 95\% for
+both measures, suggesting a robust directional effect despite
+substantial individual variability. Sensitivity analyses using
+substantially wider priors yielded nearly identical posterior estimates
+for the group effect, indicating that results were not driven by prior
+specification. In addition to directional effects, the posterior
+probability that the responsive condition increased trust by at least
+five points was 70\%, suggesting a reasonable likelihood of a
+practically meaningful effect size. In a larger sample, these effects
+would likely reach conventional levels of statistical significance.
+
+\subsection{Trust subscale patterns}\label{trust-subscale-patterns}
+
+Examination of trust subscales suggested that group differences were
+most pronounced for affective components of trust (e.g., trust
+feelings), whereas differences in perceived reliability were smaller.
+This pattern aligns with correlations showing that baseline negative
+attitudes toward robots were more strongly associated with affective
+trust than with reliability judgments.
+
+\subsection{Interaction dynamics and task
+performance}\label{interaction-dynamics-and-task-performance}
+
+\begin{table}
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+post\_trust & 29 & 47 (26) & 61 (26) & 0.094 \\ 
+post\_trust\_reliability & 29 & 46 (24) & 62 (20) & 0.11 \\ 
+post\_trust\_perception & 29 & 49 (26) & 57 (25) & 0.32 \\ 
+post\_trust\_feelings & 29 & 59 (33) & 72 (29) & 0.26 \\ 
+Post-Task Trust Perception & 29 & 63 (17) & 73 (19) & 0.16 \\ 
+Suspect ID Accuracy & 29 & 4 / 13 (31\%) & 10 / 16 (63\%) & 0.089 \\ 
+Status Accuracy & 29 & 11 / 13 (85\%) & 10 / 16 (63\%) & 0.24 \\ 
+building\_correct & 29 & 10 / 13 (77\%) & 12 / 16 (75\%) & >0.99 \\ 
+floor\_correct & 29 & 10 / 13 (77\%) & 13 / 16 (81\%) & >0.99 \\ 
+zone\_correct & 29 & 6 / 13 (46\%) & 4 / 16 (25\%) & 0.27 \\ 
+Total Task Accuracy & 29 & 3.15 (0.99) & 3.06 (1.34) & 0.98 \\ 
+Overall Task Accuracy & 29 & 0.63 (0.20) & 0.61 (0.27) & 0.98 \\ 
+Dialogue Turns & 29 & 32 (10) & 36 (11) & 0.95 \\ 
+Avg Task Duration (mins) & 29 & 12.84 (4.02) & 16.81 (6.38) & {\bfseries 0.050} \\ 
+Avg Response Time (ms) & 29 & 15.1 (4.1) & 17.2 (2.4) & {\bfseries 0.006} \\ 
+Silent Periods & 29 & 5.15 (2.27) & 5.31 (2.82) & 0.88 \\ 
+Engaged Responses & 29 & 1.92 (2.25) & 3.50 (1.83) & {\bfseries 0.020} \\ 
+Frustrated Responses & 29 & 0.54 (0.66) & 0.88 (1.15) & 0.56 \\ 
+n\_neg & 29 & 1.00 (0.91) & 0.94 (1.18) & 0.63 \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Mean (SD); n / N (\%)\\
+\textsuperscript{\textit{2}}Wilcoxon rank sum test; Wilcoxon rank sum exact test; Pearson's Chi-squared test; Fisher's exact test\\
+\end{minipage}
+\end{table}
+
+\subsubsection{Task performance}\label{task-performance}
+
+Objective task accuracy did not differ between conditions across any
+task-level measures except suspect accuracy (robot dependendant task),
+indicating that increased trust was only attributable to improved task
+success when interaction was necessary to complete accurately.
+
+Despite similar task accuracy, interactions in the responsive condition
+were characterized by longer durations, slower response times, and a
+higher number of AI-detected engaged responses. These findings suggest
+that responsiveness altered the interaction dynamics and affective tone
+rather than task outcomes.
+
+\subsection{Individual differences and correlational
+patterns}\label{individual-differences-and-correlational-patterns}
+
+As expected, we found that higher Need for Cognition (NFC) scores were
+negatively associated with Negative Attitudes Towards Robots (NARS),
+indicating that individuals who enjoy effortful thinking tend to have
+more positive attitudes towards robots. This relationship is consistent
+with prior literature suggesting that cognitive engagement is associated
+with openness to new technologies. In terms of NARS subscales, NFC was
+negatively correlated with all three subscales, but significantly so
+only in the domain of Situations of Interaction with Robots. This
+suggests that individuals with higher NFC are less likely to hold
+negative attitudes across various dimensions of robot interaction but
+especially around direct interaction with robots.
+
+--\textgreater{} how to talk about post-interaction correlations
+w/pre-interaction measures Several behavioural and task-level measures
+were correlated with post-interaction trust, consistent with the
+interpretation that trust judgments were shaped by interaction quality;
+these variables were not included as covariates in primary models to
+avoid conditioning on potential mediators.
+
+Baseline negative attitudes toward robots were negatively correlated
+with post-interaction trust, with the strongest associations observed
+for affective trust subscales. In contrast, objective task performance
+was selectively associated with perceived reliability. Need for
+cognition was negatively correlated with negative robot attitudes and
+interaction-level negative affect, suggesting that individual
+differences contributed to variability in trust responses.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/fig-corr-1.pdf}}
+
+}
+
+\caption{\label{fig-corr}}
+
+\end{figure}%
+
+\subsubsection{Model robustness and predictive
+checks}\label{model-robustness-and-predictive-checks}
+
+Sensitivity analyses using alternative prior specifications yielded
+substantively similar estimates, and leave-one-out cross-validation
+indicated comparable predictive performance between models with and
+without the group effect.
+
+\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, opacityback=0, rightrule=.15mm, colback=white, colframe=quarto-callout-important-color-frame, breakable, titlerule=0mm, toprule=.15mm, opacitybacktitle=0.6, coltitle=black, arc=.35mm, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}]
+
+\begin{itemize}
+\tightlist
+\item
+  add subscale column to long format data
+\item
+  run an analysis of performance by robot-dependent versus
+  robot-independent tasks
+\item
+  write up a future directions section for the planned larger study
+\item
+  talk about unexpected language issues with people signing up with
+  difficultly speaking and understanding english which cuased problems
+  with asr and interaction
+\item
+  run analysis of dialogue dynamics included Bertopic or some other
+  analysis of the actual content of the conversations/interactions
+\end{itemize}
+
+\end{tcolorbox}
+
+\section{Discussion}\label{discussion}
+
+Mention language confounders!!
+
+The second task was intentionally designed to be sufficiently
+challenging that completing it within the allotted time was difficult
+without assistance. This ensured that interaction with the robot
+represented a meaningful opportunity for collaboration rather than a
+trivial or purely optional exchange. By contrasting a robot-dependent
+task with an open-ended advisory task, the study examined trust
+formation across interaction contexts that varied in both informational
+asymmetry and reliance on the robot.
+
+This pilot study examined trust outcomes following in-person interaction
+with an autonomous social robot under two interaction policies: a
+responsive, affect-adaptive condition and a neutral, non-responsive
+control condition. By leveraging a fully autonomous dialogue system
+integrated with speech recognition and affect detection, the study aimed
+to evaluate how robot responsiveness influences trust formation in
+realistic human--robot collaboration scenarios.
+
+Descriptive comparisons of post-interaction measures indicated that
+participants in the responsive condition reported consistently higher
+trust across all trust measures, with differences ranging from
+approximately 8 to 16 points on a 0--100 scale, although uncertainty
+remained high given the small sample. Notably, the responsive condition
+did not differ from control in objective task accuracy, suggesting that
+increased trust was not driven by improved task success. Instead,
+responsive interactions were characterized by longer durations, slower
+response times, and a higher number of AI-detected engaged responses,
+indicating a shift in interaction dynamics rather than performance.
+
+Baseline negative attitudes toward robots were most strongly associated
+with affective components of trust rather than perceptions of
+reliability, suggesting that pre-existing attitudes primarily shape
+emotional responses to interaction rather than judgments of system
+competence. Conversely, objective task performance was selectively
+associated with perceived reliability, indicating that participants
+distinguished between affective and functional aspects of trust.
+
+Future work with larger samples could formally test mediation pathways
+linking robot responsiveness, interaction fluency, affective responses,
+and trust judgments, as well as moderation by baseline attitudes toward
+robots and need for cognition.
+
+Participants in the responsive condition also exhibited higher levels of
+AI-detected engagement during interaction, as indexed by a greater
+number of responses classified as positive affect (t-test result). This
+suggests that responsive behaviours altered the affective tone of the
+interaction itself.
+
+\section{Appendix}\label{appendix}
+
+\begin{table}
+
+\caption{\label{tbl-pre}}
+
+\centering{
+
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Gender} & 27 &  &  & 0.84 \\ 
+    Woman &  & 6 / 13 (46\%) & 7 / 14 (50\%) &  \\ 
+    Man &  & 7 / 13 (54\%) & 7 / 14 (50\%) &  \\ 
+{\bfseries Age Group} & 27 &  &  & 0.35 \\ 
+    18-24 &  & 5 / 13 (38\%) & 7 / 14 (50\%) &  \\ 
+    25-34 &  & 4 / 13 (31\%) & 2 / 14 (14\%) &  \\ 
+    34-44 &  & 1 / 13 (7.7\%) & 4 / 14 (29\%) &  \\ 
+    45+ &  & 3 / 13 (23\%) & 1 / 14 (7.1\%) &  \\ 
+{\bfseries Program} & 25 &  &  & >0.99 \\ 
+    Psychology &  & 1 / 13 (7.7\%) & 1 / 12 (8.3\%) &  \\ 
+    Engineering &  & 2 / 13 (15\%) & 1 / 12 (8.3\%) &  \\ 
+    Computer Science &  & 7 / 13 (54\%) & 6 / 12 (50\%) &  \\ 
+    Earth Sciences &  & 0 / 13 (0\%) & 1 / 12 (8.3\%) &  \\ 
+    Other &  & 3 / 13 (23\%) & 3 / 12 (25\%) &  \\ 
+{\bfseries Experience w/Robots} & 29 & 7 / 13 (54\%) & 4 / 16 (25\%) & 0.14 \\ 
+{\bfseries Native English Speaker} & 29 &  &  & 0.53 \\ 
+    Native English &  & 5 / 13 (38\%) & 8 / 16 (50\%) &  \\ 
+    Non-Native English &  & 8 / 13 (62\%) & 8 / 16 (50\%) &  \\ 
+{\bfseries NARS Overall} & 29 & 38 (8) & 38 (7) & 0.79 \\ 
+{\bfseries Need for Cognition} & 29 & 3.62 (0.78) & 3.74 (0.74) & 0.55 \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}n / N (\%); Mean (SD)\\
+\textsuperscript{\textit{2}}Pearson's Chi-squared test; Fisher's exact test; Wilcoxon rank sum test\\
+\end{minipage}
+
+}
+
+\end{table}%
+
+\subsection{Key Components of the
+System}\label{key-components-of-the-system}
+
+This study implemented a multi-stage collaborative task system where
+participants collaborate with the Misty II social robot to solve a
+who-dunnit type task. The system utilizes an autonomous,
+mixed-initiative dialogue architecture via langchain with
+affect-responsive capabilities.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Misty-II Robot: A programmable robot platform equipped with sensors
+  and actuators for interaction.
+\item
+  Automated Speech Recognition (ASR): A speech-to-speech pipeline that
+  processes spoken input from users and converts it into text for LLM
+  processing then back to speech for output on the robot.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    STT: Deepgram API for real-time speech-to-text conversion.
+  \item
+    DistilRoBERTa-base fine-tuned on emotion classification for emotion
+    detection from user utterances
+  \item
+    LLM: Gemini API for processing text input and generating
+    contextually relevant responses in JSON format
+  \item
+    TTS: Misty-II text-to-speech (TTS) engine on 820 processor.
+  \end{itemize}
+\item
+  Langchain Dialogue Management: A system that manages the flow of
+  conversation, ensuring coherent and contextually appropriate dialogue
+  within a two-part collaborative task.
+\item
+  Collaborative-Tasks
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Task 1: Whodunnit style task where human and robot collaborate to
+    find a missing robot via the human asking Yes/No questions (process
+    of elimination in 6x4 suspect grid) to the robot. Robot knows ground
+    truth but can only answer Yes/No questions about suspect features.
+    Can not directly describe the suspect or name them. (human can
+    choose a random suspect to solve on their own but only 1 in 24
+    chance of being correct without robot help)
+  \item
+    Task 2: Where is Atlas? Robot collaborates with human to find Atlas
+    by deciphering cryptic system and sensor logs. Robot does not know
+    the answer here and can only guide the human usinng its expertise
+    and knowledge of computer systems and basic logical reasoning.
+    (human can solve on their own but very difficult without robot help
+    depending on participants technical background).
+  \end{itemize}
+\item
+  Flask-gui dashboard interface: A web-based interface/dashboard that
+  allowed participants to interact with the tasks, view task-related
+  information and input their answers to the questions. Responses were
+  sent to the robot to signal task progression.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Task 1 dashboard: Displays the suspect grid and allows the user to
+    select suspects and view their features.
+  \item
+    Task 2 dashboard: Displays system logs and allows the user to input
+    their findings.
+  \end{itemize}
+\item
+  Pre and post tests:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    PRE-TESTS: Need for Cognition Scale (short); Negative Attitudes to
+    Robots Scale (NARS);
+  \item
+    POST-TESTS: Trust Perception Scale-HRI; 9 custom questions adapted
+    from Charalambous et al.~(2020) on trust in industrial human-robot
+    collaboration;
+  \end{itemize}
+\end{enumerate}
+
+\section{Technical Specifications}\label{technical-specifications}
+
+\subsection{System Overview}\label{system-overview}
+
+This study implements a multi-stage collaborative task system where
+participants collaborate with the Misty II social robot to solve a
+who-dunniti type task. The system utilizes an autonomous,
+mixed-initiative dialogue architecture with affect-responsive
+capabilities.
+
+\subsection{Hardware Platform}\label{hardware-platform}
+
+\textbf{Robot}: Misty II Social Robot (Furhat Robotics)
+
+\begin{itemize}
+\tightlist
+\item
+  Mobile social robot platform with expressive display, arm actuators,
+  and head movement
+\item
+  RGB LED for state indication
+\item
+  RTSP video streaming (1920×1080, 30fps) for audio capture
+\item
+  Custom action scripting for synchronized multimodal expressions
+\end{itemize}
+
+\subsection{Software Architecture}\label{software-architecture}
+
+\subsubsection{Core System Components}\label{core-system-components}
+
+\textbf{Programming Language}: Python 3.10
+
+\textbf{Primary Dependencies}:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{misty-sdk} (Python SDK for Misty Robotics API) - Robot control
+  and sensor access
+\item
+  \texttt{deepgram-sdk} (4.8.1) - Speech-to-text processing
+\item
+  \texttt{ffmpeg-python} (0.2.0) - Audio stream processing
+\item
+  \texttt{flask} (3.1.2) + \texttt{flask-socketio} (5.5.1) - Web
+  interface for task presentation
+\item
+  \texttt{duckdb} (1.4.0) - Experimental data logging database
+\end{itemize}
+
+\subsubsection{Large Language Models}\label{large-language-models}
+
+\textbf{LLM Provider}:
+
+\textbf{Google Gemini}:
+
+\begin{itemize}
+\tightlist
+\item
+  Model: \texttt{gemini-2.5-flash-lite} (configurable via environment
+  variable)
+\item
+  Integration: \texttt{langchain-google-genai} with
+  \texttt{google-generativeai} API
+\item
+  Response format: JSON-only output
+  (\texttt{response\_mime\_type:\ "application/json"}). This format is
+  required by Misty-II for reliable parsing and for action execution.
+\end{itemize}
+
+\textbf{LLM Configuration}:
+
+\begin{itemize}
+\tightlist
+\item
+  Temperature: 0.7 (for balanced creativity and coherence)
+\item
+  Memory: Conversation buffer memory with file-based persistence
+  (\texttt{langchain.memory.ConversationBufferMemory})
+\item
+  Context window: Full conversation history maintained across
+  interaction stages but reset between sessions.
+\end{itemize}
+
+\subsection{LangChain Framework
+Integration}\label{langchain-framework-integration}
+
+\subsubsection{Core LangChain
+Components}\label{core-langchain-components}
+
+\textbf{Framework Version}: \texttt{langchain-core} with modular
+provider packages
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{langchain} (meta-package)
+\item
+  \texttt{langchain-community} (0.3.31)
+\item
+  \texttt{langchain-google-genai} Gemini integration
+\end{itemize}
+
+\subsubsection{ConversationChain
+Architecture}\label{conversationchain-architecture}
+
+\textbf{Memory Management} (\texttt{ConversationChain} class in
+\texttt{conversation\_chain.py}):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Conversation Buffer Memory}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Implementation: \texttt{langchain.memory.ConversationBufferMemory}
+  \item
+    Storage: File-based persistent chat history
+    (\texttt{FileChatMessageHistory})
+  \item
+    Format: JSON files in \texttt{.memory/} directory, one per
+    participant session
+  \item
+    Memory key: \texttt{"history"}
+  \item
+    Return format: Message objects (full conversation context)
+  \end{itemize}
+\item
+  \textbf{Memory Reset Policy}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Default: Reset on each new session launch
+  \item
+    Archive previous session: Timestamped archive files stored in
+    \texttt{.memory/archive/}
+  \item
+    Configuration: \texttt{RESET\_MEMORY} and \texttt{ARCHIVE\_MEMORY}
+    environment variables
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Prompt Construction}\label{prompt-construction}
+
+\textbf{Message Structure}
+
+(LangChain message types):
+\texttt{python\ {[}SystemMessage,\ *history\_messages,\ HumanMessage{]}}
+
+System Message Assembly:
+
+\begin{itemize}
+\tightlist
+\item
+  Core instructions (task framing, role definition)
+\item
+  Personality instructions (mode-specific behaviour)
+\item
+  Stage-specific instructions (current task context)
+\item
+  Output format constraints (JSON schema specification)
+\end{itemize}
+
+\begin{verbatim}
+Human Message Format:   {     
+"user": "<transcribed_speech>",     
+"stage": "<current_stage>",     
+"detected_emotion": "<emotion_label>",     
+"frustration_note": "<optional_alert>",     
+"timer_expired": "<task_id>",     ...   }
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  JSON-encoded context variables passed alongside user input
+\item
+  Enables LLM to access environmental state without breaking message
+  history
+\end{itemize}
+
+\subsubsection{Memory Persistence:}\label{memory-persistence}
+
+\begin{itemize}
+\tightlist
+\item
+  Save after each turn: memory.save\_context(\{``input'': user\_text\},
+  \{``output'': llm\_response\})
+\item
+  Maintains conversational coherence across multi-stage interaction
+\item
+  Enables LLM to reference previous exchanges (e.g., ``As I mentioned
+  earlier\ldots{}'')
+\end{itemize}
+
+\subsubsection{LangChain Design
+Rationale}\label{langchain-design-rationale}
+
+Why LangChain for this application:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Memory abstraction: Automatic conversation history management without
+  manual message list handling
+\item
+  Provider flexibility: Easy switching between Gemini and OpenAI without
+  rewriting prompt logic
+\item
+  Message typing: Structured SystemMessage/HumanMessage/AIMessage types
+  maintain role clarity
+\item
+  File persistence: Built-in FileChatMessageHistory enables session
+  recovery and archiving
+\item
+  Future extensibility: Framework supports adding tools, retrieval, or
+  multi-agent patterns if needed
+\end{enumerate}
+
+Alternatives considered: Direct API calls would reduce dependencies but
+require reimplementing conversation history management, prompt
+templating, and cross-provider compatibility layers.
+
+\subsubsection{LangChain Limitations in This
+Context}\label{langchain-limitations-in-this-context}
+
+\begin{itemize}
+\tightlist
+\item
+  No chains used: Despite name ConversationChain, this is a direct LLM
+  wrapper (no LangChain Expression Language chains)
+\item
+  No tools/agents: Simple request-response pattern (could extend for
+  future tool-use capabilities)
+\item
+  Custom JSON parsing: LangChain's built-in output parsers not used;
+  custom extraction handles malformed responses more robustly
+\end{itemize}
+
+\subsubsection{Speech Processing}\label{speech-processing}
+
+\textbf{Speech-to-Text (STT)}:
+
+\begin{itemize}
+\tightlist
+\item
+  Provider: Deepgram Nova-2 (\texttt{deepgram-sdk} 4.8.1)
+\item
+  Model: \texttt{nova-2} with US English (\texttt{en-US})
+\item
+  Smart formatting enabled
+\item
+  Interim results for real-time partial transcription
+\item
+  Voice Activity Detection (VAD) events
+\item
+  Adaptive endpointing: 200ms (conversational stages) / 500ms
+  (log-reading task)
+\item
+  Utterance end timeout: 1000ms (conversational) / 2000ms (log-reading)
+\item
+  Audio processing: RTSP stream from Misty → FFmpeg MP3 encoding →
+  Deepgram WebSocket
+\end{itemize}
+
+\textbf{Text-to-Speech (TTS)} - Three options:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Misty Onboard TTS} (this is the one we used): Native robot
+  voice via onboard TTS
+\item
+  \textbf{OpenAI TTS}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Model: \texttt{tts-1} (low-latency variant)
+  \item
+    Voice: \texttt{sage}
+  \item
+    Format: MP3, served via HTTP (port 8000)
+  \item
+    Ultimately chose not to use because we wanted a more robotic,
+    non-human voice
+  \item
+    Didn't want the human voice influencing trust on its own (future
+    research could look at trust in relation to type of voice)
+  \end{itemize}
+\item
+  \textbf{Deepgram Aura}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Model: \texttt{aura-stella-en} (conversational female voice)
+  \item
+    Format: MP3, served via HTTP
+  \item
+    Ultimately chose not to use because we wanted a more robotic,
+    non-human voice
+  \end{itemize}
+\end{enumerate}
+
+\subsubsection{Emotion Detection}\label{emotion-detection}
+
+\textbf{Model}: DistilRoBERTa-base fine-tuned on emotion classification
+
+\begin{itemize}
+\tightlist
+\item
+  HuggingFace identifier:
+  \texttt{j-hartmann/emotion-english-distilroberta-base}
+\item
+  Framework: \texttt{transformers} (4.57.1) pipeline
+\item
+  Hardware: CUDA GPU acceleration (automatic fallback to CPU)
+\item
+  Output classes: joy, anger, sadness, fear, disgust, surprise, neutral
+\item
+  Mapped to interaction states: positively engaged, irritated,
+  disappointed, anxious, frustrated, curious, neutral
+\end{itemize}
+
+\subsubsection{Multimodal Robot
+behaviour}\label{multimodal-robot-behaviour}
+
+\textbf{Expression System}: 25 custom action scripts combining:
+
+\begin{itemize}
+\tightlist
+\item
+  LLM was prompted to choose an appropriate expression from a predefined
+  set based on context.
+\item
+  Facial displays (image eye-expression files on screen)
+\item
+  LED color patterns (solid, breathe, blink)
+\item
+  Arm movements (bilateral position control)
+\item
+  Head movements (pitch, yaw, roll control)
+\end{itemize}
+
+\textbf{Nonverbal Backchannel behaviours} (RESPONSIVE mode only):
+
+\begin{itemize}
+\tightlist
+\item
+  Real-time listening cues triggered by partial transcripts
+  (disfluencies, hesitation markers)
+\item
+  Emotion-matched expressions (e.g., ``concern'' for hesitation,
+  ``excited'' for breakthroughs)
+\end{itemize}
+
+\textbf{LED State Indicators}:
+
+\begin{itemize}
+\tightlist
+\item
+  Blue (0, 199, 252): Actively listening (microphone open)
+\item
+  Purple (100, 70, 160): Processing/speaking (microphone closed)
+\end{itemize}
+
+\subsection{Data Collection}\label{data-collection}
+
+\textbf{Database}: DuckDB relational database
+(\texttt{experiment\_data.duckdb})
+
+\textbf{Logged Data}:
+
+1. \textbf{Sessions table}: participant ID (auto-incremented P01,
+P02\ldots), condition assignment, timestamps, duration
+
+2. \textbf{Dialogue turns table}: turn-by-turn user input, LLM response,
+expression, response latency (ms), behavioural flags
+
+3. \textbf{Task responses table}: submitted answers with timestamps and
+time-on-task
+
+4. \textbf{Events table}: stage transitions, silence check-ins, timer
+expirations, detected emotions
+
+\subsection{Interaction Dynamics}\label{interaction-dynamics}
+
+\subsubsection{Silence Handling}\label{silence-handling}
+
+\textbf{Silence detection}: 25-second threshold triggers check-in prompt
+
+\begin{itemize}
+\tightlist
+\item
+  RESPONSIVE: ``Still working on it? No rush - I'm here if you need
+  help!''
+\item
+  CONTROL: ``I am ready when you have a question.''
+\end{itemize}
+
+\subsubsection{Emotion-Responsive behaviours (RESPONSIVE condition
+only)}\label{emotion-responsive-behaviours-responsive-condition-only}
+
+\textbf{Frustration tracking}:
+
+\begin{itemize}
+\tightlist
+\item
+  Consecutive detection of frustrated/anxious/irritated/disappointed
+  states
+\item
+  Threshold: ≥2 consecutive frustrated turns triggers proactive support
+\item
+  RESPONSIVE adaptation: ``This part can be tough. Want me to walk you
+  through it?''
+\end{itemize}
+
+\textbf{Positive emotion matching}:
+
+\begin{itemize}
+\tightlist
+\item
+  Celebratory language for curious/engaged states
+\item
+  Momentum maintenance: ``Yes! Great observation!''
+\end{itemize}
+
+\textbf{Run Mode}: Set programmatically in \texttt{mistyGPT\_emotion.py}
+line 126:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{RUN\_MODE }\OperatorTok{=} \StringTok{"RESPONSIVE"}  \CommentTok{\# or "CONTROL"}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Prompt Engineering}\label{prompt-engineering}
+
+Modular prompt system (PromptLoader class):
+
+\begin{itemize}
+\tightlist
+\item
+  core\_system.md: Task framing, role description, output format schema
+\item
+  role\_responsive.md / role\_control.md: Condition-specific personality
+  instructions
+\item
+  stage1\_greeting.md through stage5\_wrap\_up.md: Stage-specific task
+  instructions.
+\end{itemize}
+
+Context injection: Real-time contextual variables passed to LLM:
+
+\begin{itemize}
+\tightlist
+\item
+  Current stage
+\item
+  Detected emotion (if enabled)
+\item
+  Task submission status
+\item
+  Timer expiration notifications
+\item
+  Silence check-in flags
+\end{itemize}
+
+\subsection{Inter-process
+Communication}\label{inter-process-communication}
+
+Flask REST API endpoints:
+
+\begin{itemize}
+\tightlist
+\item
+  GET /stage\_current: Synchronize stage state with facilitator GUI
+\item
+  GET /task\_submission\_status: Detect participant task submissions
+\item
+  GET /timer\_expired\_status: Detect timer expirations
+\item
+  POST /stage: Update stage (facilitator override)
+\item
+  POST /reset\_timer: Clear timer expiration flags
+\end{itemize}
+
+
+\bibliography{bibliography.bib}
+
+
+
+\end{document}
