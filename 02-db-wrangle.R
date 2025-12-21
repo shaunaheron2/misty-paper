@@ -89,7 +89,10 @@ events <- tbl(con, "events") |>
 turns <- tbl(con, "dialogue_turns") |>
   filter(timestamp >= '2025-11-18') |>
   collect() |>
-  filter(session_id %in% valid_ids)
+  filter(session_id %in% valid_ids) |>
+  select(-id)
+
+write_csv(turns, 'data/clean_data/dialogue_turns_filtered.csv')
 
 turns |>
   group_by(session_id, expression) |>
@@ -227,6 +230,10 @@ task_responses_parsed <- candidate_matches |>
   summarise(across(everything(), ~ na.omit(.x)[1])) |>
   filter(session_id %in% valid_ids)
 
+full_turns <- turns |>
+  left_join(task_responses_parsed, by = 'session_id')
+
+write_csv(full_turns, 'data/clean_data/dialogue_turns_with_task_outcomes.csv')
 
 task_responses2 <- sessions |>
   left_join(task_responses_parsed, by = 'session_id') |>

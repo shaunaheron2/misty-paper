@@ -272,11 +272,11 @@ capabilities.
 \end{frontmatter}
     
 
-\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, opacityback=0, rightrule=.15mm, colback=white, colframe=quarto-callout-important-color-frame, breakable, titlerule=0mm, toprule=.15mm, opacitybacktitle=0.6, coltitle=black, arc=.35mm, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}]
+\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, opacitybacktitle=0.6, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, toptitle=1mm, breakable, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, arc=.35mm, coltitle=black, rightrule=.15mm, opacityback=0, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}, bottomrule=.15mm, leftrule=.75mm, left=2mm]
 
 Manually score each dialogue series.
 
-For each interaction:
+For each interaction and stage:
 
 \begin{itemize}
 \tightlist
@@ -290,6 +290,8 @@ For each interaction:
   did the robot give misleading or incorrect help?
 \item
   did the robot stick to the policy?
+\item
+  how many times did the robot fail to understand the participant?
 \end{itemize}
 
 For each task:
@@ -302,6 +304,11 @@ For each task:
   is there evidence that the participant solved the problem without
   help?
 \end{itemize}
+
+From our scoring, we make a variable binary for participants who had
+serious communication breakdowns/issues defined by abandonding tasks
+altogether, and inability for STT to translate participant speech to
+text. These participants will be excluded from the final analysis.
 
 \end{tcolorbox}
 
@@ -484,7 +491,7 @@ Stage 3: Task 1 (robot-dependent reasoning). Participants completed a
 constrained ``who-dunnit'' task.
 
 Stage 4: Task 2 (open-ended collaborative problem solving). Participants
-worked to determine the location of a missing robot using technical
+worked to determine the location of the missing robot using technical
 logs.
 
 Stage 5: Wrap-up. The robot provided feedback and concluded the
@@ -515,7 +522,7 @@ support}\label{task-2-open-ended-problem-solving-with-advisory-robot-support}
 The second task involved a more open-ended problem-solving scenario.
 Participants were presented with multiple technical logs through a
 simulated terminal interface and were asked to determine the location of
-a missing robot. Unlike Task 1, the robot did not have access to
+the missing robot. Unlike Task 1, the robot did not have access to
 ground-truth information or the contents of the logs. The robot's
 assistance was limited to general problem-solving support derived from
 its language model, such as explaining how to interpret logs, suggesting
@@ -585,36 +592,49 @@ attitudes (see Table~\ref{tbl-pre}).
 Differences}\label{post-interaction-trust-differences}
 
 Descriptive comparisons of participant-level post-test scores indicated
-an approximately 10 point difference in post-test Trust Perception
-Scale-HRI scores (M ≈ 73 vs M ≈ 63) and a 14 point difference in the
-Trust in Industrial Human-robot Collaboration scale (M ≈ 47 vs M ≈ 61)
-between conditions, although these differences did not reach
-conventional significance (p\textless.05) under a two-sample t-test (p =
-0.09 and p = 0.14 respectively), reflecting our limited power (n = 29),
-Bayesian hierarchical models indicated higher post-interaction trust
-scores in the responsive robot condition across both trust-related
-scales (posterior mean differences ≈ 7--8 points on a 0--100 scale).
+an approximately 12 point difference in post-test Trust Perception
+Scale-HRI scores (M ≈ 75 vs M ≈ 63) and a 27 point difference in the
+Trust in Industrial Human-robot Collaboration scale (M ≈ 39 vs M ≈ 66)
+between conditions, although in the first scale differences did not
+reach conventional significance under a two-sample t-test (p=.10), the
+second scale was significantly different between groups (p=.007).
 
-Although 95\% credible intervals overlapped zero, the posterior
-probability that the responsive condition increased trust was 95\% for
-both measures, suggesting a robust directional effect despite
-substantial individual variability. Sensitivity analyses using
-substantially wider priors yielded nearly identical posterior estimates
-for the group effect, indicating that results were not driven by prior
-specification. In addition to directional effects, the posterior
-probability that the responsive condition increased trust by at least
-five points was 70\%, suggesting a reasonable likelihood of a
-practically meaningful effect size. In a larger sample, these effects
-would likely reach conventional levels of statistical significance.
+To test these findings further, we fitted several Bayesian hierarchical
+models were fitted (estimated using MCMC sampling with 4 chains of 4000
+iterations and a warmup of 1000) to predict Robot HRI-trust and Trust in
+HRI Collaboration by experimental group (formula: robot\_trust\_post
+\textasciitilde{} group). The model included session\_id and
+trust\_items as random effects (formula: list(\textasciitilde1
+\textbar{} session\_id, \textasciitilde1 \textbar{} trust\_items)). Both
+models indicated higher post-interaction trust scores in the responsive
+robot condition across both trust-related scales (posterior median
+differences ≈ 8-15 points on a 0--100 scale).
+
+For the Trust in Industrial Robots outcome, the responsive condition
+showed a robust positive effect on post-task trust ratings. The
+estimated group difference was 14.5 points (95\% CrI {[}5.62, 23.22{]}),
+exceeding between-session variability and remaining stable after
+accounting for item-level effects, with a 95\% chance of being large
+(\textgreater6.94). In contrast, for the HRI trust perception scale, the
+estimated group effect was smaller at \textasciitilde{} 9 points and
+more uncertain 95\% CrI {[}-1.72, 19.25{]}, with 65\% chance of being
+large (\textgreater6.87).
+
+The posterior probability that the responsive condition increased trust
+was greater than 95\% for both measures, suggesting a robust directional
+effect despite substantial individual variability. Sensitivity analyses
+using substantially wider priors yielded nearly identical posterior
+estimates for the group effect, indicating that results were not driven
+by prior specification.
+
+In addition to directional effects, the posterior probability that the
+responsive condition increased trust by at least five points was 77\% in
+HRI-trust perception and 98\% in the Collaborative Trust in Industrial
+Robots scale, suggesting a reasonable likelihood of a practically
+meaningful effect. Moreover, in the latter collaboration scale, there is
+an 85\% likelihood of an effect-size greater than 10 points.
 
 \subsection{Trust subscale patterns}\label{trust-subscale-patterns}
-
-Examination of trust subscales suggested that group differences were
-most pronounced for affective components of trust (e.g., trust
-feelings), whereas differences in perceived reliability were smaller.
-This pattern aligns with correlations showing that baseline negative
-attitudes toward robots were more strongly associated with affective
-trust than with reliability judgments.
 
 \subsection{Interaction dynamics and task
 performance}\label{interaction-dynamics-and-task-performance}
@@ -623,32 +643,41 @@ performance}\label{interaction-dynamics-and-task-performance}
 \fontsize{10.0pt}{12.0pt}\selectfont
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
 \toprule
-\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 8\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
 \midrule\addlinespace[2.5pt]
-post\_trust & 29 & 47 (26) & 61 (26) & 0.094 \\ 
-post\_trust\_reliability & 29 & 46 (24) & 62 (20) & 0.11 \\ 
-post\_trust\_perception & 29 & 49 (26) & 57 (25) & 0.32 \\ 
-post\_trust\_feelings & 29 & 59 (33) & 72 (29) & 0.26 \\ 
-Post-Task Trust Perception & 29 & 63 (17) & 73 (19) & 0.16 \\ 
-Suspect ID Accuracy & 29 & 4 / 13 (31\%) & 10 / 16 (63\%) & 0.089 \\ 
-Status Accuracy & 29 & 11 / 13 (85\%) & 10 / 16 (63\%) & 0.24 \\ 
-building\_correct & 29 & 10 / 13 (77\%) & 12 / 16 (75\%) & >0.99 \\ 
-floor\_correct & 29 & 10 / 13 (77\%) & 13 / 16 (81\%) & >0.99 \\ 
-zone\_correct & 29 & 6 / 13 (46\%) & 4 / 16 (25\%) & 0.27 \\ 
-Total Task Accuracy & 29 & 3.15 (0.99) & 3.06 (1.34) & 0.98 \\ 
-Overall Task Accuracy & 29 & 0.63 (0.20) & 0.61 (0.27) & 0.98 \\ 
-Dialogue Turns & 29 & 32 (10) & 36 (11) & 0.95 \\ 
-Avg Task Duration (mins) & 29 & 12.84 (4.02) & 16.81 (6.38) & {\bfseries 0.050} \\ 
-Avg Response Time (ms) & 29 & 15.1 (4.1) & 17.2 (2.4) & {\bfseries 0.006} \\ 
-Silent Periods & 29 & 5.15 (2.27) & 5.31 (2.82) & 0.88 \\ 
-Engaged Responses & 29 & 1.92 (2.25) & 3.50 (1.83) & {\bfseries 0.020} \\ 
-Frustrated Responses & 29 & 0.54 (0.66) & 0.88 (1.15) & 0.56 \\ 
-n\_neg & 29 & 1.00 (0.91) & 0.94 (1.18) & 0.63 \\ 
+post\_trust & 22 & 39 (22) & 66 (21) & {\bfseries 0.007} \\ 
+post\_trust\_reliability & 22 & 42 (27) & 66 (17) & {\bfseries 0.029} \\ 
+post\_trust\_perception & 22 & 36 (24) & 56 (24) & 0.078 \\ 
+post\_trust\_feelings & 22 & 47 (31) & 76 (25) & {\bfseries 0.032} \\ 
+Post-Task Trust Perception & 22 & 63 (16) & 75 (19) & 0.10 \\ 
+Suspect ID Accuracy & 22 & 3 / 8 (38\%) & 9 / 14 (64\%) & 0.38 \\ 
+Status Accuracy & 22 & 6 / 8 (75\%) & 9 / 14 (64\%) & >0.99 \\ 
+building\_correct & 22 & 6 / 8 (75\%) & 12 / 14 (86\%) & 0.60 \\ 
+floor\_correct & 22 & 6 / 8 (75\%) & 12 / 14 (86\%) & 0.60 \\ 
+zone\_correct & 22 & 4 / 8 (50\%) & 4 / 14 (29\%) & 0.39 \\ 
+Total Task Accuracy & 22 & 3.13 (1.13) & 3.29 (1.14) & 0.70 \\ 
+Overall Task Accuracy & 22 & 0.63 (0.23) & 0.66 (0.23) & 0.70 \\ 
+Dialogue Turns & 22 & 38 (6) & 37 (11) & 0.19 \\ 
+Avg Task Duration (mins) & 22 & 14.36 (2.18) & 17.26 (6.67) & 0.13 \\ 
+Avg Response Time (ms) & 22 & 13.19 (0.90) & 17.57 (2.30) & {\bfseries <0.001} \\ 
+Silent Periods & 22 &  &  & 0.55 \\ 
+    2 &  & 0 / 8 (0\%) & 2 / 14 (14\%) &  \\ 
+    3 &  & 2 / 8 (25\%) & 2 / 14 (14\%) &  \\ 
+    4 &  & 0 / 8 (0\%) & 4 / 14 (29\%) &  \\ 
+    5 &  & 2 / 8 (25\%) & 1 / 14 (7.1\%) &  \\ 
+    6 &  & 1 / 8 (13\%) & 2 / 14 (14\%) &  \\ 
+    7 &  & 1 / 8 (13\%) & 1 / 14 (7.1\%) &  \\ 
+    8 &  & 1 / 8 (13\%) & 0 / 14 (0\%) &  \\ 
+    9 &  & 1 / 8 (13\%) & 1 / 14 (7.1\%) &  \\ 
+    13 &  & 0 / 8 (0\%) & 1 / 14 (7.1\%) &  \\ 
+Engaged Responses & 22 & 2.50 (2.20) & 3.71 (1.82) & 0.089 \\ 
+Frustrated Responses & 22 & 0.63 (0.74) & 0.86 (1.23) & 0.94 \\ 
+n\_neg & 22 & 0.88 (0.83) & 0.93 (1.21) & 0.80 \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Mean (SD); n / N (\%)\\
-\textsuperscript{\textit{2}}Wilcoxon rank sum test; Wilcoxon rank sum exact test; Pearson's Chi-squared test; Fisher's exact test\\
+\textsuperscript{\textit{2}}Wilcoxon rank sum test; Wilcoxon rank sum exact test; Fisher's exact test\\
 \end{minipage}
 \end{table}
 
@@ -715,7 +744,7 @@ substantively similar estimates, and leave-one-out cross-validation
 indicated comparable predictive performance between models with and
 without the group effect.
 
-\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, opacityback=0, rightrule=.15mm, colback=white, colframe=quarto-callout-important-color-frame, breakable, titlerule=0mm, toprule=.15mm, opacitybacktitle=0.6, coltitle=black, arc=.35mm, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}]
+\begin{tcolorbox}[enhanced jigsaw, toprule=.15mm, opacitybacktitle=0.6, colbacktitle=quarto-callout-important-color!10!white, bottomtitle=1mm, toptitle=1mm, breakable, titlerule=0mm, colback=white, colframe=quarto-callout-important-color-frame, arc=.35mm, coltitle=black, rightrule=.15mm, opacityback=0, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, bottomrule=.15mm, leftrule=.75mm, left=2mm]
 
 \begin{itemize}
 \tightlist
@@ -799,38 +828,222 @@ interaction itself.
 \fontsize{10.0pt}{12.0pt}\selectfont
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
 \toprule
-\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 8\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
 \midrule\addlinespace[2.5pt]
-{\bfseries Gender} & 27 &  &  & 0.84 \\ 
-    Woman &  & 6 / 13 (46\%) & 7 / 14 (50\%) &  \\ 
-    Man &  & 7 / 13 (54\%) & 7 / 14 (50\%) &  \\ 
-{\bfseries Age Group} & 27 &  &  & 0.35 \\ 
-    18-24 &  & 5 / 13 (38\%) & 7 / 14 (50\%) &  \\ 
-    25-34 &  & 4 / 13 (31\%) & 2 / 14 (14\%) &  \\ 
-    34-44 &  & 1 / 13 (7.7\%) & 4 / 14 (29\%) &  \\ 
-    45+ &  & 3 / 13 (23\%) & 1 / 14 (7.1\%) &  \\ 
-{\bfseries Program} & 25 &  &  & >0.99 \\ 
-    Psychology &  & 1 / 13 (7.7\%) & 1 / 12 (8.3\%) &  \\ 
-    Engineering &  & 2 / 13 (15\%) & 1 / 12 (8.3\%) &  \\ 
-    Computer Science &  & 7 / 13 (54\%) & 6 / 12 (50\%) &  \\ 
-    Earth Sciences &  & 0 / 13 (0\%) & 1 / 12 (8.3\%) &  \\ 
-    Other &  & 3 / 13 (23\%) & 3 / 12 (25\%) &  \\ 
-{\bfseries Experience w/Robots} & 29 & 7 / 13 (54\%) & 4 / 16 (25\%) & 0.14 \\ 
-{\bfseries Native English Speaker} & 29 &  &  & 0.53 \\ 
-    Native English &  & 5 / 13 (38\%) & 8 / 16 (50\%) &  \\ 
-    Non-Native English &  & 8 / 13 (62\%) & 8 / 16 (50\%) &  \\ 
-{\bfseries NARS Overall} & 29 & 38 (8) & 38 (7) & 0.79 \\ 
-{\bfseries Need for Cognition} & 29 & 3.62 (0.78) & 3.74 (0.74) & 0.55 \\ 
+{\bfseries Gender} & 21 &  &  & 0.66 \\ 
+    Woman &  & 3 / 8 (38\%) & 7 / 13 (54\%) &  \\ 
+    Man &  & 5 / 8 (63\%) & 6 / 13 (46\%) &  \\ 
+{\bfseries Age Group} & 21 &  &  & 0.37 \\ 
+    18-24 &  & 4 / 8 (50\%) & 6 / 13 (46\%) &  \\ 
+    25-34 &  & 2 / 8 (25\%) & 2 / 13 (15\%) &  \\ 
+    34-44 &  & 0 / 8 (0\%) & 4 / 13 (31\%) &  \\ 
+    45+ &  & 2 / 8 (25\%) & 1 / 13 (7.7\%) &  \\ 
+{\bfseries Program} & 19 &  &  & 0.94 \\ 
+    Psychology &  & 1 / 8 (13\%) & 1 / 11 (9.1\%) &  \\ 
+    Engineering &  & 2 / 8 (25\%) & 1 / 11 (9.1\%) &  \\ 
+    Computer Science &  & 3 / 8 (38\%) & 5 / 11 (45\%) &  \\ 
+    Earth Sciences &  & 0 / 8 (0\%) & 1 / 11 (9.1\%) &  \\ 
+    Other &  & 2 / 8 (25\%) & 3 / 11 (27\%) &  \\ 
+{\bfseries Experience w/Robots} & 22 & 5 / 8 (63\%) & 3 / 14 (21\%) & 0.081 \\ 
+{\bfseries Native English Speaker} & 22 &  &  & >0.99 \\ 
+    Native English &  & 4 / 8 (50\%) & 8 / 14 (57\%) &  \\ 
+    Non-Native English &  & 4 / 8 (50\%) & 6 / 14 (43\%) &  \\ 
+{\bfseries NARS Overall} & 22 & 37 (10) & 38 (7) & 0.89 \\ 
+{\bfseries Need for Cognition} & 22 & 3.92 (0.74) & 3.77 (0.78) & 0.81 \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}n / N (\%); Mean (SD)\\
-\textsuperscript{\textit{2}}Pearson's Chi-squared test; Fisher's exact test; Wilcoxon rank sum test\\
+\textsuperscript{\textit{2}}Fisher's exact test; Wilcoxon rank sum test\\
 \end{minipage}
 
 }
 
 \end{table}%
+
+\subsection{Dialogue Coding Scheme}\label{dialogue-coding-scheme}
+
+\subsubsection{Task Outcome Layer
+(Stage-Level)}\label{task-outcome-layer-stage-level}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{task\_outcome} & categorical & Final task status
+(\texttt{completed}, \texttt{timeout}, \texttt{skipped},
+\texttt{partial}, \texttt{abandoned}). Exactly one per task. \\
+\texttt{task\_completed} & binary & Task goal was fully completed within
+the allotted time. \\
+\texttt{task\_timed\_out} & binary & Task ended due to expiration of the
+time limit before completion. \\
+\texttt{task\_skipped} & binary & Participant explicitly skipped or
+advanced past the task without completing it. \\
+\texttt{task\_partially\_completed} & binary & Task progress was made,
+but the full solution was not reached. \\
+\texttt{task\_abandoned} & binary & Participant disengaged or stopped
+attempting the task before timeout. \\
+\texttt{task\_time\_remaining\_sec} & numeric & Time remaining (in
+seconds) when the task ended; 0 if timed out. \\
+\texttt{task\_completed\_without\_help} & binary & Task was completed
+without any help requests to the robot. \\
+\texttt{task\_required\_robot\_help} & binary & At least one robot help
+interaction was required for task completion. \\
+\end{longtable}
+
+\subsubsection{Dialogue Interaction Layer
+(Turn-Level)}\label{dialogue-interaction-layer-turn-level}
+
+\paragraph{Human Turn Codes}\label{human-turn-codes}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{human\_help\_request} & binary & Participant explicitly or
+implicitly asks the robot for help or guidance. \\
+\texttt{human\_reasoning\_self} & binary & Participant articulates their
+own reasoning or problem-solving independent of the robot. \\
+\texttt{human\_confusion} & binary & Participant expresses confusion or
+uncertainty. \\
+\texttt{human\_confirmation\_seeking} & binary & Participant seeks
+confirmation of a tentative belief or solution. \\
+\texttt{human\_ignores\_robot} & binary & Participant proceeds without
+engaging with the robot's prior input. \\
+\end{longtable}
+
+\paragraph{Robot Turn Codes}\label{robot-turn-codes}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{robot\_helpful\_guidance} & binary & Robot provides accurate,
+task-relevant guidance. \\
+\texttt{robot\_misleading\_guidance} & binary & Robot provides
+misleading or incorrect guidance. \\
+\texttt{robot\_factually\_incorrect} & binary & Robot states information
+that is objectively incorrect. \\
+\texttt{robot\_policy\_violation} & binary & Robot violates stated
+system or task constraints. \\
+\texttt{robot\_on\_policy\_unhelpful} & binary & Robot adheres to policy
+but provides vague or non-actionable assistance. \\
+\texttt{robot\_stt\_failure} & binary & Robot response reflects a
+speech-to-text or input understanding failure. \\
+\texttt{robot\_clarification\_request} & binary & Robot asks the
+participant to repeat or clarify their input. \\
+\end{longtable}
+
+\subsubsection{Affective Interaction Layer
+(Turn-Level)}\label{affective-interaction-layer-turn-level}
+
+\paragraph{Robot Affective Behavior}\label{robot-affective-behavior}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{robot\_empathy\_expression} & binary & Robot expresses empathy,
+encouragement, or reassurance. \\
+\texttt{robot\_emotion\_acknowledgement} & binary & Robot explicitly
+references an inferred participant emotional state. \\
+\texttt{robot\_affect\_task\_aligned} & binary & Robot's affective
+response is appropriate and supportive in context. \\
+\texttt{robot\_affect\_misaligned} & binary & Robot's affective response
+is mistimed or disruptive to the task. \\
+\end{longtable}
+
+\paragraph{Human Affective Response}\label{human-affective-response}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{human\_affective\_engagement} & binary & Participant responds in
+a socially warm or emotionally engaged manner. \\
+\texttt{human\_social\_reciprocity} & binary & Participant mirrors or
+responds to the robot's affective expression. \\
+\texttt{human\_anthropomorphic\_language} & binary & Participant treats
+the robot as a social agent. \\
+\texttt{human\_emotional\_disengagement} & binary & Participant responds
+in a curt, dismissive, or withdrawn manner. \\
+\end{longtable}
+
+\subsubsection{Notes}\label{notes}
+
+\begin{itemize}
+\tightlist
+\item
+  Turn-level variables are coded per dialogue turn.
+\item
+  Task outcome variables are coded once per
+  \texttt{session\_id\ ×\ stage}.
+\item
+  Raw dialogue text was retained during coding and removed prior to
+  aggregation.
+\item
+  Multiple turn-level codes may co-occur unless otherwise specified.
+\end{itemize}
 
 \subsection{Key Components of the
 System}\label{key-components-of-the-system}

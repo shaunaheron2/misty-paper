@@ -58,6 +58,8 @@ For each task:
 - is there evidence that the robot helped complete the task?
 - is there evidence that the participant solved the problem without help?
 
+From our scoring, we make a variable binary for participants who had serious communication breakdowns/issues defined by abandonding tasks altogether, and inability for STT to translate participant speech to text. These participants will be excluded from the final analysis.
+
 :::
 ```{r}
 
@@ -81,12 +83,31 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("nejm"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
-df_flat_scores_final <- readRDS("full_dataset_with_items.rds") #|>
-# filter(!grepl('sprig', email))
+#P35 really long one
 
-df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv")
+df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
+  mutate(
+    poor_comms = if_else(
+      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      1,
+      0
+    )
+  ) |>
+  filter(poor_comms != 1)
+
+df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
+  mutate(
+    poor_comms = if_else(
+      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      1,
+      0
+    )
+  ) |>
+  filter(poor_comms != 1)
 #saveRDS(df_flat_scores_final_with_items, 'full_dataset_with_items.rds')
 
+test <- df_flat_scores_final |>
+  select(session_id, native_english, robot_xp, poor_comms, email)
 ```
 
 Human–robot collaboration (HRC) has become a central topic across engineering, computer science, and the social sciences as robots increasingly move from controlled laboratory settings into everyday collaborative roles. In many emerging applications, collaboration depends not only on physical coordination but also on shared problem-solving through dialogue, where robots must reason, communicate, and adapt in real time. Understanding how humans perceive and respond to such systems is therefore critical for designing robots that can function as effective collaborators rather than passive tools.
@@ -197,6 +218,17 @@ ggplot(
 ```
 
 ```{r}
+# df_long_scores_final |>
+#   group_by(group, trust_items) |>
+#   summarise(n=n(), mean=mean(robot_trust_post, na.rm=TRUE), sd=sd(robot_trust_post, na.rm=TRUE)) |>
+#   pivot_wider(names_from=group, values_from=c(n, mean, sd))|>
+#   gt()
+```
+
+
+
+
+```{r}
 # ggbetweenstats(
 #   x = group,
 #   y = robot_trust_post,
@@ -216,18 +248,26 @@ ggplot(
 
 ## Post-Interaction Trust Differences
 
-Descriptive comparisons of participant-level post-test scores indicated an approximately 10 point difference in post-test Trust Perception Scale-HRI scores (M ≈ 73 vs M ≈ 63) and a 14 point difference in the Trust in Industrial Human-robot Collaboration scale (M ≈ 47 vs M ≈ 61) between conditions, although these differences did not reach conventional significance (p<.05) under a two-sample t-test (p = 0.09 and p = 0.14 respectively), reflecting our limited power (n = 29), Bayesian hierarchical models indicated higher post-interaction trust scores in the responsive robot condition across both trust-related scales (posterior mean differences ≈ 7–8 points on a 0–100 scale). 
+Descriptive comparisons of participant-level post-test scores indicated an approximately 12 point difference in post-test Trust Perception Scale-HRI scores (M ≈ 75 vs M ≈ 63) and a 27 point difference in the Trust in Industrial Human-robot Collaboration scale (M ≈ 39 vs M ≈ 66) between conditions, although in the first scale differences did not reach conventional significance under a two-sample t-test (p=.10), the second scale was significantly different between groups (p=.007). 
 
-Although 95% credible intervals overlapped zero, the posterior probability that the responsive condition increased trust was 95% for both measures, suggesting a robust directional effect despite substantial individual variability. Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification. In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was 70%, suggesting a reasonable likelihood of a practically meaningful effect size. In a larger sample, these effects would likely reach conventional levels of statistical significance.
+To test these findings further, we fitted several Bayesian hierarchical models were fitted (estimated using MCMC sampling with 4 chains of 4000 iterations and a warmup of 1000) to
+predict Robot HRI-trust and Trust in HRI Collaboration by experimental group (formula: robot_trust_post ~ group). The model included session_id and trust_items as random effects (formula: list(~1 | session_id, ~1 | trust_items)). Both models indicated higher post-interaction trust scores in the responsive robot condition across both trust-related scales (posterior median differences ≈ 8-15 points on a 0–100 scale).
+
+For the Trust in Industrial Robots outcome, the responsive condition showed a robust positive effect on post-task trust ratings. The estimated group difference was 14.5 points (95% CrI [5.62, 23.22]), exceeding between-session variability and remaining stable after accounting for item-level effects, with a 95% chance of being large (>6.94). In contrast, for the HRI trust perception scale, the estimated group effect was smaller at ~ 9 points and more uncertain 95% CrI [-1.72, 19.25], with 65% chance of being large (>6.87).
+
+The posterior probability that the responsive condition increased trust was greater than 95% for both measures, suggesting a robust directional effect despite substantial individual variability. Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification. 
+
+In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was 77% in HRI-trust perception and 98% in the Collaborative Trust in Industrial Robots scale, suggesting a reasonable likelihood of a practically meaningful effect. Moreover, in the latter collaboration scale, there is an 85% likelihood of an effect-size greater than 10 points. 
 
 
 ```{r}
 #| eval: false
+#|
 ggbetweenstats(
   x = group,
   y = post_trust,
-  data = df_flat_scores_final,
-  type = "np"
+  data = df_flat_scores_final
+  #type = "np"
 )
 # Although the second trust instrument was administered and scored in its original 5-point Likert format, for ease of interpretation it was linearly rescaled to the first scale's 0–100 metric for interpretability and comparability.
 
@@ -237,11 +277,16 @@ ggbetweenstats(
   data = df_flat_scores_final,
   type = "np"
 )
+
+# When all participants including those that had major comms issues and abandoned tasks:
+# Descriptive comparisons of participant-level post-test scores indicated an approximately 10 point difference in post-test Trust Perception Scale-HRI scores (M ≈ 73 vs M ≈ 63) and a 14 point difference in the Trust in Industrial Human-robot Collaboration scale (M ≈ 47 vs M ≈ 61) between conditions, although these differences did not reach conventional significance (p<.05) under a two-sample t-test (p = 0.09 and p = 0.14 respectively), reflecting our limited power (n = 29), Bayesian hierarchical models indicated higher post-interaction trust scores in the responsive robot condition across both trust-related scales (posterior mean differences ≈ 7–8 points on a 0–100 scale).
+
+# Although 95% credible intervals overlapped zero, the posterior probability that the responsive condition increased trust was 95% for both measures, suggesting a robust directional effect despite substantial individual variability. Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification. In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was 70%, suggesting a reasonable likelihood of a practically meaningful effect size. In a larger sample, these effects would likely reach conventional levels of statistical significance.
 ```
 
 ## Trust subscale patterns
 
-Examination of trust subscales suggested that group differences were most pronounced for affective components of trust (e.g., trust feelings), whereas differences in perceived reliability were smaller. This pattern aligns with correlations showing that baseline negative attitudes toward robots were more strongly associated with affective trust than with reliability judgments.
+
 
 ## Interaction dynamics and task performance
 
@@ -297,6 +342,8 @@ post_table |>
   #bold_labels() |>
   modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
 ```
+
+
 
 ### Task performance
 
@@ -488,6 +535,74 @@ df_flat_scores_final |>
     "Participant Demographics and Baseline Characteristics by Group"
   )
 ```
+
+## Dialogue Coding Scheme
+
+### Task Outcome Layer (Stage-Level)
+
+| Variable | Type | Description |
+|---|---|---|
+| `task_outcome` | categorical | Final task status (`completed`, `timeout`, `skipped`, `partial`, `abandoned`). Exactly one per task. |
+| `task_completed` | binary | Task goal was fully completed within the allotted time. |
+| `task_timed_out` | binary | Task ended due to expiration of the time limit before completion. |
+| `task_skipped` | binary | Participant explicitly skipped or advanced past the task without completing it. |
+| `task_partially_completed` | binary | Task progress was made, but the full solution was not reached. |
+| `task_abandoned` | binary | Participant disengaged or stopped attempting the task before timeout. |
+| `task_time_remaining_sec` | numeric | Time remaining (in seconds) when the task ended; 0 if timed out. |
+| `task_completed_without_help` | binary | Task was completed without any help requests to the robot. |
+| `task_required_robot_help` | binary | At least one robot help interaction was required for task completion. |
+
+### Dialogue Interaction Layer (Turn-Level)
+
+#### Human Turn Codes
+
+| Variable | Type | Description |
+|---|---|---|
+| `human_help_request` | binary | Participant explicitly or implicitly asks the robot for help or guidance. |
+| `human_reasoning_self` | binary | Participant articulates their own reasoning or problem-solving independent of the robot. |
+| `human_confusion` | binary | Participant expresses confusion or uncertainty. |
+| `human_confirmation_seeking` | binary | Participant seeks confirmation of a tentative belief or solution. |
+| `human_ignores_robot` | binary | Participant proceeds without engaging with the robot’s prior input. |
+
+#### Robot Turn Codes
+
+| Variable | Type | Description |
+|---|---|---|
+| `robot_helpful_guidance` | binary | Robot provides accurate, task-relevant guidance. |
+| `robot_misleading_guidance` | binary | Robot provides misleading or incorrect guidance. |
+| `robot_factually_incorrect` | binary | Robot states information that is objectively incorrect. |
+| `robot_policy_violation` | binary | Robot violates stated system or task constraints. |
+| `robot_on_policy_unhelpful` | binary | Robot adheres to policy but provides vague or non-actionable assistance. |
+| `robot_stt_failure` | binary | Robot response reflects a speech-to-text or input understanding failure. |
+| `robot_clarification_request` | binary | Robot asks the participant to repeat or clarify their input. |
+
+### Affective Interaction Layer (Turn-Level)
+
+#### Robot Affective Behavior
+
+| Variable | Type | Description |
+|---|---|---|
+| `robot_empathy_expression` | binary | Robot expresses empathy, encouragement, or reassurance. |
+| `robot_emotion_acknowledgement` | binary | Robot explicitly references an inferred participant emotional state. |
+| `robot_affect_task_aligned` | binary | Robot’s affective response is appropriate and supportive in context. |
+| `robot_affect_misaligned` | binary | Robot’s affective response is mistimed or disruptive to the task. |
+
+#### Human Affective Response
+
+| Variable | Type | Description |
+|---|---|---|
+| `human_affective_engagement` | binary | Participant responds in a socially warm or emotionally engaged manner. |
+| `human_social_reciprocity` | binary | Participant mirrors or responds to the robot’s affective expression. |
+| `human_anthropomorphic_language` | binary | Participant treats the robot as a social agent. |
+| `human_emotional_disengagement` | binary | Participant responds in a curt, dismissive, or withdrawn manner. |
+
+### Notes
+
+- Turn-level variables are coded per dialogue turn.
+- Task outcome variables are coded once per `session_id × stage`.
+- Raw dialogue text was retained during coding and removed prior to aggregation.
+- Multiple turn-level codes may co-occur unless otherwise specified.
+
 
 ## Key Components of the System
 

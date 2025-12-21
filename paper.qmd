@@ -35,11 +35,25 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("jama"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
-df_flat_scores_final <- readRDS("full_dataset_with_items.rds") #|>
-# filter(!grepl('sprig', email))
+df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
+  mutate(
+    poor_comms = if_else(
+      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      1,
+      0
+    )
+  ) |>
+  filter(poor_comms != 1)
 
-df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv")
-#saveRDS(df_flat_scores_final_with_items, 'full_dataset_with_items.rds')
+df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
+  mutate(
+    poor_comms = if_else(
+      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      1,
+      0
+    )
+  ) |>
+  filter(poor_comms != 1)
 ```
 
 ::: callout-warning
@@ -518,29 +532,27 @@ Two participants did not complete pre-test measures and were excluded from analy
 base = lm(robot_trust_post ~ group, data = scores_df)
 
 mod1 <- lmer(
-  robot_trust_post ~ group *
-    native_english +
-    (1 | trust_items) +
+  robot_trust_post ~ group +
     (1 | session_id),
   data = scores_df
 )
 
 mod2 <- lmer(
   robot_trust_post ~ group +
-    #(1 | session_id) +
-    (1 | trust_items),
-  data = scores_df
+    (1 | session_id) +(1|trust_items),
+  data = scores_df 
 )
 
 mod3 <- lmer(
-  robot_trust_post ~ group + gender + (1 | session_id) + (1 | trust_items),
+  robot_trust_post ~ group  + trust_items +(1 | session_id) ,
   data = scores_df
 )
 
 mod4 <- lmer(
-  robot_trust_post ~ group + gender + (1 | session_id) + (1 | trust_items),
+  robot_trust_post ~ group  * trust_items +(1 | session_id) ,
   data = scores_df
 )
+
 
 # mod4 <- lmer(
 #   robot_trust_post ~ group + scale +
@@ -548,26 +560,44 @@ mod4 <- lmer(
 #     (1 | trust_items),
 #   data = scores_df
 # )
-anova(mod1, mod2, mod3, base)
+anova(mod1, mod2, mod3, mod4, base)
 tab_model(mod1, mod3, mod4)
 #outliers_list <- check_outliers(mod3)
 #lot(check_outliers(mod3))
-
+compare_performance(mod1, mod2, mod3, mod4, rank=TRUE)
 ```
 
 ```{r}
 library(brms)
+# choose conservative priors (mean of 50 on 0-100 scale, wide SDs)
 priors <- c(
   prior(normal(50, 25), class = "Intercept"), # trust score center-ish, wide
   prior(normal(0, 10), class = "b"), # effects in points on 0-100
   prior(exponential(1), class = "sd"), # RE SDs: subject/item
   prior(exponential(1), class = "sigma") # residual SD
 )
+# priors for the null
 priors_null <- c(
   prior(normal(50, 25), class = "Intercept"),
   prior(exponential(1), class = "sd"),
   prior(exponential(1), class = "sigma")
 )
+# sensitivity analysis: wider and tighter priors
+priors_wide <- c(
+  prior(normal(50, 40), class = "Intercept"),
+  prior(normal(0, 20), class = "b"),
+  prior(exponential(0.5), class = "sd"),
+  prior(exponential(0.5), class = "sigma")
+)
+priors_tight <- c(
+  prior(normal(50, 20), class = "Intercept"),
+  prior(normal(0, 7), class = "b"),
+  prior(exponential(1.5), class = "sd"),
+  prior(exponential(1.5), class = "sigma")
+)
+```
+```{r}
+
 
 dep1 <- brm(
   robot_trust_post ~ group +
@@ -575,7 +605,7 @@ dep1 <- brm(
     (1 | trust_items),
   data = scores_df |> filter(scale == 'HRI_perception_post'),
   family = gaussian(),
-  prior = priors_wide,
+  prior = priors,
   chains = 4,
   cores = 10,
   iter = 4000,
@@ -589,21 +619,22 @@ dep2 <- brm(
     (1 | trust_items),
   data = scores_df |> filter(scale != 'HRI_perception_post'),
   family = gaussian(),
-  prior = priors_wide,
+  prior = priors,
   chains = 4,
   cores = 10,
   iter = 4000,
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+
 ```
 
 ```{r}
 summary(dep1)
 summary(dep2)
 
-pp_check(dep1)
-pp_check(dep2)
+pp_check(dep1) # post_trust_perc
+pp_check(dep2) # post_trust (likert)
 
 nuts_params(dep1) %>% count(Parameter == "divergent__")
 nuts_params(dep2) %>% count(Parameter == "divergent__")
@@ -613,12 +644,14 @@ post <- posterior::as_draws_df(dep1)
 mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
 mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
 mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
 
 post <- posterior::as_draws_df(dep2)
 
 mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
 mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
 mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
 
 VarCorr(dep1)
 VarCorr(dep2)
@@ -638,6 +671,7 @@ dep1_null <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+
 dep2_null <- brm(
   robot_trust_post ~ 1 + (1 | session_id) + (1 | trust_items),
   data = scores_df |> filter(scale != 'HRI_perception_post'),
@@ -661,18 +695,7 @@ loo_compare(loo(dep2_null), loo(dep2))
 
 ```{r}
 
-priors_wide <- c(
-  prior(normal(50, 40), class = "Intercept"),
-  prior(normal(0, 20), class = "b"),
-  prior(exponential(0.5), class = "sd"),
-  prior(exponential(0.5), class = "sigma")
-)
-priors_tight <- c(
-  prior(normal(50, 20), class = "Intercept"),
-  prior(normal(0, 7), class = "b"),
-  prior(exponential(1.5), class = "sd"),
-  prior(exponential(1.5), class = "sigma")
-)
+
 
 dep1_wide <- update(
   dep1,

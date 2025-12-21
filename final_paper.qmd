@@ -34,11 +34,26 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("nejm"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
-df_flat_scores_final <- readRDS("full_dataset_with_items.rds") #|>
-# filter(!grepl('sprig', email))
+df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
+  mutate(
+    poor_comms = if_else(
+      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      1,
+      0
+    )
+  ) |>
+  filter(poor_comms != 1)
 
-df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv")
-#saveRDS(df_flat_scores_final_with_items, 'full_dataset_with_items.rds')
+df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
+  mutate(
+    poor_comms = if_else(
+      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      1,
+      0
+    )
+  ) |>
+  filter(poor_comms != 1)
+
 
 ```
 
