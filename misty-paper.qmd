@@ -60,6 +60,20 @@ For each task:
 
 From our scoring, we make a variable binary for participants who had serious communication breakdowns/issues defined by abandonding tasks altogether, and inability for STT to translate participant speech to text. These participants will be excluded from the final analysis.
 
+- Need to talk about language issues with participants who had difficulty speaking and understanding English which caused problems with ASR and interaction.
+- Need to talk about issues where the AI was not able to flexibly handle when people asked a question about the suspect that was close to or another word for a ground-truth feature but not exactly the same word, causing confusion and miscommunication. E.g., "Was the suspect wearing pink?" The ground-truth feature was top: PINK, top-type: HOODIE; but the ASR and NLU did not extrapolate to understand that "wearing pink" referred to the same feature as "top: PINK", causing confusion and miscommunication. Maybe the prompt could have included some examples of different phrasing which could improve this? To solve this issue in future work, we can expand the NLU training data to include more paraphrases and synonyms for each feature. 
+
+There was also a case where someone asked 'is the top shirt hoodie red?' to which the AI answered YES. It may have been confused by the multiple descriptors in the question. Future work could involve improving the NLU to handle more complex queries with multiple attributes.
+
+Discuss future work where we will look investigate the 'embodied' effect of having a physical robot versus a virtual agent on trust and collaboration in HRI.
+
+Also, prompt could include examples of what to do when dialogue appears fragmented, to remind participants to wait until the blue light is on before speaking and to switch up its phrasing if the robot seems to not understand.
+
+Also, the control condition seemed to be somewhat neutered in terms of flexibility in responding in different ways. it would always respond with the exact same phrase when confronted with a sentence fragment or a question it could not directly answer.
+
+Also issues with people not paying attention to the robot's visual cues to know when to speak, leading to more fragmented dialogue. Future work could involve improving participant instructions, improved latency and 'listening' ... and the robot's feedback mechanisms to better manage turn-taking.
+
+Need to remember to flag participants who did not complete/skipped specific tasks. E.g. P56 skipped the wrapup entirely. Many skipped the brief (by advancing on their own through the dashboard).
 :::
 ```{r}
 
@@ -313,6 +327,7 @@ post_table |>
       prop_correct ~ 'continuous',
       n_engaged ~ 'continuous',
       n_frust ~ 'continuous',
+      n_silence ~ 'continuous',
       n_neg ~ 'continuous'
     ),
     # missing=FALSE,

@@ -164,12 +164,6 @@ df_flat <- df_flat_scores_final |>
   ) |>
   select(-contains('i_would'))
 
-# df_flat %>%
-#   group_by(group) %>%
-#   dplyr::summarise(
-#     correlation = cor(human_trust, robot_trust, method = "pearson", use = "pairwise.complete.obs"),
-#     .groups = "drop"
-#   )
 
 res2 <- rcorr(as.matrix(df_flat %>% select(where(is.numeric))))
 
@@ -179,16 +173,16 @@ corr <- cor(
 )
 
 testRes = cor.mtest(corr, conf.level = 0.95)
-#corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
+#c#orrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
 
-# corrplot(
-#   corr,
-#   p.mat = testRes$p,
-#   insig = 'label_sig',
-#   sig.level = c(0.001, 0.01, 0.05),
-#   pch.cex = 0.9,
-#   pch.col = 'grey20'
-# )
+corrplot(
+  corr,
+  p.mat = testRes$p,
+  insig = 'label_sig',
+  sig.level = c(0.001, 0.01, 0.05),
+  pch.cex = 0.9,
+  pch.col = 'grey20'
+)
 
 # https://sjdm.org/dmidi/Need_for_Cognition_short.html
 # Lins de Holanda Coelho G, H P Hanel P, J Wolf L. The Very Efficient Assessment of Need for
@@ -539,17 +533,18 @@ mod1 <- lmer(
 
 mod2 <- lmer(
   robot_trust_post ~ group +
-    (1 | session_id) +(1|trust_items),
-  data = scores_df 
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df
 )
 
 mod3 <- lmer(
-  robot_trust_post ~ group  + trust_items +(1 | session_id) ,
+  robot_trust_post ~ group + trust_items + (1 | session_id),
   data = scores_df
 )
 
 mod4 <- lmer(
-  robot_trust_post ~ group  * trust_items +(1 | session_id) ,
+  robot_trust_post ~ group * trust_items + (1 | session_id),
   data = scores_df
 )
 
@@ -564,8 +559,31 @@ anova(mod1, mod2, mod3, mod4, base)
 tab_model(mod1, mod3, mod4)
 #outliers_list <- check_outliers(mod3)
 #lot(check_outliers(mod3))
-compare_performance(mod1, mod2, mod3, mod4, rank=TRUE)
+compare_performance(mod1, mod2, mod3, mod4, rank = TRUE)
+
 ```
+
+```{r}
+mod_dep <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df |> filter(scale != 'HRI_perception_post')
+)
+mod_dep2 <- lmer(
+  robot_trust_post ~ group + nars_pre_c + (1 | session_id) + (1 | trust_items),
+  data = scores_df |> filter(scale != 'HRI_perception_post')
+)
+
+# combine both scale in one model
+mod_dep3 <- lmer(
+  robot_trust_post ~ group + nars_pre_c + scale + (1 | session_id) + (1 | trust_items),
+  data = scores_df )#> filter(scale == 'HRI_perception_post')
+
+
+```
+
+
 
 ```{r}
 library(brms)
@@ -595,9 +613,9 @@ priors_tight <- c(
   prior(exponential(1.5), class = "sd"),
   prior(exponential(1.5), class = "sigma")
 )
-```
+`
+``
 ```{r}
-
 
 dep1 <- brm(
   robot_trust_post ~ group +
@@ -694,8 +712,6 @@ loo_compare(loo(dep2_null), loo(dep2))
 
 
 ```{r}
-
-
 
 dep1_wide <- update(
   dep1,
