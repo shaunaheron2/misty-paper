@@ -84,7 +84,7 @@ Although participants were required to be fluent in spoken English, post-hoc rev
 
 Because the experimental manipulation relied on language-mediated collaboration, these sessions were considered non-compliant with the intended protocol and were excluded from task-level analyses. Importantly, exclusion criteria were based on interaction viability rather than outcome measures, and results were qualitatively unchanged when these sessions were retained.
 
-In the full sample (N = 29), the difference between conditions did not reach conventional significance (p = .15). However, when analyses were restricted to sessions in which communication viability was sufficient to support the intended collaborative interaction (N = 24), condition differences were significant (p < .05).
+In the full sample (N = 29), the difference between conditions did not reach conventional significance (p = .15). However, when analyses were restricted to sessions in which communication viability was sufficient to support the intended collaborative interaction (N = 23), condition differences were significant (p < .05).
 
 :::
 ```{r}
