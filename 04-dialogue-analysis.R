@@ -245,87 +245,162 @@ final_table2 <- final_table |>
   mutate(across(where(is.numeric), ~ replace_na(., 0)))
 
 
-write_csv(
-  final_table2,
-  'data/analysis_output/dialogue_stage_summary_20251212_153544.csv'
-)
-
-
 df_stage <- final_table2 %>%
   mutate(
-    communicative_viability = n_comm_breakdown +
-      n_robot_comm_failures +
-      n_sentence_frag,
+    # ---- Define which stages are true tasks and which require robot help ----
+    is_task = stage %in% c("task1", "task2"),
 
-    task_support = n_robot_helpful_guidance +
-      n_robot_reasoning -
-      n_robot_misleading_guidance -
-      n_robot_comm_failures,
+    # EDIT THIS RULE to match your design:
+    # - If Task 1 *requires* robot help to be solvable, set TRUE for task_1
+    # - If Task 2 can be solved solo, set FALSE for task_2 (or TRUE if you believe help is required)
+    task_requires_robot_help = stage %in% c("task1"),
 
-    relational_quality = n_robot_empathy_expression +
-      n_robot_encouragement +
-      n_robot_collaborative_lang +
-      n_human_affective_engagement +
-      n_human_social_reciprocity +
-      n_human_anthro
-  ) %>%
-  mutate(
+    # ---- Help style (single representation) ----
     help_style_ord = case_when(
       task_completed_collaboratively == 1 ~ "collaborative",
       task_completed_with_some_help == 1 ~ "some_help",
       task_completed_with_little_help == 1 ~ "little_help",
       task_completed_without_help == 1 ~ "no_help",
       TRUE ~ NA_character_
-    ),
-    help_style_ord = factor(
-      help_style_ord,
-      levels = c("no_help", "little_help", "some_help", "collaborative"),
-      ordered = TRUE
-    )
-  ) %>%
-  mutate(
+    ) %>%
+      factor(
+        levels = c("no_help", "little_help", "some_help", "collaborative"),
+        ordered = TRUE
+      ),
+
     task_assistance_score = case_when(
       help_style_ord == "no_help" ~ 0,
       help_style_ord == "little_help" ~ 1,
       help_style_ord == "some_help" ~ 2,
       help_style_ord == "collaborative" ~ 3,
+      is.na(help_style_ord) ~ 0,
       TRUE ~ NA_real_
-    )
-  ) |>
-  mutate(
+    ),
+
+    # ---- Task validity / guessing flag ----
+    likely_guessed = as.integer(
+      is_task == TRUE &
+        task_requires_robot_help == TRUE &
+        task_outcome == "completed" &
+        task_completed_without_help == 1
+    ),
+
+    # ---- Communication flags (timeout is NOT comm failure) ----
+    task_disengaged = as.integer(task_outcome %in% c("skipped", "abandoned")),
+    task_timed_out = as.integer(task_outcome == "timeout"),
+
+    comm_breakdown_hard = as.integer(
+      n_comm_breakdown > 0 |
+        n_robot_comm_failures > 0 |
+        n_sentence_frag > 0 |
+        task_disengaged == 1 |
+        stage_skipped == 1
+    ),
+
+    # graded comm burden (NO timeout, NO "guessed" penalty)
+    comm_burden = n_comm_breakdown +
+      n_robot_comm_failures +
+      n_sentence_frag +
+      2 * task_disengaged +
+      2 * stage_skipped,
+
+    comm_viability = 1 - scales::rescale(comm_burden, to = c(0, 1)),
+
+    # ---- Task support indices ----
+    task_support = n_robot_helpful_guidance +
+      n_robot_reasoning -
+      n_robot_misleading_guidance -
+      n_robot_comm_failures,
+
     task_support_index = task_assistance_score +
       n_robot_helpful_guidance -
       n_robot_misleading_guidance -
-      n_robot_comm_failures
+      n_robot_comm_failures,
+
+    # ---- Relational quality (social only) ----
+    relational_quality = n_robot_empathy_expression +
+      n_robot_encouragement +
+      n_robot_collaborative_lang +
+      n_human_affective_engagement +
+      n_human_social_reciprocity +
+      n_human_anthro,
+
+    # ---- Overall interaction quality (optional): penalize guessing ----
+    interaction_quality_overall = task_support_index +
+      relational_quality -
+      2 * likely_guessed
   )
+
+safe_min <- function(x) {
+  x <- x[!is.na(x)]
+  if (length(x) == 0) NA_real_ else min(x)
+}
+
+safe_mean <- function(x) {
+  x <- x[!is.na(x)]
+  if (length(x) == 0) NA_real_ else mean(x)
+}
+
+stage_context <- df_stage %>%
+  filter(stage %in% c("greeting", "brief")) %>%
+  group_by(session_id) %>%
+  summarise(
+    greeting_skipped = as.integer(any(
+      stage == "greeting" & stage_skipped == 1
+    )),
+    brief_skipped = as.integer(any(stage == "brief" & stage_skipped == 1)),
+    .groups = "drop"
+  )
+
 
 df_session <- df_stage %>%
   group_by(session_id) %>%
   summarise(
-    # how many tasks were actually attempted
-    n_tasks_attempted = sum(stage_skipped == 0),
+    n_tasks_attempted = sum(is_task & stage_skipped == 0, na.rm = TRUE),
 
-    # task completion outcomes
-    any_timeout = any(task_outcome == "timeout"),
-    any_skipped = any(stage_skipped == 1),
-    n_completed = sum(task_outcome == "completed", na.rm = TRUE),
+    n_completed = sum(is_task & task_outcome == "completed", na.rm = TRUE),
+    n_timeouts = sum(is_task & task_timed_out == 1, na.rm = TRUE),
+    n_disengaged = sum(is_task & task_disengaged == 1, na.rm = TRUE),
 
-    # robot assistance across tasks
-    mean_task_assistance = mean(task_assistance_score, na.rm = TRUE),
-    max_task_assistance = max(task_assistance_score, na.rm = TRUE),
+    n_likely_guessed = sum(likely_guessed, na.rm = TRUE),
+    any_likely_guessed = as.integer(any(likely_guessed == 1)),
 
-    # interaction quality aggregates
-    total_relational_quality = sum(
-      n_robot_empathy_expression +
-        n_robot_encouragement +
-        n_robot_collaborative_lang +
-        n_human_affective_engagement +
-        n_human_social_reciprocity +
-        n_human_anthro,
-      na.rm = TRUE
-    ),
+    mean_task_assistance = safe_mean(task_assistance_score[is_task]),
 
-    total_comm_failures = sum(n_comm_breakdown + n_robot_comm_failures),
+    relational_quality_total = sum(relational_quality[is_task], na.rm = TRUE),
+    task_support_index_total = sum(task_support_index[is_task], na.rm = TRUE),
+
+    any_comm_breakdown = as.integer(any(comm_breakdown_hard[is_task] == 1)),
+
+    comm_viability_mean = safe_mean(comm_viability[is_task]),
+    comm_viability_worst = safe_min(comm_viability[is_task]),
 
     .groups = "drop"
   )
+
+df_session2 <- df_session %>%
+  left_join(stage_context, by = "session_id") |>
+  mutate(
+    brief_greeting_skipped = ifelse(
+      greeting_skipped == 1 & brief_skipped == 1,
+      1,
+      0
+    )
+  ) %>%
+  mutate(
+    drop_due_to_comm_failure = ifelse(
+      n_completed < 1 |
+        n_disengaged > 0 |
+        n_likely_guessed > 0 |
+        relational_quality_total < 2 |
+        task_support_index_total < 15 |
+        brief_greeting_skipped == 1,
+      1,
+      0
+    )
+  )
+
+write_csv(
+  df_session2,
+  'data/analysis_output/dialogue_stage_summary_20251212_153544.csv'
+)
