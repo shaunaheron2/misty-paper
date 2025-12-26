@@ -272,7 +272,7 @@ capabilities.
 \end{frontmatter}
     
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, bottomtitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}, coltitle=black, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, breakable, opacityback=0, colframe=quarto-callout-important-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}, leftrule=.75mm, rightrule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, left=2mm, toptitle=1mm, titlerule=0mm, arc=.35mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, opacityback=0, colback=white, toprule=.15mm]
 
 Manually score each dialogue series.
 
@@ -358,6 +358,29 @@ manage turn-taking.
 Need to remember to flag participants who did not complete/skipped
 specific tasks. E.g. P56 skipped the wrapup entirely. Many skipped the
 brief (by advancing on their own through the dashboard).
+
+WILL DO 3 ANALYSES: 1. full sample 2. eligible sample 3. mechanism
+analysis (why exclusion matters)
+
+Although participants were required to be fluent in spoken English,
+post-hoc review of interaction transcripts revealed that a small subset
+of participants experienced persistent communication breakdowns that
+prevented meaningful engagement with the robot. These breakdowns were
+characterized by repeated speech recognition failures, fragmented
+responses, and task abandonment.
+
+Because the experimental manipulation relied on language-mediated
+collaboration, these sessions were considered non-compliant with the
+intended protocol and were excluded from task-level analyses.
+Importantly, exclusion criteria were based on interaction viability
+rather than outcome measures, and results were qualitatively unchanged
+when these sessions were retained.
+
+In the full sample (N = 29), the difference between conditions did not
+reach conventional significance (p = .15). However, when analyses were
+restricted to sessions in which communication viability was sufficient
+to support the intended collaborative interaction (N = 24), condition
+differences were significant (p \textless{} .05).
 
 \end{tcolorbox}
 
@@ -626,6 +649,18 @@ minutes, and received compensation upon completion.
 
 \section{Results}\label{results}
 
+Eligibility and protocol adherence. Participants were required to be
+fluent in spoken English. During administration, the experimenter
+recorded contemporaneous notes when conversational fluency appeared
+insufficient to support the language-mediated protocol. Communication
+viability was later assessed using objective interaction indicators
+extracted from system logs and manually coded transcripts (e.g.,
+repeated speech-recognition failures, fragmented utterances, and task
+abandonment). Sessions showing sustained communication breakdown were
+treated as protocol non-adherence and were excluded from task-level
+analyses. All analyses are also reported with these sessions retained as
+a sensitivity check.
+
 \subsection{Participant characteristics and baseline
 measures}\label{participant-characteristics-and-baseline-measures}
 
@@ -636,6 +671,10 @@ robots. Importantly, Negative Attitudes Towards Robots (NARS) and Need
 for Cognition scores were similar across groups, indicating that
 post-interaction differences are unlikely to reflect pre-existing
 attitudes (see Table~\ref{tbl-pre}).
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-4-1.pdf}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-4-2.pdf}}
 
 \subsection{Post-Interaction Trust
 Differences}\label{post-interaction-trust-differences}
@@ -683,6 +722,20 @@ Robots scale, suggesting a reasonable likelihood of a practically
 meaningful effect. Moreover, in the latter collaboration scale, there is
 an 85\% likelihood of an effect-size greater than 10 points.
 
+Notably, in sessions characterized by severe communication breakdown,
+the responsive robot continued to provide extended assistance and
+meta-communication intended to repair the interaction. However, these
+efforts did not restore mutual understanding and may have increased
+participant confusion. In contrast, the control robot offered minimal,
+on-demand assistance, which---while less supportive overall---may have
+reduced cognitive overload under conditions of limited intelligibility.
+As a result, trust ratings in breakdown sessions did not track the
+intended responsiveness manipulation.
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-5-1.pdf}}
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-5-2.pdf}}
+
 \subsection{Trust subscale patterns}\label{trust-subscale-patterns}
 
 \subsection{Interaction dynamics and task
@@ -692,32 +745,65 @@ performance}\label{interaction-dynamics-and-task-performance}
 \fontsize{10.0pt}{12.0pt}\selectfont
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
 \toprule
-\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 8\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 9\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
 \midrule\addlinespace[2.5pt]
-post\_trust & 22 & 39 (22) & 66 (21) & {\bfseries 0.007} \\ 
-post\_trust\_reliability & 22 & 42 (27) & 66 (17) & {\bfseries 0.029} \\ 
-post\_trust\_perception & 22 & 36 (24) & 56 (24) & 0.078 \\ 
-post\_trust\_feelings & 22 & 47 (31) & 76 (25) & {\bfseries 0.032} \\ 
-Post-Task Trust Perception & 22 & 63 (16) & 75 (19) & 0.10 \\ 
-Suspect ID Accuracy & 22 & 3 / 8 (38\%) & 9 / 14 (64\%) & 0.38 \\ 
-Status Accuracy & 22 & 6 / 8 (75\%) & 9 / 14 (64\%) & >0.99 \\ 
-building\_correct & 22 & 6 / 8 (75\%) & 12 / 14 (86\%) & 0.60 \\ 
-floor\_correct & 22 & 6 / 8 (75\%) & 12 / 14 (86\%) & 0.60 \\ 
-zone\_correct & 22 & 4 / 8 (50\%) & 4 / 14 (29\%) & 0.39 \\ 
-Total Task Accuracy & 22 & 3.13 (1.13) & 3.29 (1.14) & 0.70 \\ 
-Overall Task Accuracy & 22 & 0.63 (0.23) & 0.66 (0.23) & 0.70 \\ 
-Dialogue Turns & 22 & 38 (6) & 37 (11) & 0.19 \\ 
-Avg Task Duration (mins) & 22 & 14.36 (2.18) & 17.26 (6.67) & 0.13 \\ 
-Avg Response Time (ms) & 22 & 13.19 (0.90) & 17.57 (2.30) & {\bfseries <0.001} \\ 
-Silent Periods & 22 & 5.75 (2.19) & 5.14 (2.98) & 0.39 \\ 
-Engaged Responses & 22 & 2.50 (2.20) & 3.71 (1.82) & 0.089 \\ 
-Frustrated Responses & 22 & 0.63 (0.74) & 0.86 (1.23) & 0.94 \\ 
-n\_neg & 22 & 0.88 (0.83) & 0.93 (1.21) & 0.80 \\ 
+post\_trust & 23 & 40 (21) & 66 (21) & {\bfseries 0.008} \\ 
+post\_trust\_reliability & 23 & 43 (26) & 66 (17) & {\bfseries 0.023} \\ 
+post\_trust\_perception & 23 & 36 (22) & 56 (24) & 0.064 \\ 
+post\_trust\_feelings & 23 & 49 (30) & 76 (25) & {\bfseries 0.030} \\ 
+Post-Task Trust Perception & 23 & 63 (15) & 75 (19) & 0.10 \\ 
+Suspect ID Accuracy & 23 & 3 / 9 (33\%) & 9 / 14 (64\%) & 0.21 \\ 
+Status Accuracy & 23 & 7 / 9 (78\%) & 9 / 14 (64\%) & 0.66 \\ 
+building\_correct & 23 & 7 / 9 (78\%) & 12 / 14 (86\%) & >0.99 \\ 
+floor\_correct & 23 & 7 / 9 (78\%) & 12 / 14 (86\%) & >0.99 \\ 
+zone\_correct & 23 & 5 / 9 (56\%) & 4 / 14 (29\%) & 0.38 \\ 
+Total Task Accuracy & 23 & 3.22 (1.09) & 3.29 (1.14) & 0.87 \\ 
+Overall Task Accuracy & 23 & 0.64 (0.22) & 0.66 (0.23) & 0.87 \\ 
+Dialogue Turns & 23 & 36 (7) & 37 (11) & 0.41 \\ 
+Avg Task Duration (mins) & 23 & 14.09 (2.19) & 17.26 (6.67) & 0.072 \\ 
+Avg Response Time (ms) & 23 & 13.14 (0.85) & 17.57 (2.30) & {\bfseries <0.001} \\ 
+Silent Periods & 23 & 5.44 (2.24) & 5.14 (2.98) & 0.59 \\ 
+Engaged Responses & 23 & 2.22 (2.22) & 3.71 (1.82) & {\bfseries 0.044} \\ 
+Frustrated Responses & 23 & 0.56 (0.73) & 0.86 (1.23) & 0.78 \\ 
+n\_neg & 23 & 1.00 (0.87) & 0.93 (1.21) & 0.57 \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}Mean (SD); n / N (\%)\\
 \textsuperscript{\textit{2}}Wilcoxon rank sum test; Wilcoxon rank sum exact test; Fisher's exact test\\
+\end{minipage}
+\end{table}
+
+\begin{table}
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 4\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 2\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+post\_trust & 6 & 66 (35) & 27 (39) & 0.27 \\ 
+post\_trust\_reliability & 6 & 55 (41) & 20 (28) & 0.48 \\ 
+post\_trust\_perception & 6 & 61 (37) & 28 (39) & 0.24 \\ 
+post\_trust\_feelings & 6 & 78 (36) & 31 (44) & 0.24 \\ 
+Post-Task Trust Perception & 6 & 63 (22) & 60 (21) & 0.80 \\ 
+Suspect ID Accuracy & 6 & 1 / 4 (25\%) & 1 / 2 (50\%) & >0.99 \\ 
+Status Accuracy & 6 & 4 / 4 (100\%) & 1 / 2 (50\%) & 0.33 \\ 
+building\_correct & 6 & 3 / 4 (75\%) & 0 / 2 (0\%) & 0.40 \\ 
+floor\_correct & 6 & 3 / 4 (75\%) & 1 / 2 (50\%) & >0.99 \\ 
+zone\_correct & 6 & 1 / 4 (25\%) & 0 / 2 (0\%) & >0.99 \\ 
+Total Task Accuracy & 6 & 3.00 (0.82) & 1.50 (2.12) & 0.46 \\ 
+Overall Task Accuracy & 6 & 0.60 (0.16) & 0.30 (0.42) & 0.46 \\ 
+Dialogue Turns & 6 & 23 (13) & 33 (9) & 0.53 \\ 
+Avg Task Duration (mins) & 6 & 10.0 (6.1) & 13.6 (3.0) & 0.53 \\ 
+Avg Response Time (ms) & 6 & 19.5 (5.3) & 14.3 (1.0) & 0.53 \\ 
+Silent Periods & 6 & 4.50 (2.52) & 6.50 (0.71) & 0.34 \\ 
+Engaged Responses & 6 & 1.25 (2.50) & 2.00 (1.41) & 0.46 \\ 
+Frustrated Responses & 6 & 0.50 (0.58) & 1.00 (0.00) & 0.40 \\ 
+n\_neg & 6 & 1.00 (1.15) & 1.00 (1.41) & >0.99 \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Mean (SD); n / N (\%)\\
+\textsuperscript{\textit{2}}Wilcoxon rank sum exact test; Wilcoxon rank sum test; Fisher's exact test\\
 \end{minipage}
 \end{table}
 
@@ -784,7 +870,7 @@ substantively similar estimates, and leave-one-out cross-validation
 indicated comparable predictive performance between models with and
 without the group effect.
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, bottomrule=.15mm, arc=.35mm, rightrule=.15mm, opacitybacktitle=0.6, toptitle=1mm, toprule=.15mm, bottomtitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, coltitle=black, leftrule=.75mm, left=2mm, colbacktitle=quarto-callout-important-color!10!white, titlerule=0mm, breakable, opacityback=0, colframe=quarto-callout-important-color-frame]
+\begin{tcolorbox}[enhanced jigsaw, breakable, colframe=quarto-callout-important-color-frame, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, leftrule=.75mm, rightrule=.15mm, bottomtitle=1mm, opacitybacktitle=0.6, left=2mm, toptitle=1mm, titlerule=0mm, arc=.35mm, coltitle=black, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, opacityback=0, colback=white, toprule=.15mm]
 
 \begin{itemize}
 \tightlist
@@ -868,33 +954,33 @@ interaction itself.
 \fontsize{10.0pt}{12.0pt}\selectfont
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
 \toprule
-\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 8\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
 \midrule\addlinespace[2.5pt]
-{\bfseries Gender} & 21 &  &  & 0.66 \\ 
-    Woman &  & 3 / 8 (38\%) & 7 / 13 (54\%) &  \\ 
-    Man &  & 5 / 8 (63\%) & 6 / 13 (46\%) &  \\ 
-{\bfseries Age Group} & 21 &  &  & 0.37 \\ 
-    18-24 &  & 4 / 8 (50\%) & 6 / 13 (46\%) &  \\ 
-    25-34 &  & 2 / 8 (25\%) & 2 / 13 (15\%) &  \\ 
-    34-44 &  & 0 / 8 (0\%) & 4 / 13 (31\%) &  \\ 
-    45+ &  & 2 / 8 (25\%) & 1 / 13 (7.7\%) &  \\ 
-{\bfseries Program} & 19 &  &  & 0.94 \\ 
-    Psychology &  & 1 / 8 (13\%) & 1 / 11 (9.1\%) &  \\ 
-    Engineering &  & 2 / 8 (25\%) & 1 / 11 (9.1\%) &  \\ 
-    Computer Science &  & 3 / 8 (38\%) & 5 / 11 (45\%) &  \\ 
-    Earth Sciences &  & 0 / 8 (0\%) & 1 / 11 (9.1\%) &  \\ 
-    Other &  & 2 / 8 (25\%) & 3 / 11 (27\%) &  \\ 
-{\bfseries Experience w/Robots} & 22 & 5 / 8 (63\%) & 3 / 14 (21\%) & 0.081 \\ 
-{\bfseries Native English Speaker} & 22 &  &  & >0.99 \\ 
-    Native English &  & 4 / 8 (50\%) & 8 / 14 (57\%) &  \\ 
-    Non-Native English &  & 4 / 8 (50\%) & 6 / 14 (43\%) &  \\ 
-{\bfseries NARS Overall} & 22 & 37 (10) & 38 (7) & 0.89 \\ 
-{\bfseries Need for Cognition} & 22 & 3.92 (0.74) & 3.77 (0.78) & 0.81 \\ 
+{\bfseries Gender} & 27 &  &  & 0.84 \\ 
+    Woman &  & 6 / 13 (46\%) & 7 / 14 (50\%) &  \\ 
+    Man &  & 7 / 13 (54\%) & 7 / 14 (50\%) &  \\ 
+{\bfseries Age Group} & 27 &  &  & 0.35 \\ 
+    18-24 &  & 5 / 13 (38\%) & 7 / 14 (50\%) &  \\ 
+    25-34 &  & 4 / 13 (31\%) & 2 / 14 (14\%) &  \\ 
+    34-44 &  & 1 / 13 (7.7\%) & 4 / 14 (29\%) &  \\ 
+    45+ &  & 3 / 13 (23\%) & 1 / 14 (7.1\%) &  \\ 
+{\bfseries Program} & 25 &  &  & >0.99 \\ 
+    Psychology &  & 1 / 13 (7.7\%) & 1 / 12 (8.3\%) &  \\ 
+    Engineering &  & 2 / 13 (15\%) & 1 / 12 (8.3\%) &  \\ 
+    Computer Science &  & 7 / 13 (54\%) & 6 / 12 (50\%) &  \\ 
+    Earth Sciences &  & 0 / 13 (0\%) & 1 / 12 (8.3\%) &  \\ 
+    Other &  & 3 / 13 (23\%) & 3 / 12 (25\%) &  \\ 
+{\bfseries Experience w/Robots} & 29 & 7 / 13 (54\%) & 4 / 16 (25\%) & 0.14 \\ 
+{\bfseries Native English Speaker} & 29 &  &  & 0.53 \\ 
+    Native English &  & 5 / 13 (38\%) & 8 / 16 (50\%) &  \\ 
+    Non-Native English &  & 8 / 13 (62\%) & 8 / 16 (50\%) &  \\ 
+{\bfseries NARS Overall} & 29 & 38 (8) & 38 (7) & 0.79 \\ 
+{\bfseries Need for Cognition} & 29 & 3.62 (0.78) & 3.74 (0.74) & 0.55 \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
 \textsuperscript{\textit{1}}n / N (\%); Mean (SD)\\
-\textsuperscript{\textit{2}}Fisher's exact test; Wilcoxon rank sum test\\
+\textsuperscript{\textit{2}}Pearson's Chi-squared test; Fisher's exact test; Wilcoxon rank sum test\\
 \end{minipage}
 
 }

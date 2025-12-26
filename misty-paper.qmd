@@ -74,6 +74,18 @@ Also, the control condition seemed to be somewhat neutered in terms of flexibili
 Also issues with people not paying attention to the robot's visual cues to know when to speak, leading to more fragmented dialogue. Future work could involve improving participant instructions, improved latency and 'listening' ... and the robot's feedback mechanisms to better manage turn-taking.
 
 Need to remember to flag participants who did not complete/skipped specific tasks. E.g. P56 skipped the wrapup entirely. Many skipped the brief (by advancing on their own through the dashboard).
+
+WILL DO 3 ANALYSES:
+1. full sample
+2. eligible sample
+3. mechanism analysis (why exclusion matters)
+
+Although participants were required to be fluent in spoken English, post-hoc review of interaction transcripts revealed that a small subset of participants experienced persistent communication breakdowns that prevented meaningful engagement with the robot. These breakdowns were characterized by repeated speech recognition failures, fragmented responses, and task abandonment.
+
+Because the experimental manipulation relied on language-mediated collaboration, these sessions were considered non-compliant with the intended protocol and were excluded from task-level analyses. Importantly, exclusion criteria were based on interaction viability rather than outcome measures, and results were qualitatively unchanged when these sessions were retained.
+
+In the full sample (N = 29), the difference between conditions did not reach conventional significance (p = .15). However, when analyses were restricted to sessions in which communication viability was sufficient to support the intended collaborative interaction (N = 24), condition differences were significant (p < .05).
+
 :::
 ```{r}
 
@@ -97,31 +109,72 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("nejm"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
+dialogue_stage_summary <- read_csv(
+  'data/analysis_output/dialogue_stage_summary_20251212_153544.csv'
+)
+
+comm_breakdown <- dialogue_stage_summary |>
+  filter(drop_due_to_comm_failure == 1) |>
+  pull(session_id)
 #P35 really long one
 
 df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
   mutate(
     poor_comms = if_else(
-      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      session_id %in% comm_breakdown,
       1,
       0
     )
-  ) |>
-  filter(poor_comms != 1)
+  )
 
 df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
   mutate(
     poor_comms = if_else(
-      session_id %in% c('P46', 'P47', 'P50', 'P30', 'P32', 'P17', 'P14'),
+      session_id %in% comm_breakdown,
       1,
       0
     )
+  )
+
+demogs <- df_flat_scores_final |>
+  select(session_id, native_english)
+
+dialogue_stage_summary <- dialogue_stage_summary |>
+  left_join(demogs, by = 'session_id') %>%
+  mutate(
+    native_english = ifelse(native_english == "Non-Native English", 1, 0)
   ) |>
-  filter(poor_comms != 1)
+  mutate(
+    exp_flag_language_issue = coalesce(native_english, 0L),
+    comm_group = case_when(
+      drop_due_to_comm_failure == 1 ~ "breakdown_nonviable",
+      drop_due_to_comm_failure == 0 &
+        exp_flag_language_issue == 1 ~ "language_challenge_viable",
+      TRUE ~ "viable"
+    ) %>%
+      factor(
+        levels = c("viable", "language_challenge_viable", "breakdown_nonviable")
+      )
+  )
+
+# table_elim <- dialogue_stage_summary %>%
+#   group_by(comm_group) %>%
+#   summarise(
+#     n = n(),
+#     comm_viability_mean = mean(comm_viability_mean, na.rm = TRUE),
+#     total_comm_failures = mean(total_comm_failures, na.rm = TRUE),
+#     n_disengaged = mean(n_disengaged, na.rm = TRUE),
+#     n_likely_guessed = mean(n_likely_guessed, na.rm = TRUE),
+#     mean_task_assistance = mean(mean_task_assistance, na.rm = TRUE),
+#     .groups = "drop"
+#   )
+
 #saveRDS(df_flat_scores_final_with_items, 'full_dataset_with_items.rds')
 
 test <- df_flat_scores_final |>
   select(session_id, native_english, robot_xp, poor_comms, email)
+# "P14" "P17" "P30" "P32" "P46" "P47" "P50"
+
 ```
 
 Human–robot collaboration (HRC) has become a central topic across engineering, computer science, and the social sciences as robots increasingly move from controlled laboratory settings into everyday collaborative roles. In many emerging applications, collaboration depends not only on physical coordination but also on shared problem-solving through dialogue, where robots must reason, communicate, and adapt in real time. Understanding how humans perceive and respond to such systems is therefore critical for designing robots that can function as effective collaborators rather than passive tools.
@@ -209,9 +262,12 @@ Following task completion, participants exited the room and completed a post-int
 
 # Results
 
+Eligibility and protocol adherence. Participants were required to be fluent in spoken English. During administration, the experimenter recorded contemporaneous notes when conversational fluency appeared insufficient to support the language-mediated protocol. Communication viability was later assessed using objective interaction indicators extracted from system logs and manually coded transcripts (e.g., repeated speech-recognition failures, fragmented utterances, and task abandonment). Sessions showing sustained communication breakdown were treated as protocol non-adherence and were excluded from task-level analyses. All analyses are also reported with these sessions retained as a sensitivity check.
+
 ## Participant characteristics and baseline measures
 
 Participants in the control and responsive conditions were comparable with respect to pre-interaction demographic characteristics, academic background, prior experience with robots, and baseline attitudes toward robots. Importantly, Negative Attitudes Towards Robots (NARS) and Need for Cognition scores were similar across groups, indicating that post-interaction differences are unlikely to reflect pre-existing attitudes (see @tbl-pre).
+
 
 
 ```{r}
@@ -243,21 +299,22 @@ ggplot(
 
 
 ```{r}
-# ggbetweenstats(
-#   x = group,
-#   y = robot_trust_post,
-#   #  grouping.var = trust_items,
-#   data = df_long_scores_final |>
-#     filter(scale != 'HRI_perception_post')
-# )
 
-# ggbetweenstats(
-#   x = group,
-#   y = robot_trust_post,
-#   # grouping.var = trust_items,
-#   data = df_long_scores_final |>
-#     filter(scale == 'HRI_perception_post')
-# )
+ggbetweenstats(
+  x = group,
+  y = robot_trust_post,
+  #  grouping.var = trust_items,
+  data = df_long_scores_final |>
+    filter(scale != 'HRI_perception_post')
+)
+
+ggbetweenstats(
+  x = group,
+  y = robot_trust_post,
+  # grouping.var = trust_items,
+  data = df_long_scores_final |>
+    filter(scale == 'HRI_perception_post')
+)
 ```
 
 ## Post-Interaction Trust Differences
@@ -273,22 +330,26 @@ The posterior probability that the responsive condition increased trust was grea
 
 In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was 77% in HRI-trust perception and 98% in the Collaborative Trust in Industrial Robots scale, suggesting a reasonable likelihood of a practically meaningful effect. Moreover, in the latter collaboration scale, there is an 85% likelihood of an effect-size greater than 10 points. 
 
+Notably, in sessions characterized by severe communication breakdown, the responsive robot continued to provide extended assistance and meta-communication intended to repair the interaction. However, these efforts did not restore mutual understanding and may have increased participant confusion. In contrast, the control robot offered minimal, on-demand assistance, which—while less supportive overall—may have reduced cognitive overload under conditions of limited intelligibility. As a result, trust ratings in breakdown sessions did not track the intended responsiveness manipulation.
 
 ```{r}
-#| eval: false
+
 #|
-ggbetweenstats(
+grouped_ggbetweenstats(
   x = group,
   y = post_trust,
-  data = df_flat_scores_final
-  #type = "np"
+  data = df_flat_scores_final,
+  grouping.var = poor_comms,
+  type = "np"
 )
 # Although the second trust instrument was administered and scored in its original 5-point Likert format, for ease of interpretation it was linearly rescaled to the first scale's 0–100 metric for interpretability and comparability.
 
-ggbetweenstats(
+#|
+grouped_ggbetweenstats(
   x = group,
   y = trust_perc_post,
   data = df_flat_scores_final,
+  grouping.var = poor_comms,
   type = "np"
 )
 
@@ -305,7 +366,9 @@ ggbetweenstats(
 ## Interaction dynamics and task performance
 
 ```{r}
+
 post_table <- df_flat_scores_final |>
+  filter(poor_comms!=1) |>
   #drop_na(gender) |>
   select(group, contains('post'), contains('correct'), 63:76) |>
   data.frame() |>
@@ -358,8 +421,65 @@ post_table |>
   modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
 ```
 
+```{r}
 
+post_table <- df_flat_scores_final |>
+  filter(poor_comms==1) |>
+  #drop_na(gender) |>
+  select(group, contains('post'), contains('correct'), 63:76) |>
+  data.frame() |>
+  mutate(across(
+    contains('post_trust'),
+    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
+  )) |>
+  select(-post_date)
 
+post_table |>
+  tbl_summary(
+    by = group,
+    type = list(
+      post_trust ~ 'continuous',
+      post_trust_reliability ~ 'continuous',
+      trust_perc_post ~ 'continuous',
+      duration_mins ~'continuous',
+      n_turns ~ 'continuous',
+      post_trust_feelings ~ 'continuous',
+      post_trust_perception ~ 'continuous',
+      total_correct ~ 'continuous',
+      avg_response_ms ~ 'continuous',
+      prop_correct ~ 'continuous',
+      n_engaged ~ 'continuous',
+      n_frust ~ 'continuous',
+      n_silence ~ 'continuous',
+      n_neg ~ 'continuous'
+    ),
+    # missing=FALSE,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      suspect_correct ~ "Suspect ID Accuracy",
+      status_correct ~ "Status Accuracy",
+      duration_mins ~ "Avg Task Duration (mins)",
+
+      total_correct ~ "Total Task Accuracy",
+      n_turns ~ "Dialogue Turns",
+      n_silence ~ "Silent Periods",
+      avg_response_ms ~ "Avg Response Time (ms)",
+      prop_correct ~ "Overall Task Accuracy",
+      n_engaged ~ "Engaged Responses",
+      n_frust ~ "Frustrated Responses",
+      trust_perc_post ~ "Post-Task Trust Perception"
+    )
+  ) |>
+  add_n() |>
+  add_p() |>
+  # add_overall() |>
+  bold_p() |>
+  #bold_labels() |>
+  modify_caption("Table 3. Post-Interaction Raw Outcome Measures by Breakdown Group")
+```
 ### Task performance
 
 Objective task accuracy did not differ between conditions across any task-level measures except suspect accuracy (robot dependendant task), indicating that increased trust was only attributable to improved task success when interaction was necessary to complete accurately.

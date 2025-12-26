@@ -379,26 +379,38 @@ df_session <- df_stage %>%
   )
 
 df_session2 <- df_session %>%
-  left_join(stage_context, by = "session_id") |>
+  left_join(stage_context, by = "session_id") %>%
   mutate(
-    brief_greeting_skipped = ifelse(
-      greeting_skipped == 1 & brief_skipped == 1,
-      1,
-      0
-    )
-  ) %>%
-  mutate(
-    drop_due_to_comm_failure = ifelse(
-      n_completed < 1 |
+    greeting_skipped = coalesce(greeting_skipped, 0L),
+    brief_skipped = coalesce(brief_skipped, 0L),
+
+    brief_greeting_skipped = as.integer(
+      greeting_skipped == 1 & brief_skipped == 1
+    ),
+
+    # Core failure signals (any one suggests interaction non-viability)
+    core_failure_signal = as.integer(
+      comm_viability_mean < 0.6 |
         n_disengaged > 0 |
         n_likely_guessed > 0 |
-        relational_quality_total < 2 |
-        task_support_index_total < 15 |
-        brief_greeting_skipped == 1,
-      1,
-      0
+        brief_greeting_skipped == 1
+    ),
+
+    # Supporting signals (contextual evidence)
+    supporting_failure_signal = as.integer(
+      task_support_index_total < 20 |
+        relational_quality_total < 2
+    ),
+
+    # Final drop rule: core failure + at least one supporting signal
+    drop_due_to_comm_failure = as.integer(
+      core_failure_signal == 1 &
+        supporting_failure_signal == 1
     )
   )
+
+#Participants were excluded from task-level analyses when interaction was judged to be non-viable due to communication breakdown. This was operationalized using a rule-based combination of indicators capturing (a) reduced communicative viability (e.g., frequent speech recognition failures or fragmented input), (b) task disengagement or task completion inconsistent with the intended collaborative design, and (c) absence of interactional grounding (e.g., skipping initial greeting and briefing stages).
+#This rule was validated against manual review of session transcripts and reliably identified the same cases judged to reflect total communication breakdown.
 
 write_csv(
   df_session2,
