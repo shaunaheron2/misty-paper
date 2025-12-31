@@ -1,10 +1,4 @@
----
-title: "Coding Sheets"
-format: html
----
-
-
-```{r}
+# Purpose: Build markdown coding sheets for manual coding of dialogue turns with task outcomes
 
 library(tidyverse)
 library(glue)
@@ -199,5 +193,3 @@ for (g in groups) {
 }
 
 cat("Done. Wrote coding sheets to:", out_dir, "\n")
-
-```

@@ -109,9 +109,15 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("nejm"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
+dialogue_stage_details <- read_csv('data/clean_data/dialogue_stage_details_20251231_0902.csv')
+
 dialogue_stage_summary <- read_csv(
   'data/analysis_output/dialogue_stage_summary_20251212_153544.csv'
 )
+
+dialogue_participants <- read_csv(
+  'data/clean_data/dialogue_participant_details_20251231_0902.csv'
+) # only has tasks
 
 comm_breakdown <- dialogue_stage_summary |>
   filter(drop_due_to_comm_failure == 1) |>
@@ -125,7 +131,8 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
       1,
       0
     )
-  )
+  ) |>
+    left_join(dialogue_participants, by=join_by(session_id))
 
 df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
   mutate(
@@ -368,15 +375,17 @@ grouped_ggbetweenstats(
 ```{r}
 
 post_table <- df_flat_scores_final |>
-  filter(poor_comms!=1) |>
+ # filter(poor_comms!=1) |>
   #drop_na(gender) |>
-  select(group, contains('post'), contains('correct'), 63:76) |>
+  select(group, contains('post'), contains('correct'), 63:93) |> #76
   data.frame() |>
   mutate(across(
     contains('post_trust'),
     ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
   )) |>
-  select(-post_date)
+       select(-post_date
+      # -n_tasks_attempted, -any_comm_breakdown, -brief_greeting_skipped
+       ) 
 
 post_table |>
   tbl_summary(
@@ -387,11 +396,13 @@ post_table |>
       post_trust_perception ~ 'continuous',
       total_correct ~ 'continuous',
       avg_response_ms ~ 'continuous',
-      prop_correct ~ 'continuous',
-      n_engaged ~ 'continuous',
-      n_frust ~ 'continuous',
-      n_silence ~ 'continuous',
-      n_neg ~ 'continuous'
+     # prop_correct ~ 'proportion',
+      #n_help_requests~ 'continuous',
+      starts_with('n_') ~ 'continuous',
+      starts_with('prop_') ~'continuous'
+      #mean_task_assistance ~ 'continuous'
+     # any_comm_breakdown ~ 'continuous'
+
     ),
     # missing=FALSE,
     statistic = list(
@@ -404,7 +415,63 @@ post_table |>
       duration_mins ~ "Avg Task Duration (mins)",
 
       total_correct ~ "Total Task Accuracy",
-      n_turns ~ "Dialogue Turns",
+      n_turns.x ~ "Dialogue Turns",
+      n_turns.y~"Task Dialogue Turns",
+      n_silence ~ "Silent Periods",
+      avg_response_ms ~ "Avg Response Time (ms)",
+      prop_correct ~ "Overall Task Accuracy",
+      n_engaged ~ "Engaged Responses",
+      n_frust ~ "Frustrated Responses",
+      trust_perc_post ~ "Post-Task Trust Perception"
+    )
+  ) |>
+  add_n() |>
+  add_p() |>
+  # add_overall() |>
+  bold_p() |>
+  #bold_labels() |>
+  modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group") 
+
+```
+
+```{r}
+post_table |> 
+  group_by(group) |> 
+  summarise(across(starts_with('prop'), ~mean(.x, na.rm=trust_perc_post))) |> pivot_longer(contains('prop'), names_to = 'measure', values_to = 'prop') |> pivot_wider(names_from = 'group', values_from = 'prop') |>gt() |> fmt_percent(everything(), decimals=1)
+```
+
+```{r}
+
+post_table |>
+  #filter(poor_comms==1) |>
+  tbl_summary(
+    by = poor_comms,
+    type = list(
+      post_trust_reliability ~ 'continuous',
+      post_trust_feelings ~ 'continuous',
+      post_trust_perception ~ 'continuous',
+      total_correct ~ 'continuous',
+      avg_response_ms ~ 'continuous',
+      prop_correct ~ 'continuous',
+      starts_with('n_') ~ 'continuous',
+       starts_with('prop_') ~'continuous'
+      #mean_task_assistance ~ 'continuous'
+     # any_comm_breakdown ~ 'continuous'
+
+    ),
+    # missing=FALSE,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+          suspect_correct ~ "Suspect ID Accuracy",
+      status_correct ~ "Status Accuracy",
+      duration_mins ~ "Avg Task Duration (mins)",
+
+      total_correct ~ "Total Task Accuracy",
+      n_turns.x ~ "Dialogue Turns",
+      n_turns.y~"Task Dialogue Turns",
       n_silence ~ "Silent Periods",
       avg_response_ms ~ "Avg Response Time (ms)",
       prop_correct ~ "Overall Task Accuracy",
@@ -419,66 +486,6 @@ post_table |>
   bold_p() |>
   #bold_labels() |>
   modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
-```
-
-```{r}
-
-post_table <- df_flat_scores_final |>
-  filter(poor_comms==1) |>
-  #drop_na(gender) |>
-  select(group, contains('post'), contains('correct'), 63:76) |>
-  data.frame() |>
-  mutate(across(
-    contains('post_trust'),
-    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
-  )) |>
-  select(-post_date)
-
-post_table |>
-  tbl_summary(
-    by = group,
-    type = list(
-      post_trust ~ 'continuous',
-      post_trust_reliability ~ 'continuous',
-      trust_perc_post ~ 'continuous',
-      duration_mins ~'continuous',
-      n_turns ~ 'continuous',
-      post_trust_feelings ~ 'continuous',
-      post_trust_perception ~ 'continuous',
-      total_correct ~ 'continuous',
-      avg_response_ms ~ 'continuous',
-      prop_correct ~ 'continuous',
-      n_engaged ~ 'continuous',
-      n_frust ~ 'continuous',
-      n_silence ~ 'continuous',
-      n_neg ~ 'continuous'
-    ),
-    # missing=FALSE,
-    statistic = list(
-      all_continuous() ~ "{mean} ({sd})",
-      all_categorical() ~ "{n} / {N} ({p}%)"
-    ),
-    label = list(
-      suspect_correct ~ "Suspect ID Accuracy",
-      status_correct ~ "Status Accuracy",
-      duration_mins ~ "Avg Task Duration (mins)",
-
-      total_correct ~ "Total Task Accuracy",
-      n_turns ~ "Dialogue Turns",
-      n_silence ~ "Silent Periods",
-      avg_response_ms ~ "Avg Response Time (ms)",
-      prop_correct ~ "Overall Task Accuracy",
-      n_engaged ~ "Engaged Responses",
-      n_frust ~ "Frustrated Responses",
-      trust_perc_post ~ "Post-Task Trust Perception"
-    )
-  ) |>
-  add_n() |>
-  add_p() |>
-  # add_overall() |>
-  bold_p() |>
-  #bold_labels() |>
-  modify_caption("Table 3. Post-Interaction Raw Outcome Measures by Breakdown Group")
 ```
 ### Task performance
 
