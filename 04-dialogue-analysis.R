@@ -5,6 +5,8 @@ library(jsonlite)
 library(stringr)
 library(fs)
 
+# all valid participants (excluding my own test runs)
+
 valid_ids <- c(
   "P12",
   "P14",
@@ -37,14 +39,16 @@ valid_ids <- c(
   "P60"
 )
 
+# Load dialogue turns data
 turns <- read_csv('data/analysis_output/dialogue_turns_20251212_153544.csv') |>
   filter(session_id %in% valid_ids)
 
 all_sessions <- sort(unique(turns$session_id))
 
+# Define expected stages
 expected_stages <- c("greeting", "brief", "task1", "task2", "wrap")
 
-
+# Directory containing manually coded markdown files
 md_dir <- "data/clean_data/coded_turns"
 
 md_files <- dir_ls(md_dir, regexp = "\\.md$")
@@ -120,6 +124,7 @@ turn_level_df <- purrr::map_dfr(md_files, function(f) {
   parse_turn_blocks(lines, hdr$session_id, hdr$stage)
 })
 
+# Ensure all sessions and stages are represented
 stage_presence <- expand_grid(
   session_id = all_sessions,
   stage = expected_stages
@@ -133,6 +138,7 @@ stage_presence <- expand_grid(
   ) |>
   select(-md_exists)
 
+# Extract task outcomes and help styles from markdown files
 extract_task_outcomes <- function(lines) {
   # Which outcome is checked?
   outcome_matches <- str_match(
@@ -200,6 +206,8 @@ task_outcomes_df <- task_outcomes_df %>%
     )
   )
 
+# Combine stage presence with task outcomes
+
 final_table <- stage_presence |>
   left_join(task_outcomes_df, by = join_by("session_id", "stage")) |>
   mutate(task_outcome = ifelse(is.na(task_outcome), "skipped", task_outcome)) |>
@@ -208,6 +216,8 @@ final_table <- stage_presence |>
 safe_div <- function(num, den) {
   dplyr::if_else(den > 0, num / den, NA_real_)
 }
+
+# Aggregate turn-level codes to stage level
 
 stage_summary <- turn_level_df %>%
   group_by(session_id, stage) %>%
@@ -226,16 +236,17 @@ stage_summary <- turn_level_df %>%
       ),
       na.rm = TRUE
     ),
-
+    # turns where human reasons aloud with the robot
     n_human_reasoning = sum(
       as.integer(human_reasoning_aloud == 1),
       na.rm = TRUE
     ),
+    # turns where robot shows misunderstanding of human speech
     n_human_misunderstanding = sum(
       as.integer(human_misunderstanding == 1),
       na.rm = TRUE
     ),
-
+    # turns where human engages affectively with the robot as collaborative partner
     n_human_affective_engagement = sum(
       as.integer(
         human_affective_engagement == 1 |
@@ -244,12 +255,12 @@ stage_summary <- turn_level_df %>%
       ),
       na.rm = TRUE
     ),
-
+    # turns where robot provides helpful guidance
     n_robot_helpful_guidance = sum(
       as.integer(robot_helpful_guidance == 1),
       na.rm = TRUE
     ),
-
+    # turns where robot provides unhelpful guidance
     n_robot_unhelpful = sum(
       as.integer(
         robot_misleading_guidance == 1 |
@@ -259,38 +270,44 @@ stage_summary <- turn_level_df %>%
       ),
       na.rm = TRUE
     ),
-
+    # turns where robot proactively checks in with human after silence
     n_robot_proactive_checkin = sum(
       as.integer(robot_proactive_checkin == 1),
       na.rm = TRUE
     ),
+    # turns where robot offers encouragement
     n_robot_encouragement = sum(
       as.integer(robot_encouragement == 1),
       na.rm = TRUE
     ),
+    # turns where robot uses collaborative language (e.g., "we", "let's")
     n_robot_collaborative_lang = sum(
       as.integer(robot_collaborative_language == 1),
       na.rm = TRUE
     ),
+    # turns where robot reasons aloud (collaboratively) with human
     n_robot_reasoning = sum(
       as.integer(robot_reasoning_aloud == 1),
       na.rm = TRUE
     ),
+    # turns where robot seeks clarification (e.g., what do you see in the log?)
     n_robot_clarification = sum(
       as.integer(robot_clarification_request == 1),
       na.rm = TRUE
     ),
-
+    # turns where robot expresses empathy or understanding of human's state
     n_robot_empathy_expression = sum(
       as.integer(
         robot_empathy_expression == 1 | robot_emotion_acknowledgement == 1
       ),
       na.rm = TRUE
     ),
-
+    # turns where communication breakdown occurs
     n_comm_breakdown = sum(
       as.integer(
-        human_misunderstanding == 1 | robot_stt_problems == 1
+        human_misunderstanding == 1 |
+          robot_stt_problems == 1 |
+          human_sentence_fragment == 1
       ),
       na.rm = TRUE
     ),
@@ -325,6 +342,7 @@ stage_summary <- turn_level_df %>%
     .groups = "drop"
   )
 
+# Merge stage summary back into final table
 final_table2 <- final_table |>
   left_join(stage_summary, by = join_by("session_id", "stage")) |>
   mutate(across(where(is.numeric), ~ replace_na(., 0)))
@@ -334,12 +352,13 @@ write_csv(
   'data/clean_data/dialogue_allstage_details.csv'
 )
 
+# Summarize per-participant across task 1 and 2 stages only
 participant_task_summary <- final_table2 %>%
   filter(stage %in% c("task1", "task2")) %>%
   group_by(session_id) %>%
   summarise(
     n_turns = sum(n_turns, na.rm = TRUE),
-    stage_skipped = sum(stage_skipped == 1 | n_turns < 1, na.rm = TRUE),
+    stage_skipped = sum(stage_skipped == 1 | n_turns < 8, na.rm = TRUE),
     # summed counts
     n_help_requests = sum(n_help_requests, na.rm = TRUE),
     n_sentence_frag = sum(n_sentence_frag, na.rm = TRUE),
@@ -362,10 +381,6 @@ participant_task_summary <- final_table2 %>%
     # normalized rates
     prop_help_requests = safe_div(n_help_requests, n_turns),
     prop_sentence_frag = safe_div(n_sentence_frag, n_turns),
-    # prop_human_confirmation_seeking = safe_div(
-    #   n_human_confirmation_seeking,
-    #   n_turns
-    # ),
     prop_human_reasoning = safe_div(n_human_reasoning, n_turns),
     prop_human_misunderstanding = safe_div(n_human_misunderstanding, n_turns),
     prop_human_affective_engagement = safe_div(
@@ -427,7 +442,7 @@ df_stage <- final_table2 %>%
     likely_guessed = as.integer(
       is_task &
         task_requires_robot_help &
-        task_outcome %in% c("completed", "partial") &
+        # task_outcome %in% c("completed", "partial") &
         task_completed_without_help == 1
     ),
 
@@ -435,7 +450,7 @@ df_stage <- final_table2 %>%
     task_timed_out = as.integer(task_outcome == "timeout"),
 
     comm_breakdown_hard = as.integer(
-      n_comm_breakdown > 0 | task_disengaged == 1 | stage_skipped == 1
+      n_comm_breakdown > 0 | task_disengaged == 1 | stage_skipped > 0
     ),
 
     # ---- rates (per turn) ----
@@ -457,23 +472,9 @@ df_stage <- final_table2 %>%
       2 * task_disengaged +
       2 * stage_skipped,
 
-    comm_viability = 1 - pmin(comm_burden, 10) / 10,
+    comm_viability = 1 - pmin(comm_burden, 9) / 9
+  ) %>%
 
-    # ---- support index: use rates so it’s length-invariant ----
-    task_support_index = task_assistance_score +
-      10 *
-        (p_robot_helpful +
-          p_robot_checkin -
-          p_robot_unhelpful -
-          p_comm_breakdown),
-
-    # ---- relational quality: rate-based ----
-    relational_quality_raw = p_robot_empathy +
-      p_robot_checkin +
-      p_robot_encour +
-      p_robot_collab +
-      p_human_affect
-  ) |>
   select(
     session_id,
     stage,
@@ -489,15 +490,12 @@ df_stage <- final_table2 %>%
     help_style_ord,
     task_assistance_score,
     comm_viability,
-    relational_quality_raw,
-    contains('p_'),
-    contains('index')
+    comm_burden,
+    comm_breakdown_hard,
+    #relational_quality_raw,
+    contains('p_')
+    # contains('index')
   ) %>%
-  mutate(
-    interaction_quality_overall = task_support_index +
-      relational_quality_raw -
-      2 * likely_guessed
-  ) |>
   mutate(
     no_grounding = ifelse(
       stage_skipped == 1 & stage %in% c("greeting", "brief"),
@@ -510,33 +508,6 @@ write_csv(
   df_stage,
   'data/clean_data/dialogue_stage_summary.csv'
 )
-# df_stage_tasks <- df_stage %>%
-#   filter(is_task == 1) |>
-#   group_by(stage) %>%
-#   mutate(
-#     rel_z_empathy = as.numeric(scale(p_robot_empathy)),
-#     rel_z_checkin = as.numeric(scale(p_robot_checkin)),
-#     rel_z_encour = as.numeric(scale(p_robot_encour)),
-#     rel_z_collab = as.numeric(scale(p_robot_collab)),
-#     rel_z_haffect = as.numeric(scale(p_human_affect)),
-
-#     relational_quality = rowMeans(
-#       cbind(
-#         rel_z_empathy,
-#         rel_z_checkin,
-#         rel_z_encour,
-#         rel_z_collab,
-#         rel_z_haffect
-#       ),
-#       na.rm = TRUE
-#     )
-#   ) %>%
-#   ungroup()
-
-# write_csv(
-#   df_stage_tasks,
-#   'data/clean_data/dialogue_stage_scores_20251231_0902.csv'
-# )
 
 df_session <- df_stage %>%
   group_by(session_id) %>%
@@ -546,11 +517,14 @@ df_session <- df_stage %>%
     n_stage_skipped = sum(stage_skipped, na.rm = TRUE),
     #n_tasks_attempted = sum(is_task & stage_skipped == 0, na.rm = TRUE),
 
+    mean_comm_burden = mean(comm_burden[is_task], na.rm = TRUE),
+    max_comm_burden = max(comm_burden[is_task], na.rm = TRUE),
     # ---- communication rates (task stages only) ----
     mean_comm_breakdown = mean(p_comm_breakdown[is_task], na.rm = TRUE),
     max_comm_breakdown = max(p_comm_breakdown[is_task], na.rm = TRUE),
 
     mean_sentence_frag = mean(p_sentence_frag[is_task], na.rm = TRUE),
+    max_sentence_frag = mean(p_sentence_frag[is_task], na.rm = TRUE),
 
     mean_comm_viability = mean(comm_viability[is_task], na.rm = TRUE),
     min_comm_viability = min(comm_viability[is_task], na.rm = TRUE),
@@ -563,21 +537,21 @@ df_session <- df_stage %>%
     n_likely_guessed = sum(likely_guessed[is_task], na.rm = TRUE),
     any_likely_guessed = as.integer(any(likely_guessed[is_task] == 1)),
 
-    # ---- relational floor (optional, secondary) ----
-    mean_relational_quality = mean(
-      relational_quality_raw[is_task],
-      na.rm = TRUE
-    ),
-    mean_interaction_quality = mean(
-      interaction_quality_overall[is_task],
-      na.rm = TRUE
-    ),
-
     .groups = "drop"
   )
 
+test <- participant_task_summary |>
+  left_join(df_session, by = join_by("session_id"))
 
 write_csv(
   df_session,
   'data/analysis_output/dialogue_session_summary.csv'
+)
+
+final_df <- participant_task_summary |>
+  left_join(df_session, by = join_by("session_id"))
+
+write_csv(
+  final_df,
+  'data/analysis_output/final_dialogue_summary.csv'
 )
