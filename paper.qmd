@@ -35,6 +35,27 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("jama"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
+dialogue_session_summary <- read_csv(
+  'data/analysis_output/final_dialogue_summary.csv'
+) |>
+  mutate(
+    exclusions = if_else(
+      mean_comm_breakdown > .5,
+      'exclude',
+      'include'
+    )
+  ) |>
+  select(
+    session_id,
+    -n_turns,
+    contains('prop'),
+    n_stage_skipped,
+    n_task_turns,
+    contains('burden'),
+    contains('viability'),
+    exclusions
+  )
+
 df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
   mutate(
     poor_comms = if_else(
@@ -43,7 +64,8 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
       0
     )
   ) |>
-  filter(poor_comms != 1)
+  left_join(dialogue_session_summary, by = join_by(session_id)) #|>
+#filter(poor_comms != 1)
 
 df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
   mutate(
@@ -53,7 +75,8 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
       0
     )
   ) |>
-  filter(poor_comms != 1)
+  left_join(dialogue_session_summary, by = join_by(session_id)) #|>
+#filter(poor_comms != 1)
 ```
 
 ::: callout-warning
@@ -70,6 +93,7 @@ Participants in the control and responsive conditions were comparable with respe
 #| tbl-cap: "Participant Demographics and Baseline Characteristics by Group"
 
 df_flat_scores_final |>
+  filter(exclusions == 'include') |>
   mutate(age = as_factor(age)) |>
   data.frame() |>
   select(-post_date) |>
@@ -142,6 +166,7 @@ df_flat_scores_final |>
 #| fig-width: 7
 
 df_flat <- df_flat_scores_final |>
+    filter(exclusions == 'include') |>
   select(
     contains('pre'),
     contains('post'),
@@ -160,7 +185,11 @@ df_flat <- df_flat_scores_final |>
     suspect_correct,
     building_correct,
     zone_correct,
-    floor_correct
+    floor_correct,
+    mean_comm_viability
+   # contains('prop_')
+   # -contains('burden'),
+
   ) |>
   select(-contains('i_would'))
 
@@ -198,8 +227,9 @@ corrplot(
 ```{r}
 #| tbl-cap: "Post-Interaction Outcome Measures by Group"
 post_table <- df_flat_scores_final |>
+  filter(exclusions == 'include') |>
   #drop_na(gender) |>
-  select(group, contains('post'), contains('correct'), 63:76) |>
+  select(group, contains('post'), contains('correct'), 63:90) |>
   data.frame() |>
   mutate(across(
     contains('post_trust'),
@@ -219,7 +249,7 @@ post_table |>
       prop_correct ~ 'continuous',
       n_engaged ~ 'continuous',
       n_frust ~ 'continuous',
-      n_neg ~ 'continuous'
+      contains('n_') ~ 'continuous'
     ),
     # missing=FALSE,
     statistic = list(
@@ -503,6 +533,7 @@ scores_df <- df_long_scores_final |>
     )
   ) |>
   mutate(trust_items = factor(trust_items)) |>
+  mutate(group = factor(group)) |>
   mutate(robot_xp = relevel(robot_xp, ref = "No")) |>
   mutate(native_english = factor(native_english)) |>
   mutate(scale = factor(scale))
@@ -539,15 +570,12 @@ mod2 <- lmer(
 )
 
 mod3 <- lmer(
-  robot_trust_post ~ group + trust_items + (1 | session_id),
+  robot_trust_post ~ group +
+    mean_sentence_frag +
+    (1 | session_id) +
+    (1 | trust_items),
   data = scores_df
 )
-
-mod4 <- lmer(
-  robot_trust_post ~ group * trust_items + (1 | session_id),
-  data = scores_df
-)
-
 
 # mod4 <- lmer(
 #   robot_trust_post ~ group + scale +
@@ -556,34 +584,103 @@ mod4 <- lmer(
 #   data = scores_df
 # )
 anova(mod1, mod2, mod3, mod4, base)
-tab_model(mod1, mod3, mod4)
+tab_model(mod2, mod3)
 #outliers_list <- check_outliers(mod3)
 #lot(check_outliers(mod3))
-compare_performance(mod1, mod2, mod3, mod4, rank = TRUE)
+compare_performance(mod1, mod2, mod3, rank = TRUE)
 
 ```
 
 ```{r}
+
 mod_dep <- lmer(
   robot_trust_post ~ group +
     (1 | session_id) +
     (1 | trust_items),
   data = scores_df |> filter(scale != 'HRI_perception_post')
 )
+
 mod_dep2 <- lmer(
-  robot_trust_post ~ group + nars_pre_c + (1 | session_id) + (1 | trust_items),
+  robot_trust_post ~ group *
+    max_comm_breakdown +
+    (1 | session_id) +
+    (1 | trust_items),
   data = scores_df |> filter(scale != 'HRI_perception_post')
 )
-
-# combine both scale in one model
 mod_dep3 <- lmer(
-  robot_trust_post ~ group + nars_pre_c + scale + (1 | session_id) + (1 | trust_items),
-  data = scores_df )#> filter(scale == 'HRI_perception_post')
+  robot_trust_post ~ group *
+    max_comm_breakdown +
+    nars_pre_c +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df |> filter(scale != 'HRI_perception_post')
+)
+mod_dep4 <- lmer(
+  robot_trust_post ~ group *
+    max_comm_breakdown +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df |> filter(scale != 'HRI_perception_post')
+)
+# combine both scale in one model
+# mod_dep3 <- lmer(
+#   robot_trust_post ~ group  + scale + (1 | session_id) + (1 | trust_items),
+#   data = scores_df )#> filter(scale == 'HRI_perception_post')
 
-
+anova(mod_dep, mod_dep2, mod_dep3, mod_dep4)
+tab_model(mod_dep, mod_dep2)
 ```
 
+```{r}
 
+mod_dep_base <- lm(
+  robot_trust_post ~ group,
+  data = scores_df |> filter(scale == 'HRI_perception_post')
+)
+
+mod_dep_b <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id),
+  data = scores_df |> filter(scale == 'HRI_perception_post')
+)
+
+mod_dep_b2 <- lmer(
+  robot_trust_post ~ group * max_comm_breakdown + (1 | session_id),
+  data = scores_df |> filter(scale == 'HRI_perception_post')
+)
+
+# mod_dep <- lmer(
+#   robot_trust_post ~ group +
+#     (1 | session_id) +
+#     (1 | trust_items),
+#   data = scores_df |> filter(scale == 'HRI_perception_post')
+# )
+
+mod_dep2 <- lmer(
+  robot_trust_post ~ group * poor_comms + (1 | session_id),
+  data = scores_df |> filter(scale == 'HRI_perception_post')
+)
+mod_dep3 <- lmer(
+  robot_trust_post ~ group *
+    poor_comms +
+    nars_pre_c +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df |> filter(scale == 'HRI_perception_post')
+)
+mod_dep4 <- lmer(
+  robot_trust_post ~ group *
+    poor_comms +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df |> filter(scale == 'HRI_perception_post')
+)
+nova(mod_dep, mod_dep2, mod_dep3, mod_dep4)
+```
 
 ```{r}
 library(brms)
@@ -614,8 +711,13 @@ priors_tight <- c(
   prior(exponential(1.5), class = "sigma")
 )
 `
+`
+`
+`
 ``
-```{r}
+{
+  r
+}
 
 dep1 <- brm(
   robot_trust_post ~ group +
