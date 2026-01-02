@@ -272,7 +272,7 @@ capabilities.
 \end{frontmatter}
     
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, breakable, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}, toptitle=1mm, colbacktitle=quarto-callout-important-color!10!white, colback=white, toprule=.15mm, opacitybacktitle=0.6, bottomtitle=1mm, titlerule=0mm, opacityback=0, arc=.35mm, bottomrule=.15mm, coltitle=black, left=2mm, rightrule=.15mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, left=2mm, breakable, opacityback=0, colback=white, bottomtitle=1mm, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}, toptitle=1mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, coltitle=black]
 
 Manually score each dialogue series.
 
@@ -304,83 +304,6 @@ For each task:
   is there evidence that the participant solved the problem without
   help?
 \end{itemize}
-
-From our scoring, we make a variable binary for participants who had
-serious communication breakdowns/issues defined by abandonding tasks
-altogether, and inability for STT to translate participant speech to
-text. These participants will be excluded from the final analysis.
-
-\begin{itemize}
-\tightlist
-\item
-  Need to talk about language issues with participants who had
-  difficulty speaking and understanding English which caused problems
-  with ASR and interaction.
-\item
-  Need to talk about issues where the AI was not able to flexibly handle
-  when people asked a question about the suspect that was close to or
-  another word for a ground-truth feature but not exactly the same word,
-  causing confusion and miscommunication. E.g., ``Was the suspect
-  wearing pink?'' The ground-truth feature was top: PINK, top-type:
-  HOODIE; but the ASR and NLU did not extrapolate to understand that
-  ``wearing pink'' referred to the same feature as ``top: PINK'',
-  causing confusion and miscommunication. Maybe the prompt could have
-  included some examples of different phrasing which could improve this?
-  To solve this issue in future work, we can expand the NLU training
-  data to include more paraphrases and synonyms for each feature.
-\end{itemize}
-
-There was also a case where someone asked `is the top shirt hoodie red?'
-to which the AI answered YES. It may have been confused by the multiple
-descriptors in the question. Future work could involve improving the NLU
-to handle more complex queries with multiple attributes.
-
-Discuss future work where we will look investigate the `embodied' effect
-of having a physical robot versus a virtual agent on trust and
-collaboration in HRI.
-
-Also, prompt could include examples of what to do when dialogue appears
-fragmented, to remind participants to wait until the blue light is on
-before speaking and to switch up its phrasing if the robot seems to not
-understand.
-
-Also, the control condition seemed to be somewhat neutered in terms of
-flexibility in responding in different ways. it would always respond
-with the exact same phrase when confronted with a sentence fragment or a
-question it could not directly answer.
-
-Also issues with people not paying attention to the robot's visual cues
-to know when to speak, leading to more fragmented dialogue. Future work
-could involve improving participant instructions, improved latency and
-`listening' \ldots{} and the robot's feedback mechanisms to better
-manage turn-taking.
-
-Need to remember to flag participants who did not complete/skipped
-specific tasks. E.g. P56 skipped the wrapup entirely. Many skipped the
-brief (by advancing on their own through the dashboard).
-
-WILL DO 3 ANALYSES: 1. full sample 2. eligible sample 3. mechanism
-analysis (why exclusion matters)
-
-Although participants were required to be fluent in spoken English,
-post-hoc review of interaction transcripts revealed that a small subset
-of participants experienced persistent communication breakdowns that
-prevented meaningful engagement with the robot. These breakdowns were
-characterized by repeated speech recognition failures, fragmented
-responses, and task abandonment.
-
-Because the experimental manipulation relied on language-mediated
-collaboration, these sessions were considered non-compliant with the
-intended protocol and were excluded from task-level analyses.
-Importantly, exclusion criteria were based on interaction viability
-rather than outcome measures, and results were qualitatively unchanged
-when these sessions were retained.
-
-In the full sample (N = 29), the difference between conditions did not
-reach conventional significance (p = .15). However, when analyses were
-restricted to sessions in which communication viability was sufficient
-to support the intended collaborative interaction (N = 23), condition
-differences were significant (p \textless{} .05).
 
 \end{tcolorbox}
 
@@ -420,34 +343,43 @@ not peripheral issues but central features of deployed autonomous
 robots. These imperfections are likely to play a decisive role in
 shaping trust, yet they remain underexplored in empirical HRI research.
 
-The present pilot study addresses this gap by examining trust and
-collaboration in an in-person interaction with a fully autonomous social
-robot operating within predefined behavioural constraints. Using a
-between-subjects design, participants collaborated with a robot during
-an immersive, dialogue-driven puzzle game in which the robot acted as a
-diegetic game guide and partner. The task required shared
-problem-solving through conversation, with participants seeking hints,
-advice, and support from the robot while navigating the game
-environment. Crucially, all interaction management---including
-speech-based dialogue, task progression, and affect-responsive
-behaviour---was handled autonomously by the robot without human
-intervention.
+Introduce the concept of responsiveness in robot/AI systems as a
+moderator of trust. Prior work has suggested that robots that can adapt
+their behaviour based on user affect and contextual cues may foster
+greater trust and engagement. However, most studies examining
+responsiveness have relied on simulated or semi-autonomous systems,
+leaving open questions about how these effects manifest in fully
+autonomous, in-person interactions.
 
-Two versions of the robot were compared. In one condition, the robot was
-designed to be proactive and responsive, adapting its behaviour based on
-participant affect and conversational cues. In the other condition, the
-robot provided assistance only when explicitly requested, offering a
-more reactive interaction style. This manipulation allowed us to examine
-reminder differences in autonomy and responsiveness influence trust
-perceptions and collaborative performance under otherwise identical task
-demands.
+The present pilot study addresses this gap by examining trust and
+collaboration in an in-person interaction with two versions of a fully
+autonomous social robot operating within predefined behavioural
+constraints. Using a between-subjects design, participants collaborated
+with either a responsive or neutral robot during an immersive,
+dialogue-driven puzzle game in which the robot acted as a diegetic game
+guide and partner. The task required shared problem-solving through
+conversation, with participants seeking hints, advice, and support from
+the robot while navigating a game environment displayed on a computer
+screen. Crucially, all interaction management---including speech-based
+dialogue, task progression, and affect-responsive behaviour was handled
+autonomously by the robot without human intervention.
+
+In the experimental condition, the robot was designed to be proactive
+and responsive, adapting its behaviour based on participant affect--as
+estimated from outputs of an affect detection model--as well as
+conversational cues. In the other condition, the robot provided
+assistance only when explicitly requested, offering a more reactive
+interaction style. This manipulation allowed us to examine how
+differences in autonomy and responsiveness to human states influence
+trust perceptions and collaborative performance under otherwise
+identical task demands.
 
 To support this interaction, we developed an autonomous spoken-language
-system integrated with automatic speech recognition and affect detection
-on the Misty-II robot platform. The system we developed enables the
-robot to recognize speech, manage dialogue state, maintain
+system integrated with automatic speech recognition (ASR) and affect
+detection on the Misty-II robot platform. The system we developed
+enables the robot to recognize speech, manage dialogue state, maintain
 conversational context, and generate coordinated verbal responses
-alongside facial expressions and head and arm movements. Rather than
+alongside LED facial expressions and head and arm movements. Rather than
 optimizing for flawless performance, the system was designed to reflect
 realistic capabilities and limitations of contemporary social robots.
 
@@ -460,6 +392,64 @@ collaboration, where uncertainty, interactional breakdowns, and adaptive
 behaviour are unavoidable. In doing so, this work seeks to inform the
 design and evaluation of affect-responsive autonomous robots intended
 for real-world collaborative settings.
+
+{[}also mention that this is a pilot study to inform a larger planned
+study with more participants and refined methods based on lessons
+learned here and touch on some of the lessons we learned (i.e., language
+issues, ASR issues, interaction design issues, etc.){]}
+
+\subsection{Background}\label{background}
+
+\subsubsection{Trust in HRI research}\label{trust-in-hri-research}
+
+Introduce the two scales here we used to measure trust in HRI: the Trust
+Perception Scale-HRI and the Trust in Industrial Human--Robot
+Collaboration scale. Discuss prior work that has used these scales and
+their relevance to our study.
+
+The differences between these two scales in terms of what aspects of
+trust they measure (e.g., affective vs.~cognitive trust, reliability
+vs.~collaboration). In addition, discuss how these scales have been
+validated in prior research and their psychometric properties.
+
+Explain why we chose to use both scales in our study to capture a
+comprehensive picture of trust in HRI. The reasons for selecting these
+scales should be linked to our research questions and hypotheses about
+how robot responsiveness and affective adaptation might influence
+different dimensions of trust.
+
+\subsubsection{Responsiveness and affective adaptation in
+HRI}\label{responsiveness-and-affective-adaptation-in-hri}
+
+Discuss prior research on the role of robot responsiveness and affective
+adaptation in shaping trust and engagement in HRI. Summarize key
+findings from studies that have examined how robots that can perceive
+and respond to human affective states influence user perceptions and
+behaviours. Highlight any gaps in the literature, particularly regarding
+fully autonomous, in-person interactions, which our study aims to
+address.
+
+Discuss theoretical frameworks that explain why responsiveness and
+affective adaptation might enhance trust, such as social presence theory
+or the CASA paradigm. Explain how these frameworks inform our hypotheses
+about the expected effects of robot interaction policy on trust and
+collaboration.
+
+Discuss the reason for conducting the study in a fully autonomous,
+in-person setting rather than using Wizard-of-Oz or simulated paradigms.
+Emphasize the importance of examining trust in realistic conditions
+where interaction imperfections are present.
+
+\subsubsection{Why a pilot study?}\label{why-a-pilot-study}
+
+Why did we run a pilot study? what future work will this inform? Focus
+on testing feasibility of the autonomous system, interaction design, and
+measurement approach.
+
+Discuss pilot studies or preliminary work that informed the design of
+our robot interaction policies. This could include prior experiments
+with semi-autonomous systems, user feedback on robot behaviours, or
+technical evaluations of affect detection models.
 
 \subsection{Hypotheses}\label{hypotheses}
 
@@ -490,13 +480,12 @@ than required.
 Participants (n = 29) were recruited from the Laurentian University
 community through word of mouth and the SONA participant recruitment
 system. Eligibility criteria required participants to be adults (18
-years or older), fluent in English, with normal or corrected-to-normal
-hearing and vision, and no prior experience interacting with the
-Misty-II robot. Participants received a \$15.00 gift card as
-compensation for their time. All procedures were approved by the
-university's Research Ethics Board. The Misty-II robot used in this
-study was purchased through grant funding from the IAMGOLD President's
-Innovation Fund. Sample characteristics are summarized in
+years or older), fluent in written and spoken English, with normal or
+corrected-to-normal hearing and vision. Participants received a \$15.00
+gift card as compensation for their time. All procedures were approved
+by the university's Research Ethics Board. The Misty-II robot used in
+this study was purchased through grant funding from the IAMGOLD
+President's Innovation Fund. Sample characteristics are summarized in
 Table~\ref{tbl-pre}.
 
 \subsubsection{Experimental design}\label{experimental-design}
@@ -595,9 +584,9 @@ support}\label{task-2-open-ended-problem-solving-with-advisory-robot-support}
 
 The second task involved a more open-ended problem-solving scenario.
 Participants were presented with multiple technical logs through a
-simulated terminal interface and were asked to determine the location of
-the missing robot. Unlike Task 1, the robot did not have access to
-ground-truth information or the contents of the logs. The robot's
+simulated terminal interface that were used to determine the location of
+the missing robot. Unlike Task 1, the robot \emph{did not} have access
+to ground-truth information or the contents of the logs. The robot's
 assistance was limited to general problem-solving support derived from
 its language model, such as explaining how to interpret logs, suggesting
 reasoning strategies, or prompting participants to reflect on
@@ -621,15 +610,16 @@ to the researcher.
 
 \subsubsection{In-person procedure}\label{in-person-procedure}
 
-Participants completed a pre-interaction questionnaire administered via
-Qualtrics prior to their in-person session. This questionnaire included
-informed consent, demographic information, the Negative Attitudes Toward
-Robots Scale, and a measure of Need for Cognition. Balanced random
-assignment was also completed in this step (need mention no-shows that
-threw off the balance of the group assignments). Due to variability in
-timing between pre-interaction questionnaires and in-person sessions,
-these measures were treated as baseline covariates rather than formal
-pre-test measures.
+Participants completed a pre-interaction eligibility questionnaire
+administered via Qualtrics prior to their in-person session. This
+questionnaire included eligibility questions, informed consent,
+demographic information, the Negative Attitudes Toward Robots Scale, and
+a measure of Need for Cognition. Balanced random assignment was also
+completed in this step (need mention no-shows that threw off the balance
+of the group assignments). Due to variability in timing between
+pre-interaction questionnaires and in-person sessions, these measures
+were treated as baseline covariates rather than formal pre-test
+measures.
 
 At the start of the in-person session, participants were seated in front
 of the Misty-II robot and instructed to begin the interaction by
@@ -650,6 +640,24 @@ procedure, with total session duration averaging approximately 30
 minutes, and received compensation upon completion.
 
 \section{Results}\label{results}
+
+\subsubsection{Data exclusions and communication
+viability}\label{data-exclusions-and-communication-viability}
+
+Although participants were required to be fluent in spoken English,
+in-person observation on meeting participants as well as post-hoc review
+of interaction transcripts revealed that a small subset of participants
+experienced persistent communication breakdowns caused by language
+barriers that prevented meaningful engagement with the robot. These
+breakdowns were characterized by repeated speech recognition failures,
+fragmented responses, and task abandonment.
+
+Because the experimental manipulation relied on language-mediated
+collaboration, the most extreme sessions were considered non-compliant
+with the intended protocol and were excluded from task-level analyses.
+Importantly, exclusion criteria were based on interaction viability
+rather than outcome measures, and results were qualitatively unchanged
+when these sessions were retained.
 
 \textbf{Sample eligibility and protocol adherence. } Participants were
 required to be fluent in spoken English. During administration, the
@@ -716,9 +724,9 @@ attitudes (see Table~\ref{tbl-pre}).
 
 \end{table}%
 
-\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-4-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-3-1.pdf}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-4-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-3-2.pdf}}
 
 \subsection{Post-Interaction Trust
 Differences}\label{post-interaction-trust-differences}
@@ -776,9 +784,9 @@ reduced cognitive overload under conditions of limited intelligibility.
 As a result, trust ratings in breakdown sessions did not track the
 intended responsiveness manipulation.
 
-\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-5-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-4-1.pdf}}
 
-\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-5-2.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/unnamed-chunk-4-2.pdf}}
 
 \subsection{Trust subscale patterns}\label{trust-subscale-patterns}
 
@@ -947,7 +955,7 @@ substantively similar estimates, and leave-one-out cross-validation
 indicated comparable predictive performance between models with and
 without the group effect.
 
-\begin{tcolorbox}[enhanced jigsaw, colframe=quarto-callout-important-color-frame, breakable, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, toptitle=1mm, colbacktitle=quarto-callout-important-color!10!white, colback=white, toprule=.15mm, opacitybacktitle=0.6, bottomtitle=1mm, titlerule=0mm, opacityback=0, arc=.35mm, bottomrule=.15mm, coltitle=black, left=2mm, rightrule=.15mm, leftrule=.75mm]
+\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, left=2mm, breakable, opacityback=0, colback=white, bottomtitle=1mm, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, toptitle=1mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, coltitle=black]
 
 \begin{itemize}
 \tightlist
@@ -1027,6 +1035,57 @@ AI-detected engagement during interaction, as indexed by a greater
 number of responses classified as positive affect (t-test result). This
 suggests that responsive behaviours altered the affective tone of the
 interaction itself.
+
+\subsection{Technical challenges}\label{technical-challenges}
+
+\begin{itemize}
+\tightlist
+\item
+  Need to talk about language issues with participants who had
+  difficulty speaking and understanding English which caused problems
+  with ASR and interaction.
+\item
+  Need to talk about issues where the AI was not able to flexibly handle
+  when people asked a question about the suspect that was close to or
+  another word for a ground-truth feature but not exactly the same word,
+  causing confusion and miscommunication. E.g., ``Was the suspect
+  wearing pink?'' The ground-truth feature was top: PINK, top-type:
+  HOODIE; but the ASR and NLU did not extrapolate to understand that
+  ``wearing pink'' referred to the same feature as ``top: PINK'',
+  causing confusion and miscommunication. Maybe the prompt could have
+  included some examples of different phrasing which could improve this?
+  To solve this issue in future work, we can expand the NLU training
+  data to include more paraphrases and synonyms for each feature.
+\end{itemize}
+
+There was also a case where someone asked `is the top shirt hoodie red?'
+to which the AI answered YES. It may have been confused by the multiple
+descriptors in the question. Future work could involve improving the NLU
+to handle more complex queries with multiple attributes.
+
+Discuss future work where we will look investigate the `embodied' effect
+of having a physical robot versus a virtual agent on trust and
+collaboration in HRI.
+
+Also, prompt could include examples of what to do when dialogue appears
+fragmented, to remind participants to wait until the blue light is on
+before speaking and to switch up its phrasing if the robot seems to not
+understand.
+
+Also, the control condition seemed to be somewhat neutered in terms of
+flexibility in responding in different ways. it would always respond
+with the exact same phrase when confronted with a sentence fragment or a
+question it could not directly answer.
+
+Also issues with people not paying attention to the robot's visual cues
+to know when to speak, leading to more fragmented dialogue. Future work
+could involve improving participant instructions, improved latency and
+`listening' \ldots{} and the robot's feedback mechanisms to better
+manage turn-taking.
+
+Need to remember to flag participants who did not complete/skipped
+specific tasks. E.g. P56 skipped the wrapup entirely. Many skipped the
+brief (by advancing on their own through the dashboard).
 
 \section{Appendix}\label{appendix}
 
