@@ -216,9 +216,12 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Trust in Autonomous Human--Robot Interaction},
+  pdftitle={Responsive Robotics to Increase Trust in Autonomous Human--Robot Interaction},
   pdfauthor={M.C. Lau; Shauna Heron},
-  pdfkeywords={keyword1, keyword2},
+  pdfkeywords={human-robot interaction, HRI, socially assistive
+robotics, cobots, autonomous robot systems, spoken language
+interaction, trust in automation, trust in human-robot
+interaction, affect-adaptive systems},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -231,8 +234,8 @@
 \begin{document}
 
 \begin{frontmatter}
-\title{Trust in Autonomous Human--Robot Interaction \\\large{An
-In-Person Pilot Study} }
+\title{Responsive Robotics to Increase Trust in Autonomous Human--Robot
+Interaction \\\large{An In-Person Pilot Study} }
 \author[1]{M.C. Lau%
 \corref{cor1}%
 \fnref{fn1}}
@@ -266,64 +269,72 @@ capabilities.
 
 
 \begin{keyword}
-    keyword1 \sep 
-    keyword2
+    human-robot interaction \sep HRI \sep socially assistive
+robotics \sep cobots \sep autonomous robot systems \sep spoken language
+interaction \sep trust in automation \sep trust in human-robot
+interaction \sep 
+    affect-adaptive systems
 \end{keyword}
 \end{frontmatter}
     
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, left=2mm, breakable, opacityback=0, colback=white, bottomtitle=1mm, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO}, toptitle=1mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, coltitle=black]
+\subsection{Project Description}\label{project-description}
 
-Manually score each dialogue series.
+As many industries move toward greater automation (e.g., mining,
+manufacturing), robotic assistants are becoming increasingly common in
+operational workflows from manufacturing to mining
+\citep{fu2021, racette2024}. These systems can help reduce human
+exposure to hazards, but trust remains a critical barrier to adoption
+\citep{campagna2025, emaminejad2022}. Low trust can lead to rejection of
+automation, while excessive trust (automation bias) risks overreliance
+\citep{devisser2020}. While most industrial robots rely on fixed,
+rule-based behaviour, there is growing interest in AI-enhanced systems
+that support more adaptive and socially intelligent interactions.
 
-For each interaction and stage:
+Research shows that emotional responsiveness in robots---expressed
+through tone, facial expression, or supportive dialogue---can improve
+perceptions of trustworthiness and social intelligence
+\citep{shayganfar2019, fartook2025}. Moreover, a robot's ability to
+detect early signs of stress, fatigue, or cognitive overload may have
+practical value in high-risk environments such as underground mines,
+where attentional lapses can pose serious safety risks
+\citep{racette2024, murphy2009}. Responsive adaptation in this context
+could enhance both trust and real-time situational awareness
+\citep{fu2021, murphy2009, racette2024}.
 
-\begin{itemize}
-\tightlist
-\item
-  did the participant ask for help?
-\item
-  how many times?
-\item
-  did the robot give useful help?
-\item
-  did the robot give misleading or incorrect help?
-\item
-  did the robot stick to the policy?
-\item
-  how many times did the robot fail to understand the participant?
-\end{itemize}
+This project aims to develop and evaluate a multi-sensor
+Emotion-Adaptive AI System (EAI) for the Misty II robot \citep{mistya}.
+The EAI will use AI-driven affect-inference models including facial
+emotion recognition models, vocal tone analysis, combined with a
+generative language model to coordinate task interaction monitoring to
+estimate user affective states such as frustration, confusion, or
+disengagement. These inferences will guide Misty's real-time responses,
+including encouragement, clarification prompts, or praise. We will
+compare this adaptive mode against a neutral, rule-based version of
+Misty to assess effects on user trust, collaboration, and task
+performance. We will also explore how individual cognitive traits may
+moderate these interactions \citep{nicolas2021}.
 
-For each task:
-
-\begin{itemize}
-\tightlist
-\item
-  is there evidence that the robot helped complete the task?
-\item
-  is there evidence that the participant solved the problem without
-  help?
-\end{itemize}
-
-\end{tcolorbox}
+\section{Pilot Study}\label{pilot-study}
 
 Human--robot collaboration (HRC) has become a central topic across
 engineering, computer science, and the social sciences as robots
 increasingly move from controlled laboratory settings into everyday
 collaborative roles. In many emerging applications, collaboration
 depends not only on physical coordination but also on shared
-problem-solving through dialogue, where robots must reason, communicate,
-and adapt in real time. Understanding how humans perceive and respond to
-such systems is therefore critical for designing robots that can
-function as effective collaborators rather than passive tools.
+problem-solving through dialogue, where AI-driven robots must reason,
+communicate, and adapt in real time. Understanding how humans perceive
+and respond to such systems is therefore critical for designing robots
+that can function as effective collaborators rather than passive tools.
 
 A key factor shaping successful collaboration in human--robot
-interaction (HRI) is trust. Trust influences whether users are willing
-to rely on robotic systems, accept their guidance, and remain engaged
-during joint tasks, particularly in situations characterized by
-uncertainty or incomplete information. Prior work has shown that trust
-affects both subjective perceptions---such as perceived reliability or
-intent---and objective outcomes including task performance, compliance,
+interaction (HRI) is trust \citep{waytz2014, emaminejad2022}. Trust
+influences whether users are willing to adopt robotic systems, accept
+their guidance, and remain engaged during joint tasks, particularly in
+situations characterized by uncertainty or incomplete information
+\citep{waytz2014, emaminejad2022}. Prior work has shown that trust
+affects both subjective perceptions such as perceived reliability or
+intent, and objective outcomes including task performance, compliance,
 and cooperation. As a result, a substantial body of research has focused
 on measuring trust in HRI, leading to the development of standardized
 instruments for assessing users' evaluations of robot behaviour across
@@ -349,7 +360,10 @@ their behaviour based on user affect and contextual cues may foster
 greater trust and engagement. However, most studies examining
 responsiveness have relied on simulated or semi-autonomous systems,
 leaving open questions about how these effects manifest in fully
-autonomous, in-person interactions.
+autonomous, in-person interactions. While most industrial robots rely on
+fixed, rule-based behaviour, there is growing interest in AI-enhanced
+systems that support more adaptive and socially intelligent interactions
+\citep{fu2021, murphy2009, racette2024}.
 
 The present pilot study addresses this gap by examining trust and
 collaboration in an in-person interaction with two versions of a fully
@@ -393,24 +407,78 @@ behaviour are unavoidable. In doing so, this work seeks to inform the
 design and evaluation of affect-responsive autonomous robots intended
 for real-world collaborative settings.
 
-{[}also mention that this is a pilot study to inform a larger planned
-study with more participants and refined methods based on lessons
-learned here and touch on some of the lessons we learned (i.e., language
-issues, ASR issues, interaction design issues, etc.){]}
+This project aimed to develop and evaluate a multi-sensor
+Emotion-Adaptive AI System (EAI) for the Misty II robot \citep{mistya}.
+The EAI leveraged pretrained LLMs for syntaxical affect inference and
+task interaction monitoring to estimate user affective states such as
+frustration, engagement, or anxiousness. These inferences guided Misty's
+real-time responses, including encouragement, clarification prompts, and
+praise. We compared an adaptive version of Misty against a neutral,
+rule-based version of Misty to assess effects on user trust,
+collaboration, and perceived intelligence. We also explored how
+individual differences in Need for Cognition could moderate these
+interactions \citep{nicolas2021}.
 
-\subsection{Background}\label{background}
+{[}also mention the pre-session questionnaire with NARS and NFC to
+capture baseline attitudes and individual differences that may moderate
+trust responses{]} {[}also mention that this is a pilot study to inform
+a larger planned study with more participants and refined methods based
+on lessons learned here and touch on some of the lessons we learned
+(i.e., language issues, ASR issues, interaction design issues, etc.){]}
+
+\subsection{Related work}\label{related-work}
+
+\subsubsection{Spoken language interaction in
+HRI}\label{spoken-language-interaction-in-hri}
+
+Discuss prior work on spoken language interaction in HRI, including the
+challenges of ASR, dialogue management, and affect detection in
+real-world settings. Summarize key findings from studies that have
+examined how spoken language capabilities influence user perceptions of
+robots, particularly in collaborative tasks. Highlight any gaps in the
+literature regarding fully autonomous systems operating in-person
+without human intervention.
+
+While most industrial robots rely on fixed, rule-based behaviour, there
+is growing interest in AI-enhanced systems that support more adaptive
+and socially intelligent interactions
+\citep{fu2021, murphy2009, racette2024}. Discuss the technical
+challenges of implementing spoken language interaction on mobile robot
+platforms, including issues related to speech recognition accuracy,
+latency, and contextual understanding. Explain how these challenges
+impact user perceptions and trust in HRI.
 
 \subsubsection{Trust in HRI research}\label{trust-in-hri-research}
 
-Introduce the two scales here we used to measure trust in HRI: the Trust
-Perception Scale-HRI and the Trust in Industrial Human--Robot
-Collaboration scale. Discuss prior work that has used these scales and
-their relevance to our study.
+Research shows that responsiveness to human-affect in robots---expressed
+through tone, movement, facial expression, or supportive dialogue---can
+improve perceptions of trustworthiness and social intelligence
+\citep{shayganfar2019, fartook2025}. These anthropomorphic cues may
+serve as transparency signals, helping users infer robotic intent and
+fostering cooperation \citep{birnbaum2016}.
 
-The differences between these two scales in terms of what aspects of
-trust they measure (e.g., affective vs.~cognitive trust, reliability
+A robot's ability to detect and respond to early signs of stress,
+fatigue, confusion or cognitive overload could have practical value in
+high-risk environments like medical settings or underground mines where
+attentional lapses pose serious safety risks. Affecctive adaptation in
+these contexts could enhance both trust as well as real-time
+responsiveness and situational awareness
+\citep{fu2021, murphy2009, racette2024}.
+
+Introduce the two scales here we used to measure trust in HRI: adapted
+14-item Trust Perception Scale-HRI \citep{bartneck2009} and the Trust in
+Industrial Human--Robot Collaboration scale \citep{charalambous}.
+Discuss prior work that has used these scales and their relevance to our
+study. The differences between these two scales in terms of what aspects
+of trust they measure (e.g., affective vs.~cognitive trust, reliability
 vs.~collaboration). In addition, discuss how these scales have been
 validated in prior research and their psychometric properties.
+
+Also talk about using the Negative Attitudes Toward Robots Scale (NARS)
+\citep{nomura2006} and the Need for Cognition Scale (NFC-s)
+\citep[\citet{cacioppo1996}]{cacioppo1984} as baseline measures to
+account for individual differences in attitudes toward robots and
+cognitive engagement that may influence trust perceptions.
 
 Explain why we chose to use both scales in our study to capture a
 comprehensive picture of trust in HRI. The reasons for selecting these
@@ -446,18 +514,47 @@ Why did we run a pilot study? what future work will this inform? Focus
 on testing feasibility of the autonomous system, interaction design, and
 measurement approach.
 
+Our initial objectives: 1. Develop and implement an autonomous
+Emotion-Adaptive AI System (EAI) using Misty's onboard sensor data and
+AI on an edge device. 2. Evaluate the impact of EAI on trust, perceived
+social intelligence, and task collaboration in two types of human-robot
+tasks. 3. Assess whether individual differences in human cognitive style
+(i.e., Need for Cognition) influences responses to adaptive robotic
+behaviour and trust in robots (before and after interaction)
+
+What we did
+
+We developed an autonomous spoken-language interaction system integrated
+with a prompted ASR pipeline and the Misty-II robot platform that can
+engage in natural conversations with users. The system is capable of
+recognizing speech, managing dialogue, and generating spoken responses.
+
+This project aimed to develop and evaluate a multi-sensor
+Emotion-Adaptive AI System (EAI) for the Misty II robot \citep{mistya}.
+The EAI leveraged pretrained LLMs for syntaxical affect inference and
+task interaction monitoring to estimate user affective states such as
+frustration, engagement, or anxiousness. These inferences guided Misty's
+real-time responses, including encouragement, clarification prompts, and
+praise. We compared an adaptive version of Misty against a neutral,
+rule-based version of Misty to assess effects on user trust,
+collaboration, and perceived intelligence. We also explored how
+individual differences in Need for Cognition could moderate these
+interactions \citep{nicolas2021}.
+
 Discuss pilot studies or preliminary work that informed the design of
 our robot interaction policies. This could include prior experiments
 with semi-autonomous systems, user feedback on robot behaviours, or
 technical evaluations of affect detection models.
 
-\subsection{Hypotheses}\label{hypotheses}
+\section{Methods}\label{methods}
 
 The primary objective of this study was to examine how differences in
 robot interaction policy influence trust and collaboration during fully
 autonomous, in-person human--robot interaction. Based on prior work
 linking robot responsiveness, affective behavior, and trust in HRI, we
 formulated the following hypotheses.
+
+\subsection{Hypotheses}\label{hypotheses}
 
 H1: Participants interacting with a responsive, affect-adaptive robot
 will report higher post-interaction trust than participants interacting
@@ -473,22 +570,7 @@ and engagement will be most pronounced during the open-ended
 collaborative task, where assistance from the robot is optional rather
 than required.
 
-\subsection{Methods}\label{methods}
-
-\subsubsection{Sample and recruitment}\label{sample-and-recruitment}
-
-Participants (n = 29) were recruited from the Laurentian University
-community through word of mouth and the SONA participant recruitment
-system. Eligibility criteria required participants to be adults (18
-years or older), fluent in written and spoken English, with normal or
-corrected-to-normal hearing and vision. Participants received a \$15.00
-gift card as compensation for their time. All procedures were approved
-by the university's Research Ethics Board. The Misty-II robot used in
-this study was purchased through grant funding from the IAMGOLD
-President's Innovation Fund. Sample characteristics are summarized in
-Table~\ref{tbl-pre}.
-
-\subsubsection{Experimental design}\label{experimental-design}
+\subsection{Experimental Conditions}\label{experimental-conditions}
 
 The study employed a between-subjects design with robot interaction
 policy as the sole experimental factor. Participants interacted with the
@@ -527,7 +609,12 @@ interaction constraints inherent to real-world operation, including
 speech recognition variability and response timing delays. The only
 manipulation between conditions was the robot's interaction policy.
 
-Participants were randomly assigned to one of two conditions:
+During initial sign-up, participants were randomly assigned to one of
+two conditions by the Qualtrics software used for recruitment. Balanced
+random assignment was employed to ensure equal group sizes, however due
+to no-shows, last-minute cancellations and technical difficulties (see
+below), final group sizes were n = 14 in the RESPONSIVE condition and n
+= 9 in the CONTROL condition.:
 
 RESPONSIVE (experimental): The robot adopted a warm, emotionally
 engaged, and proactive interaction style, adapting its responses based
@@ -537,12 +624,24 @@ CONTROL (baseline): The robot followed a neutral, reactive interaction
 policy, providing information and assistance only when explicitly
 requested, without affect-responsive adaptation.
 
-\subsubsection{Task structure}\label{task-structure}
+\subsection{Game Design}\label{game-design}
 
-The game consisted of five sequential stages designed to elicit
-interaction under differing collaboration and dependency conditions,
-following established approaches in HRI task design \citep{lin2022}.
-Total session duration was approximately 15 minutes.
+The game contained two timed puzzles embedded within five sequential
+stages designed to elicit interaction with the robot under differing
+collaboration and dependency conditions, following established
+approaches in HRI task design \citep{lin2022}. To solve each puzzle,
+participants needed to engage in logical reasoning, deduction, pattern
+recognition, and information synthesis. The tasks provided an immersive
+narrative context in which participants assumed the role of a detective
+investigating the disappearance of a fellow robot colleague. The robot
+served as both a dietic guide and a collaborative partner, providing
+hints, clarifications, and encouragement that depended on experimental
+condition.
+
+To create a smooth difficulty curve with respect to the time limits of 5
+and 15 minutes, Task 2 was more difficult than Task 1, and the overall
+experience was designed such that it would be difficult to solve both
+tasks in time without the game guide's help.
 
 Stage 1: Greeting. The robot introduced itself and engaged in brief
 rapport-building interaction.
@@ -551,7 +650,7 @@ Stage 2: Mission brief. The robot explained the narrative context and
 overall objectives of the task.
 
 Stage 3: Task 1 (robot-dependent reasoning). Participants completed a
-constrained ``who-dunnit'' task.
+constrained ``who-dunnit'' task where participants could ask the robot .
 
 Stage 4: Task 2 (open-ended collaborative problem solving). Participants
 worked to determine the location of the missing robot using technical
@@ -559,6 +658,11 @@ logs.
 
 Stage 5: Wrap-up. The robot provided feedback and concluded the
 interaction.
+
+Mention that all dialogue was logged etc.Participants could move to the
+next stage by clicking buttons on their dashboard as directed by the
+robot or at their own volition. Total session duration was approximately
+15 minutes.
 
 \subsubsection{Task 1: Robot-dependent collaborative
 reasoning}\label{task-1-robot-dependent-collaborative-reasoning}
@@ -570,6 +674,24 @@ clothing). The grid was displayed on the interface, while questions were
 posed verbally to the robot. The robot possessed the ground-truth
 information necessary to evaluate each question and provide correct
 responses.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=5.02083in,height=\textheight,keepaspectratio]{images/task1-whodunnit.png}
+
+}
+
+\caption{\label{fig-task1}In the first task, participants were required
+to identify a suspect from a 6 × 4 grid of 24 candidates by asking the
+robot a series of yes/no questions about the suspect's features (e.g.,
+hair color, accessories, clothing). The grid was displayed on the
+interface, while questions were posed verbally to the robot.
+Participants could track those eliminated here and input their final
+answer.}
+
+\end{figure}%
 
 Successful completion of this task was therefore dependent on
 interaction with the robot, creating a forced collaborative dynamic in
@@ -584,13 +706,27 @@ support}\label{task-2-open-ended-problem-solving-with-advisory-robot-support}
 
 The second task involved a more open-ended problem-solving scenario.
 Participants were presented with multiple technical logs through a
-simulated terminal interface that were used to determine the location of
-the missing robot. Unlike Task 1, the robot \emph{did not} have access
-to ground-truth information or the contents of the logs. The robot's
-assistance was limited to general problem-solving support derived from
-its language model, such as explaining how to interpret logs, suggesting
-reasoning strategies, or prompting participants to reflect on
-inconsistencies.
+simulated terminal interface that could be used to determine the
+location of the missing robot. Unlike Task 1, the robot \emph{did not}
+have access to ground-truth information or the contents of the logs. The
+robot's assistance was limited to general problem-solving support
+derived from its language model, such as explaining how to interpret
+logs, suggesting reasoning strategies, or prompting participants to
+reflect on inconsistencies.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=5.02083in,height=\textheight,keepaspectratio]{images/task2-cryptic-puzzle.png}
+
+}
+
+\caption{\label{fig-task2}The task 2 interface presented multiple
+technical logs through a simulated terminal interface that could be used
+to determine the location of the missing robot.}
+
+\end{figure}%
 
 Participants could complete this task independently or choose to solicit
 assistance from the robot. The robot could ask clarifying questions
@@ -600,49 +736,112 @@ a collaborative reasoning partner rather than an authoritative source
 and allowed collaboration to emerge voluntarily rather than being
 enforced by task structure \citep{lin2022}.
 
-\subsubsection{Wrap-up and debrief}\label{wrap-up-and-debrief}
+\subsection{Study Protocol}\label{study-protocol}
 
-After all responses were submitted, correct answers were displayed to
-participants. During the wrap-up stage, the robot engaged in a brief
-debriefing interaction, acknowledging task outcomes and thanking
-participants for their involvement before prompting them to report back
-to the researcher.
+In person sessions were conducted between November \_\_ and November
+\_\_ at Laurentian, with a single supplementary session conducted on
+December 15. Before arrival for their scheduled session, the interaction
+policy was set to either RESPONSIVE or CONTROL condition to ensure the
+correct robot behaviour was produced during the session.
 
-\subsubsection{In-person procedure}\label{in-person-procedure}
+In-person sessions were conducted in a quiet, private room equipped with
+the Misty-II robot and a participant-facing computer interface. Upon
+arrival, participants were greeted by the researcher, who provided a
+brief overview of the session, confirmed consent and answered any
+questions.
 
-Participants completed a pre-interaction eligibility questionnaire
-administered via Qualtrics prior to their in-person session. This
-questionnaire included eligibility questions, informed consent,
-demographic information, the Negative Attitudes Toward Robots Scale, and
-a measure of Need for Cognition. Balanced random assignment was also
-completed in this step (need mention no-shows that threw off the balance
-of the group assignments). Due to variability in timing between
-pre-interaction questionnaires and in-person sessions, these measures
-were treated as baseline covariates rather than formal pre-test
-measures.
-
-At the start of the in-person session, participants were seated in front
-of the Misty-II robot and instructed to begin the interaction by
-clicking a start button on the interface. They were given brief guidance
-on effective communication with the robot, including waiting for a
-visual indicator on the robot before speaking. Once participants
-indicated readiness, the researcher left the room and closed the door,
-leaving the participant and robot to complete the tasks without human
-presence.
+At the start of the in-person session, the experimenter seated
+participants in front of the Misty-II robot, then gave brief guidance on
+effective communication with the robot, including waiting for a visual
+indicator on the robot before speaking (blue light). Once participants
+indicated readiness, participants were instructed they could begin the
+interaction by clicking a start button on the interface once the
+experimenter left the room and closed the door, leaving the participant
+and robot to complete the tasks without human presence or direct
+observation. Participants were informed that they could terminate the
+session at any time without penalty.
 
 Following task completion, participants exited the room and completed a
 post-interaction survey assessing trust using the Trust Perception--HRI
 scale and the Trust in Industrial Human--Robot Collaboration scale.
 Participants then engaged in a written and verbal debrief with the
-researcher. Participants were informed that they could terminate the
-session at any time without penalty. All participants completed the full
-procedure, with total session duration averaging approximately 30
-minutes, and received compensation upon completion.
+researcher. All participants completed the full procedure, with total
+session duration averaging approximately 30 minutes, and received a
+\$15.00 gift card as compensation for their time.
 
-\section{Results}\label{results}
+\subsection{Measures}\label{measures}
 
-\subsubsection{Data exclusions and communication
-viability}\label{data-exclusions-and-communication-viability}
+A combination of self-report questionnaires and behavioural metrics were
+used to assess trust, engagement, and task performance.
+
+Self-report
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Pre-session questionairenaire: Participants completed baseline
+  measures including the Negative Attitudes Toward Robots Scale (NARS)
+  \citep{nomura2006} and the short form of the Need for Cognition scale
+  (NFC-s) \citep[\citet{cacioppo1996}]{cacioppo1984} to assess
+  individual differences that may moderate trust responses. The
+  pre-session questionnaire included basic demographic items, the
+  Negative Attitudes Toward Robots Scale (NARS), and the short form of
+  the Need for Cognition scale (NFC-s). Eligibility criteria related to
+  English fluency were applied to ensure that participants could
+  reliably navigate the task interface and communicate with the robot
+  using the automatic speech recognition (ASR) system during spoken
+  interaction. Prior experience interacting with robots was not an
+  exclusion criterion; instead, self-reported familiarity with robots
+  was treated as a covariate in subsequent analyses. Participants'
+  personality traits, background experience with robots, and demographic
+  data were recorded in the survey as potential covariates.
+\item
+  Post-interaction trust measures: Two validated trust scales were
+  administered after the interaction: The 14-item Trust Perception
+  Scale-HRI \citep{bartneck2009} and the Trust in Industrial
+  Human--Robot Collaboration scale \citep{charalambous}. Both scales
+  assess multiple dimensions of trust, including reliability,
+  competence, and collaboration.
+\end{enumerate}
+
+Objective
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\item
+  Objective measures of task performance included the number of
+  correctly solved puzzles, time taken to complete each task, and the
+  number of assistance requests made to the robot.
+\item
+  Behavioural metrics: Interaction logs were manually coded and analyzed
+  to extract objective measures of engagement and AI performance, task
+  performance, including the number of dialogue turns, frequency of
+  communication issues (e.g., sentence fragments or language issues),
+  frequency of help requests, response times, whether the AI reemained
+  on task and provided useful information etc.
+\end{enumerate}
+
+\subsection{Sample and Recruitment}\label{sample-and-recruitment}
+
+29 participants were recruited from the Laurentian University community
+through direct recruitment, word of mouth and the SONA participant
+recruitment system. Initial enrollment was conducted via a Qualtrics
+questionnaire. Interested individuals first completed an eligibility
+screening confirming that they were adults (18 years or older), fluent
+in spoken and written English, and had normal or corrected-to-normal
+hearing and vision. Eligible participants then provided informed
+consent, selected an in-person session time, and completed a pre-session
+questionnaire. Sample characteristics are reported in
+Table~\ref{tbl-pre}.
+
+Participants received a \$15.00 gift card as compensation for their
+time. All study procedures were approved by Laurentian University
+Research Ethics Board (REB \#6021966). The Misty-II robot used in this
+study was purchased through grant funding from the IAMGOLD President's
+Innovation Fund.
+
+\textbf{Data exclusions and communication viability}
 
 Although participants were required to be fluent in spoken English,
 in-person observation on meeting participants as well as post-hoc review
@@ -659,7 +858,7 @@ Importantly, exclusion criteria were based on interaction viability
 rather than outcome measures, and results were qualitatively unchanged
 when these sessions were retained.
 
-\textbf{Sample eligibility and protocol adherence. } Participants were
+\textbf{Sample eligibility and protocol adherence.} Participants were
 required to be fluent in spoken English. During administration, the
 experimenter recorded contemporaneous notes when conversational fluency
 appeared insufficient to support the language-mediated protocol.
@@ -671,8 +870,7 @@ were treated as protocol non-adherence and were excluded from task-level
 analyses (n=6). All analyses are also reported with these sessions
 retained as a sensitivity check.
 
-\subsection{Participant characteristics and baseline
-measures}\label{participant-characteristics-and-baseline-measures}
+Participant characteristics and baseline measures
 
 Participants in the control and responsive conditions were comparable
 with respect to pre-interaction demographic characteristics, academic
@@ -680,7 +878,11 @@ background, prior experience with robots, and baseline attitudes toward
 robots. Importantly, Negative Attitudes Towards Robots (NARS) and Need
 for Cognition scores were similar across groups, indicating that
 post-interaction differences are unlikely to reflect pre-existing
-attitudes (see Table~\ref{tbl-pre}).
+attitudes (see Table~\ref{tbl-pre}). {[}add stats here{]}
+
+\subsection{Data Analysis}\label{data-analysis}
+
+\section{Results}\label{results}
 
 \begin{table}
 
@@ -740,9 +942,9 @@ reach conventional significance under a two-sample t-test (p=.10), the
 second scale was significantly different between groups (p=.007).
 
 To test these findings further, we fitted several Bayesian hierarchical
-models were fitted (estimated using MCMC sampling with 4 chains of 4000
-iterations and a warmup of 1000) to predict Robot HRI-trust and Trust in
-HRI Collaboration by experimental group (formula: robot\_trust\_post
+models (estimated using MCMC sampling with 4 chains of 4000 iterations
+and a warmup of 1000) to predict Robot HRI-trust and Trust in HRI
+Collaboration by experimental group (formula: robot\_trust\_post
 \textasciitilde{} group). The model included session\_id and
 trust\_items as random effects (formula: list(\textasciitilde1
 \textbar{} session\_id, \textasciitilde1 \textbar{} trust\_items)). Both
@@ -955,7 +1157,7 @@ substantively similar estimates, and leave-one-out cross-validation
 indicated comparable predictive performance between models with and
 without the group effect.
 
-\begin{tcolorbox}[enhanced jigsaw, opacitybacktitle=0.6, left=2mm, breakable, opacityback=0, colback=white, bottomtitle=1mm, colframe=quarto-callout-important-color-frame, bottomrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, rightrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, toptitle=1mm, titlerule=0mm, arc=.35mm, leftrule=.75mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, toptitle=1mm, opacityback=0, titlerule=0mm, bottomrule=.15mm, rightrule=.15mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, toprule=.15mm, breakable, colback=white, leftrule=.75mm]
 
 \begin{itemize}
 \tightlist
@@ -973,6 +1175,41 @@ without the group effect.
 \item
   run analysis of dialogue dynamics included Bertopic or some other
   analysis of the actual content of the conversations/interactions
+\end{itemize}
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, opacitybacktitle=0.6, colframe=quarto-callout-important-color-frame, arc=.35mm, toptitle=1mm, opacityback=0, titlerule=0mm, bottomrule=.15mm, rightrule=.15mm, coltitle=black, bottomtitle=1mm, colbacktitle=quarto-callout-important-color!10!white, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO2}, toprule=.15mm, breakable, colback=white, leftrule=.75mm]
+
+Manually score each dialogue series.
+
+For each interaction and stage:
+
+\begin{itemize}
+\tightlist
+\item
+  did the participant ask for help?
+\item
+  how many times?
+\item
+  did the robot give useful help?
+\item
+  did the robot give misleading or incorrect help?
+\item
+  did the robot stick to the policy?
+\item
+  how many times did the robot fail to understand the participant?
+\end{itemize}
+
+For each task:
+
+\begin{itemize}
+\tightlist
+\item
+  is there evidence that the robot helped complete the task?
+\item
+  is there evidence that the participant solved the problem without
+  help?
 \end{itemize}
 
 \end{tcolorbox}
@@ -1086,6 +1323,8 @@ manage turn-taking.
 Need to remember to flag participants who did not complete/skipped
 specific tasks. E.g. P56 skipped the wrapup entirely. Many skipped the
 brief (by advancing on their own through the dashboard).
+
+\section{Conclusion and Future Work}\label{conclusion-and-future-work}
 
 \section{Appendix}\label{appendix}
 
