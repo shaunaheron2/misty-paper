@@ -350,16 +350,6 @@ In the final model predicting Trust in Industrial Human–Robot Collaboration, i
 
 For this outcome, inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences.
 
-### Trust Perception Scale–HRI
-
-For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (β = 14.17, SE = 6.5, t = 2.00, p = 0.046). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
-
-In contrast to the collaboration trust scale, inclusion of random intercepts for individual trust items did not improve model fit for the Trust Perception Scale–HRI and was therefore omitted. This divergence likely reflects differences in scale format and response interface: the Trust Perception scale was administered using a continuous slider input, whereas the Trust in Industrial Human–Robot Collaboration scale employed discrete Likert-style response options.
-
-Informal observation during administration and post-hoc inspection of item-level variance suggest that the slider-based interface, administered via a touchpad, may have reduced response precision relative to discrete response formats. While this likely attenuated item-level variability, the Trust Perception Scale–HRI nevertheless captured meaningful between-condition differences at the aggregate level.
-
-Together, these models indicate that robot responsiveness had a consistent positive effect on post-interaction trust, with effect magnitude and measurement sensitivity varying by trust dimension and scale format.
-
 ```{r}
 library(lme4)
 library(lmerTest)
@@ -463,6 +453,7 @@ mod_dep4 <- lmer(
 
 ```
 
+
 ```{r}
 #| label: fig-post-eligible2
 #| fig-cap: "Distribution of Trust in Industrial Human–Robot Collaboration scores by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
@@ -476,16 +467,27 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = TRUE,
   #oint.args = list(alpha = 0.6),
-  ylab = "Trust in Industrial Human–Robot Collaboration (Likert 1-5)",
+  ylab = "Trust in Industrial Human–Robot Collaboration (Likert 0-100)",
   xlab = "Interaction Policy",
   # title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
   results.subtitle = FALSE
 )
 ```
 
+### Trust Perception Scale–HRI
+
+For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (β = 14.17, SE = 6.5, t = 2.00, p = 0.046). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
+
+In contrast to the collaboration trust scale, inclusion of random intercepts for individual trust items did not improve model fit for the Trust Perception Scale–HRI and was therefore omitted. This divergence likely reflects differences in scale format and response interface: the Trust Perception scale was administered using a continuous slider input, whereas the Trust in Industrial Human–Robot Collaboration scale employed discrete Likert-style response options.
+
+Informal observation during administration and post-hoc inspection of item-level variance suggest that the slider-based interface, administered via a touchpad, may have reduced response precision relative to discrete response formats. While this likely attenuated item-level variability, the Trust Perception Scale–HRI nevertheless captured meaningful between-condition differences at the aggregate level.
+
+
+
+
 ```{r}
 #| label: fig-post-eligible
-#| fig-cap: "Distribution of Trust Percention in HRI scores by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
+#| fig-cap: "Distribution of Trust Perception in HRI by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
 ggbetweenstats(
   data = df_flat_scores_final |> filter(exclusions != 'exclude'),
   x = group,
@@ -541,6 +543,8 @@ mod_dep4 <- lmer(
 )
 compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
 ```
+
+Together, these models indicate that robot responsiveness had a consistent positive effect on post-interaction trust, with effect magnitude and measurement sensitivity varying by trust dimension and scale format.
 
 #### Bayesian analysis
 
