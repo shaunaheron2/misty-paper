@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.2)  2 JAN 2026 14:37
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.2)  2 JAN 2026 16:29
  restricted system commands enabled.
 **misty-paper.tex
 (./misty-paper.tex
@@ -1287,26 +1287,29 @@ Package natbib Warning: Citation `charalambous' on page 9 undefined on input lin
 
 [9]
 
-Package natbib Warning: Citation `nomura2006' on page 10 undefined on input line 684.
+Package natbib Warning: Citation `nomura2006' on page 10 undefined on input line 686.
 
 
-Package natbib Warning: Citation `cacioppo1984' on page 10 undefined on input line 684.
+Package natbib Warning: Citation `cacioppo1984' on page 10 undefined on input line 686.
 
 
-Package natbib Warning: Citation `cacioppo1996' on page 10 undefined on input line 684.
+Package natbib Warning: Citation `cacioppo1996' on page 10 undefined on input line 686.
 
 [10]
+
+LaTeX Warning: Reference `tbl-post-eligible' on page 11 undefined on input line 723.
+
 ! Undefined control sequence.
-l.730 Trust Perception Scale\textendashHRI
-                                         & 23 & 62 (15) & 77 (18) & {\bfseri...
+l.753 Trust Perception Scale\textendashHRI
+                                         & 62 (15) & 77 (18) & {\bfseries 0....
 
 Here is how much of LuaTeX's memory you used:
- 39394 strings out of 476081
+ 39396 strings out of 476081
  125086,1373583 words of node,token memory allocated
- 15819 words of node memory still in use:
-   34 hlist, 1 vlist, 45 rule, 153 disc, 6 local_par, 6 dir, 6 math, 343 glue, 89 kern, 24 penalty, 36 unset, 9 margin_kern, 1244 glyph, 5 align_record, 177 attribute, 86 glue_spec, 177 attribute_list, 12 temp, 1 align_stack, 4 write, 3 pdf_dest, 1 pdf_colorstack nodes
-   avail lists: 1:2,2:13,3:136,4:77,5:368,6:36,7:6701,8:2,9:192,10:21,11:695
- 60986 multiletter control sequences out of 65536+600000
- 61 fonts using 17157311 bytes
+ 26243 words of node memory still in use:
+   56 hlist, 2 vlist, 43 rule, 263 disc, 10 local_par, 6 dir, 6 math, 494 glue, 143 kern, 38 penalty, 30 unset, 21 margin_kern, 2334 glyph, 4 align_record, 174 attribute, 89 glue_spec, 174 attribute_list, 12 temp, 1 align_stack, 6 write, 3 pdf_dest, 3 pdf_colorstack nodes
+   avail lists: 1:2,2:19,3:120,4:63,5:311,6:32,7:5460,8:2,9:178,10:21,11:573
+ 60988 multiletter control sequences out of 65536+600000
+ 61 fonts using 17157247 bytes
  98i,13n,114p,1007b,1088s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!
