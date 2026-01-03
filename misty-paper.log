@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.2)  2 JAN 2026 16:29
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.2)  3 JAN 2026 09:13
  restricted system commands enabled.
 **misty-paper.tex
 (./misty-paper.tex
@@ -1209,107 +1209,117 @@ Package natbib Warning: Citation `fartook2025' on page 1 undefined on input line
 
 {/home/sheron/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-Package natbib Warning: Citation `shayganfar2019' on page 2 undefined on input line 324.
+Package natbib Warning: Citation `shayganfar2019' on page 2 undefined on input line 323.
 
 
-Package natbib Warning: Citation `fartook2025' on page 2 undefined on input line 324.
+Package natbib Warning: Citation `fartook2025' on page 2 undefined on input line 323.
 
 
-Package natbib Warning: Citation `birnbaum2016' on page 2 undefined on input line 329.
+Package natbib Warning: Citation `birnbaum2016' on page 2 undefined on input line 328.
 
 [2]
 
-Package natbib Warning: Citation `mistya' on page 3 undefined on input line 417.
+Package natbib Warning: Citation `mistya' on page 3 undefined on input line 415.
 
 [3]
 warning  (file images/misty-pullback.jpg) (readjpg): Exif resolution 72dpi x 72dpi differs from the input resolution 300dpi x 300dpi
 <images/misty-pullback.jpg, id=38, 5733.42pt x 4300.065pt>
 File: images/misty-pullback.jpg Graphic file (type jpg)
 <use images/misty-pullback.jpg>
-Package luatex.def Info: images/misty-pullback.jpg  used on input line 464.
+Package luatex.def Info: images/misty-pullback.jpg  used on input line 462.
 (luatex.def)             Requested size: 362.7996pt x 272.0997pt.
 
-Overfull \hbox (17.7996pt too wide) in paragraph at lines 464--465
+Overfull \hbox (17.7996pt too wide) in paragraph at lines 462--463
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 488--491
+Underfull \hbox (badness 10000) in paragraph at lines 486--489
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 491--494
+Underfull \hbox (badness 10000) in paragraph at lines 489--492
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 494--496
+Underfull \hbox (badness 10000) in paragraph at lines 492--494
 
  []
 
 [4] [5<./images/misty-pullback.jpg
 warning  (readjpg): Exif resolution 72dpi x 72dpi differs from the input resolution 300dpi x 300dpi
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 496--499
+Underfull \hbox (badness 10000) in paragraph at lines 494--497
 
  []
 
 <images/task1-whodunnit.png, id=53, 1012.78375pt x 944.52875pt>
 File: images/task1-whodunnit.png Graphic file (type png)
 <use images/task1-whodunnit.png>
-Package luatex.def Info: images/task1-whodunnit.png  used on input line 519.
+Package luatex.def Info: images/task1-whodunnit.png  used on input line 517.
 (luatex.def)             Requested size: 362.84013pt x 338.38708pt.
 
-Overfull \hbox (17.84013pt too wide) in paragraph at lines 519--520
+Overfull \hbox (17.84013pt too wide) in paragraph at lines 517--518
  [][] 
  []
 
 <images/task2-cryptic-puzzle.png, id=54, 1012.78375pt x 944.52875pt>
 File: images/task2-cryptic-puzzle.png Graphic file (type png)
 <use images/task2-cryptic-puzzle.png>
-Package luatex.def Info: images/task2-cryptic-puzzle.png  used on input line 552.
+Package luatex.def Info: images/task2-cryptic-puzzle.png  used on input line 550.
 (luatex.def)             Requested size: 362.84013pt x 338.38708pt.
 
-Overfull \hbox (17.84013pt too wide) in paragraph at lines 552--553
+Overfull \hbox (17.84013pt too wide) in paragraph at lines 550--551
  [][] 
  []
 
 
-Package natbib Warning: Citation `lin2022' on page 6 undefined on input line 569.
+Package natbib Warning: Citation `lin2022' on page 6 undefined on input line 567.
 
 [6] [7<./images/task1-whodunnit.png>] [8<./images/task2-cryptic-puzzle.png>]
 
-Package natbib Warning: Citation `bartneck2009' on page 9 undefined on input line 611.
+Package natbib Warning: Citation `bartneck2009' on page 9 undefined on input line 609.
 
 
-Package natbib Warning: Citation `charalambous' on page 9 undefined on input line 611.
+Package natbib Warning: Citation `charalambous' on page 9 undefined on input line 609.
 
 [9]
 
-Package natbib Warning: Citation `nomura2006' on page 10 undefined on input line 686.
+LaTeX Warning: Reference `tbl-pre' on page 10 undefined on input line 683.
 
 
-Package natbib Warning: Citation `cacioppo1984' on page 10 undefined on input line 686.
+Package natbib Warning: Citation `cacioppo1984' on page 10 undefined on input line 683.
 
 
-Package natbib Warning: Citation `cacioppo1996' on page 10 undefined on input line 686.
+Package natbib Warning: Citation `cacioppo1996' on page 10 undefined on input line 683.
 
-[10]
 
-LaTeX Warning: Reference `tbl-post-eligible' on page 11 undefined on input line 723.
+Overfull \hbox (90.79901pt too wide) in alignment at lines 695--720
+[] [] [] [] []
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 722--724
+
+ []
+
+[10] [11]
+
+LaTeX Warning: Reference `tbl-post-eligible' on page 12 undefined on input line 765.
 
 ! Undefined control sequence.
-l.753 Trust Perception Scale\textendashHRI
+l.795 Trust Perception Scale\textendashHRI
                                          & 62 (15) & 77 (18) & {\bfseries 0....
 
 Here is how much of LuaTeX's memory you used:
- 39396 strings out of 476081
+ 39405 strings out of 476081
  125086,1373583 words of node,token memory allocated
- 26243 words of node memory still in use:
-   56 hlist, 2 vlist, 43 rule, 263 disc, 10 local_par, 6 dir, 6 math, 494 glue, 143 kern, 38 penalty, 30 unset, 21 margin_kern, 2334 glyph, 4 align_record, 174 attribute, 89 glue_spec, 174 attribute_list, 12 temp, 1 align_stack, 6 write, 3 pdf_dest, 3 pdf_colorstack nodes
-   avail lists: 1:2,2:19,3:120,4:63,5:311,6:32,7:5460,8:2,9:178,10:21,11:573
- 60988 multiletter control sequences out of 65536+600000
- 61 fonts using 17157247 bytes
+ 27050 words of node memory still in use:
+   57 hlist, 2 vlist, 43 rule, 272 disc, 10 local_par, 6 dir, 6 math, 506 glue, 149 kern, 38 penalty, 30 unset, 22 margin_kern, 2417 glyph, 4 align_record, 174 attribute, 89 glue_spec, 174 attribute_list, 12 temp, 1 align_stack, 6 write, 3 pdf_dest, 3 pdf_colorstack nodes
+   avail lists: 1:2,2:624,3:120,4:62,5:303,6:32,7:6400,8:2,9:485,10:21,11:616
+ 60995 multiletter control sequences out of 65536+600000
+ 61 fonts using 17157311 bytes
  98i,13n,114p,1007b,1088s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!

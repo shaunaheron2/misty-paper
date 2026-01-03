@@ -318,18 +318,17 @@ deteriorates---under realistic autonomous conditions is therefore
 critical for the design of robots intended for real-world collaborative
 use.
 
-One proposed mechanism for supporting trust in HRI is
-\textbf{responsiveness}: the extent to which a robot adapts its
-behaviour based on user state and interaction context
-\citep{shayganfar2019, fartook2025}. Responsive robots may adjust their
-dialogue, timing, or support strategies in response to inferred
-affective cues such as confusion, frustration, or disengagement. Prior
-studies suggest that such adaptive behaviour can enhance perceived
-social intelligence and trustworthiness, particularly in dialogue-driven
-tasks \citep{birnbaum2016}. However, most evidence for these effects
-comes from simulated or semi-autonomous systems, leaving open questions
-about how responsiveness operates when implemented in fully autonomous,
-in-person interactions.
+One proposed mechanism for supporting trust in HRI is responsiveness:
+the extent to which a robot adapts its behaviour based on user state and
+interaction context \citep{shayganfar2019, fartook2025}. Responsive
+robots may adjust their dialogue, timing, or support strategies in
+response to inferred affective cues such as confusion, frustration, or
+disengagement. Prior studies suggest that such adaptive behaviour can
+enhance perceived social intelligence and trustworthiness, particularly
+in dialogue-driven tasks \citep{birnbaum2016}. However, most evidence
+for these effects comes from simulated or semi-autonomous systems,
+leaving open questions about how responsiveness operates when
+implemented in fully autonomous, in-person interactions.
 
 From an engineering perspective, responsiveness represents an
 interaction policy rather than a superficial social cue. Proactive,
@@ -348,11 +347,11 @@ versions of the same robot platform during a dialogue-driven puzzle task
 requiring shared problem solving. In both conditions, all interaction
 management---including speech recognition, dialogue state tracking, task
 progression, and response generation---was handled autonomously by the
-robot without human intervention. In the \textbf{responsive} condition,
-the robot employed a proactive interaction policy, adapting its
-assistance based on conversational cues and inferred user affect. In the
-\textbf{neutral} condition, the robot followed a reactive policy,
-providing assistance only when explicitly requested.
+robot without human intervention. In the responsive condition, the robot
+employed a proactive interaction policy, adapting its assistance based
+on conversational cues and inferred user affect. In the neutral
+condition, the robot followed a reactive policy, providing assistance
+only when explicitly requested.
 
 This study was conducted as a pilot with three primary objectives: (1)
 to evaluate the feasibility of deploying an autonomous spoken-language
@@ -408,9 +407,8 @@ This study employed a between-subjects experimental design to examine
 how robot interaction policy influences trust and collaboration during
 fully autonomous, in-person human--robot interaction. The sole
 experimental factor was the robot's interaction policy, with
-participants randomly assigned to interact with either a
-\textbf{responsive} or \textbf{neutral} version of the same robot
-system.
+participants randomly assigned to interact with either a responsive or
+neutral version of the same robot system.
 
 Participants interacted with a Misty-II social robot in a shared
 physical workspace that included a participant-facing computer interface
@@ -634,9 +632,9 @@ All procedures were approved by the Laurentian University Research
 Ethics Board (REB \#6021966).
 
 Although English fluency was an eligibility requirement, in-person
-observation of variability in actual english language ability was noted
-for each session. Later post-hoc review of interaction transcripts and
-system logs revealed that a subset of sessions exhibited severe and
+observation of variability in actual english language abilities were
+noted for each session. Later post-hoc review of interaction transcripts
+and system logs revealed that a subset of sessions exhibited severe and
 sustained communication failure. In these sessions, automatic speech
 recognition (ASR) output was largely unintelligible or fragmented,
 preventing the robot from extracting sufficient linguistic content to
@@ -650,24 +648,23 @@ manipulation inoperative.
 
 Because the study relied fundamentally on spoken-language collaboration,
 sessions exhibiting persistent communication failure were classified as
-\textbf{protocol non-adherence} and excluded from task-level analyses
-(\emph{n} = 6). Exclusion decisions were based solely on communication
-viability and interaction mechanics, not on task outcomes or trust
-measures.
+protocol non-adherence and excluded from task-level analyses (\emph{n} =
+6). Exclusion decisions were based solely on communication viability and
+interaction mechanics, not on task outcomes or trust measures.
 
 To ensure transparency and to evaluate the impact of communication-based
 exclusions, analyses were conducted in three stages. First, the
-\textbf{eligible-sample analysis} (excluding non-viable sessions) was
-treated as the primary analysis because it reflects interactions in
-which the spoken-language protocol---and therefore the experimental
-manipulation---operated as intended. Second, a \textbf{full-sample
-analysis} including all participants was conducted as a sensitivity test
-to evaluate robustness to communication failures and protocol
-deviations. Third, a \textbf{mechanism-focused analysis} compared
-excluded and included sessions on interaction-process metrics (e.g., ASR
-failure rates, dialogue turn completion, task abandonment) to quantify
-how severe communication breakdown alters the interaction dynamics and
-renders the manipulation inoperative.
+eligible-sample analysis (excluding non-viable sessions) was treated as
+the primary analysis because it reflects interactions in which the
+spoken-language protocol---and therefore the experimental
+manipulation---operated as intended. Second, a full-sample analysis
+including all participants was conducted as a sensitivity test to
+evaluate robustness to communication failures and protocol deviations.
+Third, a mechanism-focused analysis compared excluded and included
+sessions on interaction-process metrics (e.g., ASR failure rates,
+dialogue turn completion, task abandonment) to quantify how severe
+communication breakdown alters the interaction dynamics and renders the
+manipulation inoperative.
 
 It is important to note that while full-sample analyses are informative
 as robustness checks, trust measures obtained from sessions with
@@ -683,7 +680,52 @@ Across analyses, participants in the responsive and control conditions
 were comparable with respect to demographic characteristics, prior
 experience with robots, and baseline attitudes toward robots, including
 Negative Attitudes Toward Robots (NARS) and Need for Cognition scores
-\citep{nomura2006, cacioppo1984, cacioppo1996}.
+(see Table~\ref{tbl-pre}) \citep{cacioppo1984, cacioppo1996}. These
+findings were consistent across both eligible and full samples,
+indicating that random assignment successfully balanced individual
+differences across groups.
+
+\begin{table}
+
+\caption{\label{tbl-pre}}
+
+\centering{
+
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Gender} & 27 &  &  & 0.84 \\ 
+    Woman &  & 6 / 13 (46\%) & 7 / 14 (50\%) &  \\ 
+    Man &  & 7 / 13 (54\%) & 7 / 14 (50\%) &  \\ 
+{\bfseries Age Group} & 27 &  &  & 0.35 \\ 
+    18-24 &  & 5 / 13 (38\%) & 7 / 14 (50\%) &  \\ 
+    25-34 &  & 4 / 13 (31\%) & 2 / 14 (14\%) &  \\ 
+    34-44 &  & 1 / 13 (7.7\%) & 4 / 14 (29\%) &  \\ 
+    45+ &  & 3 / 13 (23\%) & 1 / 14 (7.1\%) &  \\ 
+{\bfseries Program} & 25 &  &  & >0.99 \\ 
+    Psychology &  & 1 / 13 (7.7\%) & 1 / 12 (8.3\%) &  \\ 
+    Engineering &  & 2 / 13 (15\%) & 1 / 12 (8.3\%) &  \\ 
+    Computer Science &  & 7 / 13 (54\%) & 6 / 12 (50\%) &  \\ 
+    Earth Sciences &  & 0 / 13 (0\%) & 1 / 12 (8.3\%) &  \\ 
+    Other &  & 3 / 13 (23\%) & 3 / 12 (25\%) &  \\ 
+{\bfseries Experience w/Robots} & 29 & 7 / 13 (54\%) & 4 / 16 (25\%) & 0.14 \\ 
+{\bfseries Native English Speaker} & 29 &  &  & 0.53 \\ 
+    Native English &  & 5 / 13 (38\%) & 8 / 16 (50\%) &  \\ 
+    Non-Native English &  & 8 / 13 (62\%) & 8 / 16 (50\%) &  \\ 
+{\bfseries NARS Overall} & 29 & 38 (8) & 38 (7) & 0.79 \\ 
+{\bfseries Need for Cognition} & 29 & 3.62 (0.78) & 3.74 (0.74) & 0.55 \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}n / N (\%); Mean (SD)\\
+\textsuperscript{\textit{2}}Pearson's Chi-squared test; Fisher's exact test; Wilcoxon rank sum test\\
+\end{minipage}
+
+}
+
+\end{table}%
 
 \section{Results}\label{results}
 
@@ -810,6 +852,22 @@ For this outcome, inclusion of random intercepts for individual trust
 items significantly improved model fit, indicating meaningful item-level
 variability beyond session-level differences.
 
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/fig-post-eligible2-1.pdf}}
+
+}
+
+\caption{\label{fig-post-eligible2}Distribution of Trust in Industrial
+Human--Robot Collaboration scores by interaction policy. Points
+represent individual observations; violins depict score distributions.
+Red points indicate group means with 95\% confidence intervals.
+Statistical comparisons are reported in the Results section.}
+
+\end{figure}%
+
 \subsubsection{Trust Perception
 Scale--HRI}\label{trust-perception-scalehri}
 
@@ -837,27 +895,6 @@ item-level variability, the Trust Perception Scale--HRI nevertheless
 captured meaningful between-condition differences at the aggregate
 level.
 
-Together, these models indicate that robot responsiveness had a
-consistent positive effect on post-interaction trust, with effect
-magnitude and measurement sensitivity varying by trust dimension and
-scale format.
-
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/fig-post-eligible2-1.pdf}}
-
-}
-
-\caption{\label{fig-post-eligible2}Distribution of Trust in Industrial
-Human--Robot Collaboration scores by interaction policy. Points
-represent individual observations; violins depict score distributions.
-Red points indicate group means with 95\% confidence intervals.
-Statistical comparisons are reported in the Results section.}
-
-\end{figure}%
-
 \begin{figure}
 
 \centering{
@@ -866,13 +903,18 @@ Statistical comparisons are reported in the Results section.}
 
 }
 
-\caption{\label{fig-post-eligible}Distribution of Trust Percention in
-HRI scores by interaction policy. Points represent individual
-observations; violins depict score distributions. Red points indicate
-group means with 95\% confidence intervals. Statistical comparisons are
-reported in the Results section.}
+\caption{\label{fig-post-eligible}Distribution of Trust Perception in
+HRI by interaction policy. Points represent individual observations;
+violins depict score distributions. Red points indicate group means with
+95\% confidence intervals. Statistical comparisons are reported in the
+Results section.}
 
 \end{figure}%
+
+Together, these models indicate that robot responsiveness had a
+consistent positive effect on post-interaction trust, with effect
+magnitude and measurement sensitivity varying by trust dimension and
+scale format.
 
 \paragraph{Bayesian analysis}\label{bayesian-analysis}
 
@@ -997,6 +1039,8 @@ task-level measures except suspect accuracy (robot dependendant task),
 indicating that increased trust was only attributable to improved task
 success when interaction was necessary to complete accurately.
 
+ADD TABLE
+
 Despite similar task accuracy, interactions in the responsive condition
 were characterized by longer durations, slower response times, and a
 higher number of AI-detected engaged responses. These findings suggest
@@ -1045,15 +1089,9 @@ differences contributed to variability in trust responses.
 
 \end{figure}%
 
-\subsubsection{Model robustness and predictive
-checks}\label{model-robustness-and-predictive-checks}
+\begin{tcolorbox}[enhanced jigsaw, titlerule=0mm, opacityback=0, coltitle=black, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, colback=white, leftrule=.75mm, left=2mm, bottomtitle=1mm, toprule=.15mm, breakable, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, toptitle=1mm, opacitybacktitle=0.6, arc=.35mm]
 
-Sensitivity analyses using alternative prior specifications yielded
-substantively similar estimates, and leave-one-out cross-validation
-indicated comparable predictive performance between models with and
-without the group effect.
-
-\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, opacityback=0, colback=white, breakable, arc=.35mm, colframe=quarto-callout-important-color-frame, left=2mm, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, titlerule=0mm, bottomtitle=1mm, coltitle=black, opacitybacktitle=0.6, rightrule=.15mm, leftrule=.75mm, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TO DO:}]
+CITATIONS
 
 \begin{itemize}
 \tightlist
@@ -1075,7 +1113,7 @@ without the group effect.
 
 \end{tcolorbox}
 
-\begin{tcolorbox}[enhanced jigsaw, toptitle=1mm, opacityback=0, colback=white, breakable, arc=.35mm, colframe=quarto-callout-important-color-frame, left=2mm, colbacktitle=quarto-callout-important-color!10!white, toprule=.15mm, titlerule=0mm, bottomtitle=1mm, coltitle=black, opacitybacktitle=0.6, rightrule=.15mm, leftrule=.75mm, bottomrule=.15mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO2}]
+\begin{tcolorbox}[enhanced jigsaw, titlerule=0mm, opacityback=0, coltitle=black, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, colback=white, leftrule=.75mm, left=2mm, bottomtitle=1mm, toprule=.15mm, breakable, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{TODO2}, colbacktitle=quarto-callout-important-color!10!white, rightrule=.15mm, toptitle=1mm, opacitybacktitle=0.6, arc=.35mm]
 
 Manually score each dialogue series.
 
@@ -1124,12 +1162,11 @@ in linguistically diverse, real-world environments.
 
 Because the study relied fundamentally on spoken-language collaboration,
 sessions exhibiting persistent communication failure were classified as
-\textbf{protocol non-adherence} and excluded from task-level analyses
-(\emph{n} = 6). While the experimenter documented all cases where
-language might pose an issue (as observed when meeting each
-participant), exclusion decisions were based solely on actual
-communication viability and interaction mechanics, not on task outcomes
-or trust measures.
+protocol non-adherence and excluded from task-level analyses (\emph{n} =
+6). While the experimenter documented all cases where language might
+pose an issue (as observed when meeting each participant), exclusion
+decisions were based solely on actual communication viability and
+interaction mechanics, not on task outcomes or trust measures.
 
 The second task was intentionally designed to be sufficiently
 challenging that completing it within the allotted time was difficult

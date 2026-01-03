@@ -337,3 +337,45 @@ grouped_ggbetweenstats(
 
 # Although 95% credible intervals overlapped zero, the posterior probability that the responsive condition increased trust was 95% for both measures, suggesting a robust directional effect despite substantial individual variability. Sensitivity analyses using substantially wider priors yielded nearly identical posterior estimates for the group effect, indicating that results were not driven by prior specification. In addition to directional effects, the posterior probability that the responsive condition increased trust by at least five points was 70%, suggesting a reasonable likelihood of a practically meaningful effect size. In a larger sample, these effects would likely reach conventional levels of statistical significance.
 ```
+
+As automation expands across safety-critical domains such as manufacturing, mining and healthcare, robotic systems are increasingly expected to operate alongside humans [@fu2021; @ciuffreda2025; @diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on safety and technical performance but on whether human users are willing to rely on, communicate with, and coordinate their actions around systems driven by Artificial Intelligence (AI) [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, whereas excessive trust risks overreliance, particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
+
+A substantial body of human–robot interaction (HRI) research has examined how robot behaviour shapes user trust, perceived reliability, and cooperation in a range of industrial and social environments [@shayganfar2019; @fartook2025]. Prior work has demonstrated that trust influences both subjective evaluations of robotic partners and objective outcomes such as compliance, task performance, and collaborative efficiency [@wischnewski2023; @devisser2020]. However, much of this literature relies on interactions conducted under highly controlled conditions, including scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages the robot’s behaviour. While these approaches are valuable for isolating specific design factors, they often obscure the interaction breakdowns and system imperfections that may impact trust and characterize real-world autonomous robots [@campagna2025].
+
+In deployed systems, limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical HRI research [@campagna2025]. Understanding how trust emerges—and sometimes deteriorates—under realistic autonomous conditions is therefore critical for the design of robots intended for real-world collaborative use.
+
+One proposed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context [@shayganfar2019; @fartook2025]. Responsive robots may adjust their dialogue, timing, or support strategies in response to inferred affective cues such as confusion, frustration, or disengagement. Prior studies suggest that such adaptive behaviour can enhance perceived social intelligence and trustworthiness, particularly in dialogue-driven tasks [@birnbaum2016]. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions.
+
+From an engineering perspective, responsiveness represents an interaction policy rather than a superficial social cue. Proactive, state-contingent assistance differs fundamentally from reactive, request-based behaviour, particularly when implemented under strict autonomy constraints. Designing and evaluating such policies requires systems capable of managing spoken-language dialogue, sensor and model outputs, maintaining interaction state, and coordinating verbal and nonverbal responses in real time—while remaining robust to noise, latency, and sensing errors.
+
+The present work addresses these gaps through a pilot study examining trust and collaboration during in-person interaction with a fully autonomous social robot. Participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving. In both conditions, all interaction management—including speech recognition, dialogue state tracking, task progression, and response generation—was handled and logged autonomously by the robot without human intervention. In the responsive condition, the robot employed a proactive interaction policy, adapting its assistance based on conversational cues and inferred user affect. In the neutral condition, the robot followed a reactive policy, providing general guidance and assistance only when explicitly requested.
+
+This study was conducted as a pilot with three primary objectives: (1) to evaluate the feasibility of deploying an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether differences in interaction policy influence trust, perceived social intelligence, and collaborative experience under realistic autonomous conditions; and (3) to examine how individual differences in baseline attitudes toward robots and cognitive engagement may moderate responses and perceptions of robotic behaviour. Rather than optimizing for flawless interaction, the system was intentionally designed to reflect the capabilities and limitations of contemporary social robots, allowing interaction breakdowns to surface naturally.
+
+By combining post-interaction trust measures with task-level and behavioural observations, this pilot study aims to contribute empirical evidence on how trust in human–robot collaboration emerges in fully autonomous settings. The findings are intended to inform the design of a larger, subsequent study by identifying technical, interactional, and methodological challenges—including speech recognition limitations, language barriers, and interaction design trade-offs—that must be addressed when evaluating affect-responsive robots in real-world contexts.
+
+The remainder of this paper is structured as follows. Section 2 reviews related work on spoken-language interaction, trust, and responsiveness in HRI. Section 3 describes the autonomous system architecture, experimental design, and measurement approach. Section 4 presents results from the pilot study, followed by a discussion of implications, limitations, and directions for future work.
+
+## Background
+
+### Definition of Trust and Trust Types
+
+### Factors Influencing Trust
+
+::: callout-note
+## My notes for later inclusion
+
+Need to explore trust and how it is defined in HRI literature more thoroughly. In robotics, a common definition of trust is a cognitive evaluation that arises during interaction based on perceptions of the robot's reliability, competence, and predictability [@lee2004; @hancock2011]. Trust is often conceptualized as multidimensional, encompassing affective, cognitive, and behavioural components [@muir1994; @devisser2020].
+
+Importantly, for trust to have relevance, the interaction must involve a certain level of risk and vulnerability on the part of the human user otherwise trust is not meaningful [@muir1994; @hancock2011].
+
+Since trust has emerged as a subjective or cognitive assessment of an evolving interaction, questionnaire have been used as primary measurement tool. Numerous measurement tools have been developed with an emphasis on assessing trust in HRI (Trust Perception Scale-HRI and Trust in
+
+Some questions I can explore in the data:
+
+-   did users who received innacurate info from the robot have lower trust scores?
+
+-   did trust scores match behaviour?
+
+-   
+:::
