@@ -8,7 +8,7 @@
 
 <meta name="author" content="M.C. Lau">
 <meta name="author" content="Shauna Heron">
-<meta name="dcterms.date" content="2026-01-02">
+<meta name="dcterms.date" content="2026-01-03">
 <meta name="keywords" content="human-robot interaction, HRI, socially assistive robotics, cobots, autonomous robot systems, spoken language interaction, trust in automation, trust in human-robot interaction, affect-adaptive systems">
 
 <title>Responsive Robotics to Increase Trust in Autonomous Human–Robot Interaction</title>
@@ -102,7 +102,7 @@ div.csl-indent {
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="misty-paper.pdf"><i class="bi bi-file-pdf"></i>PDF (elsevier)</a></li></ul></div></div>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="misty-paper.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li><li><a href="misty-paper.pdf"><i class="bi bi-file-pdf"></i>PDF (elsevier)</a></li></ul></div></div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -140,7 +140,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 2, 2026</p>
+      <p class="date">January 3, 2026</p>
     </div>
   </div>
   
@@ -166,10 +166,10 @@ div.csl-indent {
 
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>As automation expands across safety-critical domains such as manufacturing, healthcare, and mining, robotic systems are increasingly expected to operate alongside humans rather than in isolation <span class="citation" data-cites="fu2021 racette2024">(<a href="#ref-fu2021" role="doc-biblioref">Fu et al. 2021</a>; <a href="#ref-racette2024" role="doc-biblioref">Racette 2024</a>)</span>. In these collaborative settings, successful deployment depends not only on technical performance but on whether human users are willing to rely on, communicate with, and coordinate their actions around autonomous systems <span class="citation" data-cites="campagna2025 emaminejad2022">(<a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>; <a href="#ref-emaminejad2022" role="doc-biblioref">Emaminejad and Akhavian 2022</a>)</span>. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC). Insufficient trust can lead to disuse or rejection of automation, whereas excessive trust risks overreliance and automation bias, particularly in environments characterized by uncertainty or incomplete information <span class="citation" data-cites="devisser2020">(<a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>.</p>
-<p>A substantial body of human–robot interaction (HRI) research has examined how robot behaviour shapes user trust, perceived reliability, and cooperation <span class="citation" data-cites="shayganfar2019 fartook2025">(<a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>; <a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>. Prior work has demonstrated that trust influences both subjective evaluations of robotic partners and objective outcomes such as compliance, task performance, and collaborative efficiency. However, much of this literature relies on interactions conducted under highly controlled conditions, including scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages aspects of the robot’s behaviour. While these approaches are valuable for isolating specific design factors, they often obscure the interaction breakdowns and system imperfections that characterize real-world autonomous robots.</p>
+<p>As automation expands across safety-critical domains such as manufacturing, healthcare, and mining, robotic systems are increasingly expected to operate alongside humans <span class="citation" data-cites="fu2021 diab2025"><a href="#ref-fu2021" role="doc-biblioref">[1]</a>, <a href="#ref-diab2025" role="doc-biblioref">[2]</a></span>. In these collaborative settings, successful deployment depends not only on safety and technical performance but on whether human users are willing to rely on, communicate with, and coordinate their actions around autonomous systems driven by Artificial Intelligence (AI) models <span class="citation" data-cites="campagna2025 emaminejad2022"><a href="#ref-campagna2025" role="doc-biblioref">[3]</a>, <a href="#ref-emaminejad2022" role="doc-biblioref">[4]</a></span>. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC). Insufficient trust can lead to disuse or rejection of automation, whereas excessive trust risks overreliance and automation bias, particularly in environments characterized by uncertainty or incomplete information <span class="citation" data-cites="devisser2020"><a href="#ref-devisser2020" role="doc-biblioref">[5]</a></span>.</p>
+<p>A substantial body of human–robot interaction (HRI) research has examined how robot behaviour shapes user trust, perceived reliability, and cooperation <span class="citation" data-cites="shayganfar2019 fartook2025"><a href="#ref-shayganfar2019" role="doc-biblioref">[6]</a>, <a href="#ref-fartook2025" role="doc-biblioref">[7]</a></span>. Prior work has demonstrated that trust influences both subjective evaluations of robotic partners and objective outcomes such as compliance, task performance, and collaborative efficiency. However, much of this literature relies on interactions conducted under highly controlled conditions, including scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages aspects of the robot’s behaviour. While these approaches are valuable for isolating specific design factors, they often obscure the interaction breakdowns and system imperfections that characterize real-world autonomous robots.</p>
 <p>In deployed systems, limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical HRI research. Understanding how trust emerges—and sometimes deteriorates—under realistic autonomous conditions is therefore critical for the design of robots intended for real-world collaborative use.</p>
-<p>One proposed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context <span class="citation" data-cites="shayganfar2019 fartook2025">(<a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>; <a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>. Responsive robots may adjust their dialogue, timing, or support strategies in response to inferred affective cues such as confusion, frustration, or disengagement. Prior studies suggest that such adaptive behaviour can enhance perceived social intelligence and trustworthiness, particularly in dialogue-driven tasks <span class="citation" data-cites="birnbaum2016">(<a href="#ref-birnbaum2016" role="doc-biblioref"><strong>birnbaum2016?</strong></a>)</span>. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions.</p>
+<p>One proposed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context <span class="citation" data-cites="shayganfar2019 fartook2025"><a href="#ref-shayganfar2019" role="doc-biblioref">[6]</a>, <a href="#ref-fartook2025" role="doc-biblioref">[7]</a></span>. Responsive robots may adjust their dialogue, timing, or support strategies in response to inferred affective cues such as confusion, frustration, or disengagement. Prior studies suggest that such adaptive behaviour can enhance perceived social intelligence and trustworthiness, particularly in dialogue-driven tasks <span class="citation" data-cites="birnbaum2016"><a href="#ref-birnbaum2016" role="doc-biblioref"><strong>birnbaum2016?</strong></a></span>. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions.</p>
 <p>From an engineering perspective, responsiveness represents an interaction policy rather than a superficial social cue. Proactive, state-contingent assistance differs fundamentally from reactive, request-based behaviour, particularly when implemented under strict autonomy constraints. Designing and evaluating such policies requires systems capable of managing spoken-language dialogue, maintaining interaction state, and coordinating verbal and nonverbal responses in real time—while remaining robust to noise, latency, and sensing errors.</p>
 <p>The present work addresses these gaps through a pilot study examining trust and collaboration during in-person interaction with a fully autonomous social robot. Participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving. In both conditions, all interaction management—including speech recognition, dialogue state tracking, task progression, and response generation—was handled autonomously by the robot without human intervention. In the responsive condition, the robot employed a proactive interaction policy, adapting its assistance based on conversational cues and inferred user affect. In the neutral condition, the robot followed a reactive policy, providing assistance only when explicitly requested.</p>
 <p>This study was conducted as a pilot with three primary objectives: (1) to evaluate the feasibility of deploying an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether differences in interaction policy influence trust, perceived social intelligence, and collaborative experience under realistic autonomous conditions; and (3) to examine how individual differences in baseline attitudes toward robots and cognitive engagement may moderate responses to adaptive robotic behaviour. Rather than optimizing for flawless interaction, the system was intentionally designed to reflect the capabilities and limitations of contemporary social robots, allowing interaction breakdowns to surface naturally.</p>
@@ -182,7 +182,7 @@ div.csl-indent {
 <section id="experimental-design-and-conditions" class="level2">
 <h2 class="anchored" data-anchor-id="experimental-design-and-conditions">Experimental Design and Conditions</h2>
 <p>This study employed a between-subjects experimental design to examine how robot interaction policy influences trust and collaboration during fully autonomous, in-person human–robot interaction. The sole experimental factor was the robot’s interaction policy, with participants randomly assigned to interact with either a responsive or neutral version of the same robot system.</p>
-<p>Participants interacted with a Misty-II social robot in a shared physical workspace that included a participant-facing computer interface <span class="citation" data-cites="mistya">(<a href="#ref-mistya" role="doc-biblioref"><strong>mistya?</strong></a>)</span>. The interface was used to display task materials, collect participant inputs, and manage task progression. Importantly, the interface did not function as a control mechanism for the robot. Instead, the robot autonomously monitored task state and participant inputs via the interface and managed dialogue and behaviour accordingly, without real-time human intervention.</p>
+<p>Participants interacted with a Misty-II social robot in a shared physical workspace that included a participant-facing computer interface <span class="citation" data-cites="mistya"><a href="#ref-mistya" role="doc-biblioref"><strong>mistya?</strong></a></span>. The interface was used to display task materials, collect participant inputs, and manage task progression. Importantly, the interface did not function as a control mechanism for the robot. Instead, the robot autonomously monitored task state and participant inputs via the interface and managed dialogue and behaviour accordingly, without real-time human intervention.</p>
 <p>Random assignment to condition was performed at sign-up using Qualtrics. Due to no-shows, last-minute cancellations, and technical exclusions (described below), final group sizes were <em>n</em> = 14 in the RESPONSIVE condition and <em>n</em> = 9 in the CONTROL condition.</p>
 <section id="interaction-policies" class="level3">
 <h3 class="anchored" data-anchor-id="interaction-policies">Interaction Policies</h3>
@@ -252,7 +252,7 @@ Figure&nbsp;3: The task 2 interface presented multiple technical logs through a 
 </figure>
 </div>
 <p>Unlike Task 1, the robot did not have access to ground-truth information or the contents of the logs. The robot’s assistance was limited to general reasoning support derived from its language model, such as explaining how to interpret log formats, suggesting problem-solving strategies, or prompting participants to reflect on inconsistencies.</p>
-<p>Participants could complete this task independently or solicit assistance from the robot at their discretion <span class="citation" data-cites="lin2022">(<a href="#ref-lin2022" role="doc-biblioref">Lin, Ng, and Sebo 2022</a>)</span>. This design allowed collaboration to emerge voluntarily rather than being enforced by task structure, positioning the robot as an advisory partner rather than an authoritative source.</p>
+<p>Participants could complete this task independently or solicit assistance from the robot at their discretion <span class="citation" data-cites="lin2022"><a href="#ref-lin2022" role="doc-biblioref">[8]</a></span>. This design allowed collaboration to emerge voluntarily rather than being enforced by task structure, positioning the robot as an advisory partner rather than an authoritative source.</p>
 </section>
 </section>
 <section id="study-protocol" class="level3">
@@ -267,7 +267,7 @@ Figure&nbsp;3: The task 2 interface presented multiple technical logs through a 
 <section id="self-report-measures" class="level4">
 <h4 class="anchored" data-anchor-id="self-report-measures">Self-Report Measures</h4>
 <p>Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s). These measures were used to capture individual differences that may moderate responses to robot interaction.</p>
-<p>Post-interaction trust was assessed using two validated instruments: the Trust Perception Scale–HRI and the Trust in Industrial Human–Robot Collaboration scale <span class="citation" data-cites="bartneck2009 charalambous">(<a href="#ref-bartneck2009" role="doc-biblioref"><strong>bartneck2009?</strong></a>; <a href="#ref-charalambous" role="doc-biblioref"><strong>charalambous?</strong></a>)</span>. Together, these measures capture multiple dimensions of trust, including perceived reliability, competence, and collaborative suitability.</p>
+<p>Post-interaction trust was assessed using two validated instruments: the Trust Perception Scale–HRI and the Trust in Industrial Human–Robot Collaboration scale <span class="citation" data-cites="bartneck2009 charalambous"><a href="#ref-bartneck2009" role="doc-biblioref"><strong>bartneck2009?</strong></a>, <a href="#ref-charalambous" role="doc-biblioref"><strong>charalambous?</strong></a></span>. Together, these measures capture multiple dimensions of trust, including perceived reliability, competence, and collaborative suitability.</p>
 </section>
 <section id="objective-and-behavioural-measures" class="level4">
 <h4 class="anchored" data-anchor-id="objective-and-behavioural-measures">Objective and behavioural Measures</h4>
@@ -281,7 +281,7 @@ Figure&nbsp;3: The task 2 interface presented multiple technical logs through a 
 <p>Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (<em>n</em> = 6). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.</p>
 <p>To ensure transparency and to evaluate the impact of communication-based exclusions, analyses were conducted in three stages. First, the eligible-sample analysis (excluding non-viable sessions) was treated as the primary analysis because it reflects interactions in which the spoken-language protocol—and therefore the experimental manipulation—operated as intended. Second, a full-sample analysis including all participants was conducted as a sensitivity test to evaluate robustness to communication failures and protocol deviations. Third, a mechanism-focused analysis compared excluded and included sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to quantify how severe communication breakdown alters the interaction dynamics and renders the manipulation inoperative.</p>
 <p>It is important to note that while full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust in the intended sense. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, meaning that participants could not meaningfully evaluate reliability, competence, or collaborative intent. Full-sample analyses are therefore treated as sensitivity analyses reflecting real-world failure conditions, rather than as alternative estimates of trust under functional interaction.</p>
-<p>Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see <a href="#tbl-pre" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="cacioppo1984 cacioppo1996">(<a href="#ref-cacioppo1984" role="doc-biblioref"><strong>cacioppo1984?</strong></a>; <a href="#ref-cacioppo1996" role="doc-biblioref"><strong>cacioppo1996?</strong></a>)</span>. These findings were consistent across both eligible and full samples, indicating that random assignment successfully balanced individual differences across groups.</p>
+<p>Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see <a href="#tbl-pre" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="cacioppo1984 cacioppo1996"><a href="#ref-cacioppo1984" role="doc-biblioref"><strong>cacioppo1984?</strong></a>, <a href="#ref-cacioppo1996" role="doc-biblioref"><strong>cacioppo1996?</strong></a></span>. These findings were consistent across both eligible and full samples, indicating that random assignment successfully balanced individual differences across groups.</p>
 <div class="cell">
 <div id="tbl-pre" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -290,23 +290,23 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
 </figcaption>
 <div aria-describedby="tbl-pre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="exndnthdaq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#exndnthdaq table {
+<div id="nmwownjjmp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nmwownjjmp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#exndnthdaq thead, #exndnthdaq tbody, #exndnthdaq tfoot, #exndnthdaq tr, #exndnthdaq td, #exndnthdaq th {
+#nmwownjjmp thead, #nmwownjjmp tbody, #nmwownjjmp tfoot, #nmwownjjmp tr, #nmwownjjmp td, #nmwownjjmp th {
   border-style: none;
 }
 
-#exndnthdaq p {
+#nmwownjjmp p {
   margin: 0;
   padding: 0;
 }
 
-#exndnthdaq .gt_table {
+#nmwownjjmp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -332,12 +332,12 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-left-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_caption {
+#nmwownjjmp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#exndnthdaq .gt_title {
+#nmwownjjmp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -349,7 +349,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-width: 0;
 }
 
-#exndnthdaq .gt_subtitle {
+#nmwownjjmp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -361,7 +361,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-top-width: 0;
 }
 
-#exndnthdaq .gt_heading {
+#nmwownjjmp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -373,13 +373,13 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_bottom_border {
+#nmwownjjmp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_col_headings {
+#nmwownjjmp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -394,7 +394,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_col_heading {
+#nmwownjjmp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -414,7 +414,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   overflow-x: hidden;
 }
 
-#exndnthdaq .gt_column_spanner_outer {
+#nmwownjjmp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -426,15 +426,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 4px;
 }
 
-#exndnthdaq .gt_column_spanner_outer:first-child {
+#nmwownjjmp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#exndnthdaq .gt_column_spanner_outer:last-child {
+#nmwownjjmp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#exndnthdaq .gt_column_spanner {
+#nmwownjjmp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -446,11 +446,11 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   width: 100%;
 }
 
-#exndnthdaq .gt_spanner_row {
+#nmwownjjmp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#exndnthdaq .gt_group_heading {
+#nmwownjjmp .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -476,7 +476,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   text-align: left;
 }
 
-#exndnthdaq .gt_empty_group_heading {
+#nmwownjjmp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -491,15 +491,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   vertical-align: middle;
 }
 
-#exndnthdaq .gt_from_md > :first-child {
+#nmwownjjmp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#exndnthdaq .gt_from_md > :last-child {
+#nmwownjjmp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#exndnthdaq .gt_row {
+#nmwownjjmp .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -518,7 +518,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   overflow-x: hidden;
 }
 
-#exndnthdaq .gt_stub {
+#nmwownjjmp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -531,7 +531,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#exndnthdaq .gt_stub_row_group {
+#nmwownjjmp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -545,15 +545,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   vertical-align: top;
 }
 
-#exndnthdaq .gt_row_group_first td {
+#nmwownjjmp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#exndnthdaq .gt_row_group_first th {
+#nmwownjjmp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#exndnthdaq .gt_summary_row {
+#nmwownjjmp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -563,16 +563,16 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#exndnthdaq .gt_first_summary_row {
+#nmwownjjmp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_first_summary_row.thick {
+#nmwownjjmp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#exndnthdaq .gt_last_summary_row {
+#nmwownjjmp .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -582,7 +582,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_grand_summary_row {
+#nmwownjjmp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -592,7 +592,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#exndnthdaq .gt_first_grand_summary_row {
+#nmwownjjmp .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -602,7 +602,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-top-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_last_grand_summary_row_top {
+#nmwownjjmp .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -612,11 +612,11 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_striped {
+#nmwownjjmp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#exndnthdaq .gt_table_body {
+#nmwownjjmp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -625,7 +625,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_footnotes {
+#nmwownjjmp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -639,7 +639,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_footnote {
+#nmwownjjmp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -648,7 +648,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#exndnthdaq .gt_sourcenotes {
+#nmwownjjmp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -662,7 +662,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#exndnthdaq .gt_sourcenote {
+#nmwownjjmp .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -670,72 +670,72 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#exndnthdaq .gt_left {
+#nmwownjjmp .gt_left {
   text-align: left;
 }
 
-#exndnthdaq .gt_center {
+#nmwownjjmp .gt_center {
   text-align: center;
 }
 
-#exndnthdaq .gt_right {
+#nmwownjjmp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#exndnthdaq .gt_font_normal {
+#nmwownjjmp .gt_font_normal {
   font-weight: normal;
 }
 
-#exndnthdaq .gt_font_bold {
+#nmwownjjmp .gt_font_bold {
   font-weight: bold;
 }
 
-#exndnthdaq .gt_font_italic {
+#nmwownjjmp .gt_font_italic {
   font-style: italic;
 }
 
-#exndnthdaq .gt_super {
+#nmwownjjmp .gt_super {
   font-size: 65%;
 }
 
-#exndnthdaq .gt_footnote_marks {
+#nmwownjjmp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#exndnthdaq .gt_asterisk {
+#nmwownjjmp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#exndnthdaq .gt_indent_1 {
+#nmwownjjmp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#exndnthdaq .gt_indent_2 {
+#nmwownjjmp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#exndnthdaq .gt_indent_3 {
+#nmwownjjmp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#exndnthdaq .gt_indent_4 {
+#nmwownjjmp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#exndnthdaq .gt_indent_5 {
+#nmwownjjmp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#exndnthdaq .katex-display {
+#nmwownjjmp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#exndnthdaq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nmwownjjmp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -976,23 +976,23 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
 </figcaption>
 <div aria-describedby="tbl-post-eligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="acgjhsrfhj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#acgjhsrfhj table {
+<div id="yzpfkshldz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yzpfkshldz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#acgjhsrfhj thead, #acgjhsrfhj tbody, #acgjhsrfhj tfoot, #acgjhsrfhj tr, #acgjhsrfhj td, #acgjhsrfhj th {
+#yzpfkshldz thead, #yzpfkshldz tbody, #yzpfkshldz tfoot, #yzpfkshldz tr, #yzpfkshldz td, #yzpfkshldz th {
   border-style: none;
 }
 
-#acgjhsrfhj p {
+#yzpfkshldz p {
   margin: 0;
   padding: 0;
 }
 
-#acgjhsrfhj .gt_table {
+#yzpfkshldz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1018,12 +1018,12 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-left-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_caption {
+#yzpfkshldz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#acgjhsrfhj .gt_title {
+#yzpfkshldz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1035,7 +1035,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-bottom-width: 0;
 }
 
-#acgjhsrfhj .gt_subtitle {
+#yzpfkshldz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1047,7 +1047,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-top-width: 0;
 }
 
-#acgjhsrfhj .gt_heading {
+#yzpfkshldz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1059,13 +1059,13 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_bottom_border {
+#yzpfkshldz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_col_headings {
+#yzpfkshldz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1080,7 +1080,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_col_heading {
+#yzpfkshldz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1100,7 +1100,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#acgjhsrfhj .gt_column_spanner_outer {
+#yzpfkshldz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1112,15 +1112,15 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   padding-right: 4px;
 }
 
-#acgjhsrfhj .gt_column_spanner_outer:first-child {
+#yzpfkshldz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#acgjhsrfhj .gt_column_spanner_outer:last-child {
+#yzpfkshldz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#acgjhsrfhj .gt_column_spanner {
+#yzpfkshldz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1132,11 +1132,11 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   width: 100%;
 }
 
-#acgjhsrfhj .gt_spanner_row {
+#yzpfkshldz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#acgjhsrfhj .gt_group_heading {
+#yzpfkshldz .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1162,7 +1162,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   text-align: left;
 }
 
-#acgjhsrfhj .gt_empty_group_heading {
+#yzpfkshldz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1177,15 +1177,15 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   vertical-align: middle;
 }
 
-#acgjhsrfhj .gt_from_md > :first-child {
+#yzpfkshldz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#acgjhsrfhj .gt_from_md > :last-child {
+#yzpfkshldz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#acgjhsrfhj .gt_row {
+#yzpfkshldz .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1204,7 +1204,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#acgjhsrfhj .gt_stub {
+#yzpfkshldz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1217,7 +1217,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#acgjhsrfhj .gt_stub_row_group {
+#yzpfkshldz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1231,15 +1231,15 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   vertical-align: top;
 }
 
-#acgjhsrfhj .gt_row_group_first td {
+#yzpfkshldz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#acgjhsrfhj .gt_row_group_first th {
+#yzpfkshldz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#acgjhsrfhj .gt_summary_row {
+#yzpfkshldz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1249,16 +1249,16 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#acgjhsrfhj .gt_first_summary_row {
+#yzpfkshldz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_first_summary_row.thick {
+#yzpfkshldz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#acgjhsrfhj .gt_last_summary_row {
+#yzpfkshldz .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1268,7 +1268,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_grand_summary_row {
+#yzpfkshldz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1278,7 +1278,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#acgjhsrfhj .gt_first_grand_summary_row {
+#yzpfkshldz .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1288,7 +1288,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-top-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_last_grand_summary_row_top {
+#yzpfkshldz .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1298,11 +1298,11 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_striped {
+#yzpfkshldz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#acgjhsrfhj .gt_table_body {
+#yzpfkshldz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1311,7 +1311,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_footnotes {
+#yzpfkshldz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1325,7 +1325,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_footnote {
+#yzpfkshldz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1334,7 +1334,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#acgjhsrfhj .gt_sourcenotes {
+#yzpfkshldz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1348,7 +1348,7 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#acgjhsrfhj .gt_sourcenote {
+#yzpfkshldz .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1356,72 +1356,72 @@ Table&nbsp;2: Table 2. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#acgjhsrfhj .gt_left {
+#yzpfkshldz .gt_left {
   text-align: left;
 }
 
-#acgjhsrfhj .gt_center {
+#yzpfkshldz .gt_center {
   text-align: center;
 }
 
-#acgjhsrfhj .gt_right {
+#yzpfkshldz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#acgjhsrfhj .gt_font_normal {
+#yzpfkshldz .gt_font_normal {
   font-weight: normal;
 }
 
-#acgjhsrfhj .gt_font_bold {
+#yzpfkshldz .gt_font_bold {
   font-weight: bold;
 }
 
-#acgjhsrfhj .gt_font_italic {
+#yzpfkshldz .gt_font_italic {
   font-style: italic;
 }
 
-#acgjhsrfhj .gt_super {
+#yzpfkshldz .gt_super {
   font-size: 65%;
 }
 
-#acgjhsrfhj .gt_footnote_marks {
+#yzpfkshldz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#acgjhsrfhj .gt_asterisk {
+#yzpfkshldz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#acgjhsrfhj .gt_indent_1 {
+#yzpfkshldz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#acgjhsrfhj .gt_indent_2 {
+#yzpfkshldz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#acgjhsrfhj .gt_indent_3 {
+#yzpfkshldz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#acgjhsrfhj .gt_indent_4 {
+#yzpfkshldz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#acgjhsrfhj .gt_indent_5 {
+#yzpfkshldz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#acgjhsrfhj .katex-display {
+#yzpfkshldz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#acgjhsrfhj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yzpfkshldz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1616,23 +1616,23 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
 </figcaption>
 <div aria-describedby="tbl-post-fullsample-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="cbclwhwrbj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#cbclwhwrbj table {
+<div id="kfrigvytxk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kfrigvytxk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cbclwhwrbj thead, #cbclwhwrbj tbody, #cbclwhwrbj tfoot, #cbclwhwrbj tr, #cbclwhwrbj td, #cbclwhwrbj th {
+#kfrigvytxk thead, #kfrigvytxk tbody, #kfrigvytxk tfoot, #kfrigvytxk tr, #kfrigvytxk td, #kfrigvytxk th {
   border-style: none;
 }
 
-#cbclwhwrbj p {
+#kfrigvytxk p {
   margin: 0;
   padding: 0;
 }
 
-#cbclwhwrbj .gt_table {
+#kfrigvytxk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1658,12 +1658,12 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-left-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_caption {
+#kfrigvytxk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cbclwhwrbj .gt_title {
+#kfrigvytxk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1675,7 +1675,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-bottom-width: 0;
 }
 
-#cbclwhwrbj .gt_subtitle {
+#kfrigvytxk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1687,7 +1687,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-top-width: 0;
 }
 
-#cbclwhwrbj .gt_heading {
+#kfrigvytxk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1699,13 +1699,13 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_bottom_border {
+#kfrigvytxk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_col_headings {
+#kfrigvytxk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1720,7 +1720,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_col_heading {
+#kfrigvytxk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1740,7 +1740,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#cbclwhwrbj .gt_column_spanner_outer {
+#kfrigvytxk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1752,15 +1752,15 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   padding-right: 4px;
 }
 
-#cbclwhwrbj .gt_column_spanner_outer:first-child {
+#kfrigvytxk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cbclwhwrbj .gt_column_spanner_outer:last-child {
+#kfrigvytxk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cbclwhwrbj .gt_column_spanner {
+#kfrigvytxk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1772,11 +1772,11 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   width: 100%;
 }
 
-#cbclwhwrbj .gt_spanner_row {
+#kfrigvytxk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cbclwhwrbj .gt_group_heading {
+#kfrigvytxk .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1802,7 +1802,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   text-align: left;
 }
 
-#cbclwhwrbj .gt_empty_group_heading {
+#kfrigvytxk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1817,15 +1817,15 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   vertical-align: middle;
 }
 
-#cbclwhwrbj .gt_from_md > :first-child {
+#kfrigvytxk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cbclwhwrbj .gt_from_md > :last-child {
+#kfrigvytxk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cbclwhwrbj .gt_row {
+#kfrigvytxk .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1844,7 +1844,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#cbclwhwrbj .gt_stub {
+#kfrigvytxk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1857,7 +1857,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#cbclwhwrbj .gt_stub_row_group {
+#kfrigvytxk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1871,15 +1871,15 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   vertical-align: top;
 }
 
-#cbclwhwrbj .gt_row_group_first td {
+#kfrigvytxk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cbclwhwrbj .gt_row_group_first th {
+#kfrigvytxk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cbclwhwrbj .gt_summary_row {
+#kfrigvytxk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1889,16 +1889,16 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#cbclwhwrbj .gt_first_summary_row {
+#kfrigvytxk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_first_summary_row.thick {
+#kfrigvytxk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cbclwhwrbj .gt_last_summary_row {
+#kfrigvytxk .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1908,7 +1908,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_grand_summary_row {
+#kfrigvytxk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1918,7 +1918,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#cbclwhwrbj .gt_first_grand_summary_row {
+#kfrigvytxk .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1928,7 +1928,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-top-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_last_grand_summary_row_top {
+#kfrigvytxk .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1938,11 +1938,11 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_striped {
+#kfrigvytxk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cbclwhwrbj .gt_table_body {
+#kfrigvytxk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1951,7 +1951,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_footnotes {
+#kfrigvytxk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1965,7 +1965,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_footnote {
+#kfrigvytxk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1974,7 +1974,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#cbclwhwrbj .gt_sourcenotes {
+#kfrigvytxk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1988,7 +1988,7 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#cbclwhwrbj .gt_sourcenote {
+#kfrigvytxk .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1996,72 +1996,72 @@ Table&nbsp;3: Table 3. Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#cbclwhwrbj .gt_left {
+#kfrigvytxk .gt_left {
   text-align: left;
 }
 
-#cbclwhwrbj .gt_center {
+#kfrigvytxk .gt_center {
   text-align: center;
 }
 
-#cbclwhwrbj .gt_right {
+#kfrigvytxk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cbclwhwrbj .gt_font_normal {
+#kfrigvytxk .gt_font_normal {
   font-weight: normal;
 }
 
-#cbclwhwrbj .gt_font_bold {
+#kfrigvytxk .gt_font_bold {
   font-weight: bold;
 }
 
-#cbclwhwrbj .gt_font_italic {
+#kfrigvytxk .gt_font_italic {
   font-style: italic;
 }
 
-#cbclwhwrbj .gt_super {
+#kfrigvytxk .gt_super {
   font-size: 65%;
 }
 
-#cbclwhwrbj .gt_footnote_marks {
+#kfrigvytxk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cbclwhwrbj .gt_asterisk {
+#kfrigvytxk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cbclwhwrbj .gt_indent_1 {
+#kfrigvytxk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cbclwhwrbj .gt_indent_2 {
+#kfrigvytxk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cbclwhwrbj .gt_indent_3 {
+#kfrigvytxk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cbclwhwrbj .gt_indent_4 {
+#kfrigvytxk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cbclwhwrbj .gt_indent_5 {
+#kfrigvytxk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#cbclwhwrbj .katex-display {
+#kfrigvytxk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#cbclwhwrbj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kfrigvytxk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2859,30 +2859,30 @@ Figure&nbsp;6
 </ul></li>
 </ol>
 </section>
-</div></section><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+</div></section><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-fu2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">W. Fu, Y. Xu, L. Liu, and L. Zhang, <span>“Design and Research of Intelligent Safety Monitoring Robot for Coal Mine Shaft Construction,”</span> <em>Advances in Civil Engineering</em>, vol. 2021, no. 1, p. 6897767, Jan. 2021, doi: <a href="https://doi.org/10.1155/2021/6897767">10.1155/2021/6897767</a>. Available: <a href="https://onlinelibrary.wiley.com/doi/10.1155/2021/6897767">https://onlinelibrary.wiley.com/doi/10.1155/2021/6897767</a></div>
+</div>
+<div id="ref-diab2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">M. Diab and Y. Demiris, <span>“TICK: A Knowledge Processing Infrastructure for Cognitive Trust in Human<span></span>Robot Interaction,”</span> <em>International Journal of Social Robotics</em>, pp. 1–33, Jan. 2025, doi: <a href="https://doi.org/10.1007/s12369-024-01206-1">10.1007/s12369-024-01206-1</a>. Available: <a href="https://link.springer.com/article/10.1007/s12369-024-01206-1">https://link.springer.com/article/10.1007/s12369-024-01206-1</a></div>
+</div>
 <div id="ref-campagna2025" class="csl-entry" role="listitem">
-Campagna, Giulio, and Matthias Rehm. 2025. <span>“A Systematic Review of Trust Assessments in Human<span></span>robot Interaction.”</span> <em>J. Hum.-Robot Interact.</em> 14 (2): 30:130:35. <a href="https://doi.org/10.1145/3706123">https://doi.org/10.1145/3706123</a>.
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">G. Campagna and M. Rehm, <span>“A systematic review of trust assessments in human<span></span>robot interaction,”</span> <em>J. Hum.-Robot Interact.</em>, vol. 14, no. 2, p. 30:130:35, Jan. 2025, doi: <a href="https://doi.org/10.1145/3706123">10.1145/3706123</a>. Available: <a href="https://doi.org/10.1145/3706123">https://doi.org/10.1145/3706123</a></div>
 </div>
 <div id="ref-emaminejad2022" class="csl-entry" role="listitem">
-Emaminejad, Newsha, and Reza Akhavian. 2022. <span>“Trustworthy AI and Robotics: Implications for the AEC Industry.”</span> <em>Automation in Construction</em> 139 (July): 104298. <a href="https://doi.org/10.1016/j.autcon.2022.104298">https://doi.org/10.1016/j.autcon.2022.104298</a>.
-</div>
-<div id="ref-fartook2025" class="csl-entry" role="listitem">
-Fartook, Ori, Zachary McKendrick, Tal Oron-Gilad, and Jessica R. Cauchard. 2025. <span>“Enhancing Emotional Support in Human-Robot Interaction: Implementing Emotion Regulation Mechanisms in a Personal Drone.”</span> <em>Computers in Human Behavior: Artificial Humans</em> 4 (May): 100146. <a href="https://doi.org/10.1016/j.chbah.2025.100146">https://doi.org/10.1016/j.chbah.2025.100146</a>.
-</div>
-<div id="ref-fu2021" class="csl-entry" role="listitem">
-Fu, Wenjun, Ying Xu, Liangping Liu, and Liang Zhang. 2021. <span>“Design and Research of Intelligent Safety Monitoring Robot for Coal Mine Shaft Construction.”</span> Edited by Sang-Bing Tsai. <em>Advances in Civil Engineering</em> 2021 (1): 6897767. <a href="https://doi.org/10.1155/2021/6897767">https://doi.org/10.1155/2021/6897767</a>.
-</div>
-<div id="ref-lin2022" class="csl-entry" role="listitem">
-Lin, Ting-Han, Spencer Ng, and Sarah Sebo. 2022. <span>“2022 31st IEEE International Conference on Robot and Human Interactive Communication (RO-MAN).”</span> In, 37–44. <a href="https://doi.org/10.1109/RO-MAN53752.2022.9900828">https://doi.org/10.1109/RO-MAN53752.2022.9900828</a>.
-</div>
-<div id="ref-racette2024" class="csl-entry" role="listitem">
-Racette, John. 2024. <span>“Design of a Hybrid Robotic System for Underground Mine Rescue Applications.”</span> PhD thesis. <a href="https://search.proquest.com/openview/ba52de2b7c6d03f61111afbe990e6371/1?pq-origsite=gscholar&amp;cbl=18750&amp;diss=y">https://search.proquest.com/openview/ba52de2b7c6d03f61111afbe990e6371/1?pq-origsite=gscholar&amp;cbl=18750&amp;diss=y</a>.
-</div>
-<div id="ref-shayganfar2019" class="csl-entry" role="listitem">
-Shayganfar, Mahni, Charles Rich, Candace Sidner, and Benjamin Hylák. 2019. <span>“2019 IEEE International Conference on Humanized Computing and Communication (HCC).”</span> In, 7–15. <a href="https://doi.org/10.1109/HCC46620.2019.00010">https://doi.org/10.1109/HCC46620.2019.00010</a>.
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">N. Emaminejad and R. Akhavian, <span>“Trustworthy AI and robotics: Implications for the AEC industry,”</span> <em>Automation in Construction</em>, vol. 139, p. 104298, Jul. 2022, doi: <a href="https://doi.org/10.1016/j.autcon.2022.104298">10.1016/j.autcon.2022.104298</a>. Available: <a href="https://www.sciencedirect.com/science/article/pii/S0926580522001716">https://www.sciencedirect.com/science/article/pii/S0926580522001716</a></div>
 </div>
 <div id="ref-devisser2020" class="csl-entry" role="listitem">
-Visser, Ewart J. de, Marieke M. M. Peeters, Malte F. Jung, Spencer Kohn, Tyler H. Shaw, Richard Pak, and Mark A. Neerincx. 2020. <span>“Towards a Theory of Longitudinal Trust Calibration in Human<span></span>Robot Teams.”</span> <em>International Journal of Social Robotics</em> 12 (2): 459–78. <a href="https://doi.org/10.1007/s12369-019-00596-x">https://doi.org/10.1007/s12369-019-00596-x</a>.
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">E. J. de Visser <em>et al.</em>, <span>“Towards a Theory of Longitudinal Trust Calibration in Human<span></span>Robot Teams,”</span> <em>International Journal of Social Robotics</em>, vol. 12, no. 2, pp. 459–478, May 2020, doi: <a href="https://doi.org/10.1007/s12369-019-00596-x">10.1007/s12369-019-00596-x</a>. Available: <a href="https://doi.org/10.1007/s12369-019-00596-x">https://doi.org/10.1007/s12369-019-00596-x</a></div>
+</div>
+<div id="ref-shayganfar2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">M. Shayganfar, C. Rich, C. Sidner, and B. Hylák, <span>“2019 IEEE international conference on humanized computing and communication (HCC),”</span> Sep. 2019, pp. 7–15. doi: <a href="https://doi.org/10.1109/HCC46620.2019.00010">10.1109/HCC46620.2019.00010</a>. Available: <a href="https://ieeexplore.ieee.org/document/8940829">https://ieeexplore.ieee.org/document/8940829</a></div>
+</div>
+<div id="ref-fartook2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[7] </div><div class="csl-right-inline">O. Fartook, Z. McKendrick, T. Oron-Gilad, and J. R. Cauchard, <span>“Enhancing emotional support in human-robot interaction: Implementing emotion regulation mechanisms in a personal drone,”</span> <em>Computers in Human Behavior: Artificial Humans</em>, vol. 4, p. 100146, May 2025, doi: <a href="https://doi.org/10.1016/j.chbah.2025.100146">10.1016/j.chbah.2025.100146</a>. Available: <a href="https://www.sciencedirect.com/science/article/pii/S2949882125000301">https://www.sciencedirect.com/science/article/pii/S2949882125000301</a></div>
+</div>
+<div id="ref-lin2022" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[8] </div><div class="csl-right-inline">T.-H. Lin, S. Ng, and S. Sebo, <span>“2022 31st IEEE international conference on robot and human interactive communication (RO-MAN),”</span> Aug. 2022, pp. 37–44. doi: <a href="https://doi.org/10.1109/RO-MAN53752.2022.9900828">10.1109/RO-MAN53752.2022.9900828</a>. Available: <a href="https://ieeexplore.ieee.org/document/9900828">https://ieeexplore.ieee.org/document/9900828</a></div>
 </div>
 </div></section></div></main>
 <!-- /main column -->

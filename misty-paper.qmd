@@ -34,21 +34,22 @@ keywords:
 date: last-modified
 bibliography: bibliography.bib
 format:
+  pdf: default
   elsevier-pdf:
     keep-tex: true
     journal:
       name: Journal Name
       formatting: preprint
       # model: 3p # Don't set a model with preprint
-      cite-style: authoryear
+      cite-style: number
 
 warning: false
 echo: false
 message: false
+csl: ieee-with-url.csl
 ---
 
 ```{r}
-
 library(tidyverse)
 library(janitor)
 library(scales)
@@ -74,7 +75,7 @@ dialogue_session_summary <- read_csv(
 ) |>
   mutate(
     exclusions = if_else(
-      mean_comm_breakdown > .5,
+      mean_comm_breakdown > .6,
       'exclude',
       'include'
     )
@@ -112,49 +113,45 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 
 ## Introduction
 
-As automation expands across safety-critical domains such as manufacturing, healthcare, and mining, robotic systems are increasingly expected to operate alongside humans rather than in isolation [@fu2021; @racette2024]. In these collaborative settings, successful deployment depends not only on technical performance but on whether human users are willing to rely on, communicate with, and coordinate their actions around autonomous systems [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC). Insufficient trust can lead to disuse or rejection of automation, whereas excessive trust risks overreliance and automation bias, particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
+As automation expands across safety-critical domains such as manufacturing, mining, and healthcare, robotic systems are increasingly expected to operate alongside humans rather than in isolation [@fu2021; @ciuffreda2025; @diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but on whether human users are willing to rely on, communicate with, and coordinate their actions around systems driven by artificial intelligence (AI) [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
 
-A substantial body of human–robot interaction (HRI) research has examined how robot behaviour shapes user trust, perceived reliability, and cooperation [@shayganfar2019; @fartook2025]. Prior work has demonstrated that trust influences both subjective evaluations of robotic partners and objective outcomes such as compliance, task performance, and collaborative efficiency. However, much of this literature relies on interactions conducted under highly controlled conditions, including scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages aspects of the robot’s behaviour. While these approaches are valuable for isolating specific design factors, they often obscure the interaction breakdowns and system imperfections that characterize real-world autonomous robots.
+A substantial body of human–robot interaction (HRI) research has examined how robot behaviour shapes user trust, perceived reliability, and cooperation across industrial and social contexts [@shayganfar2019; @fartook2025]. Trust is commonly conceptualized as a multidimensional construct encompassing cognitive evaluations of competence and reliability, affective responses to the interaction partner, and behavioural willingness to rely on the system under conditions of risk or uncertainty [@muir1994; @hancock2011; @devisser2020]. Despite this multidimensional framing, empirical studies have predominantly operationalized trust using post-interaction self-report questionnaires, often collected following short, highly controlled interactions.
 
-In deployed systems, limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical HRI research. Understanding how trust emerges—and sometimes deteriorates—under realistic autonomous conditions is therefore critical for the design of robots intended for real-world collaborative use.
+Importantly, much of the existing HRI trust literature relies on scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages the robot’s behaviour. While these approaches are valuable for isolating specific design factors, they obscure the interaction breakdowns and system imperfections that characterize real-world autonomous robots [@campagna2025]. In deployed systems, limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical evaluations.
 
-One proposed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context [@shayganfar2019; @fartook2025]. Responsive robots may adjust their dialogue, timing, or support strategies in response to inferred affective cues such as confusion, frustration, or disengagement. Prior studies suggest that such adaptive behaviour can enhance perceived social intelligence and trustworthiness, particularly in dialogue-driven tasks [@birnbaum2016]. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions.
+One proposed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context [@shayganfar2019; @fartook2025]. Responsive robots may adjust dialogue, timing, or support strategies in response to inferred cues such as confusion, frustration, or disengagement, and prior work suggests that such adaptive behaviour can enhance perceived social intelligence and trustworthiness in dialogue-driven tasks [@birnbaum2016]. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions subject to real-time constraints and failure [@campagna2025].
 
-From an engineering perspective, responsiveness represents an interaction policy rather than a superficial social cue. Proactive, state-contingent assistance differs fundamentally from reactive, request-based behaviour, particularly when implemented under strict autonomy constraints. Designing and evaluating such policies requires systems capable of managing spoken-language dialogue, maintaining interaction state, and coordinating verbal and nonverbal responses in real time—while remaining robust to noise, latency, and sensing errors.
+From an engineering perspective, responsiveness represents an interaction policy rather than a superficial social cue [@shayganfar2019]. Proactive assistance based on interaction context differs fundamentally from reactive, request-based behaviour, particularly in fully autonomous systems—for example, offering clarification or encouragement when confusion or hesitation is inferred, rather than waiting for an explicit request for help [@birnbaum2016]. Implementing such policies requires robots to manage spoken-language dialogue, track interaction state over time, and coordinate verbal and nonverbal responses in real time, all while operating under noise, latency, and sensing uncertainty [@campagna2025].
 
-The present work addresses these gaps through a pilot study examining trust and collaboration during in-person interaction with a fully autonomous social robot. Participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving. In both conditions, all interaction management—including speech recognition, dialogue state tracking, task progression, and response generation—was handled autonomously by the robot without human intervention. In the responsive condition, the robot employed a proactive interaction policy, adapting its assistance based on conversational cues and inferred user affect. In the neutral condition, the robot followed a reactive policy, providing assistance only when explicitly requested.
+The present work addresses these gaps through a pilot study examining trust and collaboration during in-person interaction with a fully autonomous social robot. Participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving. In both conditions, all interaction management—including speech recognition, dialogue state tracking, task progression, and response generation—was handled and logged autonomously by the robot without human intervention. In the responsive condition, the robot employed a proactive interaction policy, adapting its assistance based on conversational cues and inferred user affect. In the neutral condition, the robot followed a reactive policy, providing general guidance but assistance only when explicitly requested.
 
-This study was conducted as a pilot with three primary objectives: (1) to evaluate the feasibility of deploying an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether differences in interaction policy influence trust, perceived social intelligence, and collaborative experience under realistic autonomous conditions; and (3) to examine how individual differences in baseline attitudes toward robots and cognitive engagement may moderate responses to adaptive robotic behaviour. Rather than optimizing for flawless interaction, the system was intentionally designed to reflect the capabilities and limitations of contemporary social robots, allowing interaction breakdowns to surface naturally.
+This pilot study had three primary objectives: (1) to design and evaluate the feasibility of an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether interaction policy influences post-interaction trust and collaborative experience under realistic autonomous conditions; and (3) to explore how behavioural and interaction-level indicators align with subjective trust evaluations. Rather than optimizing for flawless interaction, the system was intentionally designed to reflect the capabilities and limitations of contemporary social robots, allowing interaction breakdowns to surface naturally.
 
-An additional objective of this pilot study was to inform the design of an autonomous affect-adaptive interaction system under real-time constraints. The initial system concept included multimodal affect inference based on facial expressions, vocal prosody, and interaction dynamics. However, early integration testing revealed substantial challenges related to latency, model orchestration, and timing sensitivity when deploying multiple perception models concurrently on an edge-supported mobile robot platform. Given the small-scale nature of the pilot and the central importance of maintaining stable, real-time dialogue, the deployed system prioritized robustness of spoken-language interaction and dialogue-based affect inference over broader multimodal sensing. Affect adaptation in this study was therefore driven primarily by speech-based affect signals and conversational context, allowing us to evaluate responsiveness within a fully autonomous interaction while preserving realistic system constraints.
-
-By combining post-interaction trust measures with task-level and behavioural observations, this pilot study aims to contribute empirical evidence on how trust in human–robot collaboration emerges in fully autonomous settings. The findings are intended to inform the design of a larger, subsequent study by identifying technical, interactional, and methodological challenges—including speech recognition limitations, language barriers, and interaction design trade-offs—that must be addressed when evaluating affect-responsive robots in real-world contexts.
-
-The remainder of this paper is structured as follows. Section 2 reviews related work on spoken-language interaction, trust, and responsiveness in HRI. Section 3 describes the autonomous system architecture, experimental design, and measurement approach. Section 4 presents results from the pilot study, followed by a discussion of implications, limitations, and directions for future work.
+By combining post-interaction trust measures with task-level and behavioural observations, this study aims to contribute empirical evidence on how trust in human–robot collaboration emerges and is enacted during fully autonomous interaction. The findings are intended to inform the design of a larger subsequent study by evaluating feasibility and identifying technical, interactional, and methodological challenges that must be addressed when evaluating affect-responsive robots in real-world contexts.
 
 # Methods
 
 ## Experimental Design and Conditions
 
-This study employed a between-subjects experimental design to examine how robot interaction policy influences trust and collaboration during fully autonomous, in-person human–robot interaction. The sole experimental factor was the robot’s interaction policy, with participants randomly assigned to interact with either a responsive or neutral version of the same robot system.
+This study employed a between-subjects experimental design to examine how robot interaction policy influences trust and collaboration during fully autonomous, in-person human–robot interaction. The sole experimental factor was the robot’s interaction policy, with participants randomly assigned to interact with either a responsive or neutral version of the same robot system. 
 
-Participants interacted with a Misty-II social robot in a shared physical workspace that included a participant-facing computer interface [@mistya]. The interface was used to display task materials, collect participant inputs, and manage task progression. Importantly, the interface did not function as a control mechanism for the robot. Instead, the robot autonomously monitored task state and participant inputs via the interface and managed dialogue and behaviour accordingly, without real-time human intervention.
+Throughout this paper, references to *the robot* denote the fully autonomous interactive system comprising the Misty-II hardware platform and its onboard software stack, with all interaction decisions generated without human intervention, including spoken-language processing, dialogue management, and the interaction policy governing verbal and nonverbal behaviour. Additional details of the system architecture are provided in Appendix A.
 
-Random assignment to condition was performed at sign-up using Qualtrics. Due to no-shows, last-minute cancellations, and technical exclusions (described below), final group sizes were *n* = 14 in the RESPONSIVE condition and *n* = 9 in the CONTROL condition.
+Participants interacted with a Misty-II social robot in a shared physical workspace that included a participant-facing computer interface [@mistyrobotics]. The interface was used to display task materials, collect participant inputs, and manage task progression (see @fig-task1). Importantly, the interface did not function as a control mechanism for the robot. Instead, the robot autonomously monitored task state and participant inputs via the interface and managed dialogue and behaviour accordingly, without real-time human intervention.
 
 ### Interaction Policies
 
--   **RESPONSIVE condition (experimental):**\
+-   **Responsive condition (experimental):**\
     The robot employed a proactive, affect-adaptive interaction policy. Robot responses were modulated based on inferred participant affect, dialogue context, and task demands, resulting in unsolicited encouragement, clarification, and engagement-oriented behaviours when appropriate.
 
--   **CONTROL condition (baseline):**\
-    The robot employed a neutral, reactive interaction policy. Assistance and information were provided only when explicitly requested by the participant, without affect-based adaptation or proactive support.
+-   **Control condition (baseline):**\
+    The robot employed a neutral, reactive interaction policy. General information and guidance were were provided but additional help only when explicitly requested by the participant and without affect-based adaptation or proactive support beyond a check-in when participant was silent for more than 1 minute.
 
 Both conditions used identical hardware, software infrastructure, sensing capabilities, and task logic. The only difference between conditions was the robot’s interaction policy.
 
 ### Collaborative Task Design
 
-Participants completed an immersive, narrative-driven puzzle game consisting of five sequential stages and two timed reasoning tasks. The game context positioned participants as investigators searching for a missing robot colleague, with the robot serving as a diegetic guide and collaborative partner. The overall interaction lasted approximately 15 minutes.
+Participants completed an immersive, narrative-driven puzzle game consisting of five sequential stages and two timed reasoning tasks. The game context positioned participants as investigators searching for a missing robot colleague, with the robot serving as a diegetic guide and collaborative partner. The overall interaction lasted approximately 25 minutes.
 
 ![Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input. No real-time human intervention occurred during the interaction.](images/misty-pullback.jpg){#fig-setup fig-align="center" width="482"}
 
@@ -172,9 +169,9 @@ Participants advanced between stages using the interface, either at the robot’
 
 #### Task 1: Robot-Dependent Collaborative Reasoning
 
-In Task 1, participants were required to identify a suspect from a 6 × 4 grid of 24 candidates by asking the robot a series of yes/no questions about the suspect’s features (e.g., clothing, accessories). The grid was displayed on the interface, while questions were posed verbally.
+In Task 1, participants were asked to identify a perpetrator from a 6 × 4 grid of 24 'suspects' by asking the robot a series of yes/no questions about the suspect’s features (e.g., "was the suspect wearing a hat?"). The grid was displayed on the interface, while questions were posed verbally.
 
-![In the first task, participants were required to identify a suspect from a 6 × 4 grid of 24 candidates by asking the robot a series of yes/no questions about the suspect’s features (e.g., hair color, accessories, clothing). The grid was displayed on the interface, while questions were posed verbally to the robot. Participants could track those eliminated here and input their final answer.](images/task1-whodunnit.png){#fig-task1 fig-align="center" width="482"}
+![*Task 1 interface including the 6 × 4 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the Task 2 interface.*](images/task1-whodunnit.png){#fig-task1 fig-align="left" width="482"}
 
 The robot possessed ground-truth information necessary to answer each question correctly. Successful task completion was therefore dependent on interaction with the robot, creating a forced collaborative dynamic. Participants were required to coordinate questioning strategies with the robot to narrow down the suspect within a five-minute time limit. The structured nature of the task ensured consistent interaction demands across participants and conditions.
 
@@ -186,43 +183,41 @@ Task 2 involved a more open-ended reasoning challenge. Participants were present
 
 Unlike Task 1, the robot did not have access to ground-truth information or the contents of the logs. The robot’s assistance was limited to general reasoning support derived from its language model, such as explaining how to interpret log formats, suggesting problem-solving strategies, or prompting participants to reflect on inconsistencies.
 
-Participants could complete this task independently or solicit assistance from the robot at their discretion [@lin2022]. This design allowed collaboration to emerge voluntarily rather than being enforced by task structure, positioning the robot as an advisory partner rather than an authoritative source.
+Participants could complete this task independently or solicit assistance from the robot at their discretion [@lin2022]. This design allowed collaboration to emerge voluntarily rather than being enforced by task structure, positioning the robot as a collaborative partner rather than an authoritative source.
 
 ### Study Protocol
 
-In-person sessions were conducted in a quiet, private room at Laurentian University between November and December. Prior to each session, the robot’s interaction policy was configured to the assigned experimental condition.
+Participants signed up for the study and completed a pre-session questionnaire before their in-person session via Qualtrics. The pre-session questionnaire colleced basic demographics information and assessed baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s). These measures were used to capture individual differences that may moderate responses to robot interaction.
+
+In-person sessions were conducted in a quiet, private room at Laurentian University between November and December 2025. Prior to each session, the robot’s interaction policy was configured to the assigned experimental condition.
 
 Upon arrival, participants were greeted by the researcher, provided with a brief overview of the session, and given instructions for effective communication with the robot, including waiting for a visual indicator before speaking. Once participants indicated readiness, the researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation. Participants initiated the interaction by clicking a start button on the interface and were informed that they could terminate the session at any time without penalty.
 
-Following task completion, participants completed a post-interaction questionnaire assessing trust. Participants then engaged in a brief debrief with the researcher. Total session duration averaged approximately 30 minutes.
+Following task completion, participants completed a 21-item post-interaction questionnaire assessing trust. Participants then engaged in a brief debrief with the researcher and were awarded a $15 gift card. Total session duration averaged approximately 30 minutes.
 
-### Measures
+## Measures
 
 A combination of self-report and objective measures was used to assess trust, engagement, and task performance.
 
-#### Self-Report Measures
+### Self-Report Measures
+
+Trust was assessed using two established self-report instruments commonly used in human–robot interaction research: the Trust Perception Scale–HRI (TPS-HRI) and the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) [@bartneck2009; @charalambous2016]. Both measures were adapted to reflect the specific task context and interaction modality of the present study. 9 items were retained from the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to reference the robot’s behaviour during a dialogue-driven collaborative task, and response formats were adjusted to ensure interpretability for participants without prior robotics experience.
+
+Together, these instruments capture complementary dimensions of trust, including perceived reliability, task competence, and affective comfort. However, they differ in their conceptual emphasis: the TPS-HRI primarily operationalizes trust as a reflective judgement of system performance (i.e., "What percent of the time was the robot reliable"), whereas the TI-HRC scale emphasizes trust as an experienced, embodied response arising during interaction (i.e., "The way the robot moved made me feel uneasy"). Despite this complementarity, both measures rely on retrospective self-report and may be insensitive to moment-to-moment trust dynamics as collaboration unfolds. For this reason, questionnaire data were interpreted alongside behavioural and interaction-level measures.
 
 Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s). These measures were used to capture individual differences that may moderate responses to robot interaction.
 
-Post-interaction trust was assessed using two validated instruments: the Trust Perception Scale–HRI and the Trust in Industrial Human–Robot Collaboration scale [@bartneck2009; @charalambous]. Together, these measures capture multiple dimensions of trust, including perceived reliability, competence, and collaborative suitability.
-
-#### Objective and behavioural Measures
+### Objective and behavioural Measures
 
 Objective task metrics included task completion, task accuracy, time to completion, and the number of assistance requests made to the robot. behavioural engagement metrics were derived from interaction logs and manually coded dialogue transcripts, including number of dialogue turns, frequency of communication breakdowns, response timing, and task-relevant robot contributions.
 
-### Participants, Communication Viability, and Analytic Strategy
+## Participants, Communication Viability, and Analytic Strategy
 
-A total of 29 participants were recruited from the Laurentian University community via word of mouth and the SONA recruitment system. Eligibility criteria included being 18 years or older, fluent in spoken and written English, and having normal or corrected-to-normal hearing and vision. Participants received a \$15 gift card as compensation for their time. All procedures were approved by the Laurentian University Research Ethics Board (REB #6021966).
+A total of 29 participants were recruited from the Laurentian University community via word of mouth and the SONA recruitment system. Eligibility criteria included being 18 years or older, fluent in spoken and written English, and having normal or corrected-to-normal hearing and vision. Participants received a $15 gift card as compensation for their time. All procedures were approved by the Laurentian University Research Ethics Board (REB #6021966).
 
-Although English fluency was an eligibility requirement, in-person observation of variability in actual english language abilities were noted for each session. Later post-hoc review of interaction transcripts and system logs revealed that a subset of sessions exhibited severe and sustained communication failure. In these sessions, automatic speech recognition (ASR) output was largely unintelligible or fragmented, preventing the robot from extracting sufficient linguistic content to maintain dialogue, respond meaningfully to participant queries, or support task progression. As a result, interaction frequently stalled, participant questions went unanswered or were misinterpreted, and collaborative problem-solving was effectively impossible. These sessions did not reflect degraded interaction quality but rather a complete breakdown of language-mediated communication, rendering the experimental manipulation inoperative.
+Although English fluency was an eligibility requirement, in-person observation during data collection indicated meaningful variability in participants’ functional spoken-language proficiency. The researcher therefore recorded observed English proficiency for each session in anticipation of potential speech-based system limitations. Subsequent post-hoc review of interaction transcripts and system logs revealed that a subset of sessions exhibited severe and sustained communication failure. In these cases, automatic speech recognition (ASR) output was largely unintelligible or fragmented, preventing the robot from extracting sufficient linguistic content to maintain dialogue, respond meaningfully to participant queries, or support task progression. Interaction frequently stalled, participant input went unanswered or was misinterpreted, and collaborative problem-solving was not feasible. These sessions reflected a breakdown of language-mediated interaction, rendering the experimental manipulation inoperative.
 
-Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (*n* = 6). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.
-
-To ensure transparency and to evaluate the impact of communication-based exclusions, analyses were conducted in three stages. First, the eligible-sample analysis (excluding non-viable sessions) was treated as the primary analysis because it reflects interactions in which the spoken-language protocol—and therefore the experimental manipulation—operated as intended. Second, a full-sample analysis including all participants was conducted as a sensitivity test to evaluate robustness to communication failures and protocol deviations. Third, a mechanism-focused analysis compared excluded and included sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to quantify how severe communication breakdown alters the interaction dynamics and renders the manipulation inoperative.
-
-It is important to note that while full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust in the intended sense. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, meaning that participants could not meaningfully evaluate reliability, competence, or collaborative intent. Full-sample analyses are therefore treated as sensitivity analyses reflecting real-world failure conditions, rather than as alternative estimates of trust under functional interaction.
-
-Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1984; @cacioppo1996]. These findings were consistent across both eligible and full samples, indicating that random assignment successfully balanced individual differences across groups.
+Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (n = 6). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.
 
 ```{r}
 #| label: tbl-pre
@@ -244,12 +239,13 @@ df_flat_scores_final |>
     #nars_social_influence_robots,
     #nars_emotion_robots,
     #nars_interaction_robots,
-    nfc_pre
+    nfc_pre,
     #robot_trust_pre,
     #ai_trust_pre,
     #human_trust_pre
     #contains('trust')
     #-mytrust_pre
+    exclusions
   ) |>
   tbl_summary(
     by = group,
@@ -275,7 +271,8 @@ df_flat_scores_final |>
       robot_xp ~ "Experience w/Robots",
       native_english ~ 'Native English Speaker',
       nfc_pre ~ 'Need for Cognition',
-      nars_pre ~ "NARS Overall"
+      nars_pre ~ "NARS Overall",
+      exclusions ~ "Dialogue Viability"
       # nars_social_influence_robots ~ "NARS: Social Influence",
       #nars_emotion_robots ~ "NARS: Emotions",
       # nars_interaction_robots ~ "NARS: Interaction"
@@ -293,13 +290,19 @@ df_flat_scores_final |>
 ```
 
 
+To ensure transparency and assess the impact of communication-based exclusions, analyses were conducted in three stages. First, an eligible-sample analysis (excluding non-viable sessions) served as the primary analysis, reflecting interactions in which the spoken-language protocol and experimental manipulation operated as intended. Second, a full-sample analysis including all participants was conducted as a sensitivity analysis to evaluate robustness to communication failures and protocol deviations. Third, a mechanism-focused analysis compared included and excluded sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to characterize how severe communication breakdown alters interaction dynamics.
+
+While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
+
+Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1982]. These patterns were consistent across both eligible and full samples, indicating successful random assignment.
+
 # Results
 
 ## Communication Viability and Analytic Samples
 
-Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from system logs and manual coding. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 50% of dialogue turns (half of all turns were dependent on human speech) were characterized by communication breakdown were classified as non-viable (n=6). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible.
+Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from system logs and manual coding. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns (half of all turns were dependent on human speech) were characterized by communication breakdown were classified as non-viable (n=5). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. 
 
-Of the 29 completed sessions, 6 were classified as non-viable due to severe and persistent communication failure (i.e., unintelligble sentence fragments). Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.
+Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.
 
 ```{r}
 post_table <- df_flat_scores_final |>
@@ -315,9 +318,6 @@ post_table <- df_flat_scores_final |>
 
 ```
 
-```{r}
-
-```
 
 Unless otherwise noted, inferential results reported below refer to the eligible sample.
 
@@ -325,9 +325,11 @@ Unless otherwise noted, inferential results reported below refer to the eligible
 
 ### Descriptive Outcomes
 
-Descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the RESPONSIVE condition relative to the CONTROL condition across both trust scales (see @tbl-post-eligible). Average post-interaction scores on the Trust in Industrial Human–Robot Collaboration scale differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in Trust Perception Scale–HRI scores were approximately 15 points higher in the responsive condition, while scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies.
+Descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). Average post-interaction scores on the TI-HRC differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in TPS-HRI scores were approximately 15 points higher in the responsive condition compared to the control. Scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies.
 
 Importantly objective task accuracy did not differ between conditions across any task-level measures. This suggests that observed differences in trust were not driven by differential task success.
+
+Despite similar task accuracy, interactions in the responsive condition were expectedly characterized by longer durations (more dialogue), slower robot response times (more dialogue), and a higher number of AI-detected engaged responses. These findings suggest that responsiveness altered the interaction dynamics and affective tone rather than task outcomes.
 
 ```{r}
 #| label: tbl-post-eligible
@@ -363,7 +365,7 @@ post_table |>
     label = list(
       # suspect_correct ~ "Suspect ID Accuracy",
       # status_correct ~ "Status Accuracy",
-      duration_mins ~ "Avg Task Duration (mins)",
+      duration_mins ~ "Avg Session Duration (mins)",
       post_trust_reliability ~ "Reliability subscale",
       post_trust_feelings ~ "Affective Trust subscale",
       post_trust_perception ~ "Trust Perception subscale",
@@ -371,7 +373,7 @@ post_table |>
       n_turns ~ "Dialogue Turns",
       # n_turns.y~"Task Dialogue Turns",
       n_silence ~ "Silent Periods",
-      avg_response_ms ~ "Avg Response Time (ms)",
+      avg_response_ms ~ "Avg Robot Response Time (ms)",
       prop_correct ~ "Overall Task Accuracy",
       n_engaged ~ "Engaged Responses",
       n_frust ~ "Frustrated Responses",
@@ -402,22 +404,23 @@ post_table |>
   # add_overall() |>
   bold_p() |>
   #bold_labels() |>
-  modify_caption("Table 2. Post-Interaction Raw Outcome Measures by Group")
+  modify_caption("Post-Interaction Raw Outcome Measures by Group")
 ```
 
-Despite similar task accuracy, interactions in the responsive condition were characterized by longer durations, slower response times, and a higher number of AI-detected engaged responses. These findings suggest that responsiveness altered the interaction dynamics and affective tone rather than task outcomes.
+
 
 ### Hierarchical Models of Post-Interaction Trust
 
-To evaluate condition effects on post-interaction trust, linear mixed-effects models were fitted separately for each trust outcome. All models included interaction policy (RESPONSIVE vs. CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as covariates. Random intercepts for session were included in all models to account for repeated measurement at the participant level.
+To evaluate condition effects and to control for pre-test covariates on post-interaction trust, linear mixed-effects models were fitted separately for each trust outcome. All models included interaction policy (RESPONSIVE vs. CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates. Random intercepts for session were included in all models to account for repeated measurement at the participant level.
 
-Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding baseline negative attitudes toward robots significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. Native English fluency did not significantly improve model fit but was retained as a covariate due to its relevance for spoken-language interaction viability.
+Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding baseline negative attitudes toward robots significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability.
 
-### Trust in Industrial Human–Robot Collaboration
+#### Trust in Industrial Human–Robot Collaboration
 
-In the final model predicting Trust in Industrial Human–Robot Collaboration, interaction with the responsive robot was associated with significantly higher post-interaction trust scores (β = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust (β = −7.43, SE = 2.81, p = .016). Native English fluency showed a negative but non-significant association with trust.
+For this outcome, inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences. The final model: robot_trust_post ~ policy + nars_pre_c + native_english + (1 | session_id) + (1 | trust_items).
 
-For this outcome, inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences.
+In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition (β = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores (β = −7.43, SE = 2.81, p = .016). Native English fluency was not significantly associated with trust, although the estimated effect was negative.
+
 
 ```{r}
 library(lme4)
@@ -425,7 +428,7 @@ library(lmerTest)
 library(ggeffects)
 # mixed models
 
-scores_df <- df_long_scores_final |>
+scores_df_eligible <- df_long_scores_final |>
   filter(exclusions != 'exclude') |>
   mutate(nars_pre_c = scale(nars_pre, center = TRUE, scale = TRUE)) |>
   mutate(robot_trust_c = scale(robot_trust_pre, center = TRUE, scale = TRUE)) |>
@@ -470,15 +473,24 @@ scores_df <- df_long_scores_final |>
 baseline <- lmer(
   robot_trust_post ~ group +
     (1 | session_id),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 
 mod_dep <- lmer(
   robot_trust_post ~ group +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
+
+mod_dep.2 <- lmer(
+  robot_trust_post ~ group *
+    prop_comm_breakdown +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
+)
+
 
 # adding robot_xp worsens fit
 mod_dep2 <- lmer(
@@ -486,7 +498,7 @@ mod_dep2 <- lmer(
     robot_xp +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 # adding nars improves fit
 mod_dep3 <- lmer(
@@ -494,7 +506,7 @@ mod_dep3 <- lmer(
     nars_pre_c +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 # adding native english improves fit
 mod_dep4 <- lmer(
@@ -503,7 +515,7 @@ mod_dep4 <- lmer(
     native_english +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 
 # # adding nfc does not improve fit
@@ -535,14 +547,14 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = TRUE,
   #oint.args = list(alpha = 0.6),
-  ylab = "Trust in Industrial Human–Robot Collaboration (Likert 0-100)",
+  ylab = "Experienced Trust in Robot Collaboration (TI-HRC)",
   xlab = "Interaction Policy",
   # title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
   results.subtitle = FALSE
 )
 ```
 
-### Trust Perception Scale–HRI
+#### Trust Perception Scale–HRI
 
 For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (β = 14.17, SE = 6.5, t = 2.00, p = 0.046). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
 
@@ -564,7 +576,7 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = TRUE,
   #point.args = list(alpha = 0.6),
-  ylab = "Trust in Industrial Human–Robot Collaboration (0-100)",
+  ylab = "Perceived Trust in Robot Collaboration (TRI-HRI)",
   xlab = "Interaction Policy",
   #title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
   results.subtitle = FALSE
@@ -576,14 +588,22 @@ ggbetweenstats(
 baseline <- lmer(
   robot_trust_post ~ group +
     (1 | session_id),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
 )
 
 mod_dep <- lmer(
   robot_trust_post ~ group +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
+)
+
+mod_dep.2 <- lmer(
+  robot_trust_post ~ group *
+    prop_comm_breakdown +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
 )
 
 # adding robot_xp worsens fit
@@ -591,14 +611,14 @@ mod_dep2 <- lmer(
   robot_trust_post ~ group +
     robot_xp +
     (1 | session_id),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
 )
 # adding nars improves fit
 mod_dep3 <- lmer(
   robot_trust_post ~ group +
     nars_pre_c +
     (1 | session_id),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
 )
 # adding native english improves fit
 mod_dep4 <- lmer(
@@ -606,7 +626,7 @@ mod_dep4 <- lmer(
     nars_pre_c +
     native_english +
     (1 | session_id),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
 )
 compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
 ```
@@ -617,11 +637,142 @@ Together, these models indicate that robot responsiveness had a consistent posit
 
 To complement frequentist mixed-effects models, Bayesian hierarchical models were fitted separately for each trust outcome using weakly informative priors. Models predicted post-interaction trust as a function of interaction policy (RESPONSIVE vs. CONTROL), with random intercepts for session and trust scale items to account for repeated measurement and item-level variability.
 
-Across both trust measures, posterior estimates favored higher trust ratings in the RESPONSIVE condition. For the Trust in Industrial Human–Robot Collaboration scale, the estimated group difference was *\[insert median\]* points (95% credible interval \[*lower*, *upper*\]), with a posterior probability greater than *\[insert\]%* that the effect exceeded a practically meaningful threshold of five points on the 0–100 scale. Posterior mass exceeding ten points was *\[insert\]%*, indicating a substantial likelihood of a large effect.
+```{r}
+library(brms)
+# choose conservative priors (mean of 50 on 0-100 scale, wide SDs)
+priors <- c(
+  prior(normal(50, 25), class = "Intercept"), # trust score center-ish, wide
+  prior(normal(0, 10), class = "b"), # effects in points on 0-100
+  prior(exponential(1), class = "sd"), # RE SDs: subject/item
+  prior(exponential(1), class = "sigma") # residual SD
+)
+# priors for the null
+priors_null <- c(
+  prior(normal(50, 25), class = "Intercept"),
+  prior(exponential(1), class = "sd"),
+  prior(exponential(1), class = "sigma")
+)
+# sensitivity analysis: wider and tighter priors
+priors_wide <- c(
+  prior(normal(50, 40), class = "Intercept"),
+  prior(normal(0, 20), class = "b"),
+  prior(exponential(0.5), class = "sd"),
+  prior(exponential(0.5), class = "sigma")
+)
+priors_tight <- c(
+  prior(normal(50, 20), class = "Intercept"),
+  prior(normal(0, 7), class = "b"),
+  prior(exponential(1.5), class = "sd"),
+  prior(exponential(1.5), class = "sigma")
+)
+```
 
-For the Trust Perception Scale–HRI, the estimated group difference was smaller and more uncertain (*\[insert median\]* points; 95% credible interval \[*lower*, *upper*\]). Although the credible interval included zero, the posterior probability that the responsive condition increased trust was greater than *\[insert\]%*, suggesting a consistent directional effect with greater individual variability.
 
-Sensitivity analyses using wider priors yielded nearly identical posterior estimates, indicating that results were not driven by prior specification.
+```{r}
+#| eval: false
+hri_mod <- brm(
+  robot_trust_post ~ group +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_eligible |> filter(scale == 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+hrc_mod <- brm(
+  robot_trust_post ~ group +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+summary(hri_mod)
+summary(hrc_mod)
+
+pp_check(hri_mod) # post_trust_perc
+pp_check(hrc_mod) # post_trust (likert)
+
+nuts_params(hri_mod) %>% count(Parameter == "divergent__")
+nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
+
+post <- posterior::as_draws_df(hri_mod)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+post <- posterior::as_draws_df(hrc_mod)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+VarCorr(hri_mod)
+VarCorr(hrc_mod)
+```
+
+
+Trust in Industrial Human–Robot Collaboration was analysed using Bayesian linear mixed-effects models with random intercepts for session and trust item to account for repeated measurement and item-level heterogeneity. Models included interaction policy (responsive vs. control), baseline negative attitudes toward robots (NARS), and native English fluency as fixed effects. Separate models were fit for the eligible sample (sessions with viable spoken-language interaction) and the full sample (including sessions with severe communication breakdown) to assess sensitivity to protocol adherence.
+
+Eligible sample
+
+In the eligible sample, posterior estimates indicated a clear and substantial effect of interaction policy on experienced trust (TI-HRC). Participants who interacted with the responsive robot exhibited higher TI-HRC scores than those in the control condition (posterior mean β = 12.60, 95% credible interval [2.70, 22.03]). The posterior probability that the effect was positive was high (P(β > 0) = 0.99), with a 0.71 probability that the effect exceeded a moderate magnitude (β > 10).
+
+Baseline negative attitudes toward robots were weakly negatively associated with trust, although the credible interval included zero. In contrast, native English fluency showed a credible negative association with TI-HRC scores (β = −10.43, 95% CI [−20.29, −0.35]), indicating lower experienced trust among non-native English speakers even in interactions where dialogue remained viable.
+
+Random-effects estimates indicated substantial variability at the session level, while item-level variance was comparatively small, suggesting that affective and perceptual trust items formed a relatively coherent construct under functional interaction conditions.
+
+Full sample (sensitivity analysis)
+
+When the same model was fit to the full sample, including sessions with severe and sustained communication breakdown, posterior estimates for the interaction policy effect were markedly attenuated. Although the posterior mean for the responsive condition remained positive (β ≈ 7), the credible interval spanned zero, and the probability of a moderate or larger effect dropped substantially (P(β > 10) < 0.30).
+
+Residual variance increased in the full sample, indicating greater unexplained variability in trust scores when interactions with non-functional dialogue were included. This pattern suggests that trust ratings obtained under conditions of complete communication failure do not reflect graded variation in experienced trust, but rather a distinct interaction regime in which collaborative behaviour could not be sustained.
+
+Across both samples, posterior estimates for baseline negative attitudes toward robots remained consistently negative, while the effect of native English fluency was reduced and no longer credibly different from zero in the full sample.
+
+Summary
+
+Taken together, these results indicate that responsive interaction policies are associated with higher experienced trust under conditions where spoken-language collaboration is viable. Including sessions characterized by complete communication breakdown substantially increases uncertainty and attenuates estimated policy effects, consistent with the interpretation that trust judgments in these sessions are not meaningful estimates of trust under functional human–robot collaboration. For this reason, eligible-sample analyses are treated as primary, with full-sample results reported as sensitivity analyses reflecting real-world failure conditions rather than alternative estimates of trust.
+
+Trust Perception Scale–HRI (TPS-HRI)
+
+Task-oriented trust was analysed using Bayesian linear mixed-effects models with the same fixed and random effects structure used for the TI-HRC outcome. Models included interaction policy, baseline negative attitudes toward robots (NARS), and native English fluency as fixed effects, with random intercepts for session and trust item. Separate models were fit for the eligible and full samples to assess sensitivity to communication-based exclusions.
+
+Eligible sample
+
+In the eligible sample, posterior estimates indicated a robust effect of interaction policy on task-oriented trust as measured by the TPS-HRI. Participants who interacted with the responsive robot reported higher trust than those in the control condition (posterior mean β = 14.82, 95% credible interval [7.22, 22.17]). The posterior probability that the effect was positive approached unity (P(β > 0) = 1.00), with high probability that the effect exceeded both small (P(β > 5) = 0.99) and moderate thresholds (P(β > 10) = 0.90).
+
+Baseline negative attitudes toward robots were credibly associated with lower TPS-HRI scores (β = −6.93, 95% CI [−11.11, −2.65]), indicating that pre-existing scepticism toward robots influenced participants’ evaluative judgments of system performance. Native English fluency showed a negative but non-credible association with task-oriented trust.
+
+Random-effects estimates indicated substantial variability at both the session and item levels, consistent with heterogeneity in how participants evaluated different dimensions of task performance and system reliability.
+
+Full sample (sensitivity analysis)
+
+When the same model was applied to the full sample, including sessions with severe communication breakdown, the estimated effect of interaction policy was attenuated but remained directionally positive. The posterior mean for the responsive condition decreased (β ≈ 7), and uncertainty increased, with the credible interval spanning zero. Nevertheless, the posterior probability of a positive effect remained high (P(β > 0) ≈ 0.94), suggesting that task-oriented trust judgments were more resilient to interaction breakdown than affective trust measures.
+
+Baseline negative attitudes toward robots continued to show a credible negative association with TPS-HRI scores in the full sample, while native English fluency remained non-credible. Residual variance increased relative to the eligible sample, indicating greater heterogeneity in trust judgments when non-functional interactions were included.
+
+Summary
+
+Overall, TPS-HRI results indicate that responsive interaction policies positively influence task-oriented trust, even when accounting for communication variability. Compared to TI-HRC, task-oriented trust judgments appear less sensitive to complete communication breakdown, suggesting that participants can evaluate perceived reliability and competence even under degraded interaction conditions. This divergence between trust measures underscores the importance of distinguishing evaluative judgments of system performance from experienced, affective trust during embodied human–robot collaboration.
 
 ### Sensitivity Analysis: Full Sample
 
@@ -704,13 +855,351 @@ post_table |>
 
 These results indicate that while communication breakdown weakens the interpretability of trust measures, the overall pattern of results is not solely an artifact of exclusion decisions. Full-sample analyses are therefore treated as robustness checks reflecting real-world interaction variability rather than as alternative estimates of trust under functional interaction conditions.
 
+```{r}
+scores_df_full <- df_long_scores_final |>
+  #filter(exclusions != 'exclude') |>
+  mutate(nars_pre_c = scale(nars_pre, center = TRUE, scale = TRUE)) |>
+  mutate(robot_trust_c = scale(robot_trust_pre, center = TRUE, scale = TRUE)) |>
+  mutate(human_trust_c = scale(human_trust_pre, center = TRUE, scale = TRUE)) |>
+  mutate(ai_trust_c = scale(ai_trust_pre, center = TRUE, scale = TRUE)) |>
+  mutate(nfc_pre_c = scale(nfc_pre, center = TRUE, scale = TRUE)) |>
+  mutate(
+    nars_social_influence_robots_c = scale(
+      nars_social_influence_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(
+    nars_emotion_robots_c = scale(
+      nars_emotion_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(
+    nars_interaction_robots_c = scale(
+      nars_interaction_robots,
+      center = TRUE,
+      scale = TRUE
+    )
+  ) |>
+  mutate(trust_items = factor(trust_items)) |>
+  mutate(group = factor(group)) |>
+  mutate(robot_xp = relevel(robot_xp, ref = "No")) |>
+  mutate(native_english = factor(native_english)) |>
+  mutate(scale = factor(scale))
+```
+
+```{r}
+baseline <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post')
+)
+
+mod_dep <- lmer(
+  robot_trust_post ~ group +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post')
+)
+
+# adding robot_xp worsens fit
+mod_dep2 <- lmer(
+  robot_trust_post ~ group +
+    robot_xp +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post')
+)
+# adding nars improves fit
+mod_dep3 <- lmer(
+  robot_trust_post ~ group +
+    nars_pre_c +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post')
+)
+# adding native english improves fit
+mod_dep4 <- lmer(
+  robot_trust_post ~ group +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post')
+)
+```
+
+
+```{r}
+#| eval: false
+hri_mod <- brm(
+  robot_trust_post ~ group +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+hrc_mod <- brm(
+  robot_trust_post ~ group +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale == 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+summary(hri_mod)
+summary(hrc_mod)
+
+pp_check(hri_mod) # post_trust_perc
+pp_check(hrc_mod) # post_trust (likert)
+
+nuts_params(hri_mod) %>% count(Parameter == "divergent__")
+nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
+
+post <- posterior::as_draws_df(hri_mod)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+post <- posterior::as_draws_df(hrc_mod)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+VarCorr(hri_mod)
+VarCorr(hrc_mod)
+```
+
+
 ### Mechanism Analysis: Communication Breakdown as a Failure Mode
 
-To examine why communication-based exclusion was necessary, interaction dynamics were compared between viable and non-viable sessions. Sessions classified as non-viable were characterized by substantially higher rates of speech-recognition failure, reduced dialogue coherence, increased task abandonment, and limited task-relevant information exchange.
+To examine whether communication quality altered how interaction policy influenced trust, we conducted a mechanism-focused analysis modelling proportional communication breakdown as a moderator of interaction policy in the full sample. This analysis was restricted to a minimal set of predictors—interaction policy and communication breakdown—to isolate system-level interaction dynamics rather than participant characteristics.
+
+Separate Bayesian linear mixed-effects models were fit for task-oriented trust (TPS-HRI) and experienced trust (TI-HRC), with random intercepts for session and trust item.
+
+Task-oriented trust (TPS-HRI)
+
+For task-oriented trust, posterior estimates indicated a positive overall effect of the responsive interaction policy; however, proportional communication breakdown and its interaction with policy showed substantial uncertainty. The posterior distribution of the interaction term was broad and centered near zero, suggesting that graded variation in communication breakdown did not reliably alter how participants evaluated the robot’s reliability or competence. These results indicate that evaluative trust judgments were relatively robust to communication degradation once interaction viability was established.
+
+Experienced trust (TI-HRC)
+
+For TI-HRC, the posterior distribution of the interaction term showed a consistent negative tendency (median = −6.76; pd = 0.79), indicating attenuation of the responsiveness advantage as communication breakdown increased. In contrast, the corresponding interaction for TPS-HRI was weak and unstable, with substantial posterior mass near zero.
+
+In contrast, experienced trust showed a different pattern. While responsive behaviour was associated with higher trust under low levels of communication breakdown, posterior estimates indicated a tendency for this advantage to diminish as breakdown increased. The interaction between interaction policy and communication breakdown showed a consistent negative tendency in the posterior distribution, indicating that as communication failures accumulated, the benefit of responsive behaviour on experienced trust was reduced. Although uncertainty remained high, this pattern suggests that experienced trust is more sensitive to moment-to-moment interaction dynamics than task-oriented trust.
+
+Summary of mechanism findings
+
+Taken together, these analyses suggest that communication breakdown operates as a mechanism shaping experienced trust rather than evaluative trust. Whereas task-oriented trust reflects a relatively stable post-hoc judgment of system performance, experienced trust appears contingent on the robot’s ability to sustain responsive behaviour during ongoing interaction. These findings support a distinction between trust as judgment and trust as experience, and highlight the importance of modelling interaction-level processes when evaluating trust in autonomous human–robot collaboration.
+
+```{r}
+#| eval: false
+hri_mod <- brm(
+  robot_trust_post ~ group *
+    prop_comm_breakdown +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale == 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+hrc_mod <- brm(
+  robot_trust_post ~ group *
+    prop_comm_breakdown +
+    nars_pre_c +
+    native_english +
+    (1 | session_id) +
+    (1 | trust_items),
+  data = scores_df_full |> filter(scale != 'HRI_perception_post'),
+  family = gaussian(),
+  prior = priors,
+  chains = 4,
+  cores = 10,
+  iter = 4000,
+  warmup = 1000,
+  control = list(adapt_delta = 0.95)
+)
+
+summary(hri_mod)
+summary(hrc_mod)
+
+pp_check(hri_mod) # post_trust_perc
+pp_check(hrc_mod) # post_trust (likert)
+
+nuts_params(hri_mod) %>% count(Parameter == "divergent__")
+nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
+
+post <- posterior::as_draws_df(hri_mod)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+post <- posterior::as_draws_df(hrc_mod)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+VarCorr(hri_mod)
+VarCorr(hrc_mod)
+```
+
 
 Notably, under conditions of severe communication breakdown, the RESPONSIVE robot continued to generate proactive assistance, encouragement, and meta-communication aimed at repairing the interaction. However, these efforts did not restore mutual understanding and, in several cases, appeared to increase participant confusion and cognitive load. In contrast, the CONTROL robot’s reactive interaction policy resulted in fewer unsolicited interventions, which—while less supportive under normal conditions—reduced interaction complexity when language-mediated collaboration was no longer viable.
 
+```{r}
+#| label: tbl-post-nonviable
+post_table |>
+  #filter(exclusions != 'exclude') |>
+  select(
+    group,
+    contains('post'),
+    prop_correct,
+    suspect_correct,
+    building_correct,
+    zone_correct,
+    floor_correct,
+    n_turns,
+    duration_mins,
+    avg_response_ms,
+    n_silence,
+    n_engaged,
+    n_frust,
+    exclusions,
+    prop_comm_breakdown,
+    prop_human_reasoning,
+    prop_robot_reasoning,
+    prop_robot_helpful_guidance,
+    prop_robot_unhelpful,
+    prop_robot_encouragement,
+    prop_robot_empathy_expression,
+    prop_robot_collaborative_lang,
+    prop_robot_proactive_checkin
+  ) |>
+  tbl_summary(
+    by = exclusions,
+    type = list(
+      contains('post') ~ 'continuous',
+      avg_response_ms ~ 'continuous',
+      starts_with('n_') ~ 'continuous',
+      starts_with('prop_') ~ 'continuous'
+      #mean_task_assistance ~ 'continuous'
+      # any_comm_breakdown ~ 'continuous'
+    ),
+    # missing=FALSE,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      # suspect_correct ~ "Suspect ID Accuracy",
+      # status_correct ~ "Status Accuracy",
+      duration_mins ~ "Avg Session Duration (mins)",
+      post_trust_reliability ~ "Reliability subscale",
+      post_trust_feelings ~ "Affective Trust subscale",
+      post_trust_perception ~ "Trust Perception subscale",
+      #total_correct ~ "Total Task Accuracy",
+      n_turns ~ "Dialogue Turns",
+      # n_turns.y~"Task Dialogue Turns",
+      n_silence ~ "Silent Periods",
+      avg_response_ms ~ "Avg Robot Response Time (ms)",
+      prop_correct ~ "Overall Task Accuracy",
+      n_engaged ~ "Engaged Responses",
+      n_frust ~ "Frustrated Responses",
+      trust_perc_post ~ "Trust Perception Scale–HRI",
+      post_trust ~ "Trust in Industrial HRI Collaboration",
+      prop_comm_breakdown ~ "Communication Breakdowns",
+      prop_human_reasoning ~ "Human Reasoning",
+
+      prop_robot_reasoning ~ "Robot Reasoning",
+      prop_robot_helpful_guidance ~ "Robot Helpful Guidance",
+      prop_robot_unhelpful ~ "Robot Unhelpful Contributions",
+      prop_robot_encouragement ~ "Robot Encouragement",
+      prop_robot_empathy_expression ~ "Robot Empathy Expression",
+      prop_robot_collaborative_lang ~ "Robot Collaborative Language",
+      prop_robot_proactive_checkin ~ "Robot Proactive Check-ins"
+    )
+  ) |>
+  add_variable_group_header(
+    variables = c(
+      post_trust_reliability,
+      post_trust_feelings,
+      post_trust_perception
+    ),
+    header = "Subscales"
+  ) |>
+  add_variable_group_header(
+    variables = c(
+      prop_comm_breakdown,
+      prop_human_reasoning,
+      prop_robot_reasoning,
+      prop_robot_helpful_guidance,
+      prop_robot_unhelpful,
+      prop_robot_encouragement,
+      prop_robot_empathy_expression,
+      prop_robot_proactive_checkin,
+      prop_robot_collaborative_lang
+    ),
+    header = "% of Dialogue Turns Characterized by..."
+  ) |>
+  add_variable_group_header(
+    variables = c(
+      duration_mins,
+      n_turns,
+      n_silence,
+      n_engaged,
+      n_frust,
+      avg_response_ms
+    ),
+    header = "Objective Measures"
+  ) |>
+  add_p() |>
+  # add_overall() |>
+  bold_p() |>
+  #bold_labels() |>
+  modify_caption("Post-Interaction Raw Outcome Measures by Group")
+```
+
 As a result, trust ratings in non-viable sessions did not systematically track the intended responsiveness manipulation. These findings suggest that when spoken-language interaction collapses, higher-level constructs such as trust and collaboration are no longer meaningfully instantiated. Communication viability therefore represents a boundary condition for evaluating affect-adaptive interaction policies in autonomous social robots.
+
+```{r}
+
+```
+
 
 ## Trust subscale patterns
 
@@ -791,7 +1280,6 @@ corrplot(
 )
 
 ```
-
 
 ::: callout-important
 ## TO DO:
@@ -948,9 +1436,13 @@ compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
 
 # Discussion
 
+An additional objective of this pilot study was to inform the design of an autonomous affect-adaptive interaction system under real-time constraints. The initial system concept included multimodal affect inference based on facial expressions, vocal prosody, and interaction dynamics. However, early integration testing revealed substantial challenges related to latency, model orchestration, and timing sensitivity when deploying multiple perception models concurrently on an edge-supported mobile robot platform. Given the small-scale nature of the pilot and the central importance of maintaining stable, real-time dialogue, the deployed system prioritized robustness of spoken-language interaction and dialogue-based affect inference over broader multimodal sensing. Affect adaptation in this study was therefore driven primarily by speech-based affect signals and conversational context, allowing us to evaluate responsiveness within a fully autonomous interaction while preserving realistic system constraints.
+
+The use of two trust instruments highlights an important distinction in how trust is operationalized in HRI research. The Trust Perception Scale–HRI emphasizes task-oriented and cognitive evaluations of system performance, whereas the Trust in Industrial Human–Robot Collaboration scale captures experiential and affective aspects of trust arising from embodied interaction. While both measures converged on perceived reliability, affective trust indicators were more strongly aligned with behavioural engagement during interaction, suggesting that subjective trust judgments alone may obscure how trust is enacted in practice. Trust as judgement versus trust as experience.
+
 Mention language confounders!! The present findings also highlight an important boundary condition for trust measurement in spoken-language HRI. When language-mediated interaction collapses entirely, higher-level constructs such as trust and collaboration are no longer meaningfully defined. Under such conditions, trust does not simply decrease; rather, the interaction fails to instantiate the prerequisites necessary for trust formation. This distinction is critical for both system evaluation and experimental design, particularly as autonomous robots are deployed in linguistically diverse, real-world environments.
 
-Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (*n* = 6). While the experimenter documented all cases where language might pose an issue (as observed when meeting each participant), exclusion decisions were based solely on actual communication viability and interaction mechanics, not on task outcomes or trust measures.
+Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (*n* = 5). While the experimenter documented all cases where language might pose an issue (as observed when meeting each participant), exclusion decisions were based solely on actual communication viability and interaction mechanics, not on task outcomes or trust measures.
 
 The second task was intentionally designed to be sufficiently challenging that completing it within the allotted time was difficult without assistance. This ensured that interaction with the robot represented a meaningful opportunity for collaboration rather than a trivial or purely optional exchange. By contrasting a robot-dependent task with an open-ended advisory task, the study examined trust formation across interaction contexts that varied in both informational asymmetry and reliance on the robot.
 
@@ -985,74 +1477,7 @@ Need to remember to flag participants who did not complete/skipped specific task
 
 # Conclusion and Future Work
 
-# Appendix {.appendix}
-
-## Dialogue Coding Scheme
-
-### Task Outcome Layer (Stage-Level)
-
-| Variable | Type | Description |
-|------------------------|------------------------|------------------------|
-| `task_outcome` | categorical | Final task status (`completed`, `timeout`, `skipped`, `partial`, `abandoned`). Exactly one per task. |
-| `task_completed` | binary | Task goal was fully completed within the allotted time. |
-| `task_timed_out` | binary | Task ended due to expiration of the time limit before completion. |
-| `task_skipped` | binary | Participant explicitly skipped or advanced past the task without completing it. |
-| `task_partially_completed` | binary | Task progress was made, but the full solution was not reached. |
-| `task_abandoned` | binary | Participant disengaged or stopped attempting the task before timeout. |
-| `task_time_remaining_sec` | numeric | Time remaining (in seconds) when the task ended; 0 if timed out. |
-| `task_completed_without_help` | binary | Task was completed without any help requests to the robot. |
-| `task_required_robot_help` | binary | At least one robot help interaction was required for task completion. |
-
-### Dialogue Interaction Layer (Turn-Level)
-
-#### Human Turn Codes
-
-| Variable | Type | Description |
-|------------------------|------------------------|------------------------|
-| `human_help_request` | binary | Participant explicitly or implicitly asks the robot for help or guidance. |
-| `human_reasoning_self` | binary | Participant articulates their own reasoning or problem-solving independent of the robot. |
-| `human_confusion` | binary | Participant expresses confusion or uncertainty. |
-| `human_confirmation_seeking` | binary | Participant seeks confirmation of a tentative belief or solution. |
-| `human_ignores_robot` | binary | Participant proceeds without engaging with the robot’s prior input. |
-
-#### Robot Turn Codes
-
-| Variable | Type | Description |
-|------------------------|------------------------|------------------------|
-| `robot_helpful_guidance` | binary | Robot provides accurate, task-relevant guidance. |
-| `robot_misleading_guidance` | binary | Robot provides misleading or incorrect guidance. |
-| `robot_factually_incorrect` | binary | Robot states information that is objectively incorrect. |
-| `robot_policy_violation` | binary | Robot violates stated system or task constraints. |
-| `robot_on_policy_unhelpful` | binary | Robot adheres to policy but provides vague or non-actionable assistance. |
-| `robot_stt_failure` | binary | Robot response reflects a speech-to-text or input understanding failure. |
-| `robot_clarification_request` | binary | Robot asks the participant to repeat or clarify their input. |
-
-### Affective Interaction Layer (Turn-Level)
-
-#### Robot Affective behaviour
-
-| Variable | Type | Description |
-|------------------------|------------------------|------------------------|
-| `robot_empathy_expression` | binary | Robot expresses empathy, encouragement, or reassurance. |
-| `robot_emotion_acknowledgement` | binary | Robot explicitly references an inferred participant emotional state. |
-| `robot_affect_task_aligned` | binary | Robot’s affective response is appropriate and supportive in context. |
-| `robot_affect_misaligned` | binary | Robot’s affective response is mistimed or disruptive to the task. |
-
-#### Human Affective Response
-
-| Variable | Type | Description |
-|------------------------|------------------------|------------------------|
-| `human_affective_engagement` | binary | Participant responds in a socially warm or emotionally engaged manner. |
-| `human_social_reciprocity` | binary | Participant mirrors or responds to the robot’s affective expression. |
-| `human_anthropomorphic_language` | binary | Participant treats the robot as a social agent. |
-| `human_emotional_disengagement` | binary | Participant responds in a curt, dismissive, or withdrawn manner. |
-
-### Notes
-
--   Turn-level variables are coded per dialogue turn.
--   Task outcome variables are coded once per `session_id × stage`.
--   Raw dialogue text was retained during coding and removed prior to aggregation.
--   Multiple turn-level codes may co-occur unless otherwise specified.
+# Appendix A {#sec-appendix-a .appendix}
 
 ## Key Components of the System
 
@@ -1254,6 +1679,8 @@ Alternatives considered: Direct API calls would reduce dependencies but require 
 -   Arm movements (bilateral position control)
 -   Head movements (pitch, yaw, roll control)
 
+![A sample of Misty-II expressions. From Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction, by White et al @designin.](images/misty-expressions.jpg){fig-align="center"}
+
 **Nonverbal Backchannel behaviours** (RESPONSIVE mode only):
 
 -   Real-time listening cues triggered by partial transcripts (disfluencies, hesitation markers)
@@ -1299,6 +1726,7 @@ Alternatives considered: Direct API calls would reduce dependencies but require 
 
 -   Celebratory language for curious/engaged states
 -   Momentum maintenance: "Yes! Great observation!"
+-   Choosing expressions aligned with positive affect
 
 **Run Mode**: Set programmatically in `mistyGPT_emotion.py` line 126:
 
@@ -1331,3 +1759,107 @@ Flask REST API endpoints:
 -   GET /timer_expired_status: Detect timer expirations
 -   POST /stage: Update stage (facilitator override)
 -   POST /reset_timer: Clear timer expiration flags
+
+## Appendix B {#sec-appendix-b .appendix}
+
+### Trust Perception Scale–HRI (TPS-HRI; adapted [@schaefer2016])
+
+Participants rated the following items on a percentage scale (0–100%), indicating the proportion of time each statement applied to the robot during the interaction.
+
+-   What percent of the time was the robot dependable?
+-   What percent of the time was the robot reliable?
+-   What percent of the time was the robot responsive?
+-   What percent of the time was the robot trustworthy?
+-   What percent of the time was the robot supportive?
+-   What percent of the time did this robot act consistently?
+-   What percent of the time did this robot provide feedback?
+-   What percent of the time did this robot meet the needs of the mission task?
+-   What percent of the time did this robot provide appropriate information?
+-   What percent of the time did this robot communicate appropriately?
+-   What percent of the time did this robot follow directions?
+-   What percent of the time did this robot answer the questions asked?
+
+### Trust in Industrial Human–Robot Collaboration (TI-HRC; adapted [@charalambous2016])
+
+Participants indicated their agreement with the following statements using a 5-point Likert-type scale. Negatively worded items were reverse-scored prior to analysis.
+
+***Reliability***
+
+-   I trusted that the robot would give me accurate answers.
+-   The robot’s responses seemed reliable.
+-   I felt I could rely on the robot to do what it was supposed to do.
+
+***Perceptual / Affective Trust***
+
+-   The robot seemed to enjoy helping me.
+-   The robot was responsive to my needs.
+-   The robot seemed to care about helping me.
+
+***Discomfort / Unease***
+
+-   The way the robot moved made me uncomfortable. (R)
+-   The way the robot spoke made me uncomfortable. (R)
+-   Talking to the robot made me uneasy. (R)
+
+## Dialogue Coding Scheme
+
+### Task Outcome Layer (Stage-Level)
+
+| Variable | Type | Description |
+|---------------------------|------------------|---------------------------|
+| `task_outcome` | categorical | Final task status (`completed`, `timeout`, `skipped`, `partial`, `abandoned`). |
+| `task_completed` | binary | Task goal was fully completed. |
+| `task_timed_out` | binary | Task ended due to expiration of the time limit. |
+| `task_skipped` | binary | Participant explicitly skipped or advanced past the stage. |
+| `task_partially_completed` | binary | Task progress was made, but the full solution was not reached. |
+| `task_abandoned` | binary | Participant disengaged or stopped attempting the task before timeout. |
+| `task_completed_without_help` | binary | Task was completed without any help requests to the robot. |
+| `task_required_robot_help` | binary | At least one robot help interaction was required for task completion. |
+
+### Dialogue Interaction Layer (Turn-Level)
+
+#### Human Turn Codes
+
+| Variable | Type | Description |
+|---------------------------|------------------|---------------------------|
+| `human_help_request` | binary | Participant explicitly or implicitly asks the robot for help or guidance. |
+| `human_reasoning` | binary | Participant reasons out loud with the robot toward problem-solving. |
+| `human_confusion` | binary | Participant expresses confusion or uncertainty. |
+| `human_confirmation_seeking` | binary | Participant seeks confirmation of a tentative belief or solution. |
+
+#### Robot Turn Codes
+
+| Variable | Type | Description |
+|----------------------------|------------------|--------------------------|
+| `robot_helpful_guidance` | binary | Robot provides accurate, task-relevant information or guidance. |
+| `robot_misleading_guidance` | binary | Robot provides misleading or incorrect guidance. |
+| `robot_factually_incorrect` | binary | Robot states information that is objectively incorrect (though it may not know it is incorrect). |
+| `robot_policy_violation` | binary | Robot violates stated system or task constraints. |
+| `robot_on_policy_unhelpful` | binary | Robot adheres to policy but provides vague or non-actionable assistance. |
+| `robot_stt_failure` | binary | Robot response reflects a speech-to-text or input understanding failure. |
+| `robot_clarification_request` | binary | Robot asks the participant for information or to repeat or clarify their input. |
+
+### Affective Interaction Layer (Turn-Level)
+
+#### Robot Affective behaviour
+
+| Variable | Type | Description |
+|----------------------------|------------------|--------------------------|
+| `robot_empathy_expression` | binary | Robot expresses empathy, encouragement, or reassurance. |
+| `robot_emotion_acknowledgement` | binary | Robot explicitly references an inferred participant emotional state. |
+
+#### Human Affective Response
+
+| Variable | Type | Description |
+|-----------------------------|------------------|-------------------------|
+| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner. |
+| `human_social_reciprocity` | binary | Participant mirrors or responds to the robot’s affective expression. |
+| `human_anthropomorphic_language` | binary | Participant treats the robot as a social agent. |
+| `human_emotional_disengagement` | binary | Participant responds in a curt, dismissive, or withdrawn manner. |
+
+### Notes
+
+-   Turn-level variables are coded per dialogue turn.
+-   Task outcome variables are coded once per `session_id × stage`.
+-   Raw dialogue text was retained during coding and removed prior to aggregation.
+-   Multiple turn-level codes may co-occur unless otherwise specified.
