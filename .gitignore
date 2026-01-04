@@ -7,3 +7,4 @@
 /.quarto/
 *.md
 full_*.*
+**/*.quarto_ipynb
