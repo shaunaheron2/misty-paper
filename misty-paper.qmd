@@ -103,17 +103,25 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 
 ## Introduction
 
-As automation expands across safety-critical domains such as manufacturing, mining, and healthcare, robotic systems are increasingly expected to operate alongside humans rather than in isolation [@fu2021; @ciuffreda2025; @diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but on whether human users are willing to rely on, communicate with, and coordinate their actions around systems driven by artificial intelligence (AI) [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
+As artificial intelligence (AI) technologies advance, they are increasingly being integrated into robotic systems, enabling more adaptive, autonomous, and context-sensitive behavior in real-world environments. This convergence has accelerated the deployment of robots across safety-critical domains such as manufacturing [@choi2025], mining [@fu2021], and healthcare [@ciuffreda2025], where systems are now expected to operate alongside humans rather than in isolation [@diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but on whether human users are willing to rely on, communicate with, and coordinate their actions around robotic partners [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance and accidents—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
 
-A substantial body of human–robot interaction (HRI) research has examined how robot behaviour shapes user trust, perceived reliability, and cooperation across industrial and social contexts [@shayganfar2019; @fartook2025]. Trust is commonly conceptualized as a multidimensional construct encompassing cognitive evaluations of competence and reliability, affective responses to the interaction partner, and behavioural willingness to rely on the system under conditions of risk or uncertainty [@muir1994; @hancock2011; @devisser2020]. Despite this multidimensional framing, empirical studies have predominantly operationalized trust using post-interaction self-report questionnaires, often collected following short, highly controlled interactions.
+In the context of human–robot collaboration, trust can be understood as a willingness to rely on an agent under conditions of uncertainty and risk [@muir1994; @hancock2011]. This reliance is dynamically calibrated, shaping how closely users monitor a robot, when they intervene, and whether they defer or override its actions [@devisser2020]. Appropriately calibrated trust supports effective coordination, whereas under-trust may result in disengagement or redundant oversight, and over-trust can lead to inappropriate reliance and unsafe outcomes. These effects are especially pronounced in dialogue-driven collaborative tasks, where misunderstandings, delays, or ambiguous responses may directly influence users’ ongoing assessments of a robot’s competence and reliability.
 
-Importantly, much of the existing HRI trust literature relies on scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages the robot’s behaviour. While these approaches are valuable for isolating specific design factors, they obscure the interaction breakdowns and system imperfections that characterize real-world autonomous robots [@campagna2025]. In deployed systems, limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical evaluations.
+A substantial body of human–robot interaction (HRI) research has examined how robot behaviour influences user trust, perceived reliability, and cooperation across industrial and social contexts [@shayganfar2019; @fartook2025]. Within this literature, trust is typically conceptualized as a multidimensional construct encompassing cognitive evaluations of an agent’s competence, predictability, and reliability, alongside a behavioural willingness to collaborate toward shared goals under conditions of risk or uncertainty [@muir1994; @hancock2011; @devisser2020]. Despite this multidimensional framing, empirical studies have most often operationalized trust using post-interaction self-report questionnaires collected following short, highly controlled and often scripted interactions. While such measures provide valuable global assessments of user attitudes, they offer limited insight into how trust is negotiated, disrupted, and repaired during ongoing interaction—particularly in autonomous systems where errors and ambiguities are unavoidable.
 
-One proposed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context [@shayganfar2019; @fartook2025]. Responsive robots may adjust dialogue, timing, or support strategies in response to inferred cues such as confusion, frustration, or disengagement, and prior work suggests that such adaptive behaviour can enhance perceived social intelligence and trustworthiness in dialogue-driven tasks [@birnbaum2016]. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions subject to real-time constraints and failure [@campagna2025].
+Studying trust as an interactional process therefore requires experimental settings in which users engage with robots that exhibit both adaptive behaviour and realistic system limitations [@campagna2025]. In such settings, trust is shaped not only by task success but by how robots handle uncertainty, errors, and misalignment during interaction. Fully autonomous systems, in which dialogue management and response generation occur without human intervention, provide a critical testbed for examining these dynamics, as they expose users to the same constraints and breakdowns encountered in real-world deployment.
 
-From an engineering perspective, responsiveness represents an interaction policy rather than a superficial social cue [@shayganfar2019]. Proactive assistance based on interaction context differs fundamentally from reactive, request-based behaviour, particularly in fully autonomous systems—for example, offering clarification or encouragement when confusion or hesitation is inferred, rather than waiting for an explicit request for help [@birnbaum2016]. Implementing such policies requires robots to manage spoken-language dialogue, track interaction state over time, and coordinate verbal and nonverbal responses in real time, all while operating under noise, latency, and sensing uncertainty [@campagna2025].
+In practice much of the existing HRI trust literature has relied on scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages the robot’s behaviour [@campagna2025]. While these approaches are valuable for isolating specific design factors, they obscure the interaction breakdowns and system imperfections that characterize real-world autonomous robots. In deployed systems, limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical evaluations [@campagna2025].
 
-The present work addresses these gaps through a pilot study examining trust and collaboration during in-person interaction with a fully autonomous social robot. Participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving. In both conditions, all interaction management—including speech recognition, dialogue state tracking, task progression, and response generation—was handled and logged autonomously by the robot without human intervention. In the responsive condition, the robot employed a proactive interaction policy, adapting its assistance based on conversational cues and inferred user affect. In the neutral condition, the robot followed a reactive policy, providing general guidance but assistance only when explicitly requested.
+Within HRI, a range of design strategies have been proposed to support appropriate trust calibration during collaboration, including the extent to which a robot does or does not look like a human, transparency cues, explanations of system intent, adaptive feedback, and interaction pacing. Many of these approaches aim to help users form accurate expectations about a robot’s capabilities and limitations, particularly in contexts involving uncertainty or partial observability. Among these strategies, adaptive interaction behaviour—how and when a robot responds to user state and task context—has been identified as a particularly influential factor in shaping perceptions of competence, reliability, and collaboration.
+
+Recent advances in AI have expanded the range of interaction strategies that can be implemented on autonomous robotic platforms, enabling systems to move beyond fixed, scripted behaviours toward adaptive interaction policies that respond to user state and task context in real time. Improvements in spoken-language processing, dialogue state tracking, and affect inference now allow robots to adjust not only what they say, but when and how assistance is provided during collaboration. As a result, responsiveness in contemporary HRI is increasingly understood as a property of an underlying interaction policy—governing how a robot interprets cues, initiates support, and manages uncertainty—rather than as a surface-level social behaviour.
+
+One widely discussed mechanism for supporting trust in HRI is responsiveness: the extent to which a robot adapts its behaviour based on user state and interaction context [@birnbaum2016; @shayganfar2019; @fartook2025]. Responsive robots may adjust dialogue, timing, or support strategies in response to inferred cues such as confusion, frustration, or disengagement, and prior work suggests that such adaptive behaviour can enhance perceived social intelligence and trustworthiness in dialogue-driven tasks [@birnbaum2016]. However, most evidence for these effects comes from simulated or semi-autonomous systems, leaving open questions about how responsiveness operates when implemented in fully autonomous, in-person interactions subject to real-time constraints and failure [@campagna2025].
+
+From an engineering perspective, responsiveness is defined by an interaction policy rather than a superficial social cue [@shayganfar2019]. Proactive assistance based on interaction context differs fundamentally from reactive, request-based behaviour, particularly in fully autonomous systems—for example, offering clarification or encouragement when confusion or hesitation is inferred, rather than waiting for an explicit request for help [@birnbaum2016]. Implementing such policies requires robots to manage spoken-language dialogue, track interaction state over time, and coordinate verbal and nonverbal responses in real time, all while operating under noise, latency, and sensing uncertainty [@campagna2025].
+
+The present work addresses these gaps through a pilot study examining trust and collaboration during in-person interaction with a fully autonomous social robot. Participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving . In both conditions, all interaction management—including speech recognition, dialogue state tracking, task progression, and response generation—was handled and logged autonomously by the robot without human intervention. In the responsive condition, the robot employed a proactive interaction policy, adapting its assistance based on conversational cues and inferred user affect. In the neutral condition, the robot followed a reactive policy, providing general guidance but assistance only when explicitly requested.
 
 This pilot study had three primary objectives: (1) to design and evaluate the feasibility of an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether interaction policy influences post-interaction trust and collaborative experience under realistic autonomous conditions; and (3) to explore how behavioural and interaction-level indicators align with subjective trust evaluations. Rather than optimizing for flawless interaction, the system was intentionally designed to reflect the capabilities and limitations of contemporary social robots, allowing interaction breakdowns to surface naturally.
 
@@ -123,9 +131,7 @@ By combining post-interaction trust measures with task-level and behavioural obs
 
 This study employed a between-subjects experimental design to examine how robot interaction policy influences trust and collaboration during fully autonomous, in-person human–robot interaction. The sole experimental factor was the robot’s interaction policy, with participants randomly assigned to interact with either a responsive or neutral version of the same robot system.
 
-::: callout-important
 Throughout this paper, references to "the robot" denote the fully autonomous interactive system comprising the Misty-II hardware platform and its onboard software stack, with all interaction decisions generated without human intervention, including spoken-language processing, dialogue management, and the interaction policy governing verbal and nonverbal behaviour. Additional details of the system architecture are provided in Appendix A.
-:::
 
 ### Interaction Policies
 
@@ -285,11 +291,11 @@ To ensure transparency and assess the impact of communication-based exclusions, 
 
 While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown were not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
 
-All analyses was conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while bayesian hierarchical models fitted using the brms package. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
+All analyses was conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
 
 ## Results
 
-Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from manual coding of system logs. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns-considering half of all turns were dependent on human speech-were characterized by communication breakdown and were classified as non-viable ($n=5$). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments.
+Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from manual coding of system logs. After coding, the proportion of dialogue turns affected by speech-recognition failure (i.e., fragmented or unintelligible utterances) was computed for each session. Sessions in which more than 60% of dialogue turns-considering half of all turns were dependent on human speech-were characterized by communication breakdown and were classified as non-viable ($n=5$). This criterion closely matched sessions independently flagged by the researcher during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. These sessions were also characterized by incomplete pre and post session questionnaires and skipping stages of of dialogue altogether.
 
 Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.
 
@@ -309,7 +315,7 @@ post_table <- df_flat_scores_final |>
 
 ### Primary Analysis: Eligible Sample
 
-Descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible for more detail). As indicated in @fig-post-eligible2, average post-interaction scores on the TI-HRC differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in TPS-HRI scores were approximately 15 points higher in the responsive condition compared to the control as indicated in @fig-post-eligible. Scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies. TO DO: ADD DIALOGUE ANALYSES STATS
+Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As indicated in @fig-post-eligible2, average post-interaction scores on the TI-HRC differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in TPS-HRI scores were approximately 15 points higher in the responsive condition compared to the control as indicated in @fig-post-eligible. Scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies. TO DO: ADD DIALOGUE ANALYSES STATS
 
 ```{r}
 #| label: fig-post-eligible2
@@ -324,7 +330,7 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = TRUE,
   #oint.args = list(alpha = 0.6),
-  ylab = "Experienced Trust in Robot Collaboration (TI-HRC)",
+  ylab = "Experienced Trust (TI-HRC)",
   xlab = "Interaction Policy",
   # title = "Post-Interaction Trust by Robot Interaction Policy",
   results.subtitle = FALSE
@@ -348,7 +354,7 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = TRUE,
   #point.args = list(alpha = 0.6),
-  ylab = "Perceived Trust in Robot Collaboration (TRI-HRI)",
+  ylab = "Perceived Trust (TRI-HRI)",
   xlab = "Interaction Policy",
   #title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
   results.subtitle = FALSE
@@ -1224,38 +1230,6 @@ corrplot(
 
 ```
 
-::: callout-important
-## TO DO:
-
-CITATIONS
-
--   add subscale column to long format data
--   run an analysis of performance by robot-dependent versus robot-independent tasks
--   write up a future directions section for the planned larger study
--   talk about unexpected language issues with people signing up with difficultly speaking and understanding english which cuased problems with asr and interaction
--   run analysis of dialogue dynamics included Bertopic or some other analysis of the actual content of the conversations/interactions
-:::
-
-::: callout-important
-## TODO2
-
-Manually score each dialogue series.
-
-For each interaction and stage:
-
--   did the participant ask for help?
--   how many times?
--   did the robot give useful help?
--   did the robot give misleading or incorrect help?
--   did the robot stick to the policy?
--   how many times did the robot fail to understand the participant?
-
-For each task:
-
--   is there evidence that the robot helped complete the task?
--   is there evidence that the participant solved the problem without help?
-:::
-
 ```{r}
 
 library(lme4)
@@ -1528,7 +1502,7 @@ Participants indicated their agreement with the following statements using a 5-p
 #### Task Outcome Layer (Stage-Level)
 
 | Variable | Type | Description |
-|---------------------------|------------------|---------------------------|
+|---------------------------|-------------------|---------------------------|
 | `task_outcome` | categorical | Final task status (`completed`, `timeout`, `skipped`, `partial`, `abandoned`). |
 | `task_completed` | binary | Task goal was fully completed. |
 | `task_timed_out` | binary | Task ended due to expiration of the time limit. |
@@ -1543,7 +1517,7 @@ Participants indicated their agreement with the following statements using a 5-p
 #### Human Turn Codes {.unnumbered}
 
 | Variable | Type | Description |
-|---------------------------|------------------|---------------------------|
+|---------------------------|-------------------|---------------------------|
 | `human_help_request` | binary | Participant explicitly or implicitly asks the robot for help or guidance. |
 | `human_reasoning` | binary | Participant reasons out loud with the robot toward problem-solving. |
 | `human_confusion` | binary | Participant expresses confusion or uncertainty. |
@@ -1552,7 +1526,7 @@ Participants indicated their agreement with the following statements using a 5-p
 #### Robot Turn Codes {.unnumbered}
 
 | Variable | Type | Description |
-|----------------------------|------------------|--------------------------|
+|----------------------------|-------------------|--------------------------|
 | `robot_helpful_guidance` | binary | Robot provides accurate, task-relevant information or guidance. |
 | `robot_misleading_guidance` | binary | Robot provides misleading or incorrect guidance. |
 | `robot_factually_incorrect` | binary | Robot states information that is objectively incorrect (though it may not know it is incorrect). |
@@ -1566,14 +1540,14 @@ Participants indicated their agreement with the following statements using a 5-p
 #### Robot Affective behaviour {.unnumbered}
 
 | Variable | Type | Description |
-|----------------------------|------------------|--------------------------|
+|----------------------------|-------------------|--------------------------|
 | `robot_empathy_expression` | binary | Robot expresses empathy, encouragement, or reassurance. |
 | `robot_emotion_acknowledgement` | binary | Robot explicitly references an inferred participant emotional state. |
 
 #### Human Affective Response {.unnumbered}
 
 | Variable | Type | Description |
-|-----------------------------|------------------|-------------------------|
+|----------------------------|-------------------|-------------------------|
 | `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner. |
 | `human_social_reciprocity` | binary | Participant mirrors or responds to the robot’s affective expression. |
 | `human_anthropomorphic_language` | binary | Participant treats the robot as a social agent. |
@@ -1585,3 +1559,35 @@ Participants indicated their agreement with the following statements using a 5-p
 -   Task outcome variables are coded once per `session_id × stage`.
 -   Raw dialogue text was retained during coding and removed prior to aggregation.
 -   Multiple turn-level codes may co-occur unless otherwise specified.
+
+::: callout-important
+## TO DO:
+
+CITATIONS
+
+-   add subscale column to long format data
+-   run an analysis of performance by robot-dependent versus robot-independent tasks
+-   write up a future directions section for the planned larger study
+-   talk about unexpected language issues with people signing up with difficultly speaking and understanding english which cuased problems with asr and interaction
+-   run analysis of dialogue dynamics included Bertopic or some other analysis of the actual content of the conversations/interactions
+:::
+
+::: callout-important
+## TODO2
+
+Manually score each dialogue series.
+
+For each interaction and stage:
+
+-   did the participant ask for help?
+-   how many times?
+-   did the robot give useful help?
+-   did the robot give misleading or incorrect help?
+-   did the robot stick to the policy?
+-   how many times did the robot fail to understand the participant?
+
+For each task:
+
+-   is there evidence that the robot helped complete the task?
+-   is there evidence that the participant solved the problem without help?
+:::
