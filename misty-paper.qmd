@@ -291,11 +291,11 @@ To ensure transparency and assess the impact of communication-based exclusions, 
 
 While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown were not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
 
-All analyses was conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
+All analyses were conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while Bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
 
 ## Results
 
-Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from manual coding of system logs. After coding, the proportion of dialogue turns affected by speech-recognition failure (i.e., fragmented or unintelligible utterances) was computed for each session. Sessions in which more than 60% of dialogue turns-considering half of all turns were dependent on human speech-were characterized by communication breakdown and were classified as non-viable ($n=5$). This criterion closely matched sessions independently flagged by the researcher during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. These sessions were also characterized by incomplete pre and post session questionnaires and skipping stages of of dialogue altogether.
+Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from manual coding of system logs. After coding, the proportion of dialogue turns affected by speech-recognition failure (i.e., fragmented or unintelligible utterances) was computed for each session. Sessions in which more than 60% of dialogue turns—considering half of all turns were dependent on human speech—were characterized by communication breakdown and were classified as non-viable. This criterion closely matched sessions independently flagged by the researcher during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligible sentence fragments. These sessions were also characterized by incomplete pre- and post-session questionnaires and skipping stages of dialogue altogether.
 
 Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.
 
@@ -315,7 +315,9 @@ post_table <- df_flat_scores_final |>
 
 ### Primary Analysis: Eligible Sample
 
-Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As indicated in @fig-post-eligible2, average post-interaction scores on the TI-HRC differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in TPS-HRI scores were approximately 15 points higher in the responsive condition compared to the control as indicated in @fig-post-eligible. Scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies. TO DO: ADD DIALOGUE ANALYSES STATS
+Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As indicated in @fig-post-eligible2, average post-interaction scores on the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales), while differences on the Trust Perception Scale–HRI (TPS-HRI) were approximately 15 points higher in the responsive condition compared to the control (@fig-post-eligible).
+
+Analysis of dialogue interaction patterns confirmed successful manipulation of the interaction policies. Manual coding of dialogue transcripts revealed substantial and significant differences in robot behavior across conditions (see @tbl-post-eligible). In the responsive condition, the robot employed encouragement in 36% of dialogue turns compared to 0% in the control condition (p < .001), expressed empathy or acknowledged participant affect in 13% of turns versus 0% in the control (p < .001), and used collaborative language (e.g., "we," "let's") in 42% of turns compared to 5% in control (p < .001). Interestingly, while both conditions included proactive check-ins following periods of participant silence, the control robot engaged in such check-ins at a higher rate (21% vs. 13% of turns, p = .033), consistent with its reactive policy that limited proactive assistance to structured silence monitoring. Critically, proportions of communication breakdown did not differ between conditions (25% vs. 22%, p = .70), indicating that interaction policy did not systematically impact technical speech recognition viability among eligible participants. Participants in the responsive condition also exhibited higher levels of AI-detected engagement during interaction, with an average of 3.50 engaged responses (SD = 1.95) compared to 2.00 (SD = 2.21) in the control condition. Consistent with these dialogue differences, interactions in the responsive condition were characterized by longer session durations and slower robot response times, reflecting the additional dialogue and affective support behaviors. Together, these patterns confirm that the responsive robot implemented affect-adaptive, proactive support behaviours while maintaining comparable interaction viability to the neutral control condition.
 
 ```{r}
 #| label: fig-post-eligible2
@@ -337,9 +339,7 @@ ggbetweenstats(
 )
 ```
 
-Importantly objective task accuracy did not differ between conditions across any task-level measures. This suggests that observed differences in trust were not driven by differential task success.
-
-Despite similar task accuracy, interactions in the responsive condition were expectedly characterized by longer durations (more dialogue), slower robot response times (more dialogue), and a higher number of AI-detected engaged responses. These findings suggest that responsiveness altered the interaction dynamics and affective tone rather than task outcomes.
+Importantly, overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.
 
 ```{r}
 #| label: fig-post-eligible
@@ -354,7 +354,7 @@ ggbetweenstats(
   mean.plotting = TRUE,
   mean.ci = TRUE,
   #point.args = list(alpha = 0.6),
-  ylab = "Perceived Trust (TRI-HRI)",
+  ylab = "Perceived Trust (TPS-HRI)",
   xlab = "Interaction Policy",
   #title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
   results.subtitle = FALSE
@@ -437,15 +437,17 @@ post_table |>
   modify_caption("Post-Interaction Raw Outcome Measures by Group")
 ```
 
+Beyond descriptive comparisons, hierarchical models were fitted to evaluate the robustness of interaction policy effects while controlling for baseline covariates and accounting for measurement structure.
+
 ### Hierarchical Models
 
-To evaluate interaction policy effects and to control for pre-test covariates on post-interaction trust, linear and bayesian mixed-effects models were fitted separately for both trust outcomes. All models included interaction policy (RESPONSIVE vs. CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates unless otherwise noted. Random intercepts for session and items were included in all models to account for repeated measurement at the participant level. Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability with the ASR system. The final model structure: robot_trust_post \~ policy + nars_pre_c + native_english + (1 \| session_id) + (1 \| trust_items)
+To evaluate interaction policy effects and to control for pre-test covariates on post-interaction trust, linear and Bayesian mixed-effects models were fitted separately for both trust outcomes. All models included interaction policy (RESPONSIVE vs. CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates unless otherwise noted. Random intercepts for session and items were included in all models to account for repeated measurement at the participant level. Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability with the ASR system. The final model structure: robot_trust_post \~ policy + nars_pre_c + native_english + (1 \| session_id) + (1 \| trust_items)
 
 #### Trust in Industrial Human–Robot Collaboration
 
 For this outcome, inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences.
 
-In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition ($β = 16.28, SE = 5.14, t = 3.17, p = .005$). Higher baseline negative attitudes toward robots were associated with lower trust scores ($β = −7.43, SE = 2.81, p = .016$). Native English fluency was not significantly associated with trust, although the estimated effect was negative.
+In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition (β = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores (β = −7.43, SE = 2.81, p = .016). Native English fluency was not significantly associated with trust, although the estimated effect was negative.
 
 ```{r}
 library(lme4)
@@ -487,7 +489,7 @@ scores_df_eligible <- df_long_scores_final |>
   mutate(native_english = factor(native_english)) |>
   mutate(scale = factor(scale))
 
-#hist(scores_df$robot_trust_post)
+#hist(scores_dfrobot_trust_post)
 #hist(scores_df$robot_trust_post_c)
 
 ```
@@ -495,72 +497,11 @@ scores_df_eligible <- df_long_scores_final |>
 ```{r}
 # trust in collaboration
 
-baseline <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
-)
-
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
-)
-
-mod_dep.2 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
-)
-
-# adding robot_xp worsens fit
-mod_dep2 <- lmer(
-  robot_trust_post ~ group +
-    robot_xp +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
-)
-# adding nars improves fit
-mod_dep3 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
-)
-# adding native english improves fit
-mod_dep4 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
-)
-
-# # adding nfc does not improve fit
-# mod_dep5 <- lmer(
-#   robot_trust_post ~ group +
-#     nars_pre_c +
-#     native_english +
-#     nfc_pre_c +
-#     (1 | session_id) +
-#     (1 | trust_items),
-#   data = scores_df |> filter(scale != 'HRI_perception_post')
-# )
-#compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
-
-#plot_model(mod_dep4, type='eff', terms=c('group'), show.data=TRUE, dot.alpha=0.8)
-
 ```
 
 #### Trust Perception Scale–HRI {.unnumbered}
 
-For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores ($β = 14.17, SE = 6.5, t = 2.00, p = 0.046$). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
+For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (β = 14.17, SE = 6.5, t = 2.00, p = 0.046). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
 
 In contrast to the collaboration trust scale, inclusion of random intercepts for individual trust items did not improve model fit for the Trust Perception Scale–HRI and was therefore omitted. This divergence likely reflects differences in scale format and response interface: the Trust Perception scale was administered using a continuous slider input, whereas the Trust in Industrial Human–Robot Collaboration scale employed discrete Likert-style response options.
 
@@ -568,50 +509,7 @@ Informal observation during administration and post-hoc inspection of item-level
 
 ```{r}
 #| eval: false
-baseline <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
-)
 
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
-)
-
-mod_dep.2 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
-)
-
-# adding robot_xp worsens fit
-mod_dep2 <- lmer(
-  robot_trust_post ~ group +
-    robot_xp +
-    (1 | session_id),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
-)
-# adding nars improves fit
-mod_dep3 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    (1 | session_id),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
-)
-# adding native english improves fit
-mod_dep4 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post')
-)
-compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
 ```
 
 Together, these models indicate that robot responsiveness had a consistent positive effect on post-interaction trust, with effect magnitude and measurement sensitivity varying by trust dimension and scale format.
@@ -620,41 +518,41 @@ Together, these models indicate that robot responsiveness had a consistent posit
 
 Trust outcomes were further analysed using Bayesian linear mixed-effects models for ease in interpretation in sensitivity analyses steps. The same complementary trust measures were examined: task-oriented trust (TPS-HRI), reflecting evaluative judgments of robot reliability and competence, and experienced trust (TI-HRC), reflecting affective and experiential aspects of collaboration. All models included random intercepts for session and trust items. Convergence diagnostics indicated satisfactory model performance across all analyses (all $R^≤1.01$; effective sample sizes \> 1000).
 
-Analyses are reported in three stages: (1) primary analyses conducted on the eligible sample (n=24; sessions with viable spoken-language interaction), (2) sensitivity analyses conducted on the full sample ($n=29$; including sessions with severe communication breakdown), and (3) mechanism analyses examining communication breakdown as a moderator of interaction policy.
+Analyses are reported in three stages: (1) primary analyses conducted on the eligible sample (n=24; sessions with viable spoken-language interaction), (2) sensitivity analyses conducted on the full sample (n=29; including sessions with severe communication breakdown), and (3) mechanism analyses examining communication breakdown as a moderator of interaction policy.
 
 #### Primary Analyses: Eligible Sample
 
 ##### Task-Oriented Trust (TPS-HRI) {.unnumbered}
 
-In the eligible sample ($n=24$), interaction policy showed a strong and robust association with task-oriented trust. Participants who interacted with the responsive robot reported higher TPS-HRI scores than those in the control condition (posterior median $β=12.73$ credible interval $[2.93, 22.17]$). The posterior probability that this effect was positive exceeded 99%, with high probability that the effect was of moderate-to-large magnitude.
+In the eligible sample (n=24), interaction policy showed a strong and robust association with task-oriented trust. Participants who interacted with the responsive robot reported higher TPS-HRI scores than those in the control condition (posterior median β=12.73 credible interval [2.93, 22.17]). The posterior probability that this effect was positive exceeded 99%, with high probability that the effect was of moderate-to-large magnitude.
 
 Baseline negative attitudes toward robots (NARS) were associated with lower task-oriented trust, although uncertainty remained moderate and the credible interval included zero. In contrast, native English fluency showed a credible negative association with TPS-HRI scores, indicating lower evaluative trust among non-native English speakers even in sessions where dialogue remained viable.
 
-The model explained a substantial proportion of variance in TPS-HRI scores (conditional $R^2=0.64$), with fixed effects accounting for approximately 16% of the variance. Random effects indicated meaningful variability across sessions and trust items.
+The model explained a substantial proportion of variance in TPS-HRI scores (conditional R^2=0.64), with fixed effects accounting for approximately 16% of the variance. Random effects indicated meaningful variability across sessions and trust items.
 
 #### Experienced Trust (TI-HRC) {.unnumbered}
 
-A similar but stronger pattern was observed for experienced trust. Interaction with the responsive robot was associated with substantially higher TI-HRC scores compared to the control condition (posterior median $β=14.86$, 95% credible interval $[7.20, 22.09]$), with near-unity posterior probability of a positive effect and a high probability of a large effect.
+A similar but stronger pattern was observed for experienced trust. Interaction with the responsive robot was associated with substantially higher TI-HRC scores compared to the control condition (posterior median β=14.86, 95% credible interval [7.20, 22.09]), with near-unity posterior probability of a positive effect and a high probability of a large effect.
 
 Baseline negative attitudes toward robots showed a clear and credible negative association with experienced trust. Native English fluency was also negatively associated with TI-HRC scores, although uncertainty was greater and the credible interval narrowly overlapped zero.
 
-Overall model fit was moderate (conditional $R^2=0.42$), with fixed effects explaining approximately 21% of the variance. Compared to TPS-HRI, item-level variance was smaller, suggesting greater coherence among affective trust items under functional interaction conditions.
+Overall model fit was moderate (conditional R^2=0.42), with fixed effects explaining approximately 21% of the variance. Compared to TPS-HRI, item-level variance was smaller, suggesting greater coherence among affective trust items under functional interaction conditions.
 
 ### Sensitivity Analyses: Full Sample
 
-Sensitivity analyses were conducted including all sessions, regardless of communication viability ($n=29$), to assess robustness of the primary findings.
+Sensitivity analyses were conducted including all sessions, regardless of communication viability (n=29), to assess robustness of the primary findings.
 
 #### Task-Oriented Trust (TPS-HRI) {.unnumbered}
 
-In the full sample, the posterior estimate for interaction policy remained positive but was attenuated relative to the eligible sample (posterior median $β=7.04$, 95% credible interval $[−1.83, 15.67]$). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (\>94%).
+In the full sample, the posterior estimate for interaction policy remained positive but was attenuated relative to the eligible sample (posterior median β=7.04, 95% credible interval [−1.83, 15.67]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (\>94%).
 
-Baseline negative attitudes toward robots continued to show a credible negative association with TPS-HRI scores. The effect of native English fluency was reduced and no longer credibly different from zero. Overall model fit decreased relative to the eligible sample (conditional $R^2=0.44$), indicating increased unexplained variability when sessions with severe communication breakdown were included.
+Baseline negative attitudes toward robots continued to show a credible negative association with TPS-HRI scores. The effect of native English fluency was reduced and no longer credibly different from zero. Overall model fit decreased relative to the eligible sample (conditional R^2=0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included.
 
 #### Experienced Trust (TI-HRC) {.unnumbered}
 
-For experienced trust, attenuation effects were more pronounced. The posterior estimate for interaction policy decreased substantially in the full sample (posterior median $β=7.17$, 95% credible interval $[−1.97, 16.70]$), with reduced probability of a large effect. Baseline negative attitudes toward robots remained negatively associated with trust, while the effect of native English fluency remained negative but uncertain.
+For experienced trust, attenuation effects were more pronounced. The posterior estimate for interaction policy decreased substantially in the full sample (posterior median β=7.17, 95% credible interval [−1.97, 16.70]), with reduced probability of a large effect. Baseline negative attitudes toward robots remained negatively associated with trust, while the effect of native English fluency remained negative but uncertain.
 
-Model fit remained moderate (conditional $R^2=0.60$), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience.
+Model fit remained moderate (conditional R^2=0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience.
 
 ### Mechanism Analyses: Communication Breakdown
 
@@ -668,104 +566,12 @@ For TPS-HRI, proportional communication breakdown showed weak and unstable assoc
 
 In contrast, experienced trust showed a different pattern. Posterior estimates indicated a consistent negative tendency for the interaction between interaction policy and communication breakdown. While responsive behaviour was associated with higher experienced trust under low levels of breakdown, this advantage diminished as communication failures accumulated. Although uncertainty remained high, the posterior distribution indicated a meaningful probability that communication breakdown attenuated the trust benefits of responsive behaviour.
 
-Across analyses, responsive interaction policies were consistently associated with higher trust, particularly when interaction functioned as intended. Task-oriented trust appeared relatively robust to communication degradation, whereas experienced trust was sensitive to interaction-level failures and the robot’s ability to sustain responsive behaviour. Sensitivity and mechanism analyses indicate that communication breakdown does not merely reduce trust uniformly, but alters how interaction policy shapes the trust experience. These findings support a distinction between trust as evaluative judgment and trust as lived experience, and highlight the importance of modelling interaction dynamics when evaluating trust in fully autonomous human–robot collaboration.
 
-Notably, under conditions of severe communication breakdown, the RESPONSIVE robot continued to generate proactive assistance, encouragement, and meta-communication aimed at repairing the interaction. However, these efforts did not restore mutual understanding and, in several cases, appeared to increase participant confusion and cognitive load. In contrast, the CONTROL robot’s reactive interaction policy resulted in fewer unsolicited interventions, which—while less supportive under normal conditions—reduced interaction complexity when language-mediated collaboration was no longer viable.
-
-```{r}
-library(brms)
-# choose conservative priors (mean of 50 on 0-100 scale, wide SDs)
-priors <- c(
-  prior(normal(50, 25), class = "Intercept"), # trust score center-ish, wide
-  prior(normal(0, 10), class = "b"), # effects in points on 0-100
-  prior(exponential(1), class = "sd"), # RE SDs: subject/item
-  prior(exponential(1), class = "sigma") # residual SD
-)
-# priors for the null
-priors_null <- c(
-  prior(normal(50, 25), class = "Intercept"),
-  prior(exponential(1), class = "sd"),
-  prior(exponential(1), class = "sigma")
-)
-# sensitivity analysis: wider and tighter priors
-priors_wide <- c(
-  prior(normal(50, 40), class = "Intercept"),
-  prior(normal(0, 20), class = "b"),
-  prior(exponential(0.5), class = "sd"),
-  prior(exponential(0.5), class = "sigma")
-)
-priors_tight <- c(
-  prior(normal(50, 20), class = "Intercept"),
-  prior(normal(0, 7), class = "b"),
-  prior(exponential(1.5), class = "sd"),
-  prior(exponential(1.5), class = "sigma")
-)
-```
-
-```{r}
-#| eval: false
-hri_mod <- brm(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post'),
-  family = gaussian(),
-  prior = priors,
-  chains = 4,
-  cores = 10,
-  iter = 4000,
-  warmup = 1000,
-  control = list(adapt_delta = 0.95)
-)
-
-hrc_mod <- brm(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_eligible |> filter(scale != 'HRI_perception_post'),
-  family = gaussian(),
-  prior = priors,
-  chains = 4,
-  cores = 10,
-  iter = 4000,
-  warmup = 1000,
-  control = list(adapt_delta = 0.95)
-)
-
-summary(hri_mod)
-summary(hrc_mod)
-
-pp_check(hri_mod) # post_trust_perc
-pp_check(hrc_mod) # post_trust (likert)
-
-nuts_params(hri_mod) %>% count(Parameter == "divergent__")
-nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
-
-post <- posterior::as_draws_df(hri_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-post <- posterior::as_draws_df(hrc_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-VarCorr(hri_mod)
-VarCorr(hrc_mod)
-```
 
 ```{r}
 #| eval: false
 #| label: tbl-post-fullsample
+#|
 post_table |>
   #filter(exclusions != 'exclude') |>
   select(
@@ -834,230 +640,30 @@ post_table |>
   add_p() |>
   # add_overall() |>
   bold_p() |>
-  modify_caption("Post-Interaction Raw Outcome Measures by Group")
+  modify_caption("Post-Interaction Objective Measures by Group")
 ```
 
-```{r}
-scores_df_full <- df_long_scores_final |>
-  #filter(exclusions != 'exclude') |>
-  mutate(nars_pre_c = scale(nars_pre, center = TRUE, scale = TRUE)) |>
-  mutate(robot_trust_c = scale(robot_trust_pre, center = TRUE, scale = TRUE)) |>
-  mutate(human_trust_c = scale(human_trust_pre, center = TRUE, scale = TRUE)) |>
-  mutate(ai_trust_c = scale(ai_trust_pre, center = TRUE, scale = TRUE)) |>
-  mutate(nfc_pre_c = scale(nfc_pre, center = TRUE, scale = TRUE)) |>
-  mutate(
-    nars_social_influence_robots_c = scale(
-      nars_social_influence_robots,
-      center = TRUE,
-      scale = TRUE
-    )
-  ) |>
-  mutate(
-    nars_emotion_robots_c = scale(
-      nars_emotion_robots,
-      center = TRUE,
-      scale = TRUE
-    )
-  ) |>
-  mutate(
-    nars_interaction_robots_c = scale(
-      nars_interaction_robots,
-      center = TRUE,
-      scale = TRUE
-    )
-  ) |>
-  mutate(trust_items = factor(trust_items)) |>
-  mutate(group = factor(group)) |>
-  mutate(robot_xp = relevel(robot_xp, ref = "No")) |>
-  mutate(native_english = factor(native_english)) |>
-  mutate(scale = factor(scale))
-```
+
+
 
 ```{r}
-baseline <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-
-# adding robot_xp worsens fit
-mod_dep2 <- lmer(
-  robot_trust_post ~ group +
-    robot_xp +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-# adding nars improves fit
-mod_dep3 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-# adding native english improves fit
-mod_dep4 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-```
-
-```{r}
-#| eval: false
-hri_mod <- brm(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post'),
-  family = gaussian(),
-  prior = priors,
-  chains = 4,
-  cores = 10,
-  iter = 4000,
-  warmup = 1000,
-  control = list(adapt_delta = 0.95)
-)
-
-hrc_mod <- brm(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale == 'HRI_perception_post'),
-  family = gaussian(),
-  prior = priors,
-  chains = 4,
-  cores = 10,
-  iter = 4000,
-  warmup = 1000,
-  control = list(adapt_delta = 0.95)
-)
-
-summary(hri_mod)
-summary(hrc_mod)
-
-pp_check(hri_mod) # post_trust_perc
-pp_check(hrc_mod) # post_trust (likert)
-
-nuts_params(hri_mod) %>% count(Parameter == "divergent__")
-nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
-
-post <- posterior::as_draws_df(hri_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-post <- posterior::as_draws_df(hrc_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-VarCorr(hri_mod)
-VarCorr(hrc_mod)
-```
-
-```{r}
-#| eval: false
-hri_mod <- brm(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    #native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale == 'HRI_perception_post'),
-  family = gaussian(),
-  prior = priors,
-  chains = 4,
-  cores = 10,
-  iter = 4000,
-  warmup = 1000,
-  control = list(adapt_delta = 0.95)
-)
-
-hrc_mod <- brm(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    # native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post'),
-  family = gaussian(),
-  prior = priors,
-  chains = 4,
-  cores = 10,
-  iter = 4000,
-  warmup = 1000,
-  control = list(adapt_delta = 0.95)
-)
-
-summary(hri_mod)
-summary(hrc_mod)
-
-pp_check(hri_mod) # post_trust_perc
-pp_check(hrc_mod) # post_trust (likert)
-
-nuts_params(hri_mod) %>% count(Parameter == "divergent__")
-nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
-
-post <- posterior::as_draws_df(hri_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-post <- posterior::as_draws_df(hrc_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-VarCorr(hri_mod)
-VarCorr(hrc_mod)
-```
-
-```{r}
-#| eval: false
 #| label: tbl-post-nonviable
 post_table |>
-  #filter(exclusions != 'exclude') |>
+  filter(exclusions != 'exclude') |>
   select(
     group,
-    contains('post'),
-    prop_correct,
-    suspect_correct,
-    building_correct,
-    zone_correct,
-    floor_correct,
+    #contains('post'),
+    # prop_correct,
+    # suspect_correct,
+    # building_correct,
+    # zone_correct,
+    # floor_correct,
     n_turns,
     duration_mins,
     avg_response_ms,
     n_silence,
     n_engaged,
     n_frust,
-    exclusions,
     prop_comm_breakdown,
     prop_human_reasoning,
     prop_robot_reasoning,
@@ -1069,7 +675,7 @@ post_table |>
     prop_robot_proactive_checkin
   ) |>
   tbl_summary(
-    by = exclusions,
+    by = group,
     type = list(
       contains('post') ~ 'continuous',
       avg_response_ms ~ 'continuous',
@@ -1087,19 +693,19 @@ post_table |>
       # suspect_correct ~ "Suspect ID Accuracy",
       # status_correct ~ "Status Accuracy",
       duration_mins ~ "Avg Session Duration (mins)",
-      post_trust_reliability ~ "Reliability subscale",
-      post_trust_feelings ~ "Affective Trust subscale",
-      post_trust_perception ~ "Trust Perception subscale",
+      # post_trust_reliability ~ "Reliability subscale",
+      # post_trust_feelings ~ "Affective Trust subscale",
+      # post_trust_perception ~ "Trust Perception subscale",
       #total_correct ~ "Total Task Accuracy",
       n_turns ~ "Dialogue Turns",
       # n_turns.y~"Task Dialogue Turns",
       n_silence ~ "Silent Periods",
       avg_response_ms ~ "Avg Robot Response Time (ms)",
-      prop_correct ~ "Overall Task Accuracy",
+      #prop_correct ~ "Overall Task Accuracy",
       n_engaged ~ "Engaged Responses",
       n_frust ~ "Frustrated Responses",
-      trust_perc_post ~ "Trust Perception Scale HRI",
-      post_trust ~ "Trust in Industrial HRI Collaboration",
+      #trust_perc_post ~ "Trust Perception Scale HRI",
+      #post_trust ~ "Trust in Industrial HRI Collaboration",
       prop_comm_breakdown ~ "Communication Breakdowns",
       prop_human_reasoning ~ "Human Reasoning",
 
@@ -1111,14 +717,6 @@ post_table |>
       prop_robot_collaborative_lang ~ "Robot Collaborative Language",
       prop_robot_proactive_checkin ~ "Robot Proactive Check-ins"
     )
-  ) |>
-  add_variable_group_header(
-    variables = c(
-      post_trust_reliability,
-      post_trust_feelings,
-      post_trust_perception
-    ),
-    header = "Subscales"
   ) |>
   add_variable_group_header(
     variables = c(
@@ -1149,47 +747,119 @@ post_table |>
   # add_overall() |>
   bold_p() |>
   #bold_labels() |>
-  modify_caption("Post-Interaction Raw Outcome Measures by Group")
+  modify_caption("Post-Interaction Objective Measures by Group")
 ```
 
-As a result, trust ratings in non-viable sessions did not systematically track the intended responsiveness manipulation. These findings suggest that when spoken-language interaction collapses, higher-level constructs such as trust and collaboration are no longer meaningfully instantiated. Communication viability therefore represents a boundary condition for evaluating affect-adaptive interaction policies in autonomous social robots.
+
 
 ### Task performance
 
-Objective task accuracy did not differ between conditions across any task-level measures except suspect accuracy (robot dependendant task), indicating that increased trust was only attributable to improved task success when interaction was necessary to complete accurately.
+Overall task accuracy did not differ significantly between conditions (60% vs. 66%, p = .534), nor did performance on individual task components reach statistical significance (see @tbl-post-tasks). However, a notable pattern emerged when examining task structure. For the suspect identification task (Task 1)—which required robot collaboration to complete accurately—participants in the responsive condition achieved more than double the accuracy of those in the control condition (64% vs. 30%, p = .106), representing a large effect that approached but did not reach conventional significance thresholds given the pilot sample size. In contrast, performance on the location identification task components (building, zone, and floor identification), where robot assistance was optional, showed no consistent directional advantage for either condition. These patterns suggest that responsive robot behavior may particularly benefit collaborative performance on tasks requiring sustained interaction and mutual grounding, though larger samples are needed to establish statistical reliability. Critically, the absence of significant overall accuracy differences indicates that observed trust differences cannot be attributed simply to differential task success, but rather reflect distinct responses to the interaction process itself.
 
-ADD TABLE
+```{r}
+#| label: tbl-post-tasks
+post_table |>
+  filter(exclusions != 'exclude') |>
+  select(
+    group,
+    #contains('prop'),
+    prop_correct,
+    #n_turns,
+    #duration_mins,
+    #avg_response_ms,
+    # n_silence,
+    #n_engaged,
+    # n_frust,
+    #n_neg,
+    suspect_correct,
+    building_correct,
+    zone_correct,
+    floor_correct
+  ) |>
+  tbl_summary(
+    by = group,
+    type = list(
+      contains('post') ~ 'continuous',
+      # avg_response_ms ~ 'continuous',
+      starts_with('n_') ~ 'continuous',
+      starts_with('prop_') ~ 'continuous'
+      #mean_task_assistance ~ 'continuous'
+      # any_comm_breakdown ~ 'continuous'
+    ),
+    # missing=FALSE,
+    statistic = list(
+      all_continuous() ~ "{mean} ({sd})",
+      all_categorical() ~ "{n} / {N} ({p}%)"
+    ),
+    label = list(
+      suspect_correct ~ "Suspect ID Accuracy (robot dependent)",
+      # status_correct ~ "Status Accuracy",
+      # duration_mins ~ "Avg Session Duration (mins)",
+      # n_turns ~ "Dialogue Turns",
+      #  n_turns~"Task Dialogue Turns",
+      # n_silence ~ "Silent Periods",
+      # avg_response_ms ~ "Avg Robot Response Time (ms)",
+      prop_correct ~ "% Task Accuracy",
+      # n_engaged ~ "Engaged Responses",
+      # n_frust ~ "Frustrated Responses",
+      building_correct ~ "Building ID Accuracy",
+      zone_correct ~ "Zone ID Accuracy",
+      floor_correct ~ "Floor ID Accuracy"
+      # trust_perc_post ~ "Trust Perception Scale HRI",
+      # post_trust ~ "Trust in Industrial HRI Collaboration"
+    )
+  ) |>
+  add_p() |>
+  # add_overall() |>
+  bold_p() |>
+  #bold_labels() |>
+  modify_caption("Post-Interaction Raw Outcome Measures by Group")
 
-Despite similar task accuracy, interactions in the responsive condition were characterized by longer durations, slower response times, and a higher number of AI-detected engaged responses. These findings suggest that responsiveness altered the interaction dynamics and affective tone rather than task outcomes.
+```
 
 ### Individual differences and correlational patterns
 
-As expected, we found that higher Need for Cognition (NFC) scores were negatively associated with Negative Attitudes Towards Robots (NARS), indicating that individuals who enjoy effortful thinking tend to have more positive attitudes towards robots. This relationship is consistent with prior literature suggesting that cognitive engagement is associated with openness to new technologies. In terms of NARS subscales, NFC was negatively correlated with all three subscales, but significantly so only in the domain of Situations of Interaction with Robots. This suggests that individuals with higher NFC are less likely to hold negative attitudes across various dimensions of robot interaction but especially around direct interaction with robots.
+Correlational analyses revealed patterns consistent with the interpretation that trust was shaped by interaction quality rather than individual predispositions or task outcomes. As expected, higher Need for Cognition (NFC) scores were negatively associated with baseline Negative Attitudes Towards Robots (NARS; r = −.48, p = .01), indicating that individuals who enjoy effortful thinking tend to hold more positive attitudes toward robots prior to interaction. However, neither NFC nor NARS showed significant associations with post-interaction trust outcomes (r = −.17 to −.33, p > .11), suggesting that the impact of responsive robot behavior was relatively independent of participants' baseline dispositions toward robots or cognitive engagement preferences.
 
---\> how to talk about post-interaction correlations w/pre-interaction measures Several behavioural and task-level measures were correlated with post-interaction trust, consistent with the interpretation that trust judgments were shaped by interaction quality; these variables were not included as covariates in primary models to avoid conditioning on potential mediators.
+Consistent with the experimental manipulation, specific robot dialogue behaviors showed substantial correlations with trust outcomes. Robot empathy expression—quantified as the proportion of dialogue turns in which the robot acknowledged participant affect or expressed understanding—was strongly correlated with both experienced trust (r = .53, p = .008) and perceived trust (r = .65, p = .001). Similarly, robot use of collaborative language (e.g., "we," "let's") was positively associated with experienced trust (r = .50, p = .012), as was robot encouragement (experienced trust: r = .45, p = .027; perceived trust: r = .42, p = .040). These associations provide direct evidence that the specific affective and collaborative behaviors implemented in the responsive condition were linked to participants' trust evaluations beyond simple condition assignment.
 
-Baseline negative attitudes toward robots were negatively correlated with post-interaction trust, with the strongest associations observed for affective trust subscales. In contrast, objective task performance was selectively associated with perceived reliability. Need for cognition was negatively correlated with negative robot attitudes and interaction-level negative affect, suggesting that individual differences contributed to variability in trust responses.
+Participant engagement during interaction, operationalized as the frequency of AI-detected positive affective responses, was positively correlated with perceived trust (r = .52, p = .009) and showed a trending association with experienced trust (r = .30, p = .156). Engaged responses were also associated with longer interaction duration (r = .54, p = .007), greater use of collaborative language by the robot (r = .50, p = .013), and fewer communication breakdowns (r = −.49, p = .016). This pattern suggests that responsive robot behavior may have fostered a reciprocal dynamic in which robot affective adaptation elicited participant engagement, which in turn supported smoother interaction and higher trust.
+
+Notably, objective task performance showed no significant association with either trust measure (suspect accuracy: r = .18–.20, p > .35; overall accuracy: r = −.05 to .19, p > .37). This dissociation between task outcomes and trust ratings indicates that participants' trust judgments reflected the quality and affective tone of the interaction process rather than instrumental success on the collaborative tasks. These variables were not included as covariates in primary models to avoid conditioning on potential mediators of the interaction policy effect.
 
 ```{r}
-#| label: fig-corr
-#| fig-height: 7
-#| fig-width: 7
-
+#| eval: false
 df_flat <- df_flat_scores_final |>
+  #filter()
   select(
     contains('pre'),
     contains('nars'),
     contains('post'),
-    total_correct,
+    group,
+    #contains('post'),
+    prop_correct,
+    suspect_correct,
+    building_correct,
+    zone_correct,
+    floor_correct,
     n_turns,
     duration_mins,
     avg_response_ms,
     n_silence,
     n_engaged,
-    #n_frust,
-    n_neg,
-    #prop_correct,
-    suspect_correct,
+    n_frust,
+    prop_comm_breakdown,
+    prop_human_reasoning,
+    prop_robot_reasoning,
+    prop_robot_helpful_guidance,
+    prop_robot_unhelpful,
+    prop_robot_encouragement,
+    prop_robot_empathy_expression,
+    prop_robot_collaborative_lang,
+    prop_robot_proactive_checkin,
+    -human_trust_pre,
+    -robot_trust_pre,
+    -ai_trust_pre
     #building_correct,
     #zone_correct,
     #floor_correct
@@ -1213,21 +883,21 @@ corr <- cor(
 testRes = cor.mtest(corr, conf.level = 0.95)
 #corrplot(corr, p.mat = testRes$p,  cl.pos = 'n')
 
-# tab_corr(
-#   df_flat %>% select(where(is.numeric)),
-#   corr.method = "spearman",
-#   p.numeric = FALSE,
-#   triangle = 'lower'
-# )
-corrplot(
-  corr,
-  p.mat = testRes$p,
-  insig = 'label_sig',
-  sig.level = c(0.001, 0.01, 0.05),
-  pch.cex = 0.9,
-  pch.col = 'grey20'
+tab_corr(
+  df_flat %>% select(where(is.numeric)),
+  corr.method = "spearman",
+  p.numeric = FALSE,
+  triangle = 'lower'
 )
-
+# corrplot(
+#   corr,
+#   p.mat = testRes$p,
+#   insig = 'label_sig',
+#   sig.level = c(0.001, 0.01, 0.05),
+#   pch.cex = 0.9,
+#   pch.col = 'grey20'
+# )
+#write_csv(corr, 'correlation_matrix.csv')
 ```
 
 ```{r}
@@ -1276,82 +946,14 @@ scores_df <- df_long_scores_final |>
 
 ```
 
-```{r}
-#| eval: false
-# trust in collaboration
-
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
-)
-
-mod_dep2 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
-)
-mod_dep3 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
-)
-mod_dep4 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
-)
-compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
-```
-
-```{r}
-#| eval: false
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-
-mod_dep2 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-mod_dep3 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-mod_dep4 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
-
-```
 
 ## Discussion
+
+Across analyses, responsive interaction policies were consistently associated with higher trust, particularly when interaction functioned as intended. Task-oriented trust appeared relatively robust to communication degradation, whereas experienced trust was sensitive to interaction-level failures and the robot’s ability to sustain responsive behaviour. Sensitivity and mechanism analyses indicate that communication breakdown does not merely reduce trust uniformly, but alters how interaction policy shapes the trust experience. These findings support a distinction between trust as evaluative judgment and trust as lived experience, and highlight the importance of modelling interaction dynamics when evaluating trust in fully autonomous human–robot collaboration.
+
+Notably, under conditions of severe communication breakdown, the RESPONSIVE robot continued to generate proactive assistance, encouragement, and meta-communication aimed at repairing the interaction. However, these efforts did not restore mutual understanding and, in several cases, appeared to increase participant confusion and cognitive load. In contrast, the CONTROL robot’s reactive interaction policy resulted in fewer unsolicited interventions, which—while less supportive under normal conditions—reduced interaction complexity when language-mediated collaboration was no longer viable.
+
+As a result, trust ratings in non-viable sessions did not systematically track the intended responsiveness manipulation. These findings suggest that when spoken-language interaction collapses, higher-level constructs such as trust and collaboration are no longer meaningfully instantiated. Communication viability therefore represents a boundary condition for evaluating affect-adaptive interaction policies in autonomous social robots.
 
 An additional objective of this pilot study was to inform the design of an autonomous affect-adaptive interaction system under real-time constraints. The initial system concept included multimodal affect inference based on facial expressions, vocal prosody, and interaction dynamics. However, early integration testing revealed substantial challenges related to latency, model orchestration, and timing sensitivity when deploying multiple perception models concurrently on an edge-supported mobile robot platform. Given the small-scale nature of the pilot and the central importance of maintaining stable, real-time dialogue, the deployed system prioritized robustness of spoken-language interaction and dialogue-based affect inference over broader multimodal sensing. Affect adaptation in this study was therefore driven primarily by speech-based affect signals and conversational context, allowing us to evaluate responsiveness within a fully autonomous interaction while preserving realistic system constraints.
 
