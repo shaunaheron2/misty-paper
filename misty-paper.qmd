@@ -29,7 +29,7 @@ format:
   ieee-typst: default
   html:
     toc: true
-    toc-depth: 3
+    toc-depth: 4
     hypothesis: true
 warning: false
 echo: false
@@ -197,14 +197,21 @@ Trust was assessed using two established self-report instruments commonly used i
 
 Together, these instruments capture complementary dimensions of trust, including perceived reliability, task competence, and affective comfort. However, they differ in their conceptual emphasis: the TPS-HRI primarily operationalizes trust as a reflective judgement of system performance (i.e., "What percent of the time was the robot reliable"), whereas the TI-HRC scale emphasizes trust as an experienced, embodied response arising during interaction (i.e., "The way the robot moved made me feel uneasy"). Despite this complementarity, both measures rely on retrospective self-report and may be insensitive to moment-to-moment trust dynamics as collaboration unfolds. For this reason, questionnaire data were interpreted alongside behavioural and interaction-level measures.
 
-
-#### Objective and behavioural Measures
+#### Objective Measures
 
 Objective task metrics included task completion, task accuracy, time to completion, and the number of assistance requests made to the robot. behavioural engagement metrics were derived from interaction logs and manually coded dialogue transcripts, including number of dialogue turns, frequency of communication breakdowns, response timing, and task-relevant robot contributions.
 
 ### Participants
 
-A total of 29 participants were recruited from the Laurentian University community via word of mouth and the SONA recruitment system. Eligibility criteria included being 18 years or older, fluent in spoken and written English, and having normal or corrected-to-normal hearing and vision. Participants received a $15 gift card as compensation for their time. All procedures were approved by the Laurentian University Research Ethics Board (REB #6021966).
+A total of 29 participants were recruited from the Laurentian University community via word of mouth and the SONA recruitment system. Eligibility criteria required being 18 years or older, fluent in spoken and written English, and having normal or corrected-to-normal hearing and vision. Participants received a $15 gift card as compensation for their time; some students additionally received partial credit for participating depending on their program of study. All procedures were approved by the Laurentian University Research Ethics Board (REB #6021966).
+
+Although English fluency was an eligibility requirement, in-person observation during data collection indicated meaningful variability in participants’ functional spoken-language proficiency. The researcher therefore recorded observed English proficiency for each session in anticipation of potential speech-based system limitations. Subsequent post-hoc review of interaction transcripts and system logs revealed that a subset of sessions exhibited severe and sustained communication failure. In these cases, automatic speech recognition (ASR) output was largely unintelligible or fragmented, preventing the robot from extracting sufficient linguistic content to maintain dialogue, respond meaningfully to participant queries, or support task progression. Interaction frequently stalled, participant input went unanswered or was misinterpreted, and collaborative problem-solving was not feasible. These sessions reflected a breakdown of language-mediated interaction, rendering the experimental manipulation inoperative.
+
+Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (n = 5). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.
+
+#### Randomization Check
+
+Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1982]. These patterns were consistent across both eligible and full samples, indicating successful random assignment.
 
 
 ```{r}
@@ -277,25 +284,16 @@ df_flat_scores_final |>
   )
 ```
 
-
-Although English fluency was an eligibility requirement, in-person observation during data collection indicated meaningful variability in participants’ functional spoken-language proficiency. The researcher therefore recorded observed English proficiency for each session in anticipation of potential speech-based system limitations. Subsequent post-hoc review of interaction transcripts and system logs revealed that a subset of sessions exhibited severe and sustained communication failure. In these cases, automatic speech recognition (ASR) output was largely unintelligible or fragmented, preventing the robot from extracting sufficient linguistic content to maintain dialogue, respond meaningfully to participant queries, or support task progression. Interaction frequently stalled, participant input went unanswered or was misinterpreted, and collaborative problem-solving was not feasible. These sessions reflected a breakdown of language-mediated interaction, rendering the experimental manipulation inoperative.
-
-Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (n = 5). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.
-
 ### Analytic Strategy
 To ensure transparency and assess the impact of communication-based exclusions, analyses were conducted in three stages. First, an eligible-sample analysis (excluding non-viable sessions) served as the primary analysis, reflecting interactions in which the spoken-language protocol and experimental manipulation operated as intended. Second, a full-sample analysis including all participants was conducted as a sensitivity analysis to evaluate robustness to communication failures and protocol deviations. Third, a mechanism-focused analysis compared included and excluded sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to characterize how severe communication breakdown alters interaction dynamics.
 
-While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
+While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown were not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
 
-All analyses was conducted using R (version 4.3.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] and bayesian hierarchical models fitted using the brms package. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
-
-### Random Assignment
-
-Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1982]. These patterns were consistent across both eligible and full samples, indicating successful random assignment.
+All analyses was conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while bayesian hierarchical models fitted using the brms package. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
 
 ## Results
 
-Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from system logs and manual coding. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns (half of all turns were dependent on human speech) were characterized by communication breakdown and were classified as non-viable (n=5). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. 
+Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from manual coding of system logs. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns-considering half of all turns were dependent on human speech-were characterized by communication breakdown and were classified as non-viable ($n=5$). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. 
 
 Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.
 
@@ -442,15 +440,13 @@ post_table |>
 
 ### Hierarchical Models
 
-To evaluate interaction policy effects and to control for pre-test covariates on post-interaction trust, linear and bayesian mixed-effects models were fitted separately for each trust outcome. All models included interaction policy (RESPONSIVE vs. CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates unless otherwise noted. Random intercepts for session were included in all models to account for repeated measurement at the participant level: `robot_trust_post ~ policy + nars_pre_c + native_english + (1 | session_id) + (1 | trust_items)`
-
-Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability with the ASR system.
+To evaluate interaction policy effects and to control for pre-test covariates on post-interaction trust, linear and bayesian mixed-effects models were fitted separately for both trust outcomes. All models included interaction policy (RESPONSIVE vs. CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates unless otherwise noted. Random intercepts for session and items were included in all models to account for repeated measurement at the participant level. Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability with the ASR system. The final model structure: robot_trust_post ~ policy + nars_pre_c + native_english + (1 | session_id) + (1 | trust_items)
 
 #### Trust in Industrial Human–Robot Collaboration  
 
 For this outcome, inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences.
 
-In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition (β = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores (β = −7.43, SE = 2.81, p = .016). Native English fluency was not significantly associated with trust, although the estimated effect was negative.
+In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition ($β = 16.28, SE = 5.14, t = 3.17, p = .005$). Higher baseline negative attitudes toward robots were associated with lower trust scores ($β = −7.43, SE = 2.81, p = .016$). Native English fluency was not significantly associated with trust, although the estimated effect was negative.
 
 
 ```{r}
@@ -567,7 +563,7 @@ mod_dep4 <- lmer(
 
 #### Trust Perception Scale–HRI  {-}
 
-For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (β = 14.17, SE = 6.5, t = 2.00, p = 0.046). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
+For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores ($β = 14.17, SE = 6.5, t = 2.00, p = 0.046$). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.
 
 In contrast to the collaboration trust scale, inclusion of random intercepts for individual trust items did not improve model fit for the Trust Perception Scale–HRI and was therefore omitted. This divergence likely reflects differences in scale format and response interface: the Trust Perception scale was administered using a continuous slider input, whereas the Trust in Industrial Human–Robot Collaboration scale employed discrete Likert-style response options.
 
@@ -630,41 +626,41 @@ Together, these models indicate that robot responsiveness had a consistent posit
 Trust outcomes were analysed using Bayesian linear mixed-effects models to account for repeated measurement across trust items and sessions. Two complementary trust measures were examined: task-oriented trust (TPS-HRI), reflecting evaluative judgments of robot reliability and competence, and experienced trust (TI-HRC), reflecting affective and experiential aspects of collaboration. All models included random intercepts for session and trust item. Convergence diagnostics indicated satisfactory model performance across all analyses (all 
 R^≤1.01; effective sample sizes > 1000).
 
-Analyses are reported in three stages: (1) primary analyses conducted on the eligible sample (n=24; sessions with viable spoken-language interaction), (2) sensitivity analyses conducted on the full sample (n=29; including sessions with severe communication breakdown), and (3) mechanism analyses examining communication breakdown as a moderator of interaction policy.
+Analyses are reported in three stages: (1) primary analyses conducted on the eligible sample (n=24; sessions with viable spoken-language interaction), (2) sensitivity analyses conducted on the full sample ($n=29$; including sessions with severe communication breakdown), and (3) mechanism analyses examining communication breakdown as a moderator of interaction policy.
 
 #### Primary Analyses: Eligible Sample
 ##### Task-Oriented Trust (TPS-HRI)  {-}
 
-In the eligible sample (n=24), interaction policy showed a strong and robust association with task-oriented trust. Participants who interacted with the responsive robot reported higher TPS-HRI scores than those in the control condition (posterior median β=12.73 credible interval [2.93, 22.17]). The posterior probability that this effect was positive exceeded 99%, with high probability that the effect was of moderate-to-large magnitude.
+In the eligible sample ($n=24$), interaction policy showed a strong and robust association with task-oriented trust. Participants who interacted with the responsive robot reported higher TPS-HRI scores than those in the control condition (posterior median $β=12.73$ credible interval $[2.93, 22.17]$). The posterior probability that this effect was positive exceeded 99%, with high probability that the effect was of moderate-to-large magnitude.
 
 Baseline negative attitudes toward robots (NARS) were associated with lower task-oriented trust, although uncertainty remained moderate and the credible interval included zero. In contrast, native English fluency showed a credible negative association with TPS-HRI scores, indicating lower evaluative trust among non-native English speakers even in sessions where dialogue remained viable.
 
-The model explained a substantial proportion of variance in TPS-HRI scores (conditional R2=0.64), with fixed effects accounting for approximately 16% of the variance. Random effects indicated meaningful variability across sessions and trust items.
+The model explained a substantial proportion of variance in TPS-HRI scores (conditional $R^2=0.64$), with fixed effects accounting for approximately 16% of the variance. Random effects indicated meaningful variability across sessions and trust items.
 
 #### Experienced Trust (TI-HRC)  {-}
 
-A similar but stronger pattern was observed for experienced trust. Interaction with the responsive robot was associated with substantially higher TI-HRC scores compared to the control condition (posterior median β=14.86, 95% credible interval [7.20, 22.09]), with near-unity posterior probability of a positive effect and a high probability of a large effect.
+A similar but stronger pattern was observed for experienced trust. Interaction with the responsive robot was associated with substantially higher TI-HRC scores compared to the control condition (posterior median $β=14.86$, 95% credible interval $[7.20, 22.09]$), with near-unity posterior probability of a positive effect and a high probability of a large effect.
 
 Baseline negative attitudes toward robots showed a clear and credible negative association with experienced trust. Native English fluency was also negatively associated with TI-HRC scores, although uncertainty was greater and the credible interval narrowly overlapped zero.
 
-Overall model fit was moderate (conditional R2=0.42), with fixed effects explaining approximately 21% of the variance. Compared to TPS-HRI, item-level variance was smaller, suggesting greater coherence among affective trust items under functional interaction conditions.
+Overall model fit was moderate (conditional $R^2=0.42$), with fixed effects explaining approximately 21% of the variance. Compared to TPS-HRI, item-level variance was smaller, suggesting greater coherence among affective trust items under functional interaction conditions.
 
 ### Sensitivity Analyses: Full Sample
 
-Sensitivity analyses were conducted including all sessions, regardless of communication viability (n=29), to assess robustness of the primary findings.
+Sensitivity analyses were conducted including all sessions, regardless of communication viability ($n=29$), to assess robustness of the primary findings.
 
 #### Task-Oriented Trust (TPS-HRI)  {-}
 
-In the full sample, the posterior estimate for interaction policy remained positive but was attenuated relative to the eligible sample (posterior median β=7.04, 95% credible interval [−1.83, 15.67]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (>94%).
+In the full sample, the posterior estimate for interaction policy remained positive but was attenuated relative to the eligible sample (posterior median $β=7.04$, 95% credible interval $[−1.83, 15.67]$). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (>94%).
 
 Baseline negative attitudes toward robots continued to show a credible negative association with TPS-HRI scores. The effect of native English fluency was reduced and no longer credibly different from zero. Overall model fit decreased relative to the eligible sample (conditional 
 R2=0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included.
 
 #### Experienced Trust (TI-HRC)  {-}
 
-For experienced trust, attenuation effects were more pronounced. The posterior estimate for interaction policy decreased substantially in the full sample (posterior median β=7.17, 95% credible interval [−1.97, 16.70]), with reduced probability of a large effect. Baseline negative attitudes toward robots remained negatively associated with trust, while the effect of native English fluency remained negative but uncertain.
+For experienced trust, attenuation effects were more pronounced. The posterior estimate for interaction policy decreased substantially in the full sample (posterior median $β=7.17$, 95% credible interval $[−1.97, 16.70]$), with reduced probability of a large effect. Baseline negative attitudes toward robots remained negatively associated with trust, while the effect of native English fluency remained negative but uncertain.
 
-Model fit remained moderate (conditional R2=0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience.
+Model fit remained moderate (conditional $R^2=0.60$), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience.
 
 ### Mechanism Analyses: Communication Breakdown
 
