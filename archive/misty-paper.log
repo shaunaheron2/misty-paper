@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.2)  3 JAN 2026 09:13
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.2)  3 JAN 2026 17:59
  restricted system commands enabled.
 **misty-paper.tex
 (./misty-paper.tex
@@ -117,7 +117,27 @@ LaTeX Info: Redefining \cite on input line 694.
 \splwrite=\write3
 
 \openout3 = misty-paper.spl
-\appnamewidth=\dimen154
+(/home/sheron/.TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(/home/sheron/.TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+(/home/sheron/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+))
+\Gm@cnth=\count290
+\Gm@cntv=\count291
+\c@Gm@tempcnt=\count292
+\Gm@bindingoffset=\dimen154
+\Gm@wd@mp=\dimen155
+\Gm@odd@mp=\dimen156
+\Gm@even@mp=\dimen157
+\Gm@layoutwidth=\dimen158
+\Gm@layoutheight=\dimen159
+\Gm@layouthoffset=\dimen160
+\Gm@layoutvoffset=\dimen161
+\Gm@dimlist=\toks20
+)
+\appnamewidth=\dimen162
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
@@ -148,22 +168,22 @@ For additional information on amsmath, use the `?' option.
 Package: amstext 2024/11/17 v2.01 AMS text
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks20
-\ex@=\dimen155
+\@emptytoks=\toks21
+\ex@=\dimen163
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen156
+\pmbraise@=\dimen164
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count290
+\inf@bad=\count293
 LaTeX Info: Redefining \frac on input line 235.
-\uproot@=\count291
-\leftroot@=\count292
+\uproot@=\count294
+\leftroot@=\count295
 LaTeX Info: Redefining \overline on input line 398.
 LaTeX Info: Redefining \colon on input line 409.
-\classnum@=\count293
-\DOTSCASE@=\count294
+\classnum@=\count296
+\DOTSCASE@=\count297
 LaTeX Info: Redefining \ldots on input line 495.
 LaTeX Info: Redefining \dots on input line 498.
 LaTeX Info: Redefining \cdots on input line 619.
@@ -173,34 +193,34 @@ LaTeX Info: Redefining \big on input line 721.
 LaTeX Info: Redefining \Big on input line 722.
 LaTeX Info: Redefining \bigg on input line 723.
 LaTeX Info: Redefining \Bigg on input line 724.
-\big@size=\dimen157
+\big@size=\dimen165
 LaTeX Font Info:    Redeclaring font encoding OML on input line 742.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 743.
-\macc@depth=\count295
+\macc@depth=\count298
 LaTeX Info: Redefining \bmod on input line 904.
 LaTeX Info: Redefining \pmod on input line 909.
 LaTeX Info: Redefining \smash on input line 939.
 LaTeX Info: Redefining \relbar on input line 969.
 LaTeX Info: Redefining \Relbar on input line 970.
-\c@MaxMatrixCols=\count296
+\c@MaxMatrixCols=\count299
 \dotsspace@=\muskip17
-\c@parentequation=\count297
-\dspbrk@lvl=\count298
-\tag@help=\toks21
-\row@=\count299
-\column@=\count300
-\maxfields@=\count301
-\andhelp@=\toks22
-\eqnshift@=\dimen158
-\alignsep@=\dimen159
-\tagshift@=\dimen160
-\tagwidth@=\dimen161
-\totwidth@=\dimen162
-\lineht@=\dimen163
-\@envbody=\toks23
+\c@parentequation=\count300
+\dspbrk@lvl=\count301
+\tag@help=\toks22
+\row@=\count302
+\column@=\count303
+\maxfields@=\count304
+\andhelp@=\toks23
+\eqnshift@=\dimen166
+\alignsep@=\dimen167
+\tagshift@=\dimen168
+\tagwidth@=\dimen169
+\totwidth@=\dimen170
+\lineht@=\dimen171
+\@envbody=\toks24
 \multlinegap=\skip56
 \multlinetaggap=\skip57
-\mathdisplay@stack=\toks24
+\mathdisplay@stack=\toks25
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -212,9 +232,7 @@ Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2024/12/12 v1.0g TeX engine tests
-) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty
+)) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math.sty
 Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-luatex.sty
 Package: unicode-math-luatex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
@@ -224,20 +242,20 @@ Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
 Lua module: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX (/home/sheron/.TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-luatex.sty
 Package: fontspec-luatex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
-\l__fontspec_script_int=\count302
-\l__fontspec_language_int=\count303
-\l__fontspec_strnum_int=\count304
-\l__fontspec_tmp_int=\count305
-\l__fontspec_tmpa_int=\count306
-\l__fontspec_tmpb_int=\count307
-\l__fontspec_tmpc_int=\count308
-\l__fontspec_em_int=\count309
-\l__fontspec_emdef_int=\count310
-\l__fontspec_strong_int=\count311
-\l__fontspec_strongdef_int=\count312
-\l__fontspec_tmpa_dim=\dimen164
-\l__fontspec_tmpb_dim=\dimen165
-\l__fontspec_tmpc_dim=\dimen166
+\l__fontspec_script_int=\count305
+\l__fontspec_language_int=\count306
+\l__fontspec_strnum_int=\count307
+\l__fontspec_tmp_int=\count308
+\l__fontspec_tmpa_int=\count309
+\l__fontspec_tmpb_int=\count310
+\l__fontspec_tmpc_int=\count311
+\l__fontspec_em_int=\count312
+\l__fontspec_emdef_int=\count313
+\l__fontspec_strong_int=\count314
+\l__fontspec_strongdef_int=\count315
+\l__fontspec_tmpa_dim=\dimen172
+\l__fontspec_tmpb_dim=\dimen173
+\l__fontspec_tmpc_dim=\dimen174
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 luaotfload | db : Font names database loaded from /home/sheron/.TinyTeX/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/base/fix-cm.sty
@@ -375,9 +393,9 @@ LaTeX Encoding Info:    Redeclaring text symbol \textdiv (encoding TS1) on input
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/lualatex/lualatex-math/lualatex-math.sty
 Package: lualatex-math 2022/01/01 v1.12 Patches for mathematics typesetting with LuaLaTeX
 Lua module: lualatex-math 2013/08/03 v1.3 Patches for mathematics typesetting with LuaLaTeX)
-\g__um_fam_int=\count313
-\g__um_fonts_used_int=\count314
-\l__um_primecount_int=\count315
+\g__um_fam_int=\count316
+\g__um_fonts_used_int=\count317
+\l__um_primecount_int=\count318
 \g__um_primekern_muskip=\muskip18
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/unicode-math/unicode-math-table.tex))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
@@ -419,18 +437,18 @@ Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2025/07/09 v3.2b Micro-typographical refinements (RS)
-\MT@toks=\toks25
+\MT@toks=\toks26
 \MT@tempbox=\box61
-\MT@count=\count316
+\MT@count=\count319
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
 LaTeX Info: Redefining \leftprotrusion on input line 1088.
-\MT@prot@toks=\toks26
+\MT@prot@toks=\toks27
 LaTeX Info: Redefining \rightprotrusion on input line 1107.
 LaTeX Info: Redefining \textls on input line 1449.
-\MT@outer@kern=\dimen167
+\MT@outer@kern=\dimen175
 LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
-\MT@listname@count=\count317
+\MT@listname@count=\count320
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/microtype/microtype-luatex.def
 File: microtype-luatex.def 2025/07/09 v3.2b Definitions specific to luatex (RS)
 Lua module: microtype 2025/07/09 v3.2b microtype module.
@@ -452,97 +470,82 @@ Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2025/07/28 4.6 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count318
-\FV@InFile=\read2
-\FV@TabBox=\box62
-\c@FancyVerbLine=\count319
-\FV@StepNumber=\count320
-\FV@OutFile=\write4
-) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/framed/framed.sty
-Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
-\OuterFrameSep=\skip59
-\fb@frw=\dimen168
-\fb@frh=\dimen169
-\FrameRule=\dimen170
-\FrameSep=\dimen171
-) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
+))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tools/longtable.sty
 Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
-\LTleft=\skip60
-\LTright=\skip61
-\LTpre=\skip62
-\LTpost=\skip63
+\LTleft=\skip59
+\LTright=\skip60
+\LTpre=\skip61
+\LTpost=\skip62
 \LTchunksize=\count321
-\LTcapwidth=\dimen172
-\LT@head=\box63
-\LT@firsthead=\box64
-\LT@foot=\box65
-\LT@lastfoot=\box66
-\LT@gbox=\box67
+\LTcapwidth=\dimen176
+\LT@head=\box62
+\LT@firsthead=\box63
+\LT@foot=\box64
+\LT@lastfoot=\box65
+\LT@gbox=\box66
 \LT@cols=\count322
 \LT@rows=\count323
 \c@LT@tables=\count324
 \c@LT@chunks=\count325
-\LT@p@ftn=\toks27
+\LT@p@ftn=\toks28
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen173
-\lightrulewidth=\dimen174
-\cmidrulewidth=\dimen175
-\belowrulesep=\dimen176
-\belowbottomsep=\dimen177
-\aboverulesep=\dimen178
-\abovetopsep=\dimen179
-\cmidrulesep=\dimen180
-\cmidrulekern=\dimen181
-\defaultaddspace=\dimen182
+\heavyrulewidth=\dimen177
+\lightrulewidth=\dimen178
+\cmidrulewidth=\dimen179
+\belowrulesep=\dimen180
+\belowbottomsep=\dimen181
+\aboverulesep=\dimen182
+\abovetopsep=\dimen183
+\cmidrulesep=\dimen184
+\cmidrulekern=\dimen185
+\defaultaddspace=\dimen186
 \@cmidla=\count326
 \@cmidlb=\count327
-\@aboverulesep=\dimen183
-\@belowrulesep=\dimen184
+\@aboverulesep=\dimen187
+\@belowrulesep=\dimen188
 \@thisruleclass=\count328
 \@lastruleclass=\count329
-\@thisrulewidth=\dimen185
+\@thisrulewidth=\dimen189
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen186
-\ar@mcellbox=\box68
-\extrarowheight=\dimen187
-\NC@list=\toks28
-\extratabsurround=\skip64
-\backup@length=\skip65
-\ar@cellbox=\box69
+\col@sep=\dimen190
+\ar@mcellbox=\box67
+\extrarowheight=\dimen191
+\NC@list=\toks29
+\extratabsurround=\skip63
+\backup@length=\skip64
+\ar@cellbox=\box68
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
 \calc@Acount=\count330
 \calc@Bcount=\count331
-\calc@Adimen=\dimen188
-\calc@Bdimen=\dimen189
-\calc@Askip=\skip66
-\calc@Bskip=\skip67
+\calc@Adimen=\dimen192
+\calc@Bdimen=\dimen193
+\calc@Askip=\skip65
+\calc@Bskip=\skip66
 LaTeX Info: Redefining \setlength on input line 86.
 LaTeX Info: Redefining \addtolength on input line 87.
 \calc@Ccount=\count332
-\calc@Cskip=\skip68
+\calc@Cskip=\skip67
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
-\fn@notes=\box70
-\fn@width=\dimen190
+\fn@notes=\box69
+\fn@width=\dimen194
 )
-\pandoc@box=\box71
+\pandoc@box=\box70
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen191
-\captionmargin=\dimen192
-\caption@leftmargin=\dimen193
-\caption@rightmargin=\dimen194
-\caption@width=\dimen195
-\caption@indent=\dimen196
-\caption@parindent=\dimen197
-\caption@hangindent=\dimen198
+\caption@tempdima=\dimen195
+\captionmargin=\dimen196
+\caption@leftmargin=\dimen197
+\caption@rightmargin=\dimen198
+\caption@width=\dimen199
+\caption@indent=\dimen256
+\caption@parindent=\dimen257
+\caption@hangindent=\dimen258
 Package caption Info: elsarticle document class detected.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/caption/caption-elsarticle.sto
 File: caption-elsarticle.sto 2020/08/22 v2.0 Adaption of the caption package to the elsarticle document class (AR)
@@ -554,25 +557,25 @@ Package caption Info: longtable package is loaded.
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/colortbl/colortbl.sty
 Package: colortbl 2024/10/29 v1.0k Color table columns (DPC)
-\everycr=\toks29
-\minrowclearance=\skip69
+\everycr=\toks30
+\minrowclearance=\skip68
 \rownum=\count335
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/anyfontsize/anyfontsize.sty
 Package: anyfontsize 2007/11/22 anyfontsize.sty by pts
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip70
+\multirow@colwidth=\skip69
 \multirow@cntb=\count336
-\multirow@dima=\skip71
-\bigstrutjot=\dimen199
+\multirow@dima=\skip70
+\bigstrutjot=\dimen259
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tcolorbox/tcolorbox.sty
 Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
-\pgfutil@everybye=\toks30
-\pgfutil@tempdima=\dimen256
-\pgfutil@tempdimb=\dimen257
+\pgfutil@everybye=\toks31
+\pgfutil@tempdima=\dimen260
+\pgfutil@tempdimb=\dimen261
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
-\pgfutil@abb=\box72
+\pgfutil@abb=\box71
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.code.tex (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision.tex)
 Package: pgfrcs 2025-08-29 v3.1.11a (3.1.11a)
 ))
@@ -580,30 +583,30 @@ Package: pgf 2025-08-29 v3.1.11a (3.1.11a)
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.sty (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.sty (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.code.tex
 Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks31
-\pgfkeys@temptoks=\toks32
+\pgfkeys@pathtoks=\toks32
+\pgfkeys@temptoks=\toks33
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfiltered.code.tex
-\pgfkeys@tmptoks=\toks33
+\pgfkeys@tmptoks=\toks34
 ))
-\pgf@x=\dimen258
-\pgf@y=\dimen259
-\pgf@xa=\dimen260
-\pgf@ya=\dimen261
-\pgf@xb=\dimen262
-\pgf@yb=\dimen263
-\pgf@xc=\dimen264
-\pgf@yc=\dimen265
-\pgf@xd=\dimen266
-\pgf@yd=\dimen267
-\w@pgf@writea=\write5
-\r@pgf@reada=\read3
+\pgf@x=\dimen262
+\pgf@y=\dimen263
+\pgf@xa=\dimen264
+\pgf@ya=\dimen265
+\pgf@xb=\dimen266
+\pgf@yb=\dimen267
+\pgf@xc=\dimen268
+\pgf@yc=\dimen269
+\pgf@xd=\dimen270
+\pgf@yd=\dimen271
+\w@pgf@writea=\write4
+\r@pgf@reada=\read2
 \c@pgf@counta=\count337
 \c@pgf@countb=\count338
 \c@pgf@countc=\count339
 \c@pgf@countd=\count340
-\t@pgf@toka=\toks34
-\t@pgf@tokb=\toks35
-\t@pgf@tokc=\toks36
+\t@pgf@toka=\toks35
+\t@pgf@tokb=\toks36
+\t@pgf@tokc=\toks37
 \pgf@sys@id@count=\count341
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
@@ -622,52 +625,52 @@ File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen268
+\pgfmath@dimen=\dimen272
 \pgfmath@count=\count344
-\pgfmath@box=\box73
-\pgfmath@toks=\toks37
-\pgfmath@stack@operand=\toks38
-\pgfmath@stack@operation=\toks39
+\pgfmath@box=\box72
+\pgfmath@toks=\toks38
+\pgfmath@stack@operand=\toks39
+\pgfmath@stack@operation=\toks40
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count345
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.tex) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@picminx=\dimen269
-\pgf@picmaxx=\dimen270
-\pgf@picminy=\dimen271
-\pgf@picmaxy=\dimen272
-\pgf@pathminx=\dimen273
-\pgf@pathmaxx=\dimen274
-\pgf@pathminy=\dimen275
-\pgf@pathmaxy=\dimen276
-\pgf@xx=\dimen277
-\pgf@xy=\dimen278
-\pgf@yx=\dimen279
-\pgf@yy=\dimen280
-\pgf@zx=\dimen281
-\pgf@zy=\dimen282
+\pgf@picminx=\dimen273
+\pgf@picmaxx=\dimen274
+\pgf@picminy=\dimen275
+\pgf@picmaxy=\dimen276
+\pgf@pathminx=\dimen277
+\pgf@pathmaxx=\dimen278
+\pgf@pathminy=\dimen279
+\pgf@pathmaxy=\dimen280
+\pgf@xx=\dimen281
+\pgf@xy=\dimen282
+\pgf@yx=\dimen283
+\pgf@yy=\dimen284
+\pgf@zx=\dimen285
+\pgf@zy=\dimen286
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@path@lastx=\dimen283
-\pgf@path@lasty=\dimen284
+\pgf@path@lastx=\dimen287
+\pgf@path@lasty=\dimen288
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@shorten@end@additional=\dimen285
-\pgf@shorten@start@additional=\dimen286
+\pgf@shorten@end@additional=\dimen289
+\pgf@shorten@start@additional=\dimen290
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfpic=\box74
-\pgf@hbox=\box75
-\pgf@layerbox@main=\box76
+\pgfpic=\box73
+\pgf@hbox=\box74
+\pgf@layerbox@main=\box75
 \pgf@picture@serial@count=\count346
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgflinewidth=\dimen287
+\pgflinewidth=\dimen291
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@pt@x=\dimen288
-\pgf@pt@y=\dimen289
-\pgf@pt@temp=\dimen290
+\pgf@pt@x=\dimen292
+\pgf@pt@y=\dimen293
+\pgf@pt@temp=\dimen294
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
@@ -676,17 +679,17 @@ File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowsep=\dimen291
+\pgfarrowsep=\dimen295
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@max=\dimen292
+\pgf@max=\dimen296
 \pgf@sys@shading@range@num=\count347
 \pgf@shadingcount=\count348
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
 File: pgfcoreexternal.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfexternal@startupbox=\box77
+\pgfexternal@startupbox=\box76
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
 File: pgfcorelayers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
@@ -697,40 +700,40 @@ File: pgfcorepatterns.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfcorerdf.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleshapes.code.tex
 File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfnodeparttextbox=\box78
+\pgfnodeparttextbox=\box77
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmoduleplot.code.tex
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@nodesepstart=\dimen293
-\pgf@nodesepend=\dimen294
+\pgf@nodesepstart=\dimen297
+\pgf@nodesepend=\dimen298
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.sty (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex)) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex)) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen295
-\pgffor@skip=\dimen296
-\pgffor@stack=\toks40
-\pgffor@toks=\toks41
+\pgffor@iter=\dimen299
+\pgffor@skip=\dimen300
+\pgffor@stack=\toks41
+\pgffor@toks=\toks42
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgf@plot@mark@count=\count349
-\pgfplotmarksize=\dimen297
+\pgfplotmarksize=\dimen301
 )
-\tikz@lastx=\dimen298
-\tikz@lasty=\dimen299
-\tikz@lastxsaved=\dimen300
-\tikz@lastysaved=\dimen301
-\tikz@lastmovetox=\dimen302
-\tikz@lastmovetoy=\dimen303
-\tikzleveldistance=\dimen304
-\tikzsiblingdistance=\dimen305
-\tikz@figbox=\box79
-\tikz@figbox@bg=\box80
-\tikz@tempbox=\box81
-\tikz@tempbox@bg=\box82
+\tikz@lastx=\dimen302
+\tikz@lasty=\dimen303
+\tikz@lastxsaved=\dimen304
+\tikz@lastysaved=\dimen305
+\tikz@lastmovetox=\dimen306
+\tikz@lastmovetoy=\dimen307
+\tikzleveldistance=\dimen308
+\tikzsiblingdistance=\dimen309
+\tikz@figbox=\box78
+\tikz@figbox@bg=\box79
+\tikz@tempbox=\box80
+\tikz@tempbox@bg=\box81
 \tikztreelevel=\count350
 \tikznumberofchildren=\count351
 \tikznumberofcurrentchild=\count352
@@ -746,27 +749,27 @@ File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tools/verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
-\every@verbatim=\toks42
-\verbatim@line=\toks43
-\verbatim@in@stream=\read4
+\every@verbatim=\toks43
+\verbatim@line=\toks44
+\verbatim@in@stream=\read3
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/environ/environ.sty
 Package: environ 2014/05/04 v0.3 A new way to define environments
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/trimspaces/trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box83
-\tcb@upperbox=\box84
-\tcb@lowerbox=\box85
-\tcb@phantombox=\box86
+\tcb@titlebox=\box82
+\tcb@upperbox=\box83
+\tcb@lowerbox=\box84
+\tcb@phantombox=\box85
 \c@tcbbreakpart=\count358
 \c@tcblayer=\count359
 \c@tcolorbox@number=\count360
-\l__tcobox_tmpa_box=\box87
-\l__tcobox_tmpa_dim=\dimen306
+\l__tcobox_tmpa_box=\box86
+\l__tcobox_tmpa_dim=\dimen310
+\tcb@temp=\box87
 \tcb@temp=\box88
 \tcb@temp=\box89
 \tcb@temp=\box90
-\tcb@temp=\box91
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskins.code.tex
 Library (tcolorbox): 'tcbskins.code.tex' version '6.9.0'
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tikzfill/tikzfill.image.sty
@@ -775,7 +778,7 @@ Package: tikzfill.image 2023/08/08 v1.0.1 Image filling library for TikZ
 Package: tikzfill-common 2023/08/08 v1.0.1 Auxiliary code for tikzfill
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tikzfill/tikzlibraryfill.image.code.tex
 File: tikzlibraryfill.image.code.tex 2023/08/08 v1.0.1 Image filling library
-\l__tikzfill_img_box=\box92
+\l__tikzfill_img_box=\box91
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex
 Library (tcolorbox): 'tcbskinsjigsaw.code.tex' version '6.9.0'
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/tcolorbox/tcbbreakable.code.tex
@@ -786,9 +789,9 @@ Package: pdfcol 2022-09-21 v1.7 Handle new color stacks for pdfTeX (HO)
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 ))
 Package pdfcol Info: New color stack `tcb@breakable' = 1 on input line 23.
-\tcb@testbox=\box93
-\tcb@totalupperbox=\box94
-\tcb@totallowerbox=\box95
+\tcb@testbox=\box92
+\tcb@totalupperbox=\box93
+\tcb@totallowerbox=\box94
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/iftex/ifluatex.sty
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 ))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/fontawesome5/fontawesome5.sty
@@ -810,12 +813,12 @@ LaTeX Font Info:    Trying to load font information for TU+fontawesomebrands on 
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/fontawesome5/tufontawesomebrands.fd))) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count362
-\float@exts=\toks44
-\float@box=\box96
-\@float@everytoks=\toks45
-\@floatcapt=\box97
+\float@exts=\toks45
+\float@box=\box95
+\@float@everytoks=\toks46
+\@floatcapt=\box96
 )
-\@float@every@codelisting=\toks46
+\@float@every@codelisting=\toks47
 \c@codelisting=\count363
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/07/28 v1.6b Sub-captions (AR)
@@ -836,7 +839,7 @@ Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-\pdftexcmds@toks=\toks47
+\pdftexcmds@toks=\toks48
 )) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
@@ -850,7 +853,7 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen307
+\@linkdim=\dimen311
 \Hy@linkcounter=\count367
 \Hy@pagecounter=\count368
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
@@ -876,15 +879,15 @@ Package hyperref Info: Bookmarks ON on input line 4462.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4801.
-\XeTeXLinkMargin=\dimen308
+\XeTeXLinkMargin=\dimen312
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (/home/sheron/.TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
 \Fld@menulength=\count371
-\Field@Width=\dimen309
-\Fld@charsize=\dimen310
+\Field@Width=\dimen313
+\Fld@charsize=\dimen314
 Package hyperref Info: Hyper figures OFF on input line 6078.
 Package hyperref Info: Link nesting OFF on input line 6083.
 Package hyperref Info: Hyper index ON on input line 6086.
@@ -908,55 +911,91 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
-\Hy@SectionHShift=\skip72
+\Hy@SectionHShift=\skip71
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO)
 \BKM@id=\count377
 ))
-Package hyperref Info: Option `colorlinks' set `true' on input line 230.
+Package hyperref Info: Option `colorlinks' set `true' on input line 191.
 No file misty-paper.aux.
 
 \openout1 = misty-paper.aux
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 234.
-LaTeX Font Info:    ... okay on input line 234.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 195.
+LaTeX Font Info:    ... okay on input line 195.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* hratio: 1:1
+* vratio: 1:1
+* modes: 
+* h-part:(L,W,R)=(64.75394pt, 468.0pt, 64.75394pt)
+* v-part:(T,H,B)=(111.52342pt, 622.0pt, 111.52342pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=468.0pt
+* \textheight=622.0pt
+* \oddsidemargin=-7.51605pt
+* \evensidemargin=-7.51605pt
+* \topmargin=-22.74657pt
+* \headheight=50.0pt
+* \headsep=12.0pt
+* \topskip=10.0pt
+* \footskip=18.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=24.0pt
+* \skip\footins=24.0pt plus 2.0pt minus 12.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 234.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 195.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 234.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 195.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 234.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 195.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 234.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 195.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 234.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 195.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 234.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 195.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 234.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 195.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
@@ -984,7 +1023,7 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 234.
+(Font)              scaled to size 10.0pt on input line 195.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
@@ -1020,15 +1059,15 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;"
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 234.
+(Font)              scaled to size 10.0pt on input line 195.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 234.
+(Font)              `operators' in the math version `normal' on input line 195.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 234.
+(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 195.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 234.
+(Font)              `operators' in the math version `bold' on input line 195.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 234.
+(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 195.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
@@ -1064,13 +1103,13 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex2;"
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 234.
+(Font)              `symbols' in the math version `normal' on input line 195.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 234.
+(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 195.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 234.
+(Font)              `symbols' in the math version `bold' on input line 195.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 234.
+(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 195.
 
 Package fontspec Info: 
 (fontspec)             latinmodern-math scale = 0.9999964596882403.
@@ -1106,48 +1145,48 @@ Package fontspec Info:
 (fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]:mode=base;script=math;language=dflt;mathfontdimen=xetex;mathfontdimen=tex3;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 234.
+(Font)              `largesymbols' in the math version `normal' on input line 195.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 234.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 195.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 234.
+(Font)              `largesymbols' in the math version `bold' on input line 195.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 234.
+(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 234.
+(Font)              scaled to size 7.0pt on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 234.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 234.
+(Font)              scaled to size 5.0pt on input line 195.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 195.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 234.
+(Font)              scaled to size 10.0pt on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 234.
+(Font)              scaled to size 7.0pt on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 234.
+(Font)              scaled to size 5.0pt on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 234.
+(Font)              scaled to size 10.0pt on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 234.
+(Font)              scaled to size 7.0pt on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 234.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 234.
+(Font)              scaled to size 5.0pt on input line 195.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 195.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 234.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 195.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Info: Redefining \microtypecontext on input line 234.
-Package microtype Info: Applying patch `item' on input line 234.
-Package microtype Info: Applying patch `toc' on input line 234.
-Package microtype Info: Applying patch `eqnum' on input line 234.
-Package microtype Info: Applying patch `footnote' on input line 234.
-Package microtype Info: Applying patch `verbatim' on input line 234.
-LaTeX Info: Redefining \microtypesetup on input line 234.
+LaTeX Info: Redefining \microtypecontext on input line 195.
+Package microtype Info: Applying patch `item' on input line 195.
+Package microtype Info: Applying patch `toc' on input line 195.
+Package microtype Info: Applying patch `eqnum' on input line 195.
+Package microtype Info: Applying patch `footnote' on input line 195.
+Package microtype Info: Applying patch `verbatim' on input line 195.
+LaTeX Info: Redefining \microtypesetup on input line 195.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
@@ -1165,161 +1204,178 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 234.
+Package hyperref Info: Link coloring ON on input line 195.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 278.
+(Font)              scaled to size 8.0pt on input line 239.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 278.
+(Font)              scaled to size 6.0pt on input line 239.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 278.
+(Font)              scaled to size 8.0pt on input line 239.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 278.
+(Font)              scaled to size 6.0pt on input line 239.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 278.
+(Font)              scaled to size 8.0pt on input line 239.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 278.
+(Font)              scaled to size 6.0pt on input line 239.
 (/home/sheron/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 ) (/home/sheron/.TinyTeX/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
-Package natbib Warning: Citation `fu2021' on page 1 undefined on input line 286.
+Package natbib Warning: Citation `fu2021' on page 1 undefined on input line 247.
 
 
-Package natbib Warning: Citation `racette2024' on page 1 undefined on input line 286.
+Package natbib Warning: Citation `ciuffreda2025' on page 1 undefined on input line 247.
 
 
-Package natbib Warning: Citation `campagna2025' on page 1 undefined on input line 290.
+Package natbib Warning: Citation `diab2025' on page 1 undefined on input line 247.
 
 
-Package natbib Warning: Citation `emaminejad2022' on page 1 undefined on input line 290.
+Package natbib Warning: Citation `spitale2023' on page 1 undefined on input line 247.
 
 
-Package natbib Warning: Citation `devisser2020' on page 1 undefined on input line 295.
+Package natbib Warning: Citation `campagna2025' on page 1 undefined on input line 252.
 
 
-Package natbib Warning: Citation `shayganfar2019' on page 1 undefined on input line 299.
+Package natbib Warning: Citation `emaminejad2022' on page 1 undefined on input line 252.
 
 
-Package natbib Warning: Citation `fartook2025' on page 1 undefined on input line 299.
+Package natbib Warning: Citation `wischnewski2023' on page 1 undefined on input line 254.
+
+
+Package natbib Warning: Citation `campagna2025' on page 1 undefined on input line 254.
+
+
+Package natbib Warning: Citation `devisser2020' on page 1 undefined on input line 257.
+
+
+Package natbib Warning: Citation `shayganfar2019' on page 1 undefined on input line 262.
+
+
+Package natbib Warning: Citation `fartook2025' on page 1 undefined on input line 262.
+
+
+Package natbib Warning: Citation `muir1994' on page 1 undefined on input line 267.
+
+
+Package natbib Warning: Citation `hancock2011' on page 1 undefined on input line 267.
+
+
+Package natbib Warning: Citation `devisser2020' on page 1 undefined on input line 267.
 
 [1
 
-
 {/home/sheron/.TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
-Package natbib Warning: Citation `shayganfar2019' on page 2 undefined on input line 323.
+Package natbib Warning: Citation `campagna2025' on page 2 undefined on input line 277.
 
 
-Package natbib Warning: Citation `fartook2025' on page 2 undefined on input line 323.
+Package natbib Warning: Citation `shayganfar2019' on page 2 undefined on input line 286.
 
 
-Package natbib Warning: Citation `birnbaum2016' on page 2 undefined on input line 328.
+Package natbib Warning: Citation `fartook2025' on page 2 undefined on input line 286.
+
+
+Package natbib Warning: Citation `birnbaum2016' on page 2 undefined on input line 291.
+
+
+Package natbib Warning: Citation `campagna2025' on page 2 undefined on input line 295.
+
+
+Package natbib Warning: Citation `shayganfar2019' on page 2 undefined on input line 299.
+
+
+Package natbib Warning: Citation `birnbaum2016' on page 2 undefined on input line 304.
+
+
+Package natbib Warning: Citation `campagna2025' on page 2 undefined on input line 308.
 
 [2]
 
-Package natbib Warning: Citation `mistya' on page 3 undefined on input line 415.
+Package natbib Warning: Citation `mistyrobotics' on page 3 undefined on input line 365.
+
+
+LaTeX Warning: Reference `fig-task1' on page 3 undefined on input line 367.
 
 [3]
 warning  (file images/misty-pullback.jpg) (readjpg): Exif resolution 72dpi x 72dpi differs from the input resolution 300dpi x 300dpi
 <images/misty-pullback.jpg, id=38, 5733.42pt x 4300.065pt>
 File: images/misty-pullback.jpg Graphic file (type jpg)
 <use images/misty-pullback.jpg>
-Package luatex.def Info: images/misty-pullback.jpg  used on input line 462.
+Package luatex.def Info: images/misty-pullback.jpg  used on input line 410.
 (luatex.def)             Requested size: 362.7996pt x 272.0997pt.
 
-Overfull \hbox (17.7996pt too wide) in paragraph at lines 462--463
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 486--489
+Underfull \hbox (badness 10000) in paragraph at lines 433--436
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 489--492
+Underfull \hbox (badness 10000) in paragraph at lines 436--439
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 492--494
+Underfull \hbox (badness 10000) in paragraph at lines 439--441
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 441--444
 
  []
 
 [4] [5<./images/misty-pullback.jpg
 warning  (readjpg): Exif resolution 72dpi x 72dpi differs from the input resolution 300dpi x 300dpi
 >]
-Underfull \hbox (badness 10000) in paragraph at lines 494--497
-
- []
-
-<images/task1-whodunnit.png, id=53, 1012.78375pt x 944.52875pt>
-File: images/task1-whodunnit.png Graphic file (type png)
-<use images/task1-whodunnit.png>
-Package luatex.def Info: images/task1-whodunnit.png  used on input line 517.
-(luatex.def)             Requested size: 362.84013pt x 338.38708pt.
-
-Overfull \hbox (17.84013pt too wide) in paragraph at lines 517--518
- [][] 
- []
-
-<images/task2-cryptic-puzzle.png, id=54, 1012.78375pt x 944.52875pt>
+<images/task1-whodunnit2.png, id=55, 1007.765pt x 922.44624pt>
+File: images/task1-whodunnit2.png Graphic file (type png)
+<use images/task1-whodunnit2.png>
+Package luatex.def Info: images/task1-whodunnit2.png  used on input line 463.
+(luatex.def)             Requested size: 362.85663pt x 332.13669pt.
+<images/task2-cryptic-puzzle.png, id=56, 1012.78375pt x 549.05125pt>
 File: images/task2-cryptic-puzzle.png Graphic file (type png)
 <use images/task2-cryptic-puzzle.png>
-Package luatex.def Info: images/task2-cryptic-puzzle.png  used on input line 550.
-(luatex.def)             Requested size: 362.84013pt x 338.38708pt.
+Package luatex.def Info: images/task2-cryptic-puzzle.png  used on input line 492.
+(luatex.def)             Requested size: 362.84013pt x 196.70322pt.
+[6<./images/task1-whodunnit2.png>]
 
-Overfull \hbox (17.84013pt too wide) in paragraph at lines 550--551
- [][] 
- []
+Package natbib Warning: Citation `lin2022' on page 7 undefined on input line 509.
 
+[7<./images/task2-cryptic-puzzle.png>]
 
-Package natbib Warning: Citation `lin2022' on page 6 undefined on input line 567.
-
-[6] [7<./images/task1-whodunnit.png>] [8<./images/task2-cryptic-puzzle.png>]
-
-Package natbib Warning: Citation `bartneck2009' on page 9 undefined on input line 609.
+Package natbib Warning: Citation `bartneck2009' on page 8 undefined on input line 554.
 
 
-Package natbib Warning: Citation `charalambous' on page 9 undefined on input line 609.
+Package natbib Warning: Citation `charalambous2016' on page 8 undefined on input line 554.
 
-[9]
-
-LaTeX Warning: Reference `tbl-pre' on page 10 undefined on input line 683.
-
-
-Package natbib Warning: Citation `cacioppo1984' on page 10 undefined on input line 683.
-
-
-Package natbib Warning: Citation `cacioppo1996' on page 10 undefined on input line 683.
-
-
-Overfull \hbox (90.79901pt too wide) in alignment at lines 695--720
-[] [] [] [] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 722--724
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 638--640
 
  []
 
-[10] [11]
+[9] [10]
 
-LaTeX Warning: Reference `tbl-post-eligible' on page 12 undefined on input line 765.
+LaTeX Warning: Reference `tbl-pre' on page 11 undefined on input line 696.
 
+
+Package natbib Warning: Citation `cacioppo1982' on page 11 undefined on input line 696.
+
+
+LaTeX Warning: Reference `tbl-post-eligible' on page 11 undefined on input line 733.
+
+[11]
 ! Undefined control sequence.
-l.795 Trust Perception Scale\textendashHRI
-                                         & 62 (15) & 77 (18) & {\bfseries 0....
+l.769 Trust Perception Scale\textendashHRI
+                                         & 59 (17) & 77 (18) & {\bfseries 0....
 
 Here is how much of LuaTeX's memory you used:
  39405 strings out of 476081
- 125086,1373583 words of node,token memory allocated
- 27050 words of node memory still in use:
-   57 hlist, 2 vlist, 43 rule, 272 disc, 10 local_par, 6 dir, 6 math, 506 glue, 149 kern, 38 penalty, 30 unset, 22 margin_kern, 2417 glyph, 4 align_record, 174 attribute, 89 glue_spec, 174 attribute_list, 12 temp, 1 align_stack, 6 write, 3 pdf_dest, 3 pdf_colorstack nodes
-   avail lists: 1:2,2:624,3:120,4:62,5:303,6:32,7:6400,8:2,9:485,10:21,11:616
- 60995 multiletter control sequences out of 65536+600000
- 61 fonts using 17157311 bytes
+ 125086,1648299 words of node,token memory allocated
+ 14870 words of node memory still in use:
+   32 hlist, 2 vlist, 43 rule, 128 disc, 6 local_par, 6 dir, 6 math, 315 glue, 90 kern, 16 penalty, 30 unset, 5 margin_kern, 1211 glyph, 4 align_record, 148 attribute, 88 glue_spec, 148 attribute_list, 12 temp, 1 align_stack, 2 write, 1 pdf_dest, 3 pdf_colorstack nodes
+   avail lists: 1:2,2:796,3:158,4:62,5:363,6:36,7:7036,8:2,9:580,10:14,11:675
+ 60993 multiletter control sequences out of 65536+600000
+ 61 fonts using 17157247 bytes
  98i,13n,114p,1007b,1088s stack positions out of 10000i,1000n,20000p,200000b,200000s
 !  ==> Fatal error occurred, no output PDF file produced!
