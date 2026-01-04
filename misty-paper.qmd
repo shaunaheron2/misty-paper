@@ -258,7 +258,7 @@ df_flat_scores_final |>
       gender ~ "Gender",
       age ~ "Age Group",
       program ~ "Program",
-      robot_xp ~ "Experience w/Robots",
+      robot_xp ~ "Experience with Robots",
       native_english ~ 'Native English Speaker',
       nfc_pre ~ 'Need for Cognition',
       nars_pre ~ "NARS Overall",
@@ -401,7 +401,7 @@ post_table |>
       prop_correct ~ "Overall Task Accuracy",
       n_engaged ~ "Engaged Responses",
       n_frust ~ "Frustrated Responses",
-      trust_perc_post ~ "Trust Perception Scale–HRI",
+      trust_perc_post ~ "Trust Perception Scale HRI",
       post_trust ~ "Trust in Industrial HRI Collaboration"
     )
   ) |>
@@ -802,8 +802,8 @@ post_table |>
       prop_correct ~ "Overall Task Accuracy",
       n_engaged ~ "Engaged Responses",
       n_frust ~ "Frustrated Responses",
-      trust_perc_post ~ "Trust Perception",
-      post_trust ~ "Trust in Industrial HRI Collaboration"
+      trust_perc_post ~ "Trust Perception Scale HRI",
+      post_trust ~ "Trust in Industrial HR Collaboration"
     )
   ) |>
   add_variable_group_header(
