@@ -35,6 +35,8 @@ warning: false
 echo: false
 message: false
 bibliography: bibliography.bib
+citation-style: ieee-with-url.csl
+number-sections: true
 ---
 
 ```{r}
@@ -121,27 +123,29 @@ By combining post-interaction trust measures with task-level and behavioural obs
 
 This study employed a between-subjects experimental design to examine how robot interaction policy influences trust and collaboration during fully autonomous, in-person human–robot interaction. The sole experimental factor was the robot’s interaction policy, with participants randomly assigned to interact with either a responsive or neutral version of the same robot system. 
 
-Throughout this paper, references to *the robot* denote the fully autonomous interactive system comprising the Misty-II hardware platform and its onboard software stack, with all interaction decisions generated without human intervention, including spoken-language processing, dialogue management, and the interaction policy governing verbal and nonverbal behaviour. Additional details of the system architecture are provided in Appendix A.
+::: callout-important
 
-Participants interacted with a Misty-II social robot in a shared physical workspace that included a participant-facing computer interface [@mistyrobotics]. The interface was used to display task materials, collect participant inputs, and manage task progression (see @fig-task1). Importantly, the interface did not function as a control mechanism for the robot. Instead, the robot autonomously monitored task state and participant inputs via the interface and managed dialogue and behaviour accordingly, without real-time human intervention.
+Throughout this paper, references to "the robot" denote the fully autonomous interactive system comprising the Misty-II hardware platform and its onboard software stack, with all interaction decisions generated without human intervention, including spoken-language processing, dialogue management, and the interaction policy governing verbal and nonverbal behaviour. Additional details of the system architecture are provided in Appendix A.
+
+:::
 
 ### Interaction Policies
 
-**Responsive condition (experimental):**
-The robot employed a proactive, affect-adaptive interaction policy. Robot responses were modulated based on inferred participant affect, dialogue context, and task demands, resulting in unsolicited encouragement, clarification, and engagement-oriented behaviours when appropriate.
+In the responsive policy condition, the robot employed a proactive, affect-adaptive interaction policy. Robot responses were modulated based on inferred participant affect, dialogue context, and task demands, resulting in unsolicited encouragement, clarification, and engagement-oriented behaviours when appropriate. For example, if the participant exhibited signs of confusion or hesitation (e.g., long pauses, requests for repetition or detected irritation), the robot would proactively offer hints or rephrase instructions. Similarly, if the participant demonstrated engagement (e.g., rapid responses, affirmative feedback), the robot would reciprocate with positive reinforcement and increased task involvement.
 
-**Control condition (baseline):**
-The robot employed a neutral, reactive interaction policy. General information and guidance were were provided but additional help only when explicitly requested by the participant and without affect-based adaptation or proactive support beyond a check-in when participant was silent for more than 1 minute.
+In the neutral or control policy condition, the robot employed a neutral, reactive interaction policy. General information and guidance were were provided to move the participant through the tasks, but additional help was only provided when explicitly requested by the participant and without affect-based adaptation or proactive support beyond a check-in when participant was silent for more than 1 minute. For example, if the participant appeared confused but did not request assistance, the robot would not intervene. The robot’s verbal and nonverbal behaviours were designed to be neutral and non-engaging, avoiding unsolicited encouragement or affective responses.
 
-Both conditions used identical hardware, software infrastructure, sensing capabilities, and task logic. The only difference between conditions was the robot’s interaction policy.
+Both conditions used identical hardware, software infrastructure, sensing capabilities, and task logic. 
 
 ### Collaborative Task Design
 
-Participants completed an immersive, narrative-driven puzzle game consisting of five sequential stages and two timed reasoning tasks. The game context positioned participants as investigators searching for a missing robot colleague, with the robot serving as a diegetic guide and collaborative partner. The overall interaction lasted approximately 25 minutes.
+The task structure was designed to elicit collaboration under two distinct dependency conditions: (1) enforced collaboration, where the robot was required to complete the task, and (2) optional collaboration, where participants could choose whether to engage the robot. To this end, participants completed an immersive, narrative-driven puzzle game consisting of five sequential stages and two timed reasoning tasks. The game context positioned participants as investigators searching for a missing robot colleague, with the robot serving as a diegetic guide and collaborative partner. The overall interaction lasted approximately 25 minutes.
+
+The interactions with the Misty-II social robot took place in a shared physical workspace that included a participant-facing computer interface [@mistyrobotics]. The interface was used to display task materials, collect participant inputs, and manage task progression (see @fig-task1). Importantly, the interface did *not* function as a control mechanism for the robot. Instead, the robot could autonomously monitor task progression and participant inputs via the interface and managed dialogue and behaviour accordingly.
 
 ![Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input.](images/misty-pullback.jpg){#fig-setup fig-align="center" width="482"}
 
-The task structure was designed to elicit collaboration under two distinct dependency conditions: (1) enforced collaboration, where the robot was required to complete the task, and (2) optional collaboration, where participants could choose whether to engage the robot.
+
 
 **Stage Overview**
 
@@ -151,19 +155,19 @@ The task structure was designed to elicit collaboration under two distinct depen
 4.  **Task 2:** Open-ended problem solving with optional robot support.\
 5.  **Wrap-up:** The robot provided closing feedback and concluded the interaction.
 
-Participants advanced between stages using the interface, either at the robot’s prompting or at their own discretion. All spoken dialogue and interaction events were logged automatically.
+Participants advanced between stages using the interface, either at the robot’s prompting or at their own discretion. All spoken dialogue and interaction events were handled by the robot and logged automatically.
 
 ### Task 1: Robot-Dependent Collaborative Reasoning {-}
 
-In Task 1, participants were asked to identify a perpetrator from a 6 × 4 grid of 24 'suspects' by asking the robot a series of yes/no questions about the suspect’s features (e.g., "was the suspect wearing a hat?"). The grid was displayed on the interface, while questions were posed verbally.
+In the first task, participants were asked to identify a perpetrator from a 6 × 4 grid of 24 'suspects' by asking the robot a series of yes/no questions about the suspect’s features (e.g., "was the suspect wearing a hat?"). The grid was displayed on the interface, while questions were posed verbally.
 
-![*Task 1 interface including the 6 × 4 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to Task 2.*](images/task1-whodunnit2.png){#fig-task1 fig-align="center" width="482"}
+![*Task 1 interface including the 6 × 4 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.*](images/task1-whodunnit2.png){#fig-task1 fig-align="center" width="482"}
 
 The robot possessed ground-truth information necessary to answer each question correctly. Successful task completion was therefore dependent on interaction with the robot, creating a forced collaborative dynamic. Participants were required to coordinate questioning strategies with the robot to narrow down the suspect within a five-minute time limit. The structured nature of the task ensured consistent interaction demands across participants and conditions.
 
 ### Task 2: Open-Ended Collaborative Problem Solving {-}
 
-This task involved a more open-ended reasoning challenge. Participants were presented with multiple technical logs through a simulated terminal interface that could be used to infer the location of the missing robot.
+The second task involved a more open-ended reasoning challenge. Participants were presented with multiple technical logs through a simulated terminal interface that could be used to infer the location of the missing robot.
 
 ![The task 2 interface presented multiple technical logs through a simulated terminal interface that could be used to determine the location of the missing robot.](images/task2-cryptic-puzzle.png){#fig-task2 fig-align="center" width="482"}
 
@@ -187,11 +191,12 @@ A combination of self-report and objective measures was used to assess trust, en
 
 #### Self-Report Measures
 
-Trust was assessed using two established self-report instruments commonly used in human–robot interaction research: the Trust Perception Scale–HRI (TPS-HRI) and the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) [@bartneck2009; @charalambous2016]. Both measures were adapted to reflect the specific task context and interaction modality of the present study. 9 items were retained from the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to reference the robot’s behaviour during a dialogue-driven collaborative task, and response formats were adjusted to ensure interpretability for participants without prior robotics experience.
+Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s). These measures were used to capture individual differences that may moderate responses to robot interaction.
+
+Trust was assessed using two established self-report instruments commonly used in human–robot interaction research: the Trust Perception Scale–HRI (TPS-HRI) and the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) [@bartneck2009; @charalambous2016]. Both measures were adapted to reflect the specific task context and interaction modality of the present study. 9 items were retained from the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to reference the robot’s behaviour during a dialogue-driven collaborative task, and response formats were adjusted to ensure interpretability for participants without prior robotics experience (see Appendix B for a full item list).
 
 Together, these instruments capture complementary dimensions of trust, including perceived reliability, task competence, and affective comfort. However, they differ in their conceptual emphasis: the TPS-HRI primarily operationalizes trust as a reflective judgement of system performance (i.e., "What percent of the time was the robot reliable"), whereas the TI-HRC scale emphasizes trust as an experienced, embodied response arising during interaction (i.e., "The way the robot moved made me feel uneasy"). Despite this complementarity, both measures rely on retrospective self-report and may be insensitive to moment-to-moment trust dynamics as collaboration unfolds. For this reason, questionnaire data were interpreted alongside behavioural and interaction-level measures.
 
-Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s). These measures were used to capture individual differences that may moderate responses to robot interaction.
 
 #### Objective and behavioural Measures
 
@@ -282,11 +287,13 @@ To ensure transparency and assess the impact of communication-based exclusions, 
 
 While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
 
+### Random Assignment
+
 Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1982]. These patterns were consistent across both eligible and full samples, indicating successful random assignment.
 
 ## Results
 
-Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from system logs and manual coding. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns (half of all turns were dependent on human speech) were characterized by communication breakdown were classified as non-viable (n=5). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. 
+Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from system logs and manual coding. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns (half of all turns were dependent on human speech) were characterized by communication breakdown and were classified as non-viable (n=5). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments. 
 
 Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.
 
