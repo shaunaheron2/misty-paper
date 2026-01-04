@@ -292,3 +292,54 @@ large are |1.18| and |7.06| (corresponding respectively to 0.05 and 0.30 of the 
 Convergence and stability of the Bayesian sampling has been assessed using R-hat, which should be
 below 1.01 (Vehtari et al., 2019), and Effective Sample Size (ESS), which should be greater than
 1000 (Burkner, 2017).
+
+
+## Discussion
+
+This pilot study examined how interaction policy shapes trust during fully autonomous, spoken-language human–robot collaboration. Across analytic approaches, participants interacting with the responsive robot consistently reported higher post-interaction trust than those interacting with the neutral control robot, particularly when communication functioned as intended. Crucially, these trust differences emerged in the absence of reliable differences in objective task accuracy, indicating that trust was shaped primarily by the quality and affective tone of the interaction process rather than by instrumental task success.
+
+The findings support a distinction between *trust as evaluative judgment* and *trust as lived interactional experience*. Task-oriented trust measures, which emphasize perceived reliability and competence, appeared relatively robust to moderate communication degradation. In contrast, experienced trust—capturing affective comfort, engagement, and embodied collaboration—was highly sensitive to interaction-level failures and the robot’s ability to sustain responsive behavior. Mechanism analyses further showed that as communication breakdown increased, the advantage conferred by responsive behavior diminished, suggesting that affect-adaptive interaction policies depend on a baseline level of interaction viability to be effective.
+
+Importantly, responsiveness did not merely increase trust uniformly. Under conditions of severe communication breakdown, the responsive robot continued to generate proactive assistance, encouragement, and meta-communication aimed at repairing the interaction. However, when spoken-language grounding could not be re-established, these behaviors may have increased participant confusion and cognitive load. In contrast, the neutral robot’s reactive policy resulted in fewer unsolicited interventions, which—while less supportive under normal conditions—reduced interaction complexity when collaboration was no longer viable. Under these conditions, trust ratings no longer systematically reflected the intended manipulation, highlighting communication viability as a boundary condition for evaluating trust in autonomous spoken-language HRI.
+
+Together, these results suggest that trust in human–robot collaboration is not simply reduced by technical failure; rather, when interaction collapses, the prerequisites for trust formation are no longer instantiated. This distinction is critical for interpreting trust measures in autonomous systems and underscores the importance of explicitly modeling interaction dynamics and failure modes when evaluating affect-responsive robots in realistic settings.
+
+## Technical Challenges and System Limitations
+
+Several technical and methodological challenges emerged during deployment that are relevant for interpreting the present findings and for guiding future work.
+
+### Spoken-Language Viability and Language Proficiency
+
+Although English fluency was an eligibility criterion, substantial variability in functional spoken-language proficiency was observed during in-person sessions. Post-hoc analysis revealed that a subset of sessions exhibited persistent and severe speech recognition failures, rendering sustained collaboration infeasible. In these cases, ASR output was fragmented or unintelligible, preventing the robot from maintaining dialogue or supporting task progression.
+
+Because spoken-language interaction was fundamental to the experimental manipulation, these sessions were classified as protocol non-adherence and excluded from primary analyses. Importantly, exclusion decisions were based solely on interaction mechanics and communication viability—not task outcomes or trust scores. These findings highlight a critical challenge for autonomous HRI studies: when language-mediated interaction collapses, higher-level constructs such as trust and collaboration are no longer meaningfully defined. Future studies must explicitly account for linguistic diversity and interaction viability when designing spoken-language HRI experiments.
+
+### Natural Language Understanding Constraints
+
+The robot’s natural language understanding was constrained by a fixed mapping between user questions and ground-truth task features in the robot-dependent task. This led to several breakdowns when participants used semantically valid but unexpected phrasing. For example, questions such as “Was the suspect wearing pink?” failed to map cleanly onto the predefined feature representation (“top: PINK”), resulting in confusion or clarification loops. Similarly, compound queries involving multiple attributes (e.g., “Is the suspect wearing a red hoodie shirt?”) occasionally produced incorrect responses due to ambiguity in attribute binding.
+
+These failures reflect limitations in prompt design and natural language understanding (NLU) robustness rather than errors in participant reasoning. Future work could mitigate these issues by expanding paraphrase coverage in prompt examples, incorporating synonym-aware feature matching, or introducing lightweight semantic parsing to handle multi-attribute queries more reliably.
+
+### Turn-Taking, Latency, and Visual Cues
+
+Despite explicit instructions, several participants failed to consistently attend to the robot’s visual listening cues, resulting in speech overlap and fragmented dialogue. Future iterations could improve turn-taking through stronger multimodal feedback (e.g., auditory listening cues), more explicit reminders when fragmented speech is detected, and improved latency handling to reduce uncertainty about when the robot is ready to receive input.
+
+### Measurement Interface Effects
+
+The two trust instruments differed not only conceptually but also in response modality. The Trust Perception Scale–HRI was administered using a continuous 0–100 slider, while the Trust in Industrial Human–Robot Collaboration scale used discrete Likert-style responses that were clickable. Administration of the post-test survey on a laptop without a mouse in some cases introduced additional friction for slider-based responses which some participants found difficult to control precisely. This likely introduced additional measurement noise and may partially explain weaker or less stable effects observed for the slider-based scale. Future studies should consider harmonizing response formats or optimizing input devices for continuous ratings.
+
+### Multimodal Affect Inference Trade-offs
+
+The original system design envisioned multimodal affect inference integrating facial expressions, vocal prosody, and interaction dynamics. Early integration testing revealed substantial challenges related to latency, model orchestration, and timing sensitivity when deploying multiple perception models concurrently on a mobile robot platform. To preserve real-time interaction stability, the deployed system prioritized speech-based affect inference and conversational context.
+
+While this design choice allowed for reliable autonomous operation, it necessarily limited the richness of affect sensing. Future work with more powerful edge hardware or optimized multimodal pipelines will reintroduce visual and prosodic cues to improve robustness and reduce reliance on speech alone.
+
+## Conclusion and Future Work
+
+This pilot study demonstrates that affect-responsive interaction policies can meaningfully increase trust in fully autonomous, in-person human–robot collaboration, even under realistic conditions that include latency, misrecognition, and interaction breakdown. Trust differences emerged independently of task success, highlighting the central role of interaction quality and affective responsiveness in shaping collaborative experience.
+
+At the same time, the results identify clear boundary conditions for trust evaluation in spoken-language HRI. When communication viability collapses, trust is not merely reduced—it becomes undefined. Recognizing and modeling this distinction is essential for both experimental design and real-world deployment of autonomous social robots.
+
+Future work will extend this research in several directions. First, larger samples will enable formal tests of mediation pathways linking responsiveness, interaction fluency, affective engagement, and trust judgments. Second, planned studies will directly compare embodied robotic interaction with functionally equivalent virtual agents to isolate the contribution of physical embodiment to trust and collaboration. Third, improvements to natural language understanding (NLU) robustness, turn-taking management, and participant instruction will be implemented to reduce avoidable interaction failures.
+
+More broadly, this work underscores the importance of evaluating affect-responsive robots not under idealized conditions, but in interaction contexts where errors, ambiguity, and recovery attempts are inevitable. Understanding how trust is negotiated under these conditions is critical for the responsible deployment of autonomous robots in real-world collaborative settings.
