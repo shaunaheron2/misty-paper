@@ -56,6 +56,35 @@ div.csl-indent {
 <link href="misty-paper_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="misty-paper_files/libs/bootstrap/bootstrap-9e3ffae467580fdb927a41352e75a2e0.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -69,24 +98,46 @@ div.csl-indent {
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2</span> Methods</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#interaction-policies" id="toc-interaction-policies" class="nav-link" data-scroll-target="#interaction-policies"><span class="header-section-number">2.1</span> Interaction Policies</a></li>
   <li><a href="#collaborative-task-design" id="toc-collaborative-task-design" class="nav-link" data-scroll-target="#collaborative-task-design"><span class="header-section-number">2.2</span> Collaborative Task Design</a></li>
   <li><a href="#task-1-robot-dependent-collaborative-reasoning" id="toc-task-1-robot-dependent-collaborative-reasoning" class="nav-link" data-scroll-target="#task-1-robot-dependent-collaborative-reasoning">Task 1: Robot-Dependent Collaborative Reasoning</a></li>
   <li><a href="#task-2-open-ended-collaborative-problem-solving" id="toc-task-2-open-ended-collaborative-problem-solving" class="nav-link" data-scroll-target="#task-2-open-ended-collaborative-problem-solving">Task 2: Open-Ended Collaborative Problem Solving</a></li>
   <li><a href="#study-protocol" id="toc-study-protocol" class="nav-link" data-scroll-target="#study-protocol"><span class="header-section-number">2.3</span> Study Protocol</a></li>
-  <li><a href="#measures" id="toc-measures" class="nav-link" data-scroll-target="#measures"><span class="header-section-number">2.4</span> Measures</a></li>
-  <li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants"><span class="header-section-number">2.5</span> Participants</a></li>
+  <li><a href="#measures" id="toc-measures" class="nav-link" data-scroll-target="#measures"><span class="header-section-number">2.4</span> Measures</a>
+  <ul class="collapse">
+  <li><a href="#self-report-measures" id="toc-self-report-measures" class="nav-link" data-scroll-target="#self-report-measures"><span class="header-section-number">2.4.1</span> Self-Report Measures</a></li>
+  <li><a href="#objective-measures" id="toc-objective-measures" class="nav-link" data-scroll-target="#objective-measures"><span class="header-section-number">2.4.2</span> Objective Measures</a></li>
+  </ul></li>
+  <li><a href="#participants" id="toc-participants" class="nav-link" data-scroll-target="#participants"><span class="header-section-number">2.5</span> Participants</a>
+  <ul class="collapse">
+  <li><a href="#randomization-check" id="toc-randomization-check" class="nav-link" data-scroll-target="#randomization-check"><span class="header-section-number">2.5.1</span> Randomization Check</a></li>
+  </ul></li>
   <li><a href="#analytic-strategy" id="toc-analytic-strategy" class="nav-link" data-scroll-target="#analytic-strategy"><span class="header-section-number">2.6</span> Analytic Strategy</a></li>
-  <li><a href="#random-assignment" id="toc-random-assignment" class="nav-link" data-scroll-target="#random-assignment"><span class="header-section-number">2.7</span> Random Assignment</a></li>
   </ul></li>
   <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results"><span class="header-section-number">3</span> Results</a>
-  <ul class="collapse">
+  <ul>
   <li><a href="#primary-analysis-eligible-sample" id="toc-primary-analysis-eligible-sample" class="nav-link" data-scroll-target="#primary-analysis-eligible-sample"><span class="header-section-number">3.1</span> Primary Analysis: Eligible Sample</a></li>
-  <li><a href="#hierarchical-models" id="toc-hierarchical-models" class="nav-link" data-scroll-target="#hierarchical-models"><span class="header-section-number">3.2</span> Hierarchical Models</a></li>
-  <li><a href="#bayesian-analysis" id="toc-bayesian-analysis" class="nav-link" data-scroll-target="#bayesian-analysis"><span class="header-section-number">3.3</span> Bayesian analysis</a></li>
-  <li><a href="#sensitivity-analyses-full-sample" id="toc-sensitivity-analyses-full-sample" class="nav-link" data-scroll-target="#sensitivity-analyses-full-sample"><span class="header-section-number">3.4</span> Sensitivity Analyses: Full Sample</a></li>
-  <li><a href="#mechanism-analyses-communication-breakdown" id="toc-mechanism-analyses-communication-breakdown" class="nav-link" data-scroll-target="#mechanism-analyses-communication-breakdown"><span class="header-section-number">3.5</span> Mechanism Analyses: Communication Breakdown</a></li>
+  <li><a href="#hierarchical-models" id="toc-hierarchical-models" class="nav-link" data-scroll-target="#hierarchical-models"><span class="header-section-number">3.2</span> Hierarchical Models</a>
+  <ul class="collapse">
+  <li><a href="#trust-in-industrial-humanrobot-collaboration" id="toc-trust-in-industrial-humanrobot-collaboration" class="nav-link" data-scroll-target="#trust-in-industrial-humanrobot-collaboration"><span class="header-section-number">3.2.1</span> Trust in Industrial Human–Robot Collaboration</a></li>
+  <li><a href="#trust-perception-scalehri" id="toc-trust-perception-scalehri" class="nav-link" data-scroll-target="#trust-perception-scalehri">Trust Perception Scale–HRI</a></li>
+  </ul></li>
+  <li><a href="#bayesian-analysis" id="toc-bayesian-analysis" class="nav-link" data-scroll-target="#bayesian-analysis"><span class="header-section-number">3.3</span> Bayesian analysis</a>
+  <ul class="collapse">
+  <li><a href="#primary-analyses-eligible-sample" id="toc-primary-analyses-eligible-sample" class="nav-link" data-scroll-target="#primary-analyses-eligible-sample"><span class="header-section-number">3.3.1</span> Primary Analyses: Eligible Sample</a></li>
+  <li><a href="#experienced-trust-ti-hrc" id="toc-experienced-trust-ti-hrc" class="nav-link" data-scroll-target="#experienced-trust-ti-hrc">Experienced Trust (TI-HRC)</a></li>
+  </ul></li>
+  <li><a href="#sensitivity-analyses-full-sample" id="toc-sensitivity-analyses-full-sample" class="nav-link" data-scroll-target="#sensitivity-analyses-full-sample"><span class="header-section-number">3.4</span> Sensitivity Analyses: Full Sample</a>
+  <ul class="collapse">
+  <li><a href="#task-oriented-trust-tps-hri-1" id="toc-task-oriented-trust-tps-hri-1" class="nav-link" data-scroll-target="#task-oriented-trust-tps-hri-1">Task-Oriented Trust (TPS-HRI)</a></li>
+  <li><a href="#experienced-trust-ti-hrc-1" id="toc-experienced-trust-ti-hrc-1" class="nav-link" data-scroll-target="#experienced-trust-ti-hrc-1">Experienced Trust (TI-HRC)</a></li>
+  </ul></li>
+  <li><a href="#mechanism-analyses-communication-breakdown" id="toc-mechanism-analyses-communication-breakdown" class="nav-link" data-scroll-target="#mechanism-analyses-communication-breakdown"><span class="header-section-number">3.5</span> Mechanism Analyses: Communication Breakdown</a>
+  <ul class="collapse">
+  <li><a href="#task-oriented-trust-tps-hri-2" id="toc-task-oriented-trust-tps-hri-2" class="nav-link" data-scroll-target="#task-oriented-trust-tps-hri-2">Task-Oriented Trust (TPS-HRI)</a></li>
+  <li><a href="#experienced-trust-ti-hrc-2" id="toc-experienced-trust-ti-hrc-2" class="nav-link" data-scroll-target="#experienced-trust-ti-hrc-2">Experienced Trust (TI-HRC)</a></li>
+  </ul></li>
   <li><a href="#task-performance" id="toc-task-performance" class="nav-link" data-scroll-target="#task-performance"><span class="header-section-number">3.6</span> Task performance</a></li>
   <li><a href="#individual-differences-and-correlational-patterns" id="toc-individual-differences-and-correlational-patterns" class="nav-link" data-scroll-target="#individual-differences-and-correlational-patterns"><span class="header-section-number">3.7</span> Individual differences and correlational patterns</a></li>
   </ul></li>
@@ -255,14 +306,19 @@ Figure&nbsp;3: The task 2 interface presented multiple technical logs through a 
 <p>Trust was assessed using two established self-report instruments commonly used in human–robot interaction research: the Trust Perception Scale–HRI (TPS-HRI) and the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) <span class="citation" data-cites="bartneck2009 charalambous2016"><a href="#ref-bartneck2009" role="doc-biblioref">[16]</a>, <a href="#ref-charalambous2016" role="doc-biblioref">[17]</a></span>. Both measures were adapted to reflect the specific task context and interaction modality of the present study. 9 items were retained from the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to reference the robot’s behaviour during a dialogue-driven collaborative task, and response formats were adjusted to ensure interpretability for participants without prior robotics experience (see Appendix B for a full item list).</p>
 <p>Together, these instruments capture complementary dimensions of trust, including perceived reliability, task competence, and affective comfort. However, they differ in their conceptual emphasis: the TPS-HRI primarily operationalizes trust as a reflective judgement of system performance (i.e., “What percent of the time was the robot reliable”), whereas the TI-HRC scale emphasizes trust as an experienced, embodied response arising during interaction (i.e., “The way the robot moved made me feel uneasy”). Despite this complementarity, both measures rely on retrospective self-report and may be insensitive to moment-to-moment trust dynamics as collaboration unfolds. For this reason, questionnaire data were interpreted alongside behavioural and interaction-level measures.</p>
 </section>
-<section id="objective-and-behavioural-measures" class="level4" data-number="2.4.2">
-<h4 data-number="2.4.2" class="anchored" data-anchor-id="objective-and-behavioural-measures"><span class="header-section-number">2.4.2</span> Objective and behavioural Measures</h4>
+<section id="objective-measures" class="level4" data-number="2.4.2">
+<h4 data-number="2.4.2" class="anchored" data-anchor-id="objective-measures"><span class="header-section-number">2.4.2</span> Objective Measures</h4>
 <p>Objective task metrics included task completion, task accuracy, time to completion, and the number of assistance requests made to the robot. behavioural engagement metrics were derived from interaction logs and manually coded dialogue transcripts, including number of dialogue turns, frequency of communication breakdowns, response timing, and task-relevant robot contributions.</p>
 </section>
 </section>
 <section id="participants" class="level3" data-number="2.5">
 <h3 data-number="2.5" class="anchored" data-anchor-id="participants"><span class="header-section-number">2.5</span> Participants</h3>
-<p>A total of 29 participants were recruited from the Laurentian University community via word of mouth and the SONA recruitment system. Eligibility criteria included being 18 years or older, fluent in spoken and written English, and having normal or corrected-to-normal hearing and vision. Participants received a $15 gift card as compensation for their time. All procedures were approved by the Laurentian University Research Ethics Board (REB #6021966).</p>
+<p>A total of 29 participants were recruited from the Laurentian University community via word of mouth and the SONA recruitment system. Eligibility criteria required being 18 years or older, fluent in spoken and written English, and having normal or corrected-to-normal hearing and vision. Participants received a $15 gift card as compensation for their time; some students additionally received partial credit for participating depending on their program of study. All procedures were approved by the Laurentian University Research Ethics Board (REB #6021966).</p>
+<p>Although English fluency was an eligibility requirement, in-person observation during data collection indicated meaningful variability in participants’ functional spoken-language proficiency. The researcher therefore recorded observed English proficiency for each session in anticipation of potential speech-based system limitations. Subsequent post-hoc review of interaction transcripts and system logs revealed that a subset of sessions exhibited severe and sustained communication failure. In these cases, automatic speech recognition (ASR) output was largely unintelligible or fragmented, preventing the robot from extracting sufficient linguistic content to maintain dialogue, respond meaningfully to participant queries, or support task progression. Interaction frequently stalled, participant input went unanswered or was misinterpreted, and collaborative problem-solving was not feasible. These sessions reflected a breakdown of language-mediated interaction, rendering the experimental manipulation inoperative.</p>
+<p>Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (n = 5). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.</p>
+<section id="randomization-check" class="level4" data-number="2.5.1">
+<h4 data-number="2.5.1" class="anchored" data-anchor-id="randomization-check"><span class="header-section-number">2.5.1</span> Randomization Check</h4>
+<p>Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see <a href="#tbl-pre" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="cacioppo1982"><a href="#ref-cacioppo1982" role="doc-biblioref">[18]</a></span>. These patterns were consistent across both eligible and full samples, indicating successful random assignment.</p>
 <div class="cell">
 <div id="tbl-pre" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -271,23 +327,23 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
 </figcaption>
 <div aria-describedby="tbl-pre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="otyokzhakw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#otyokzhakw table {
+<div id="nwpweiuguq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nwpweiuguq table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#otyokzhakw thead, #otyokzhakw tbody, #otyokzhakw tfoot, #otyokzhakw tr, #otyokzhakw td, #otyokzhakw th {
+#nwpweiuguq thead, #nwpweiuguq tbody, #nwpweiuguq tfoot, #nwpweiuguq tr, #nwpweiuguq td, #nwpweiuguq th {
   border-style: none;
 }
 
-#otyokzhakw p {
+#nwpweiuguq p {
   margin: 0;
   padding: 0;
 }
 
-#otyokzhakw .gt_table {
+#nwpweiuguq .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -313,12 +369,12 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-left-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_caption {
+#nwpweiuguq .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#otyokzhakw .gt_title {
+#nwpweiuguq .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -330,7 +386,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-width: 0;
 }
 
-#otyokzhakw .gt_subtitle {
+#nwpweiuguq .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -342,7 +398,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-top-width: 0;
 }
 
-#otyokzhakw .gt_heading {
+#nwpweiuguq .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -354,13 +410,13 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_bottom_border {
+#nwpweiuguq .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_col_headings {
+#nwpweiuguq .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -375,7 +431,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_col_heading {
+#nwpweiuguq .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -395,7 +451,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   overflow-x: hidden;
 }
 
-#otyokzhakw .gt_column_spanner_outer {
+#nwpweiuguq .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -407,15 +463,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 4px;
 }
 
-#otyokzhakw .gt_column_spanner_outer:first-child {
+#nwpweiuguq .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#otyokzhakw .gt_column_spanner_outer:last-child {
+#nwpweiuguq .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#otyokzhakw .gt_column_spanner {
+#nwpweiuguq .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -427,11 +483,11 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   width: 100%;
 }
 
-#otyokzhakw .gt_spanner_row {
+#nwpweiuguq .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#otyokzhakw .gt_group_heading {
+#nwpweiuguq .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -457,7 +513,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   text-align: left;
 }
 
-#otyokzhakw .gt_empty_group_heading {
+#nwpweiuguq .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -472,15 +528,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   vertical-align: middle;
 }
 
-#otyokzhakw .gt_from_md > :first-child {
+#nwpweiuguq .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#otyokzhakw .gt_from_md > :last-child {
+#nwpweiuguq .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#otyokzhakw .gt_row {
+#nwpweiuguq .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -499,7 +555,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   overflow-x: hidden;
 }
 
-#otyokzhakw .gt_stub {
+#nwpweiuguq .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -512,7 +568,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#otyokzhakw .gt_stub_row_group {
+#nwpweiuguq .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -526,15 +582,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   vertical-align: top;
 }
 
-#otyokzhakw .gt_row_group_first td {
+#nwpweiuguq .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#otyokzhakw .gt_row_group_first th {
+#nwpweiuguq .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#otyokzhakw .gt_summary_row {
+#nwpweiuguq .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -544,16 +600,16 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#otyokzhakw .gt_first_summary_row {
+#nwpweiuguq .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_first_summary_row.thick {
+#nwpweiuguq .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#otyokzhakw .gt_last_summary_row {
+#nwpweiuguq .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -563,7 +619,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_grand_summary_row {
+#nwpweiuguq .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -573,7 +629,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#otyokzhakw .gt_first_grand_summary_row {
+#nwpweiuguq .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -583,7 +639,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-top-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_last_grand_summary_row_top {
+#nwpweiuguq .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -593,11 +649,11 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_striped {
+#nwpweiuguq .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#otyokzhakw .gt_table_body {
+#nwpweiuguq .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -606,7 +662,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_footnotes {
+#nwpweiuguq .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -620,7 +676,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_footnote {
+#nwpweiuguq .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -629,7 +685,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#otyokzhakw .gt_sourcenotes {
+#nwpweiuguq .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -643,7 +699,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#otyokzhakw .gt_sourcenote {
+#nwpweiuguq .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -651,72 +707,72 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#otyokzhakw .gt_left {
+#nwpweiuguq .gt_left {
   text-align: left;
 }
 
-#otyokzhakw .gt_center {
+#nwpweiuguq .gt_center {
   text-align: center;
 }
 
-#otyokzhakw .gt_right {
+#nwpweiuguq .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#otyokzhakw .gt_font_normal {
+#nwpweiuguq .gt_font_normal {
   font-weight: normal;
 }
 
-#otyokzhakw .gt_font_bold {
+#nwpweiuguq .gt_font_bold {
   font-weight: bold;
 }
 
-#otyokzhakw .gt_font_italic {
+#nwpweiuguq .gt_font_italic {
   font-style: italic;
 }
 
-#otyokzhakw .gt_super {
+#nwpweiuguq .gt_super {
   font-size: 65%;
 }
 
-#otyokzhakw .gt_footnote_marks {
+#nwpweiuguq .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#otyokzhakw .gt_asterisk {
+#nwpweiuguq .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#otyokzhakw .gt_indent_1 {
+#nwpweiuguq .gt_indent_1 {
   text-indent: 5px;
 }
 
-#otyokzhakw .gt_indent_2 {
+#nwpweiuguq .gt_indent_2 {
   text-indent: 10px;
 }
 
-#otyokzhakw .gt_indent_3 {
+#nwpweiuguq .gt_indent_3 {
   text-indent: 15px;
 }
 
-#otyokzhakw .gt_indent_4 {
+#nwpweiuguq .gt_indent_4 {
   text-indent: 20px;
 }
 
-#otyokzhakw .gt_indent_5 {
+#nwpweiuguq .gt_indent_5 {
   text-indent: 25px;
 }
 
-#otyokzhakw .katex-display {
+#nwpweiuguq .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#otyokzhakw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#nwpweiuguq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -959,23 +1015,18 @@ N = 16<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 </figure>
 </div>
 </div>
-<p>Although English fluency was an eligibility requirement, in-person observation during data collection indicated meaningful variability in participants’ functional spoken-language proficiency. The researcher therefore recorded observed English proficiency for each session in anticipation of potential speech-based system limitations. Subsequent post-hoc review of interaction transcripts and system logs revealed that a subset of sessions exhibited severe and sustained communication failure. In these cases, automatic speech recognition (ASR) output was largely unintelligible or fragmented, preventing the robot from extracting sufficient linguistic content to maintain dialogue, respond meaningfully to participant queries, or support task progression. Interaction frequently stalled, participant input went unanswered or was misinterpreted, and collaborative problem-solving was not feasible. These sessions reflected a breakdown of language-mediated interaction, rendering the experimental manipulation inoperative.</p>
-<p>Because the study relied fundamentally on spoken-language collaboration, sessions exhibiting persistent communication failure were classified as protocol non-adherence and excluded from task-level analyses (n = 5). Exclusion decisions were based solely on communication viability and interaction mechanics, not on task outcomes or trust measures.</p>
+</section>
 </section>
 <section id="analytic-strategy" class="level3" data-number="2.6">
 <h3 data-number="2.6" class="anchored" data-anchor-id="analytic-strategy"><span class="header-section-number">2.6</span> Analytic Strategy</h3>
 <p>To ensure transparency and assess the impact of communication-based exclusions, analyses were conducted in three stages. First, an eligible-sample analysis (excluding non-viable sessions) served as the primary analysis, reflecting interactions in which the spoken-language protocol and experimental manipulation operated as intended. Second, a full-sample analysis including all participants was conducted as a sensitivity analysis to evaluate robustness to communication failures and protocol deviations. Third, a mechanism-focused analysis compared included and excluded sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to characterize how severe communication breakdown alters interaction dynamics.</p>
-<p>While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.</p>
-<p>All analyses was conducted using R (version 4.3.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages <span class="citation" data-cites="wickham2019"><a href="#ref-wickham2019" role="doc-biblioref"><strong>wickham2019?</strong></a></span>, with mixed-effects models fitted using the lme4 and lmerTest packages <span class="citation" data-cites="bates2015 kuznetsova2017"><a href="#ref-bates2015" role="doc-biblioref"><strong>bates2015?</strong></a>, <a href="#ref-kuznetsova2017" role="doc-biblioref"><strong>kuznetsova2017?</strong></a></span> and bayesian hierarchical models fitted using the brms package. Summary tables were generated using the gtsummary package <span class="citation" data-cites="sjoberg2021"><a href="#ref-sjoberg2021" role="doc-biblioref"><strong>sjoberg2021?</strong></a></span>. All code used for data processing and analysis is available at: <a href="">GitHub Repository</a></p>
-</section>
-<section id="random-assignment" class="level3" data-number="2.7">
-<h3 data-number="2.7" class="anchored" data-anchor-id="random-assignment"><span class="header-section-number">2.7</span> Random Assignment</h3>
-<p>Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see <a href="#tbl-pre" class="quarto-xref">Table&nbsp;1</a>) <span class="citation" data-cites="cacioppo1982"><a href="#ref-cacioppo1982" role="doc-biblioref">[18]</a></span>. These patterns were consistent across both eligible and full samples, indicating successful random assignment.</p>
+<p>While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown were not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.</p>
+<p>All analyses was conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages <span class="citation" data-cites="wickham2019"><a href="#ref-wickham2019" role="doc-biblioref"><strong>wickham2019?</strong></a></span>, with mixed-effects models fitted using the lme4 and lmerTest packages <span class="citation" data-cites="bates2015 kuznetsova2017"><a href="#ref-bates2015" role="doc-biblioref"><strong>bates2015?</strong></a>, <a href="#ref-kuznetsova2017" role="doc-biblioref"><strong>kuznetsova2017?</strong></a></span> while bayesian hierarchical models fitted using the brms package. Summary tables were generated using the gtsummary package <span class="citation" data-cites="sjoberg2021"><a href="#ref-sjoberg2021" role="doc-biblioref"><strong>sjoberg2021?</strong></a></span>. All code used for data processing and analysis is available at: <a href="">GitHub Repository</a></p>
 </section>
 </section>
 <section id="results" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="results"><span class="header-section-number">3</span> Results</h2>
-<p>Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from system logs and manual coding. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns (half of all turns were dependent on human speech) were characterized by communication breakdown and were classified as non-viable (n=5). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments.</p>
+<p>Prior to hypothesis testing, interaction sessions were classified based on communication viability using a dialogue-level metric derived from manual coding of system logs. Specifically, the proportion of dialogue turns affected by speech-recognition failure or fragmented utterances was computed for each session. Sessions in which more than 60% of dialogue turns-considering half of all turns were dependent on human speech-were characterized by communication breakdown and were classified as non-viable (<span class="math inline">\(n=5\)</span>). This criterion closely matched sessions independently flagged during administration and reflects cases in which sustained spoken-language interaction was not possible. Of the 29 completed sessions, 5 were classified as non-viable due to severe and persistent communication failure resulting in unintelligble sentence fragments.</p>
 <p>Because the experimental manipulation relied on language-mediated collaboration, analyses were conducted using three complementary approaches: (1) a primary eligible-sample analysis excluding non-viable sessions, (2) a full-sample sensitivity analysis including all sessions, and (3) a mechanism-focused analysis examining how communication breakdown altered interaction dynamics.</p>
 <section id="primary-analysis-eligible-sample" class="level3" data-number="3.1">
 <h3 data-number="3.1" class="anchored" data-anchor-id="primary-analysis-eligible-sample"><span class="header-section-number">3.1</span> Primary Analysis: Eligible Sample</h3>
@@ -1018,23 +1069,23 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
 </figcaption>
 <div aria-describedby="tbl-post-eligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fuoyynudau" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fuoyynudau table {
+<div id="rfjneapeyz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rfjneapeyz table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fuoyynudau thead, #fuoyynudau tbody, #fuoyynudau tfoot, #fuoyynudau tr, #fuoyynudau td, #fuoyynudau th {
+#rfjneapeyz thead, #rfjneapeyz tbody, #rfjneapeyz tfoot, #rfjneapeyz tr, #rfjneapeyz td, #rfjneapeyz th {
   border-style: none;
 }
 
-#fuoyynudau p {
+#rfjneapeyz p {
   margin: 0;
   padding: 0;
 }
 
-#fuoyynudau .gt_table {
+#rfjneapeyz .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1060,12 +1111,12 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-left-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_caption {
+#rfjneapeyz .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fuoyynudau .gt_title {
+#rfjneapeyz .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1077,7 +1128,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-width: 0;
 }
 
-#fuoyynudau .gt_subtitle {
+#rfjneapeyz .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1089,7 +1140,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-top-width: 0;
 }
 
-#fuoyynudau .gt_heading {
+#rfjneapeyz .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1101,13 +1152,13 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_bottom_border {
+#rfjneapeyz .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_col_headings {
+#rfjneapeyz .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1122,7 +1173,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_col_heading {
+#rfjneapeyz .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1142,7 +1193,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#fuoyynudau .gt_column_spanner_outer {
+#rfjneapeyz .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1154,15 +1205,15 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 4px;
 }
 
-#fuoyynudau .gt_column_spanner_outer:first-child {
+#rfjneapeyz .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fuoyynudau .gt_column_spanner_outer:last-child {
+#rfjneapeyz .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fuoyynudau .gt_column_spanner {
+#rfjneapeyz .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1174,11 +1225,11 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   width: 100%;
 }
 
-#fuoyynudau .gt_spanner_row {
+#rfjneapeyz .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fuoyynudau .gt_group_heading {
+#rfjneapeyz .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1204,7 +1255,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   text-align: left;
 }
 
-#fuoyynudau .gt_empty_group_heading {
+#rfjneapeyz .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1219,15 +1270,15 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   vertical-align: middle;
 }
 
-#fuoyynudau .gt_from_md > :first-child {
+#rfjneapeyz .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fuoyynudau .gt_from_md > :last-child {
+#rfjneapeyz .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fuoyynudau .gt_row {
+#rfjneapeyz .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1246,7 +1297,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#fuoyynudau .gt_stub {
+#rfjneapeyz .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1259,7 +1310,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#fuoyynudau .gt_stub_row_group {
+#rfjneapeyz .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1273,15 +1324,15 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   vertical-align: top;
 }
 
-#fuoyynudau .gt_row_group_first td {
+#rfjneapeyz .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fuoyynudau .gt_row_group_first th {
+#rfjneapeyz .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fuoyynudau .gt_summary_row {
+#rfjneapeyz .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1291,16 +1342,16 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#fuoyynudau .gt_first_summary_row {
+#rfjneapeyz .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_first_summary_row.thick {
+#rfjneapeyz .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fuoyynudau .gt_last_summary_row {
+#rfjneapeyz .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1310,7 +1361,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_grand_summary_row {
+#rfjneapeyz .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1320,7 +1371,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#fuoyynudau .gt_first_grand_summary_row {
+#rfjneapeyz .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1330,7 +1381,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-top-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_last_grand_summary_row_top {
+#rfjneapeyz .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1340,11 +1391,11 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_striped {
+#rfjneapeyz .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fuoyynudau .gt_table_body {
+#rfjneapeyz .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1353,7 +1404,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_footnotes {
+#rfjneapeyz .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1367,7 +1418,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_footnote {
+#rfjneapeyz .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1376,7 +1427,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#fuoyynudau .gt_sourcenotes {
+#rfjneapeyz .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1390,7 +1441,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#fuoyynudau .gt_sourcenote {
+#rfjneapeyz .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1398,72 +1449,72 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#fuoyynudau .gt_left {
+#rfjneapeyz .gt_left {
   text-align: left;
 }
 
-#fuoyynudau .gt_center {
+#rfjneapeyz .gt_center {
   text-align: center;
 }
 
-#fuoyynudau .gt_right {
+#rfjneapeyz .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fuoyynudau .gt_font_normal {
+#rfjneapeyz .gt_font_normal {
   font-weight: normal;
 }
 
-#fuoyynudau .gt_font_bold {
+#rfjneapeyz .gt_font_bold {
   font-weight: bold;
 }
 
-#fuoyynudau .gt_font_italic {
+#rfjneapeyz .gt_font_italic {
   font-style: italic;
 }
 
-#fuoyynudau .gt_super {
+#rfjneapeyz .gt_super {
   font-size: 65%;
 }
 
-#fuoyynudau .gt_footnote_marks {
+#rfjneapeyz .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fuoyynudau .gt_asterisk {
+#rfjneapeyz .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fuoyynudau .gt_indent_1 {
+#rfjneapeyz .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fuoyynudau .gt_indent_2 {
+#rfjneapeyz .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fuoyynudau .gt_indent_3 {
+#rfjneapeyz .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fuoyynudau .gt_indent_4 {
+#rfjneapeyz .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fuoyynudau .gt_indent_5 {
+#rfjneapeyz .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fuoyynudau .katex-display {
+#rfjneapeyz .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fuoyynudau div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#rfjneapeyz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1596,16 +1647,15 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 </section>
 <section id="hierarchical-models" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="hierarchical-models"><span class="header-section-number">3.2</span> Hierarchical Models</h3>
-<p>To evaluate interaction policy effects and to control for pre-test covariates on post-interaction trust, linear and bayesian mixed-effects models were fitted separately for each trust outcome. All models included interaction policy (RESPONSIVE vs.&nbsp;CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates unless otherwise noted. Random intercepts for session were included in all models to account for repeated measurement at the participant level: <code>robot_trust_post ~ policy + nars_pre_c + native_english + (1 | session_id) + (1 | trust_items)</code></p>
-<p>Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability with the ASR system.</p>
+<p>To evaluate interaction policy effects and to control for pre-test covariates on post-interaction trust, linear and bayesian mixed-effects models were fitted separately for both trust outcomes. All models included interaction policy (RESPONSIVE vs.&nbsp;CONTROL) as the primary fixed effect, along with baseline negative attitudes toward robots (NARS) and native English fluency as baseline covariates unless otherwise noted. Random intercepts for session and items were included in all models to account for repeated measurement at the participant level. Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (χ² = 4.82, p = .028), whereas prior experience with robots did not. While Native English fluency did not significantly improve model fit it was retained as a covariate due to its relevance for spoken-language interaction viability with the ASR system. The final model structure: robot_trust_post ~ policy + nars_pre_c + native_english + (1 | session_id) + (1 | trust_items)</p>
 <section id="trust-in-industrial-humanrobot-collaboration" class="level4" data-number="3.2.1">
 <h4 data-number="3.2.1" class="anchored" data-anchor-id="trust-in-industrial-humanrobot-collaboration"><span class="header-section-number">3.2.1</span> Trust in Industrial Human–Robot Collaboration</h4>
 <p>For this outcome, inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences.</p>
-<p>In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition (β = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores (β = −7.43, SE = 2.81, p = .016). Native English fluency was not significantly associated with trust, although the estimated effect was negative.</p>
+<p>In the final model predicting Trust in Industrial Human–Robot Collaboration, participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition (<span class="math inline">\(β = 16.28, SE = 5.14, t = 3.17, p = .005\)</span>). Higher baseline negative attitudes toward robots were associated with lower trust scores (<span class="math inline">\(β = −7.43, SE = 2.81, p = .016\)</span>). Native English fluency was not significantly associated with trust, although the estimated effect was negative.</p>
 </section>
 <section id="trust-perception-scalehri" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="trust-perception-scalehri">Trust Perception Scale–HRI</h4>
-<p>For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (β = 14.17, SE = 6.5, t = 2.00, p = 0.046). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.</p>
+<p>For the Trust Perception Scale–HRI, a comparable mixed-effects model was fitted using the same fixed effects structure. In this model, interaction with the responsive robot was associated with higher post-interaction trust scores (<span class="math inline">\(β = 14.17, SE = 6.5, t = 2.00, p = 0.046\)</span>). Effects of baseline negative attitudes toward robots and native English fluency followed a similar directional pattern but did not reliably differ from zero.</p>
 <p>In contrast to the collaboration trust scale, inclusion of random intercepts for individual trust items did not improve model fit for the Trust Perception Scale–HRI and was therefore omitted. This divergence likely reflects differences in scale format and response interface: the Trust Perception scale was administered using a continuous slider input, whereas the Trust in Industrial Human–Robot Collaboration scale employed discrete Likert-style response options.</p>
 <p>Informal observation during administration and post-hoc inspection of item-level variance suggest that the slider-based interface, administered via a touchpad, may have reduced response precision relative to discrete response formats. While this likely attenuated item-level variability, the Trust Perception Scale–HRI nevertheless captured meaningful between-condition differences at the aggregate level.</p>
 <p>Together, these models indicate that robot responsiveness had a consistent positive effect on post-interaction trust, with effect magnitude and measurement sensitivity varying by trust dimension and scale format.</p>
@@ -1614,35 +1664,35 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <section id="bayesian-analysis" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="bayesian-analysis"><span class="header-section-number">3.3</span> Bayesian analysis</h3>
 <p>Trust outcomes were analysed using Bayesian linear mixed-effects models to account for repeated measurement across trust items and sessions. Two complementary trust measures were examined: task-oriented trust (TPS-HRI), reflecting evaluative judgments of robot reliability and competence, and experienced trust (TI-HRC), reflecting affective and experiential aspects of collaboration. All models included random intercepts for session and trust item. Convergence diagnostics indicated satisfactory model performance across all analyses (all R^≤1.01; effective sample sizes &gt; 1000).</p>
-<p>Analyses are reported in three stages: (1) primary analyses conducted on the eligible sample (n=24; sessions with viable spoken-language interaction), (2) sensitivity analyses conducted on the full sample (n=29; including sessions with severe communication breakdown), and (3) mechanism analyses examining communication breakdown as a moderator of interaction policy.</p>
+<p>Analyses are reported in three stages: (1) primary analyses conducted on the eligible sample (n=24; sessions with viable spoken-language interaction), (2) sensitivity analyses conducted on the full sample (<span class="math inline">\(n=29\)</span>; including sessions with severe communication breakdown), and (3) mechanism analyses examining communication breakdown as a moderator of interaction policy.</p>
 <section id="primary-analyses-eligible-sample" class="level4" data-number="3.3.1">
 <h4 data-number="3.3.1" class="anchored" data-anchor-id="primary-analyses-eligible-sample"><span class="header-section-number">3.3.1</span> Primary Analyses: Eligible Sample</h4>
 <section id="task-oriented-trust-tps-hri" class="level5 unnumbered">
 <h5 class="unnumbered anchored" data-anchor-id="task-oriented-trust-tps-hri">Task-Oriented Trust (TPS-HRI)</h5>
-<p>In the eligible sample (n=24), interaction policy showed a strong and robust association with task-oriented trust. Participants who interacted with the responsive robot reported higher TPS-HRI scores than those in the control condition (posterior median β=12.73 credible interval [2.93, 22.17]). The posterior probability that this effect was positive exceeded 99%, with high probability that the effect was of moderate-to-large magnitude.</p>
+<p>In the eligible sample (<span class="math inline">\(n=24\)</span>), interaction policy showed a strong and robust association with task-oriented trust. Participants who interacted with the responsive robot reported higher TPS-HRI scores than those in the control condition (posterior median <span class="math inline">\(β=12.73\)</span> credible interval <span class="math inline">\([2.93, 22.17]\)</span>). The posterior probability that this effect was positive exceeded 99%, with high probability that the effect was of moderate-to-large magnitude.</p>
 <p>Baseline negative attitudes toward robots (NARS) were associated with lower task-oriented trust, although uncertainty remained moderate and the credible interval included zero. In contrast, native English fluency showed a credible negative association with TPS-HRI scores, indicating lower evaluative trust among non-native English speakers even in sessions where dialogue remained viable.</p>
-<p>The model explained a substantial proportion of variance in TPS-HRI scores (conditional R2=0.64), with fixed effects accounting for approximately 16% of the variance. Random effects indicated meaningful variability across sessions and trust items.</p>
+<p>The model explained a substantial proportion of variance in TPS-HRI scores (conditional <span class="math inline">\(R^2=0.64\)</span>), with fixed effects accounting for approximately 16% of the variance. Random effects indicated meaningful variability across sessions and trust items.</p>
 </section>
 </section>
 <section id="experienced-trust-ti-hrc" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="experienced-trust-ti-hrc">Experienced Trust (TI-HRC)</h4>
-<p>A similar but stronger pattern was observed for experienced trust. Interaction with the responsive robot was associated with substantially higher TI-HRC scores compared to the control condition (posterior median β=14.86, 95% credible interval [7.20, 22.09]), with near-unity posterior probability of a positive effect and a high probability of a large effect.</p>
+<p>A similar but stronger pattern was observed for experienced trust. Interaction with the responsive robot was associated with substantially higher TI-HRC scores compared to the control condition (posterior median <span class="math inline">\(β=14.86\)</span>, 95% credible interval <span class="math inline">\([7.20, 22.09]\)</span>), with near-unity posterior probability of a positive effect and a high probability of a large effect.</p>
 <p>Baseline negative attitudes toward robots showed a clear and credible negative association with experienced trust. Native English fluency was also negatively associated with TI-HRC scores, although uncertainty was greater and the credible interval narrowly overlapped zero.</p>
-<p>Overall model fit was moderate (conditional R2=0.42), with fixed effects explaining approximately 21% of the variance. Compared to TPS-HRI, item-level variance was smaller, suggesting greater coherence among affective trust items under functional interaction conditions.</p>
+<p>Overall model fit was moderate (conditional <span class="math inline">\(R^2=0.42\)</span>), with fixed effects explaining approximately 21% of the variance. Compared to TPS-HRI, item-level variance was smaller, suggesting greater coherence among affective trust items under functional interaction conditions.</p>
 </section>
 </section>
 <section id="sensitivity-analyses-full-sample" class="level3" data-number="3.4">
 <h3 data-number="3.4" class="anchored" data-anchor-id="sensitivity-analyses-full-sample"><span class="header-section-number">3.4</span> Sensitivity Analyses: Full Sample</h3>
-<p>Sensitivity analyses were conducted including all sessions, regardless of communication viability (n=29), to assess robustness of the primary findings.</p>
+<p>Sensitivity analyses were conducted including all sessions, regardless of communication viability (<span class="math inline">\(n=29\)</span>), to assess robustness of the primary findings.</p>
 <section id="task-oriented-trust-tps-hri-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="task-oriented-trust-tps-hri-1">Task-Oriented Trust (TPS-HRI)</h4>
-<p>In the full sample, the posterior estimate for interaction policy remained positive but was attenuated relative to the eligible sample (posterior median β=7.04, 95% credible interval [−1.83, 15.67]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (&gt;94%).</p>
+<p>In the full sample, the posterior estimate for interaction policy remained positive but was attenuated relative to the eligible sample (posterior median <span class="math inline">\(β=7.04\)</span>, 95% credible interval <span class="math inline">\([−1.83, 15.67]\)</span>). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (&gt;94%).</p>
 <p>Baseline negative attitudes toward robots continued to show a credible negative association with TPS-HRI scores. The effect of native English fluency was reduced and no longer credibly different from zero. Overall model fit decreased relative to the eligible sample (conditional R2=0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included.</p>
 </section>
 <section id="experienced-trust-ti-hrc-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="experienced-trust-ti-hrc-1">Experienced Trust (TI-HRC)</h4>
-<p>For experienced trust, attenuation effects were more pronounced. The posterior estimate for interaction policy decreased substantially in the full sample (posterior median β=7.17, 95% credible interval [−1.97, 16.70]), with reduced probability of a large effect. Baseline negative attitudes toward robots remained negatively associated with trust, while the effect of native English fluency remained negative but uncertain.</p>
-<p>Model fit remained moderate (conditional R2=0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience.</p>
+<p>For experienced trust, attenuation effects were more pronounced. The posterior estimate for interaction policy decreased substantially in the full sample (posterior median <span class="math inline">\(β=7.17\)</span>, 95% credible interval <span class="math inline">\([−1.97, 16.70]\)</span>), with reduced probability of a large effect. Baseline negative attitudes toward robots remained negatively associated with trust, while the effect of native English fluency remained negative but uncertain.</p>
+<p>Model fit remained moderate (conditional <span class="math inline">\(R^2=0.60\)</span>), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience.</p>
 </section>
 </section>
 <section id="mechanism-analyses-communication-breakdown" class="level3" data-number="3.5">
