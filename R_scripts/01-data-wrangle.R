@@ -20,7 +20,7 @@ pre <- read_sav('data/HRI-Experiment-Pre_December+13,+2025_09.23.sav') |>
 long_prefix <- "Please answer the following based on how much you agree or disagree with the\nfollowing statements: - "
 
 pre_item_names <- sjlabelled::get_label(
-  pre_filt,
+  pre,
   def.value = names(pre)
 ) |>
   str_remove(long_prefix) |> # drop leading boilerplate if present
