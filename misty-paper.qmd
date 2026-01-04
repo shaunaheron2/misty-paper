@@ -287,6 +287,8 @@ To ensure transparency and assess the impact of communication-based exclusions, 
 
 While full-sample analyses are informative as robustness checks, trust measures obtained from sessions with complete communication breakdown are not interpreted as valid estimates of human–robot trust under functional interaction. In these cases, the robot was unable to sustain dialogue or collaborative behaviour, precluding meaningful evaluation of reliability, competence, or collaborative intent.
 
+All analyses was conducted using R (version 4.3.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] and bayesian hierarchical models fitted using the brms package. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
+
 ### Random Assignment
 
 Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1982]. These patterns were consistent across both eligible and full samples, indicating successful random assignment.
@@ -314,11 +316,52 @@ post_table <- df_flat_scores_final |>
 
 ### Primary Analysis: Eligible Sample
 
-Descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). Average post-interaction scores on the TI-HRC differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in TPS-HRI scores were approximately 15 points higher in the responsive condition compared to the control. Scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies. TO DO: ADD DIALOGUE ANALYSES STATS
+Descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible for more detail). As indicated in @fig-post-eligible2, average post-interaction scores on the TI-HRC differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales). While differences in TPS-HRI scores were approximately 15 points higher in the responsive condition compared to the control as indicated in @fig-post-eligible. Scores on the Behavioural summaries further indicated differences in dialogue patterns and robot assistance behaviours consistent with the intended interaction policies. TO DO: ADD DIALOGUE ANALYSES STATS
+
+```{r}
+#| label: fig-post-eligible2
+#| fig-cap: "Distribution of Trust in Industrial Human–Robot Collaboration scores by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
+
+ggbetweenstats(
+  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
+  x = group,
+  y = post_trust,
+  # type = "p",
+  conf.level = 0.95,
+  mean.plotting = TRUE,
+  mean.ci = TRUE,
+  #oint.args = list(alpha = 0.6),
+  ylab = "Experienced Trust in Robot Collaboration (TI-HRC)",
+  xlab = "Interaction Policy",
+  # title = "Post-Interaction Trust by Robot Interaction Policy",
+  results.subtitle = FALSE
+)
+```
 
 Importantly objective task accuracy did not differ between conditions across any task-level measures. This suggests that observed differences in trust were not driven by differential task success.
 
 Despite similar task accuracy, interactions in the responsive condition were expectedly characterized by longer durations (more dialogue), slower robot response times (more dialogue), and a higher number of AI-detected engaged responses. These findings suggest that responsiveness altered the interaction dynamics and affective tone rather than task outcomes.
+
+```{r}
+#| label: fig-post-eligible
+#| fig-cap: "Distribution of Trust Perception in HRI by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
+
+ggbetweenstats(
+  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
+  x = group,
+  y = trust_perc_post,
+  # type = "p",
+  conf.level = 0.95,
+  mean.plotting = TRUE,
+  mean.ci = TRUE,
+  #point.args = list(alpha = 0.6),
+  ylab = "Perceived Trust in Robot Collaboration (TRI-HRI)",
+  xlab = "Interaction Policy",
+  #title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
+  results.subtitle = FALSE
+)
+```
+
 
 ```{r}
 #| label: tbl-post-eligible
@@ -521,25 +564,6 @@ mod_dep4 <- lmer(
 
 ```
 
-```{r}
-#| label: fig-post-eligible2
-#| fig-cap: "Distribution of Trust in Industrial Human–Robot Collaboration scores by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
-
-ggbetweenstats(
-  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
-  x = group,
-  y = post_trust,
-  # type = "p",
-  conf.level = 0.95,
-  mean.plotting = TRUE,
-  mean.ci = TRUE,
-  #oint.args = list(alpha = 0.6),
-  ylab = "Experienced Trust in Robot Collaboration (TI-HRC)",
-  xlab = "Interaction Policy",
-  # title = "Post-Interaction Trust by Robot Interaction Policy",
-  results.subtitle = FALSE
-)
-```
 
 #### Trust Perception Scale–HRI  {-}
 
@@ -549,26 +573,7 @@ In contrast to the collaboration trust scale, inclusion of random intercepts for
 
 Informal observation during administration and post-hoc inspection of item-level variance suggest that the slider-based interface, administered via a touchpad, may have reduced response precision relative to discrete response formats. While this likely attenuated item-level variability, the Trust Perception Scale–HRI nevertheless captured meaningful between-condition differences at the aggregate level.
 
-```{r}
-#| label: fig-post-eligible
-#| fig-cap: "Distribution of Trust Perception in HRI by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
-#| fig-height: 5
 
-ggbetweenstats(
-  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
-  x = group,
-  y = trust_perc_post,
-  # type = "p",
-  conf.level = 0.95,
-  mean.plotting = TRUE,
-  mean.ci = TRUE,
-  #point.args = list(alpha = 0.6),
-  ylab = "Perceived Trust in Robot Collaboration (TRI-HRI)",
-  xlab = "Interaction Policy",
-  #title = "Figure 2. Post-Interaction Trust by Robot Interaction Policy",
-  results.subtitle = FALSE
-)
-```
 
 ```{r}
 #| eval: false
