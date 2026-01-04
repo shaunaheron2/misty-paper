@@ -379,3 +379,285 @@ Some questions I can explore in the data:
 
 -   
 :::
+
+
+## Key Components of the System
+
+This study implemented a multi-stage collaborative task system where participants collaborate with the Misty II social robot to solve a who-dunnit type task. The system utilizes an autonomous, mixed-initiative dialogue architecture via langchain with affect-responsive capabilities.
+
+1.  Misty-II Robot: A programmable robot platform equipped with sensors and actuators for interaction.
+
+2.  Automated Speech Recognition (ASR): A speech-to-speech pipeline that processes spoken input from users and converts it into text for LLM processing then back to speech for output on the robot.
+
+    -   STT: Deepgram API for real-time speech-to-text conversion.
+    -   DistilRoBERTa-base fine-tuned on emotion classification for emotion detection from user utterances
+    -   LLM: Gemini API for processing text input and generating contextually relevant responses in JSON format
+    -   TTS: Misty-II text-to-speech (TTS) engine on 820 processor.
+
+3.  Langchain Dialogue Management: A system that manages the flow of conversation, ensuring coherent and contextually appropriate dialogue within a two-part collaborative task.
+
+4.  Collaborative-Tasks
+
+    -   Task 1: Whodunnit style task where human and robot collaborate to find a missing robot via the human asking Yes/No questions (process of elimination in 6x4 suspect grid) to the robot. Robot knows ground truth but can only answer Yes/No questions about suspect features. Can not directly describe the suspect or name them. (human can choose a random suspect to solve on their own but only 1 in 24 chance of being correct without robot help)
+    -   Task 2: Where is Atlas? Robot collaborates with human to find Atlas by deciphering cryptic system and sensor logs. Robot does not know the answer here and can only guide the human usinng its expertise and knowledge of computer systems and basic logical reasoning. (human can solve on their own but very difficult without robot help depending on participants technical background).
+
+5.  Flask-gui dashboard interface: A web-based interface/dashboard that allowed participants to interact with the tasks, view task-related information and input their answers to the questions. Responses were sent to the robot to signal task progression.
+
+    -   Task 1 dashboard: Displays the suspect grid and allows the user to select suspects and view their features.
+    -   Task 2 dashboard: Displays system logs and allows the user to input their findings.
+
+6.  Pre and post tests:
+
+    -   PRE-TESTS: Need for Cognition Scale (short); Negative Attitudes to Robots Scale (NARS);
+    -   POST-TESTS: Trust Perception Scale-HRI; 9 custom questions adapted from Charalambous et al. (2020) on trust in industrial human-robot collaboration;
+
+# Technical Specifications
+
+## System Overview
+
+This study implements a multi-stage collaborative task system where participants collaborate with the Misty II social robot to solve a who-dunniti type task. The system utilizes an autonomous, mixed-initiative dialogue architecture with affect-responsive capabilities.
+
+## Hardware Platform
+
+**Robot**: Misty II Social Robot (Furhat Robotics)
+
+-   Mobile social robot platform with expressive display, arm actuators, and head movement
+-   RGB LED for state indication
+-   RTSP video streaming (1920×1080, 30fps) for audio capture
+-   Custom action scripting for synchronized multimodal expressions
+
+## Software Architecture
+
+### Core System Components
+
+**Programming Language**: Python 3.10
+
+**Primary Dependencies**:
+
+-   `misty-sdk` (Python SDK for Misty Robotics API) - Robot control and sensor access
+-   `deepgram-sdk` (4.8.1) - Speech-to-text processing
+-   `ffmpeg-python` (0.2.0) - Audio stream processing
+-   `flask` (3.1.2) + `flask-socketio` (5.5.1) - Web interface for task presentation
+-   `duckdb` (1.4.0) - Experimental data logging database
+
+### Large Language Models
+
+**LLM Provider**:
+
+**Google Gemini**:
+
+-   Model: `gemini-2.5-flash-lite` (configurable via environment variable)
+-   Integration: `langchain-google-genai` with `google-generativeai` API
+-   Response format: JSON-only output (`response_mime_type: "application/json"`). This format is required by Misty-II for reliable parsing and for action execution.
+
+**LLM Configuration**:
+
+-   Temperature: 0.7 (for balanced creativity and coherence)
+-   Memory: Conversation buffer memory with file-based persistence (`langchain.memory.ConversationBufferMemory`)
+-   Context window: Full conversation history maintained across interaction stages but reset between sessions.
+
+## LangChain Framework Integration
+
+### Core LangChain Components
+
+**Framework Version**: `langchain-core` with modular provider packages
+
+-   `langchain` (meta-package)
+-   `langchain-community` (0.3.31)
+-   `langchain-google-genai` Gemini integration
+
+### ConversationChain Architecture
+
+**Memory Management** (`ConversationChain` class in `conversation_chain.py`):
+
+1.  **Conversation Buffer Memory**:
+    -   Implementation: `langchain.memory.ConversationBufferMemory`
+    -   Storage: File-based persistent chat history (`FileChatMessageHistory`)
+    -   Format: JSON files in `.memory/` directory, one per participant session
+    -   Memory key: `"history"`
+    -   Return format: Message objects (full conversation context)
+2.  **Memory Reset Policy**:
+    -   Default: Reset on each new session launch
+    -   Archive previous session: Timestamped archive files stored in `.memory/archive/`
+    -   Configuration: `RESET_MEMORY` and `ARCHIVE_MEMORY` environment variables
+
+### Prompt Construction
+
+**Message Structure**
+
+(LangChain message types): `python [SystemMessage, *history_messages, HumanMessage]`
+
+System Message Assembly:
+
+-   Core instructions (task framing, role definition)
+-   Personality instructions (mode-specific behaviour)
+-   Stage-specific instructions (current task context)
+-   Output format constraints (JSON schema specification)
+
+```         
+Human Message Format:   {     
+"user": "<transcribed_speech>",     
+"stage": "<current_stage>",     
+"detected_emotion": "<emotion_label>",     
+"frustration_note": "<optional_alert>",     
+"timer_expired": "<task_id>",     ...   }
+```
+
+-   JSON-encoded context variables passed alongside user input
+-   Enables LLM to access environmental state without breaking message history
+
+### Memory Persistence:
+
+-   Save after each turn: memory.save_context({"input": user_text}, {"output": llm_response})
+-   Maintains conversational coherence across multi-stage interaction
+-   Enables LLM to reference previous exchanges (e.g., "As I mentioned earlier...")
+
+### LangChain Design Rationale
+
+Why LangChain for this application:
+
+1.  Memory abstraction: Automatic conversation history management without manual message list handling
+2.  Provider flexibility: Easy switching between Gemini and OpenAI without rewriting prompt logic
+3.  Message typing: Structured SystemMessage/HumanMessage/AIMessage types maintain role clarity
+4.  File persistence: Built-in FileChatMessageHistory enables session recovery and archiving
+5.  Future extensibility: Framework supports adding tools, retrieval, or multi-agent patterns if needed
+
+Alternatives considered: Direct API calls would reduce dependencies but require reimplementing conversation history management, prompt templating, and cross-provider compatibility layers.
+
+### LangChain Limitations in This Context
+
+-   No chains used: Despite name ConversationChain, this is a direct LLM wrapper (no LangChain Expression Language chains)
+-   No tools/agents: Simple request-response pattern (could extend for future tool-use capabilities)
+-   Custom JSON parsing: LangChain's built-in output parsers not used; custom extraction handles malformed responses more robustly
+
+### Speech Processing
+
+**Speech-to-Text (STT)**:
+
+-   Provider: Deepgram Nova-2 (`deepgram-sdk` 4.8.1)
+-   Model: `nova-2` with US English (`en-US`)
+-   Smart formatting enabled
+-   Interim results for real-time partial transcription
+-   Voice Activity Detection (VAD) events
+-   Adaptive endpointing: 200ms (conversational stages) / 500ms (log-reading task)
+-   Utterance end timeout: 1000ms (conversational) / 2000ms (log-reading)
+-   Audio processing: RTSP stream from Misty → FFmpeg MP3 encoding → Deepgram WebSocket
+
+**Text-to-Speech (TTS)** - Three options:
+
+1.  **Misty Onboard TTS** (this is the one we used): Native robot voice via onboard TTS
+
+2.  **OpenAI TTS**:
+
+    -   Model: `tts-1` (low-latency variant)
+    -   Voice: `sage`
+    -   Format: MP3, served via HTTP (port 8000)
+    -   Ultimately chose not to use because we wanted a more robotic, non-human voice
+    -   Didn't want the human voice influencing trust on its own (future research could look at trust in relation to type of voice)
+
+3.  **Deepgram Aura**:
+
+    -   Model: `aura-stella-en` (conversational female voice)
+    -   Format: MP3, served via HTTP
+    -   Ultimately chose not to use because we wanted a more robotic, non-human voice
+
+### Emotion Detection
+
+**Model**: DistilRoBERTa-base fine-tuned on emotion classification
+
+-   HuggingFace identifier: `j-hartmann/emotion-english-distilroberta-base`
+-   Framework: `transformers` (4.57.1) pipeline
+-   Hardware: CUDA GPU acceleration (automatic fallback to CPU)
+-   Output classes: joy, anger, sadness, fear, disgust, surprise, neutral
+-   Mapped to interaction states: positively engaged, irritated, disappointed, anxious, frustrated, curious, neutral
+
+### Multimodal Robot behaviour
+
+**Expression System**: 25 custom action scripts combining:
+
+-   LLM was prompted to choose an appropriate expression from a predefined set based on context.
+-   Facial displays (image eye-expression files on screen)
+-   LED color patterns (solid, breathe, blink)
+-   Arm movements (bilateral position control)
+-   Head movements (pitch, yaw, roll control)
+
+![A sample of Misty-II expressions. From Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction, by White et al @designin.](images/misty-expressions.jpg){fig-align="center"}
+
+**Nonverbal Backchannel behaviours** (RESPONSIVE mode only):
+
+-   Real-time listening cues triggered by partial transcripts (disfluencies, hesitation markers)
+-   Emotion-matched expressions (e.g., "concern" for hesitation, "excited" for breakthroughs)
+
+**LED State Indicators**:
+
+-   Blue (0, 199, 252): Actively listening (microphone open)
+-   Purple (100, 70, 160): Processing/speaking (microphone closed)
+
+## Data Collection
+
+**Database**: DuckDB relational database (`experiment_data.duckdb`)
+
+**Logged Data**:
+
+1\. **Sessions table**: participant ID (auto-incremented P01, P02...), condition assignment, timestamps, duration
+
+2\. **Dialogue turns table**: turn-by-turn user input, LLM response, expression, response latency (ms), behavioural flags
+
+3\. **Task responses table**: submitted answers with timestamps and time-on-task
+
+4\. **Events table**: stage transitions, silence check-ins, timer expirations, detected emotions
+
+## Interaction Dynamics
+
+### Silence Handling
+
+**Silence detection**: 25-second threshold triggers check-in prompt
+
+-   RESPONSIVE: "Still working on it? No rush - I'm here if you need help!"
+-   CONTROL: "I am ready when you have a question."
+
+### Emotion-Responsive behaviours (RESPONSIVE condition only)
+
+**Frustration tracking**:
+
+-   Consecutive detection of frustrated/anxious/irritated/disappointed states
+-   Threshold: ≥2 consecutive frustrated turns triggers proactive support
+-   RESPONSIVE adaptation: "This part can be tough. Want me to walk you through it?"
+
+**Positive emotion matching**:
+
+-   Celebratory language for curious/engaged states
+-   Momentum maintenance: "Yes! Great observation!"
+-   Choosing expressions aligned with positive affect
+
+**Run Mode**: Set programmatically in `mistyGPT_emotion.py` line 126:
+
+``` python
+RUN_MODE = "RESPONSIVE"  # or "CONTROL"
+```
+
+## Prompt Engineering
+
+Modular prompt system (PromptLoader class):
+
+-   core_system.md: Task framing, role description, output format schema
+-   role_responsive.md / role_control.md: Condition-specific personality instructions
+-   stage1_greeting.md through stage5_wrap_up.md: Stage-specific task instructions.
+
+Context injection: Real-time contextual variables passed to LLM:
+
+-   Current stage
+-   Detected emotion (if enabled)
+-   Task submission status
+-   Timer expiration notifications
+-   Silence check-in flags
+
+## Inter-process Communication
+
+Flask REST API endpoints:
+
+-   GET /stage_current: Synchronize stage state with facilitator GUI
+-   GET /task_submission_status: Detect participant task submissions
+-   GET /timer_expired_status: Detect timer expirations
+-   POST /stage: Update stage (facilitator override)
+-   POST /reset_timer: Clear timer expiration flags
