@@ -438,7 +438,7 @@ Critically, proportions of communication breakdown did not differ between condit
 
 ```{r}
 #| label: tbl-post-dialogue-turns
-#| tbl-cap: "Post-Interaction Objective Measures by Policy in the Eligible Sample"
+#| tbl-cap: "Post-Interaction Objective Measure Averages by Policy in the Eligible Sample"
 post_table |>
   filter(exclusions != 'exclude') |>
   select(
