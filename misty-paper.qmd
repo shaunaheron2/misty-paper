@@ -747,13 +747,11 @@ post_table |>
 
 ### Individual differences and correlational patterns
 
-Correlational analyses revealed patterns consistent with the interpretation that trust was shaped by interaction quality rather than individual predispositions or task outcomes. As expected, higher Need for Cognition (NFC) scores were negatively associated with baseline Negative Attitudes Towards Robots (NARS; r = −.48, p = .01), indicating that individuals who enjoy effortful thinking tend to hold more positive attitudes toward robots prior to interaction. However, neither NFC nor NARS showed significant associations with post-interaction trust outcomes (r = −.17 to −.33, p \> .11), suggesting that the impact of responsive robot behaviour was relatively independent of participants' baseline dispositions toward robots or cognitive engagement preferences. At the same time, Higher NFC scores were strongly associated with individuals engaging in more reasoning out loud with the robot during interaction (r = .57, p = .003), indicating that cognitive engagement tendencies influenced interaction behaviour even if they did not directly shape trust evaluations (see @fig-corr-matrix).
+Correlational analyses on the full sample (n=29) revealed patterns consistent with the interpretation that trust was shaped by interaction quality rather than individual predispositions or task outcomes. As expected, higher Need for Cognition (NFC) scores were negatively associated with baseline Negative Attitudes Towards Robots (NARS; r = −.48, p = .01), indicating that individuals who enjoy effortful thinking tend to hold more positive attitudes toward robots prior to interaction. However, neither NFC nor NARS showed significant associations with post-interaction trust outcomes (r = −.17 to −.33, p \> .11), suggesting that the impact of responsive robot behaviour was relatively independent of participants' baseline dispositions toward robots or cognitive engagement preferences. At the same time, Higher NFC scores were strongly associated with individuals engaging in more reasoning with the robot during collaboration (r = .57, p = .003), indicating that cognitive engagement tendencies influenced interaction behaviour even if they did not directly shape trust evaluations (see @fig-corr-matrix).
 
 Consistent with the experimental manipulation, specific robot dialogue behaviours showed substantial correlations with trust outcomes. Robot empathy expression—quantified as the proportion of dialogue turns in which the robot acknowledged participant affect or expressed understanding—was strongly correlated with both experienced trust (TI-HRC; r = .53, p = .008) and perceived trust (TPS-HRI: r = .65, p = .001). Similarly, robot use of collaborative language (e.g., "we," "let's") was positively associated with experienced trust (TI-HRC: r = .50, p = .012), as was robot encouragement (TI-HRC: r = .45, p = .027; TPS-HRI: r = .42, p = .040). These associations provide evidence that the specific affective and collaborative behaviours implemented in the responsive condition were linked to participants' trust evaluations beyond simple condition assignment.
 
-Participant engagement during interaction, operationalized as the frequency of detected positive affective responses, was positively correlated with perceived trust (r = .52, p = .009) and showed a trending association with experienced trust (r = .30, p = .156). Engaged responses (both AI detected and affective dialogue by the human) were associated with longer interaction duration (r = .54, p = .007), greater use of collaborative language by the robot (r = .50, p = .013), and fewer communication breakdowns (r = −.49, p = .016). This pattern suggests that responsive robot behaviour may have fostered a reciprocal dynamic in which robot affective adaptation elicited participant engagement--particularly in those high in NFC--which in turn supported smoother interaction and higher trust.
-
-Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18–.20, p \> .35; overall accuracy: r = −.05 to .19, p \> .37), but did show a small significant association with the TI-HRC Reliability subscale (r = .4, p < .05). The dissociation between task outcomes and overall trust ratings indicates that participants' trust judgments for the most part reflected the quality and affective tone of the interaction process rather than instrumental success on the collaborative tasks. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
+Participant engagement during interaction, operationalized as the frequency of detected positive affective responses, was positively correlated with perceived trust (r = .52, p = .009) and showed a trending association with experienced trust (r = .30, p = .156). Engaged responses (both AI detected and affective dialogue by the human) were associated with longer interaction duration (r = .54, p = .007), greater use of collaborative language by the robot (r = .50, p = .013), and fewer communication breakdowns (r = −.49, p = .016). This pattern suggests that responsive robot behaviour may have fostered a reciprocal dynamic in which robot affective adaptation elicited participant engagement, particularly in those high in NFC, which in turn supported smoother interaction and higher trust.
 
 ```{r}
 #| label: fig-corr-matrix
@@ -761,6 +759,7 @@ Notably, objective task performance showed no significant association with eithe
 #| fig-height: 7
 #| fig-cap: "Correlation Matrix of Key Study Variables"
 df_flat <- df_flat_scores_final |>
+  #filter(exclusions != 'exclude') |>
   #filter()
   select(
     #contains('pre'),
@@ -834,6 +833,8 @@ corrplot(
 )
 #write_csv(corr, 'correlation_matrix.csv')
 ```
+
+Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18–.20, p \> .35; overall accuracy: r = −.05 to .19, p \> .37), but did show a significant negative association with the TI-HRC Reliability subscale (r = .4, p < .05), as well as a negative association with detected frustration, silenct periods and communication breakdowns. The dissociation between task outcomes and overall trust ratings indicates that participants' trust judgments for the most part reflected the quality and affective tone of the interaction process rather than instrumental success on the collaborative tasks. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
 
 ```{r}
 
@@ -1066,10 +1067,7 @@ Participants indicated their agreement with the following statements using a 5-p
 | Variable | Type | Description |
 |----------------------------|------------------|--------------------------|
 | `robot_helpful_guidance` | binary | Robot provides accurate, task-relevant information or guidance. |
-| `robot_misleading_guidance` | binary | Robot provides misleading or incorrect guidance. |
-| `robot_factually_incorrect` | binary | Robot states information that is objectively incorrect (though it may not know it is incorrect). |
-| `robot_policy_violation` | binary | Robot violates stated system or task constraints. |
-| `robot_on_policy_unhelpful` | binary | Robot adheres to policy but provides vague or non-actionable assistance. |
+| `robot_unhelpful` | binary | Robot provides misleading or incorrect guidance. |
 | `robot_stt_failure` | binary | Robot response reflects a speech-to-text or input understanding failure. |
 | `robot_clarification_request` | binary | Robot asks the participant for information or to repeat or clarify their input. |
 
@@ -1086,10 +1084,7 @@ Participants indicated their agreement with the following statements using a 5-p
 
 | Variable | Type | Description |
 |----------------------------|------------------|--------------------------|
-| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner. |
-| `human_social_reciprocity` | binary | Participant mirrors or responds to the robot’s affective expression. |
-| `human_anthropomorphic_language` | binary | Participant treats the robot as a social agent. |
-| `human_emotional_disengagement` | binary | Participant responds in a curt, dismissive, or withdrawn manner. |
+| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner and/or mirrors or responds to the robot’s affective expression and/or treats the robot as a social agent. |
 
 ### Notes
 
