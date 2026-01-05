@@ -107,9 +107,11 @@ div.csl-indent {
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods"><span class="header-section-number">2</span> Methods</a>
   <ul>
   <li><a href="#interaction-policies" id="toc-interaction-policies" class="nav-link" data-scroll-target="#interaction-policies"><span class="header-section-number">2.1</span> Interaction Policies</a></li>
-  <li><a href="#collaborative-task-design" id="toc-collaborative-task-design" class="nav-link" data-scroll-target="#collaborative-task-design"><span class="header-section-number">2.2</span> Collaborative Task Design</a></li>
-  <li><a href="#task-1-robot-dependent-collaborative-reasoning" id="toc-task-1-robot-dependent-collaborative-reasoning" class="nav-link" data-scroll-target="#task-1-robot-dependent-collaborative-reasoning">Task 1: Robot-Dependent Collaborative Reasoning</a></li>
-  <li><a href="#task-2-open-ended-collaborative-problem-solving" id="toc-task-2-open-ended-collaborative-problem-solving" class="nav-link" data-scroll-target="#task-2-open-ended-collaborative-problem-solving">Task 2: Open-Ended Collaborative Problem Solving</a></li>
+  <li><a href="#collaborative-task-design" id="toc-collaborative-task-design" class="nav-link" data-scroll-target="#collaborative-task-design"><span class="header-section-number">2.2</span> Collaborative Task Design</a>
+  <ul class="collapse">
+  <li><a href="#task-1-robot-dependent-collaborative-reasoning" id="toc-task-1-robot-dependent-collaborative-reasoning" class="nav-link" data-scroll-target="#task-1-robot-dependent-collaborative-reasoning"><span class="header-section-number">2.2.1</span> Task 1: Robot-Dependent Collaborative Reasoning</a></li>
+  <li><a href="#task-2-open-ended-collaborative-problem-solving" id="toc-task-2-open-ended-collaborative-problem-solving" class="nav-link" data-scroll-target="#task-2-open-ended-collaborative-problem-solving"><span class="header-section-number">2.2.2</span> Task 2: Open-Ended Collaborative Problem Solving</a></li>
+  </ul></li>
   <li><a href="#study-protocol" id="toc-study-protocol" class="nav-link" data-scroll-target="#study-protocol"><span class="header-section-number">2.3</span> Study Protocol</a></li>
   <li><a href="#measures" id="toc-measures" class="nav-link" data-scroll-target="#measures"><span class="header-section-number">2.4</span> Measures</a>
   <ul class="collapse">
@@ -129,7 +131,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#primary-analysis-eligible-sample-n-24" id="toc-primary-analysis-eligible-sample-n-24" class="nav-link" data-scroll-target="#primary-analysis-eligible-sample-n-24"><span class="header-section-number">3.2.1</span> Primary Analysis: Eligible Sample (n = 24)</a></li>
   <li><a href="#sensitivity-analysis-full-sample-n-29" id="toc-sensitivity-analysis-full-sample-n-29" class="nav-link" data-scroll-target="#sensitivity-analysis-full-sample-n-29"><span class="header-section-number">3.2.2</span> Sensitivity Analysis: Full Sample (n = 29)</a></li>
-  <li><a href="#mechanism-analysis-communication-breakdown-as-moderator" id="toc-mechanism-analysis-communication-breakdown-as-moderator" class="nav-link" data-scroll-target="#mechanism-analysis-communication-breakdown-as-moderator"><span class="header-section-number">3.2.3</span> Mechanism Analysis: Communication Breakdown as Moderator</a></li>
+  <li><a href="#mechanism-analysis-communication-breakdown-n29" id="toc-mechanism-analysis-communication-breakdown-n29" class="nav-link" data-scroll-target="#mechanism-analysis-communication-breakdown-n29"><span class="header-section-number">3.2.3</span> Mechanism Analysis: Communication Breakdown (n=29)</a></li>
   </ul></li>
   <li><a href="#task-performance" id="toc-task-performance" class="nav-link" data-scroll-target="#task-performance"><span class="header-section-number">3.3</span> Task performance</a></li>
   <li><a href="#individual-differences-and-correlational-patterns" id="toc-individual-differences-and-correlational-patterns" class="nav-link" data-scroll-target="#individual-differences-and-correlational-patterns"><span class="header-section-number">3.4</span> Individual differences and correlational patterns</a></li>
@@ -232,9 +234,8 @@ Figure&nbsp;1: Experimental setup showing the autonomous robot and participant-f
 </div>
 <p>The interaction began with a brief greeting phase, during which the robot introduced itself and engaged in rapport-building dialogue. This was followed by a mission briefing in which the robot explained the narrative context and overall objectives. Participants then completed two core task stages: a robot-dependent collaborative reasoning task, in which the robot’s participation was required to solve the problem, and a more open-ended problem-solving task in which robot assistance was optional. The interaction concluded with a wrap-up stage in which the robot provided closing feedback and formally ended the session.</p>
 <p>Participants advanced between stages using the interface, either in response to the robot’s prompts or at their own discretion. All spoken dialogue and interaction events were managed autonomously by the robot and logged automatically for analysis.</p>
-</section>
-<section id="task-1-robot-dependent-collaborative-reasoning" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="task-1-robot-dependent-collaborative-reasoning">Task 1: Robot-Dependent Collaborative Reasoning</h3>
+<section id="task-1-robot-dependent-collaborative-reasoning" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="task-1-robot-dependent-collaborative-reasoning"><span class="header-section-number">2.2.1</span> Task 1: Robot-Dependent Collaborative Reasoning</h4>
 <p>In the first task, participants were asked to identify a perpetrator from a 6 × 4 grid of 24 ‘suspects’ by asking the robot a series of yes/no questions about the suspect’s features (e.g., “was the suspect wearing a hat?”). The grid was displayed on the interface, while questions were posed verbally.</p>
 <div id="fig-task1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -249,8 +250,8 @@ Figure&nbsp;2: <em>Task 1 interface including the 6 × 4 grid of 24 candidates. 
 <p>The robot possessed the ground-truth information necessary to answer each question correctly. Successful task completion was therefore dependent on interaction with the robot, creating an enforced collaborative dynamic. Participants were required to coordinate a questioning strategy that progressively eliminated candidates based on shared features, narrowing the search space within a five-minute time limit. Efficient performance depended on selecting informative questions (e.g., features that divided the remaining candidates), tracking eliminations, and adapting subsequent questions based on prior answers.</p>
 <p>This structure made the task sensitive to interaction quality. Inefficient questioning, repeated queries, or uncertainty about next steps could slow progress and increase cognitive load, whereas effective coordination supported rapid elimination and convergence on a solution. The structured nature of the task ensured consistent interaction demands across participants and conditions, while still allowing meaningful variation in collaboration style.</p>
 </section>
-<section id="task-2-open-ended-collaborative-problem-solving" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="task-2-open-ended-collaborative-problem-solving">Task 2: Open-Ended Collaborative Problem Solving</h3>
+<section id="task-2-open-ended-collaborative-problem-solving" class="level4" data-number="2.2.2">
+<h4 data-number="2.2.2" class="anchored" data-anchor-id="task-2-open-ended-collaborative-problem-solving"><span class="header-section-number">2.2.2</span> Task 2: Open-Ended Collaborative Problem Solving</h4>
 <p>The second task involved a more open-ended reasoning challenge. Participants were presented with multiple technical logs through a simulated terminal interface that could be used to infer the location of the missing robot (see <a href="#fig-task2" class="quarto-xref">Figure&nbsp;3</a>). The task was intentionally cryptic and difficult to solve within the allotted ten minutes without synthesizing information across multiple sources.</p>
 <div id="fig-task2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -264,6 +265,7 @@ Figure&nbsp;3: The task 2 interface presented multiple technical logs through a 
 </div>
 <p>The logs contained partial and indirect clues related to the robot’s activity, such as wireless connectivity records, sensor readings, and timestamped system events. Solving the task required participants to identify which logs were relevant, extract spatial or temporal cues, and integrate these signals to progressively narrow down plausible locations. As in Task 1, successful performance depended on managing uncertainty and iteratively refining hypotheses rather than on recognizing a single explicit cue.</p>
 <p>Unlike Task 1, the robot did not have access to ground-truth information or the contents of the logs. Its assistance was therefore limited to general reasoning support derived from its language model, such as explaining how to interpret log formats, suggesting strategies for cross-referencing timestamps, or prompting participants to reconcile inconsistencies across sources. Participants could complete the task independently or solicit assistance from the robot at their discretion <span class="citation" data-cites="lin2022"><a href="#ref-lin2022" role="doc-biblioref">[26]</a></span>, allowing collaboration to emerge voluntarily rather than being enforced by task structure.</p>
+</section>
 </section>
 <section id="study-protocol" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="study-protocol"><span class="header-section-number">2.3</span> Study Protocol</h3>
@@ -302,23 +304,23 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
 </figcaption>
 <div aria-describedby="tbl-pre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="eztnklpwef" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eztnklpwef table {
+<div id="obmphfmoaj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#obmphfmoaj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eztnklpwef thead, #eztnklpwef tbody, #eztnklpwef tfoot, #eztnklpwef tr, #eztnklpwef td, #eztnklpwef th {
+#obmphfmoaj thead, #obmphfmoaj tbody, #obmphfmoaj tfoot, #obmphfmoaj tr, #obmphfmoaj td, #obmphfmoaj th {
   border-style: none;
 }
 
-#eztnklpwef p {
+#obmphfmoaj p {
   margin: 0;
   padding: 0;
 }
 
-#eztnklpwef .gt_table {
+#obmphfmoaj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -344,12 +346,12 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-left-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_caption {
+#obmphfmoaj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eztnklpwef .gt_title {
+#obmphfmoaj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -361,7 +363,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-width: 0;
 }
 
-#eztnklpwef .gt_subtitle {
+#obmphfmoaj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -373,7 +375,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-top-width: 0;
 }
 
-#eztnklpwef .gt_heading {
+#obmphfmoaj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -385,13 +387,13 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_bottom_border {
+#obmphfmoaj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_col_headings {
+#obmphfmoaj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -406,7 +408,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_col_heading {
+#obmphfmoaj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -426,7 +428,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   overflow-x: hidden;
 }
 
-#eztnklpwef .gt_column_spanner_outer {
+#obmphfmoaj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -438,15 +440,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 4px;
 }
 
-#eztnklpwef .gt_column_spanner_outer:first-child {
+#obmphfmoaj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eztnklpwef .gt_column_spanner_outer:last-child {
+#obmphfmoaj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eztnklpwef .gt_column_spanner {
+#obmphfmoaj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -458,11 +460,11 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   width: 100%;
 }
 
-#eztnklpwef .gt_spanner_row {
+#obmphfmoaj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eztnklpwef .gt_group_heading {
+#obmphfmoaj .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -488,7 +490,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   text-align: left;
 }
 
-#eztnklpwef .gt_empty_group_heading {
+#obmphfmoaj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -503,15 +505,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   vertical-align: middle;
 }
 
-#eztnklpwef .gt_from_md > :first-child {
+#obmphfmoaj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eztnklpwef .gt_from_md > :last-child {
+#obmphfmoaj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eztnklpwef .gt_row {
+#obmphfmoaj .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -530,7 +532,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   overflow-x: hidden;
 }
 
-#eztnklpwef .gt_stub {
+#obmphfmoaj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -543,7 +545,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#eztnklpwef .gt_stub_row_group {
+#obmphfmoaj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -557,15 +559,15 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   vertical-align: top;
 }
 
-#eztnklpwef .gt_row_group_first td {
+#obmphfmoaj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eztnklpwef .gt_row_group_first th {
+#obmphfmoaj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eztnklpwef .gt_summary_row {
+#obmphfmoaj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -575,16 +577,16 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#eztnklpwef .gt_first_summary_row {
+#obmphfmoaj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_first_summary_row.thick {
+#obmphfmoaj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eztnklpwef .gt_last_summary_row {
+#obmphfmoaj .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -594,7 +596,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_grand_summary_row {
+#obmphfmoaj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -604,7 +606,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#eztnklpwef .gt_first_grand_summary_row {
+#obmphfmoaj .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -614,7 +616,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-top-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_last_grand_summary_row_top {
+#obmphfmoaj .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -624,11 +626,11 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_striped {
+#obmphfmoaj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eztnklpwef .gt_table_body {
+#obmphfmoaj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -637,7 +639,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-bottom-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_footnotes {
+#obmphfmoaj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -651,7 +653,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_footnote {
+#obmphfmoaj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -660,7 +662,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#eztnklpwef .gt_sourcenotes {
+#obmphfmoaj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -674,7 +676,7 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   border-right-color: #D3D3D3;
 }
 
-#eztnklpwef .gt_sourcenote {
+#obmphfmoaj .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -682,72 +684,72 @@ Table&nbsp;1: Participant Demographics and Baseline Characteristics by Group
   padding-right: 5px;
 }
 
-#eztnklpwef .gt_left {
+#obmphfmoaj .gt_left {
   text-align: left;
 }
 
-#eztnklpwef .gt_center {
+#obmphfmoaj .gt_center {
   text-align: center;
 }
 
-#eztnklpwef .gt_right {
+#obmphfmoaj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eztnklpwef .gt_font_normal {
+#obmphfmoaj .gt_font_normal {
   font-weight: normal;
 }
 
-#eztnklpwef .gt_font_bold {
+#obmphfmoaj .gt_font_bold {
   font-weight: bold;
 }
 
-#eztnklpwef .gt_font_italic {
+#obmphfmoaj .gt_font_italic {
   font-style: italic;
 }
 
-#eztnklpwef .gt_super {
+#obmphfmoaj .gt_super {
   font-size: 65%;
 }
 
-#eztnklpwef .gt_footnote_marks {
+#obmphfmoaj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eztnklpwef .gt_asterisk {
+#obmphfmoaj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eztnklpwef .gt_indent_1 {
+#obmphfmoaj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eztnklpwef .gt_indent_2 {
+#obmphfmoaj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eztnklpwef .gt_indent_3 {
+#obmphfmoaj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eztnklpwef .gt_indent_4 {
+#obmphfmoaj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eztnklpwef .gt_indent_5 {
+#obmphfmoaj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#eztnklpwef .katex-display {
+#obmphfmoaj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#eztnklpwef div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#obmphfmoaj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1045,23 +1047,23 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
 </figcaption>
 <div aria-describedby="tbl-post-eligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="rhzmowvsfb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#rhzmowvsfb table {
+<div id="ovrocinzwb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ovrocinzwb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#rhzmowvsfb thead, #rhzmowvsfb tbody, #rhzmowvsfb tfoot, #rhzmowvsfb tr, #rhzmowvsfb td, #rhzmowvsfb th {
+#ovrocinzwb thead, #ovrocinzwb tbody, #ovrocinzwb tfoot, #ovrocinzwb tr, #ovrocinzwb td, #ovrocinzwb th {
   border-style: none;
 }
 
-#rhzmowvsfb p {
+#ovrocinzwb p {
   margin: 0;
   padding: 0;
 }
 
-#rhzmowvsfb .gt_table {
+#ovrocinzwb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1087,12 +1089,12 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-left-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_caption {
+#ovrocinzwb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#rhzmowvsfb .gt_title {
+#ovrocinzwb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1104,7 +1106,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-width: 0;
 }
 
-#rhzmowvsfb .gt_subtitle {
+#ovrocinzwb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1116,7 +1118,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-top-width: 0;
 }
 
-#rhzmowvsfb .gt_heading {
+#ovrocinzwb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1128,13 +1130,13 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_bottom_border {
+#ovrocinzwb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_col_headings {
+#ovrocinzwb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1149,7 +1151,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_col_heading {
+#ovrocinzwb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1169,7 +1171,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#rhzmowvsfb .gt_column_spanner_outer {
+#ovrocinzwb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1181,15 +1183,15 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 4px;
 }
 
-#rhzmowvsfb .gt_column_spanner_outer:first-child {
+#ovrocinzwb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rhzmowvsfb .gt_column_spanner_outer:last-child {
+#ovrocinzwb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rhzmowvsfb .gt_column_spanner {
+#ovrocinzwb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1201,11 +1203,11 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   width: 100%;
 }
 
-#rhzmowvsfb .gt_spanner_row {
+#ovrocinzwb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#rhzmowvsfb .gt_group_heading {
+#ovrocinzwb .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1231,7 +1233,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   text-align: left;
 }
 
-#rhzmowvsfb .gt_empty_group_heading {
+#ovrocinzwb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1246,15 +1248,15 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   vertical-align: middle;
 }
 
-#rhzmowvsfb .gt_from_md > :first-child {
+#ovrocinzwb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rhzmowvsfb .gt_from_md > :last-child {
+#ovrocinzwb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rhzmowvsfb .gt_row {
+#ovrocinzwb .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1273,7 +1275,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#rhzmowvsfb .gt_stub {
+#ovrocinzwb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1286,7 +1288,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#rhzmowvsfb .gt_stub_row_group {
+#ovrocinzwb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1300,15 +1302,15 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   vertical-align: top;
 }
 
-#rhzmowvsfb .gt_row_group_first td {
+#ovrocinzwb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rhzmowvsfb .gt_row_group_first th {
+#ovrocinzwb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#rhzmowvsfb .gt_summary_row {
+#ovrocinzwb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1318,16 +1320,16 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#rhzmowvsfb .gt_first_summary_row {
+#ovrocinzwb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_first_summary_row.thick {
+#ovrocinzwb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rhzmowvsfb .gt_last_summary_row {
+#ovrocinzwb .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1337,7 +1339,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_grand_summary_row {
+#ovrocinzwb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1347,7 +1349,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#rhzmowvsfb .gt_first_grand_summary_row {
+#ovrocinzwb .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1357,7 +1359,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-top-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_last_grand_summary_row_top {
+#ovrocinzwb .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1367,11 +1369,11 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_striped {
+#ovrocinzwb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rhzmowvsfb .gt_table_body {
+#ovrocinzwb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1380,7 +1382,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_footnotes {
+#ovrocinzwb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1394,7 +1396,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_footnote {
+#ovrocinzwb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1403,7 +1405,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#rhzmowvsfb .gt_sourcenotes {
+#ovrocinzwb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1417,7 +1419,7 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#rhzmowvsfb .gt_sourcenote {
+#ovrocinzwb .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1425,72 +1427,72 @@ Table&nbsp;2: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#rhzmowvsfb .gt_left {
+#ovrocinzwb .gt_left {
   text-align: left;
 }
 
-#rhzmowvsfb .gt_center {
+#ovrocinzwb .gt_center {
   text-align: center;
 }
 
-#rhzmowvsfb .gt_right {
+#ovrocinzwb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rhzmowvsfb .gt_font_normal {
+#ovrocinzwb .gt_font_normal {
   font-weight: normal;
 }
 
-#rhzmowvsfb .gt_font_bold {
+#ovrocinzwb .gt_font_bold {
   font-weight: bold;
 }
 
-#rhzmowvsfb .gt_font_italic {
+#ovrocinzwb .gt_font_italic {
   font-style: italic;
 }
 
-#rhzmowvsfb .gt_super {
+#ovrocinzwb .gt_super {
   font-size: 65%;
 }
 
-#rhzmowvsfb .gt_footnote_marks {
+#ovrocinzwb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#rhzmowvsfb .gt_asterisk {
+#ovrocinzwb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rhzmowvsfb .gt_indent_1 {
+#ovrocinzwb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rhzmowvsfb .gt_indent_2 {
+#ovrocinzwb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rhzmowvsfb .gt_indent_3 {
+#ovrocinzwb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rhzmowvsfb .gt_indent_4 {
+#ovrocinzwb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rhzmowvsfb .gt_indent_5 {
+#ovrocinzwb .gt_indent_5 {
   text-indent: 25px;
 }
 
-#rhzmowvsfb .katex-display {
+#ovrocinzwb .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#rhzmowvsfb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#ovrocinzwb div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1634,8 +1636,8 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <h4 data-number="3.2.2" class="anchored" data-anchor-id="sensitivity-analysis-full-sample-n-29"><span class="header-section-number">3.2.2</span> Sensitivity Analysis: Full Sample (n = 29)</h4>
 <p>To assess robustness, Bayesian models were refitted including all sessions regardless of communication viability. The responsive interaction effect remained positive for both trust measures but showed substantial attenuation compared to the eligible sample. For TPS-HRI, the posterior median effect was β = 7.04 (95% credible interval [−1.83, 15.67]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (&gt;94%). Model fit decreased relative to the eligible sample (conditional R² = 0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included. For TI-HRC, attenuation was more pronounced. The posterior median effect decreased to β = 7.17 (95% credible interval [−1.97, 16.70]), with reduced probability of a large effect. Model fit remained moderate (conditional R² = 0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience but rather reflect the collapse of the interaction itself.</p>
 </section>
-<section id="mechanism-analysis-communication-breakdown-as-moderator" class="level4" data-number="3.2.3">
-<h4 data-number="3.2.3" class="anchored" data-anchor-id="mechanism-analysis-communication-breakdown-as-moderator"><span class="header-section-number">3.2.3</span> Mechanism Analysis: Communication Breakdown as Moderator</h4>
+<section id="mechanism-analysis-communication-breakdown-n29" class="level4" data-number="3.2.3">
+<h4 data-number="3.2.3" class="anchored" data-anchor-id="mechanism-analysis-communication-breakdown-n29"><span class="header-section-number">3.2.3</span> Mechanism Analysis: Communication Breakdown (n=29)</h4>
 <p>To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with proportional communication breakdown included as an interaction term. For TPS-HRI, the interaction between policy and communication breakdown was weak and centered near zero (posterior median β = −1.14, 95% credible interval [−18.87, 16.28]), with only 55% probability of being negative and 50% probability of being significant. This broad, unstable posterior distribution suggests that evaluative trust judgments were relatively insensitive to graded variation in communication quality once a basic threshold of viability was established. In contrast, TI-HRC showed a more consistent pattern. The interaction term showed a negative tendency (posterior median β = −5.97, 95% credible interval [−23.01, 10.92]), with 76% probability of being negative, 71% probability of being significant, and 45% probability of being large. While responsive behaviour was associated with higher experienced trust under low levels of breakdown, this advantage diminished as communication failures accumulated. This differential sensitivity suggests that experienced trust depends critically on the robot’s sustained ability to engage in responsive interaction, whereas evaluative trust judgments may rely more on discrete moments of successful collaboration that can occur even within partially degraded interactions.</p>
 <div class="cell">
 <div id="tbl-post-nonviable" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -1645,23 +1647,23 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
 </figcaption>
 <div aria-describedby="tbl-post-nonviable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="hgagkzyuqc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hgagkzyuqc table {
+<div id="iiirporkin" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#iiirporkin table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hgagkzyuqc thead, #hgagkzyuqc tbody, #hgagkzyuqc tfoot, #hgagkzyuqc tr, #hgagkzyuqc td, #hgagkzyuqc th {
+#iiirporkin thead, #iiirporkin tbody, #iiirporkin tfoot, #iiirporkin tr, #iiirporkin td, #iiirporkin th {
   border-style: none;
 }
 
-#hgagkzyuqc p {
+#iiirporkin p {
   margin: 0;
   padding: 0;
 }
 
-#hgagkzyuqc .gt_table {
+#iiirporkin .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1687,12 +1689,12 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-left-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_caption {
+#iiirporkin .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hgagkzyuqc .gt_title {
+#iiirporkin .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1704,7 +1706,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-bottom-width: 0;
 }
 
-#hgagkzyuqc .gt_subtitle {
+#iiirporkin .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1716,7 +1718,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-top-width: 0;
 }
 
-#hgagkzyuqc .gt_heading {
+#iiirporkin .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1728,13 +1730,13 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_bottom_border {
+#iiirporkin .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_col_headings {
+#iiirporkin .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1749,7 +1751,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_col_heading {
+#iiirporkin .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1769,7 +1771,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   overflow-x: hidden;
 }
 
-#hgagkzyuqc .gt_column_spanner_outer {
+#iiirporkin .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1781,15 +1783,15 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   padding-right: 4px;
 }
 
-#hgagkzyuqc .gt_column_spanner_outer:first-child {
+#iiirporkin .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hgagkzyuqc .gt_column_spanner_outer:last-child {
+#iiirporkin .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hgagkzyuqc .gt_column_spanner {
+#iiirporkin .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1801,11 +1803,11 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   width: 100%;
 }
 
-#hgagkzyuqc .gt_spanner_row {
+#iiirporkin .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hgagkzyuqc .gt_group_heading {
+#iiirporkin .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1831,7 +1833,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   text-align: left;
 }
 
-#hgagkzyuqc .gt_empty_group_heading {
+#iiirporkin .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1846,15 +1848,15 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   vertical-align: middle;
 }
 
-#hgagkzyuqc .gt_from_md > :first-child {
+#iiirporkin .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hgagkzyuqc .gt_from_md > :last-child {
+#iiirporkin .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hgagkzyuqc .gt_row {
+#iiirporkin .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1873,7 +1875,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   overflow-x: hidden;
 }
 
-#hgagkzyuqc .gt_stub {
+#iiirporkin .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1886,7 +1888,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   padding-right: 5px;
 }
 
-#hgagkzyuqc .gt_stub_row_group {
+#iiirporkin .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1900,15 +1902,15 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   vertical-align: top;
 }
 
-#hgagkzyuqc .gt_row_group_first td {
+#iiirporkin .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hgagkzyuqc .gt_row_group_first th {
+#iiirporkin .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hgagkzyuqc .gt_summary_row {
+#iiirporkin .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1918,16 +1920,16 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   padding-right: 5px;
 }
 
-#hgagkzyuqc .gt_first_summary_row {
+#iiirporkin .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_first_summary_row.thick {
+#iiirporkin .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hgagkzyuqc .gt_last_summary_row {
+#iiirporkin .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1937,7 +1939,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_grand_summary_row {
+#iiirporkin .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1947,7 +1949,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   padding-right: 5px;
 }
 
-#hgagkzyuqc .gt_first_grand_summary_row {
+#iiirporkin .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1957,7 +1959,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-top-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_last_grand_summary_row_top {
+#iiirporkin .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1967,11 +1969,11 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_striped {
+#iiirporkin .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hgagkzyuqc .gt_table_body {
+#iiirporkin .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1980,7 +1982,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_footnotes {
+#iiirporkin .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1994,7 +1996,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_footnote {
+#iiirporkin .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -2003,7 +2005,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   padding-right: 5px;
 }
 
-#hgagkzyuqc .gt_sourcenotes {
+#iiirporkin .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2017,7 +2019,7 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#hgagkzyuqc .gt_sourcenote {
+#iiirporkin .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -2025,72 +2027,72 @@ Table&nbsp;3: Post-Interaction Objective Measures by Group
   padding-right: 5px;
 }
 
-#hgagkzyuqc .gt_left {
+#iiirporkin .gt_left {
   text-align: left;
 }
 
-#hgagkzyuqc .gt_center {
+#iiirporkin .gt_center {
   text-align: center;
 }
 
-#hgagkzyuqc .gt_right {
+#iiirporkin .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hgagkzyuqc .gt_font_normal {
+#iiirporkin .gt_font_normal {
   font-weight: normal;
 }
 
-#hgagkzyuqc .gt_font_bold {
+#iiirporkin .gt_font_bold {
   font-weight: bold;
 }
 
-#hgagkzyuqc .gt_font_italic {
+#iiirporkin .gt_font_italic {
   font-style: italic;
 }
 
-#hgagkzyuqc .gt_super {
+#iiirporkin .gt_super {
   font-size: 65%;
 }
 
-#hgagkzyuqc .gt_footnote_marks {
+#iiirporkin .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hgagkzyuqc .gt_asterisk {
+#iiirporkin .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hgagkzyuqc .gt_indent_1 {
+#iiirporkin .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hgagkzyuqc .gt_indent_2 {
+#iiirporkin .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hgagkzyuqc .gt_indent_3 {
+#iiirporkin .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hgagkzyuqc .gt_indent_4 {
+#iiirporkin .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hgagkzyuqc .gt_indent_5 {
+#iiirporkin .gt_indent_5 {
   text-indent: 25px;
 }
 
-#hgagkzyuqc .katex-display {
+#iiirporkin .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#hgagkzyuqc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#iiirporkin div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2242,7 +2244,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 </section>
 <section id="task-performance" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="task-performance"><span class="header-section-number">3.3</span> Task performance</h3>
-<p>Overall task accuracy did not differ significantly between conditions (60% vs.&nbsp;66%, p = .534), nor did performance on individual task components reach statistical significance (see <a href="#tbl-post-tasks" class="quarto-xref">Table&nbsp;4</a>). However, a notable pattern emerged when examining task structure. For the suspect identification task (Task 1)—which required robot collaboration to complete accurately—participants in the responsive condition achieved more than double the accuracy of those in the control condition (64% vs.&nbsp;30%, p = .106), representing a large effect that approached but did not reach conventional significance thresholds given the pilot sample size. In contrast, performance on the location identification task components (building, zone, and floor identification), where robot assistance was optional, showed no consistent directional advantage for either condition. These patterns suggest that responsive robot behaviour may particularly benefit collaborative performance on tasks requiring sustained interaction and mutual grounding, though larger samples are needed to establish statistical reliability. Critically, the absence of significant overall accuracy differences indicates that observed trust differences cannot be attributed simply to differential task success, but rather reflect distinct responses to the interaction process itself.</p>
+<p>Overall task accuracy did not differ significantly between conditions (60% vs.&nbsp;66%, p = .534), nor did performance on individual task components reach statistical significance (see <a href="#tbl-post-tasks" class="quarto-xref">Table&nbsp;4</a>). However, a notable pattern emerged when examining task structure. For the suspect identification task (Task 1), which required robot collaboration to complete accurately, participants in the responsive condition achieved more than double the accuracy of those in the control condition (64% vs.&nbsp;30%, p = .106), representing a large effect that approached but did not reach conventional significance thresholds given the pilot sample size. In contrast, performance on the location identification task components (building, zone, and floor identification), where robot assistance was optional, showed no consistent directional advantage for either condition. These patterns suggest that responsive robot behaviour may particularly benefit collaborative performance on tasks requiring sustained interaction and mutual grounding, though larger samples are needed to establish statistical reliability. Critically, the absence of significant overall accuracy differences indicates that observed trust differences cannot be attributed simply to differential task success, but rather reflect distinct responses to the interaction process itself.</p>
 <div class="cell">
 <div id="tbl-post-tasks" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2251,23 +2253,23 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
 </figcaption>
 <div aria-describedby="tbl-post-tasks-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="nupwhbqbxw" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nupwhbqbxw table {
+<div id="qmlbmfoyqp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qmlbmfoyqp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nupwhbqbxw thead, #nupwhbqbxw tbody, #nupwhbqbxw tfoot, #nupwhbqbxw tr, #nupwhbqbxw td, #nupwhbqbxw th {
+#qmlbmfoyqp thead, #qmlbmfoyqp tbody, #qmlbmfoyqp tfoot, #qmlbmfoyqp tr, #qmlbmfoyqp td, #qmlbmfoyqp th {
   border-style: none;
 }
 
-#nupwhbqbxw p {
+#qmlbmfoyqp p {
   margin: 0;
   padding: 0;
 }
 
-#nupwhbqbxw .gt_table {
+#qmlbmfoyqp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2293,12 +2295,12 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-left-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_caption {
+#qmlbmfoyqp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nupwhbqbxw .gt_title {
+#qmlbmfoyqp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2310,7 +2312,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-bottom-width: 0;
 }
 
-#nupwhbqbxw .gt_subtitle {
+#qmlbmfoyqp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2322,7 +2324,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-top-width: 0;
 }
 
-#nupwhbqbxw .gt_heading {
+#qmlbmfoyqp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2334,13 +2336,13 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_bottom_border {
+#qmlbmfoyqp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_col_headings {
+#qmlbmfoyqp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2355,7 +2357,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_col_heading {
+#qmlbmfoyqp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2375,7 +2377,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#nupwhbqbxw .gt_column_spanner_outer {
+#qmlbmfoyqp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2387,15 +2389,15 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   padding-right: 4px;
 }
 
-#nupwhbqbxw .gt_column_spanner_outer:first-child {
+#qmlbmfoyqp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nupwhbqbxw .gt_column_spanner_outer:last-child {
+#qmlbmfoyqp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nupwhbqbxw .gt_column_spanner {
+#qmlbmfoyqp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2407,11 +2409,11 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   width: 100%;
 }
 
-#nupwhbqbxw .gt_spanner_row {
+#qmlbmfoyqp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nupwhbqbxw .gt_group_heading {
+#qmlbmfoyqp .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -2437,7 +2439,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   text-align: left;
 }
 
-#nupwhbqbxw .gt_empty_group_heading {
+#qmlbmfoyqp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2452,15 +2454,15 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   vertical-align: middle;
 }
 
-#nupwhbqbxw .gt_from_md > :first-child {
+#qmlbmfoyqp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nupwhbqbxw .gt_from_md > :last-child {
+#qmlbmfoyqp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nupwhbqbxw .gt_row {
+#qmlbmfoyqp .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -2479,7 +2481,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   overflow-x: hidden;
 }
 
-#nupwhbqbxw .gt_stub {
+#qmlbmfoyqp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2492,7 +2494,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#nupwhbqbxw .gt_stub_row_group {
+#qmlbmfoyqp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2506,15 +2508,15 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   vertical-align: top;
 }
 
-#nupwhbqbxw .gt_row_group_first td {
+#qmlbmfoyqp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nupwhbqbxw .gt_row_group_first th {
+#qmlbmfoyqp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nupwhbqbxw .gt_summary_row {
+#qmlbmfoyqp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2524,16 +2526,16 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#nupwhbqbxw .gt_first_summary_row {
+#qmlbmfoyqp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_first_summary_row.thick {
+#qmlbmfoyqp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nupwhbqbxw .gt_last_summary_row {
+#qmlbmfoyqp .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -2543,7 +2545,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_grand_summary_row {
+#qmlbmfoyqp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2553,7 +2555,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#nupwhbqbxw .gt_first_grand_summary_row {
+#qmlbmfoyqp .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -2563,7 +2565,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-top-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_last_grand_summary_row_top {
+#qmlbmfoyqp .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -2573,11 +2575,11 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_striped {
+#qmlbmfoyqp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nupwhbqbxw .gt_table_body {
+#qmlbmfoyqp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2586,7 +2588,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-bottom-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_footnotes {
+#qmlbmfoyqp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2600,7 +2602,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_footnote {
+#qmlbmfoyqp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -2609,7 +2611,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#nupwhbqbxw .gt_sourcenotes {
+#qmlbmfoyqp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2623,7 +2625,7 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   border-right-color: #D3D3D3;
 }
 
-#nupwhbqbxw .gt_sourcenote {
+#qmlbmfoyqp .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -2631,72 +2633,72 @@ Table&nbsp;4: Post-Interaction Raw Outcome Measures by Group
   padding-right: 5px;
 }
 
-#nupwhbqbxw .gt_left {
+#qmlbmfoyqp .gt_left {
   text-align: left;
 }
 
-#nupwhbqbxw .gt_center {
+#qmlbmfoyqp .gt_center {
   text-align: center;
 }
 
-#nupwhbqbxw .gt_right {
+#qmlbmfoyqp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nupwhbqbxw .gt_font_normal {
+#qmlbmfoyqp .gt_font_normal {
   font-weight: normal;
 }
 
-#nupwhbqbxw .gt_font_bold {
+#qmlbmfoyqp .gt_font_bold {
   font-weight: bold;
 }
 
-#nupwhbqbxw .gt_font_italic {
+#qmlbmfoyqp .gt_font_italic {
   font-style: italic;
 }
 
-#nupwhbqbxw .gt_super {
+#qmlbmfoyqp .gt_super {
   font-size: 65%;
 }
 
-#nupwhbqbxw .gt_footnote_marks {
+#qmlbmfoyqp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nupwhbqbxw .gt_asterisk {
+#qmlbmfoyqp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nupwhbqbxw .gt_indent_1 {
+#qmlbmfoyqp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nupwhbqbxw .gt_indent_2 {
+#qmlbmfoyqp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nupwhbqbxw .gt_indent_3 {
+#qmlbmfoyqp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nupwhbqbxw .gt_indent_4 {
+#qmlbmfoyqp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nupwhbqbxw .gt_indent_5 {
+#qmlbmfoyqp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#nupwhbqbxw .katex-display {
+#qmlbmfoyqp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#nupwhbqbxw div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qmlbmfoyqp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2781,7 +2783,7 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <p>Across analytic approaches, the responsive interaction policy was consistently associated with higher post-interaction trust compared to a neutral, reactive control policy when interaction functioned as intended. Crucially, these trust differences emerged without reliable differences in overall task accuracy, indicating that trust was shaped by the interaction process itself rather than by instrumental task success–despite participants learning whether they were correct or not during wrapup. This dissociation was particularly clear in the robot-dependent task, where responsive behaviour showed a large (though underpowered) advantage in accuracy, and in the open-ended task, where trust varied independently of performance.</p>
 <p>The results further suggest that autonomous interactions are critical to learning how trust is formed and evaluated. Sensitivity and mechanism analyses showed that task-oriented trust judgments (e.g., perceived reliability) were relatively robust to moderate communication degradation, whereas experienced trust, capturing affective comfort, engagement, and embodied collaboration, was highly sensitive to interaction-level failures. As communication breakdown accumulated, the trust advantage conferred by responsive behaviour diminished, suggesting that affect-adaptive policies require a minimum threshold of interaction viability to operate effectively.</p>
 <p>Importantly, communication failure did not merely reduce trust uniformly. In sessions characterized by severe breakdown, the responsive robot continued to generate proactive assistance, encouragement, and meta-communication aimed at repairing the interaction. However, when spoken-language grounding could not be re-established, these behaviours may have increased participant confusion and cognitive distress. In contrast, the neutral robot’s reactive policy resulted in fewer unsolicited interventions, which—while less supportive under functional conditions—reduced interaction complexity when collaboration was no longer viable. Under these conditions, trust ratings no longer systematically reflected the intended policy manipulation.</p>
-<p>This pattern highlights a key insight specific to autonomous human–robot interaction: when language-mediated collaboration collapses, higher-level constructs such as trust are not simply attenuated, but may cease to be meaningfully instantiated <span class="citation" data-cites="devisser2020 lee2004"><a href="#ref-devisser2020" role="doc-biblioref">[9]</a>, <a href="#ref-lee2004" role="doc-biblioref">[36]</a></span>. In such cases, trust measures do not reflect calibrated judgments of reliability or competence, but rather the breakdown of the interaction itself. This distinction is often obscured in scripted or Wizard-of-Oz paradigms, where failures can be covertly repaired and autonomy constraints are masked.</p>
+<p>This pattern highlights a key insight specific to autonomous human–robot interaction: when language-mediated collaboration collapses, higher-level constructs such as trust are not simply attenuated, but may cease to be meaningfully instantiated <span class="citation" data-cites="devisser2020 lee2004"><a href="#ref-devisser2020" role="doc-biblioref">[9]</a>, <a href="#ref-lee2004" role="doc-biblioref">[36]</a></span>. In such cases, trust measures may not reflect calibrated judgments of reliability or competence, but rather the breakdown of the interaction itself. This distinction is often obscured in scripted or Wizard-of-Oz paradigms, where failures can be covertly repaired and autonomy constraints are masked.</p>
 <p>The present findings therefore support a process-oriented view of examining trust in autonomous HRI. Trust emerges not only from what a robot does, but from how it manages uncertainty, error, and interactional misalignment without human intervention. Responsive interaction policies can enhance trust under viable conditions, but they also amplify the consequences of failure when the system lacks sufficient grounding to adapt effectively.</p>
 </section>
 <section id="limitations" class="level2" data-number="5">
