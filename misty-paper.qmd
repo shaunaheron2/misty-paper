@@ -1,6 +1,6 @@
 ---
 title: "Trust in Autonomous Human–Robot Collaboration: Effects of Responsive Interaction Policies"
-#subtitle: "An In-Person Pilot Study"
+subtitle: "An In-Person Pilot Study"
 authors:
   - name: M.C. Lau
     email: mclau@laurentian.ca
