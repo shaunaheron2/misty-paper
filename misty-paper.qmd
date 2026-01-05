@@ -37,6 +37,7 @@ message: false
 bibliography: bibliography.bib
 citation-style: ieee-with-url.csl
 number-sections: true
+hypoth
 ---
 
 ```{r}
@@ -151,7 +152,7 @@ The interaction began with a brief greeting phase, during which the robot introd
 
 Participants advanced between stages using the interface, either in response to the robot’s prompts or at their own discretion. All spoken dialogue and interaction events were managed autonomously by the robot and logged automatically for analysis.
 
-### Task 1: Robot-Dependent Collaborative Reasoning {.unnumbered}
+#### Task 1: Robot-Dependent Collaborative Reasoning 
 
 In the first task, participants were asked to identify a perpetrator from a 6 × 4 grid of 24 'suspects' by asking the robot a series of yes/no questions about the suspect’s features (e.g., "was the suspect wearing a hat?"). The grid was displayed on the interface, while questions were posed verbally.
 
@@ -161,7 +162,7 @@ The robot possessed the ground-truth information necessary to answer each questi
 
 This structure made the task sensitive to interaction quality. Inefficient questioning, repeated queries, or uncertainty about next steps could slow progress and increase cognitive load, whereas effective coordination supported rapid elimination and convergence on a solution. The structured nature of the task ensured consistent interaction demands across participants and conditions, while still allowing meaningful variation in collaboration style.
 
-### Task 2: Open-Ended Collaborative Problem Solving {.unnumbered}
+#### Task 2: Open-Ended Collaborative Problem Solving
 
 The second task involved a more open-ended reasoning challenge. Participants were presented with multiple technical logs through a simulated terminal interface that could be used to infer the location of the missing robot (see @fig-task2). The task was intentionally cryptic and difficult to solve within the allotted ten minutes without synthesizing information across multiple sources.
 
@@ -490,21 +491,12 @@ scores_df_eligible <- df_long_scores_final |>
 
 ```
 
-```{r}
-# trust in collaboration
-
-```
-
-```{r}
-#| eval: false
-
-```
 
 #### Sensitivity Analysis: Full Sample (n = 29)
 
 To assess robustness, Bayesian models were refitted including all sessions regardless of communication viability. The responsive interaction effect remained positive for both trust measures but showed substantial attenuation compared to the eligible sample. For TPS-HRI, the posterior median effect was β = 7.04 (95% credible interval \[−1.83, 15.67\]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (\>94%). Model fit decreased relative to the eligible sample (conditional R² = 0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included. For TI-HRC, attenuation was more pronounced. The posterior median effect decreased to β = 7.17 (95% credible interval \[−1.97, 16.70\]), with reduced probability of a large effect. Model fit remained moderate (conditional R² = 0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience but rather reflect the collapse of the interaction itself.
 
-#### Mechanism Analysis: Communication Breakdown as Moderator
+#### Mechanism Analysis: Communication Breakdown (n=29)
 
 To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with proportional communication breakdown included as an interaction term. For TPS-HRI, the interaction between policy and communication breakdown was weak and centered near zero (posterior median β = −1.14, 95% credible interval \[−18.87, 16.28\]), with only 55% probability of being negative and 50% probability of being significant. This broad, unstable posterior distribution suggests that evaluative trust judgments were relatively insensitive to graded variation in communication quality once a basic threshold of viability was established. In contrast, TI-HRC showed a more consistent pattern. The interaction term showed a negative tendency (posterior median β = −5.97, 95% credible interval \[−23.01, 10.92\]), with 76% probability of being negative, 71% probability of being significant, and 45% probability of being large. While responsive behaviour was associated with higher experienced trust under low levels of breakdown, this advantage diminished as communication failures accumulated. This differential sensitivity suggests that experienced trust depends critically on the robot's sustained ability to engage in responsive interaction, whereas evaluative trust judgments may rely more on discrete moments of successful collaboration that can occur even within partially degraded interactions.
 
@@ -688,7 +680,7 @@ post_table |>
 
 ### Task performance
 
-Overall task accuracy did not differ significantly between conditions (60% vs. 66%, p = .534), nor did performance on individual task components reach statistical significance (see @tbl-post-tasks). However, a notable pattern emerged when examining task structure. For the suspect identification task (Task 1)—which required robot collaboration to complete accurately—participants in the responsive condition achieved more than double the accuracy of those in the control condition (64% vs. 30%, p = .106), representing a large effect that approached but did not reach conventional significance thresholds given the pilot sample size. In contrast, performance on the location identification task components (building, zone, and floor identification), where robot assistance was optional, showed no consistent directional advantage for either condition. These patterns suggest that responsive robot behaviour may particularly benefit collaborative performance on tasks requiring sustained interaction and mutual grounding, though larger samples are needed to establish statistical reliability. Critically, the absence of significant overall accuracy differences indicates that observed trust differences cannot be attributed simply to differential task success, but rather reflect distinct responses to the interaction process itself.
+Overall task accuracy did not differ significantly between conditions (60% vs. 66%, p = .534), nor did performance on individual task components reach statistical significance (see @tbl-post-tasks). However, a notable pattern emerged when examining task structure. For the suspect identification task (Task 1), which required robot collaboration to complete accurately, participants in the responsive condition achieved more than double the accuracy of those in the control condition (64% vs. 30%, p = .106), representing a large effect that approached but did not reach conventional significance thresholds given the pilot sample size. In contrast, performance on the location identification task components (building, zone, and floor identification), where robot assistance was optional, showed no consistent directional advantage for either condition. These patterns suggest that responsive robot behaviour may particularly benefit collaborative performance on tasks requiring sustained interaction and mutual grounding, though larger samples are needed to establish statistical reliability. Critically, the absence of significant overall accuracy differences indicates that observed trust differences cannot be attributed simply to differential task success, but rather reflect distinct responses to the interaction process itself.
 
 ```{r}
 #| label: tbl-post-tasks
@@ -890,7 +882,7 @@ The results further suggest that autonomous interactions are critical to learnin
 
 Importantly, communication failure did not merely reduce trust uniformly. In sessions characterized by severe breakdown, the responsive robot continued to generate proactive assistance, encouragement, and meta-communication aimed at repairing the interaction. However, when spoken-language grounding could not be re-established, these behaviours may have increased participant confusion and cognitive distress. In contrast, the neutral robot’s reactive policy resulted in fewer unsolicited interventions, which—while less supportive under functional conditions—reduced interaction complexity when collaboration was no longer viable. Under these conditions, trust ratings no longer systematically reflected the intended policy manipulation.
 
-This pattern highlights a key insight specific to autonomous human–robot interaction: when language-mediated collaboration collapses, higher-level constructs such as trust are not simply attenuated, but may cease to be meaningfully instantiated [@devisser2020; @lee2004]. In such cases, trust measures do not reflect calibrated judgments of reliability or competence, but rather the breakdown of the interaction itself. This distinction is often obscured in scripted or Wizard-of-Oz paradigms, where failures can be covertly repaired and autonomy constraints are masked.
+This pattern highlights a key insight specific to autonomous human–robot interaction: when language-mediated collaboration collapses, higher-level constructs such as trust are not simply attenuated, but may cease to be meaningfully instantiated [@devisser2020; @lee2004]. In such cases, trust measures may not reflect calibrated judgments of reliability or competence, but rather the breakdown of the interaction itself. This distinction is often obscured in scripted or Wizard-of-Oz paradigms, where failures can be covertly repaired and autonomy constraints are masked.
 
 The present findings therefore support a process-oriented view of examining trust in autonomous HRI. Trust emerges not only from what a robot does, but from how it manages uncertainty, error, and interactional misalignment without human intervention. Responsive interaction policies can enhance trust under viable conditions, but they also amplify the consequences of failure when the system lacks sufficient grounding to adapt effectively.
 
