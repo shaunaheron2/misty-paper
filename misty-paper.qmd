@@ -174,13 +174,13 @@ Unlike Task 1, the robot did not have access to ground-truth information or the 
 
 ### Study Protocol
 
-Participants signed up for the study and completed a pre-session questionnaire before their in-person session via Qualtrics. The pre-session questionnaire colleced basic demographics information and assessed baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) [@nomura; @cacioppo1982]. These measures were used to capture individual differences that may moderate responses to robot interaction.
+Participants signed up for the study and completed a pre-session questionnaire before their in-person session via Qualtrics. The pre-session questionnaire colleced basic demographics information and assessed baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) [@nomura; @cacioppo1982]. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.
 
 In-person sessions were conducted in a quiet, private room at Laurentian University between November and December 2025. Prior to each session, the robot’s interaction policy was configured to the assigned experimental condition.
 
-Upon arrival, participants were greeted by the researcher, provided with a brief overview of the session, and given instructions for effective communication with the robot, including waiting for a visual indicator before speaking. Once participants indicated readiness, the researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation. Participants initiated the interaction by clicking a start button on the interface and were informed that they could terminate the session at any time without penalty.
+Upon arrival, participants were greeted by the researcher, provided with a brief overview of the session, and given instructions for effective communication with the robot. Once participants indicated readiness, the researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation. Participants initiated the interaction by clicking a start button on the interface and were informed that they could terminate the session at any time without penalty.
 
-Following task completion, participants completed a 21-item post-interaction questionnaire assessing trust. Participants then engaged in a brief debrief with the researcher and were awarded a \$15 gift card. Total session duration averaged approximately 30 minutes.
+Following task completion, participants completed a 21-item post-interaction questionnaire assessing trust on a laptop. Participants then engaged in a brief debrief with the researcher and were awarded a \$15 gift card. Total session duration averaged approximately 30 minutes.
 
 ### Measures
 
@@ -188,7 +188,7 @@ A combination of self-report and objective measures was used to assess trust, en
 
 #### Self-Report Measures
 
-Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) [@cacioppo1982; @nomura]. These measures were used to capture individual differences that may moderate responses to robot interaction.
+Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) [@cacioppo1982; @nomura]. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.
 
 Trust was assessed using two established self-report instruments commonly used in human–robot interaction research: the Trust Perception Scale–HRI (TPS-HRI) and the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) [@schaefer2016; @charalambous2016]. Both measures were adapted to reflect the specific dialogue-driven task context and interaction modality of the present study, while preserving the original constructs and response intent of each scale. 9 items were retained from the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to reference the robot’s behaviour during the dialogue-driven collaborative tasks, and response formats were adjusted to ensure interpretability for participants without prior robotics experience (see Appendix B for a full item list).
 
@@ -196,7 +196,7 @@ Together, these instruments capture complementary dimensions of trust, including
 
 #### Objective Measures
 
-Objective task metrics included task completion, task accuracy, time to completion, and the number of assistance requests made to the robot. behavioural engagement metrics were derived from interaction logs and manually coded dialogue transcripts, including number of dialogue turns, frequency of communication breakdowns, response timing, and task-relevant robot contributions.
+@tbl-post-dialogue-turns outlines objective task metrics including the average number of dialogue turns, session duration, response time (robot dialogue latency), as well as the number of engaged versus frustrated responses the robot detected--all obtained from log data. Behavioural engagement metrics were derived from interaction logs and manually coded dialogue transcripts, including the proportion of turns characterized by communication breakdowns, human and robot reasoning, robot helpful and unhelpful guidance, robot and human affective engagement and other task-relevant human and robot contributions. See Appendix C for a full coding scheme.
 
 ### Participants
 
@@ -208,7 +208,9 @@ Subsequent review of interaction transcripts and system logs indicated that a su
 
 #### Randomization Check
 
-Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including Negative Attitudes Toward Robots (NARS) and Need for Cognition scores (see @tbl-pre) [@cacioppo1982]. These patterns were consistent across both eligible and full samples, indicating successful random assignment.
+Participants were initially assigned to the responsive or control condition by Qualtrics using an automated randomization procedure at the time of online sign-up. However, because several scheduled participants did not attend their in-person session, replacement participants were assigned to the next available session slot rather than re-randomized. As a result, the final condition assignment should be considered semi-random rather than strictly randomized.
+
+To assess whether this deviation introduced systematic bias, we conducted randomization checks comparing participants across conditions on key baseline variables. Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including gender, age, Negative Attitudes Toward Robots (NARS), and Need for Cognition scores (see @tbl-pre; @cacioppo1982). These patterns were consistent across both the eligible and full analytic samples, suggesting that the final group composition remained well balanced despite the partial breakdown of the intended randomization procedure.
 
 ```{r}
 #| label: tbl-pre
@@ -288,7 +290,7 @@ Communication viability was operationalized using a dialogue-level metric derive
 
 Analyses were conducted using three complementary approaches. Primary analyses were performed on an eligible sample excluding non-viable sessions, reflecting interactions in which the spoken-language protocol and experimental manipulation operated as intended. Full-sample analyses including all sessions were conducted as sensitivity checks. Finally, mechanism-focused analyses compared viable and non-viable sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to characterize how severe communication breakdown alters interaction dynamics. Trust measures from non-viable sessions were not interpreted as valid estimates of human–robot trust under functional interaction, as the robot was unable to sustain dialogue or collaborative behavior in these cases.
 
-All analyses were conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while Bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository]()
+All analyses were conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while Bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository](https://github.com/shaunaheron2/misty-paper)
 
 ## Results
 
@@ -456,6 +458,7 @@ post_table |>
     n_engaged,
     n_frust,
     prop_comm_breakdown,
+    prop_human_affective_engagement,
     prop_human_reasoning,
     prop_robot_reasoning,
     prop_robot_helpful_guidance,
@@ -506,6 +509,7 @@ post_table |>
       prop_robot_encouragement ~ "Robot Encouragement",
       prop_robot_empathy_expression ~ "Robot Empathy Expression",
       prop_robot_collaborative_lang ~ "Robot Collaborative Language",
+      prop_human_affective_engagement ~ "Human Affective Engagement",
       prop_robot_proactive_checkin ~ "Robot Proactive Check-ins"
     )
   ) |>
@@ -1084,7 +1088,7 @@ Participants indicated their agreement with the following statements using a 5-p
 
 | Variable | Type | Description |
 |----------------------------|------------------|--------------------------|
-| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner and/or mirrors or responds to the robot’s affective expression and/or treats the robot as a social agent. |
+| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner (e.g., "It's up to us, Misty!" and/or mirrors or responds to the robot’s affective expression and/or treats the robot as a social agent. |
 
 ### Notes
 
