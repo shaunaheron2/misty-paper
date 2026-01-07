@@ -13,7 +13,7 @@ authors:
           organization: Laurentian University
           department: School of Social Sciences
 abstract: |
-    Trust plays a central role in human–robot collaboration, yet its formation is rarely studied under the constraints of fully autonomous interaction. This pilot study examines how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted recovery. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue, assistance, and repair strategies based on user input and inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when explicitly prompted. Responsive interaction was associated with significantly higher post-interaction trust, despite no reliable differences in overall task accuracy. Sensitivity analyses revealed that experienced trust was highly sensitive to communication breakdown, whereas evaluative trust judgments were more robust. When language-mediated interaction collapsed, trust was no longer meaningfully instantiated. These findings suggest that trust formation in human–robot interaction is important to study under fully autonomous conditions, where communication failures cannot be repaired by human intervention.
+    Trust plays a central role in human–robot collaboration, yet its formation is rarely studied under the constraints of fully autonomous interaction. This pilot study examines how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted recovery. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue, assistance, and repair strategies based on user input and inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when explicitly prompted. Responsive interaction was associated with significantly higher post-interaction trust, despite no reliable differences in overall task accuracy. Sensitivity analyses revealed that experienced trust was highly sensitive to communication breakdown, whereas evaluative trust judgments were more robust. When language-mediated communication broke down, trust remained operative but no longer aligned with the collaborative trust construct assessed here, as interaction became dominated by communication viability rather than coordinated problem solving. These findings underscore that trust formation in human–robot interaction should be examined under fully autonomous conditions, and motivate future work on the design of integrated communication and interaction systems that can better support collaboration under real-world constraints.
 index-terms: 
   - human-robot collaboration
   - HRI
@@ -61,6 +61,10 @@ survey_df <- readRDS("survey_data.rds") |>
 set_gtsummary_theme(theme_gtsummary_journal("nejm"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
+dialogue_turns <- read_csv(
+    '/home/sheron/Documents/misty-paper/data/clean_data/dialogue_turns_filtered.csv'
+) |>
+filter(session_id == 'P51')
 dialogue_session_summary <- read_csv(
   'data/analysis_output/final_dialogue_summary.csv'
 ) |>
