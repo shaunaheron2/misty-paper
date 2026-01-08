@@ -26,7 +26,9 @@ index-terms:
   - trust in human-robot interaction
   - affect-adaptive systems
 format:
-  ieee-typst: default
+  typst:
+    keep-typ: true
+    fontsize: 10pt
   html:
     toc: true
     toc-depth: 4
@@ -62,9 +64,25 @@ set_gtsummary_theme(theme_gtsummary_journal("nejm"))
 set_gtsummary_theme(theme_gtsummary_compact())
 
 dialogue_turns <- read_csv(
-    '/home/sheron/Documents/misty-paper/data/clean_data/dialogue_turns_filtered.csv'
+  '/home/sheron/Documents/misty-paper/data/clean_data/dialogue_turns_filtered.csv'
 ) |>
-filter(session_id == 'P51')
+  filter(
+    session_id == 'P51' |
+      session_id == 'P36' |
+      session_id == 'P36' |
+      session_id == 'P41'
+  )
+
+bad_turns <- read_csv(
+  '/home/sheron/Documents/misty-paper/data/clean_data/dialogue_turns_filtered.csv'
+) |>
+  filter(
+    session_id == 'P14' |
+      session_id == 'P17' |
+      session_id == 'P30' |
+      session_id == 'P32'
+  )
+
 dialogue_session_summary <- read_csv(
   'data/analysis_output/final_dialogue_summary.csv'
 ) |>
@@ -105,6 +123,7 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 # "P14" "P17" "P30" "P32" "P46" "P47" "P50"
 
 ```
+
 
 ## Introduction
 
@@ -178,9 +197,15 @@ The logs contained partial and indirect clues related to the robot’s activity,
 
 Unlike Task 1, the robot did not have access to ground-truth information or the contents of the logs. Its assistance was therefore limited to general reasoning support derived from its language model, such as explaining how to interpret log formats, suggesting strategies for cross-referencing timestamps, or prompting participants to reconcile inconsistencies across sources. Participants could complete the task independently or solicit assistance from the robot at their discretion [@lin2022], allowing collaboration to emerge voluntarily rather than being enforced by task structure.
 
+```{r}
+tbl1 <- dialogue_turns |>
+  filter(session_id == "P41") |>
+  select()
+```
+
 ### Study Protocol
 
-Participants signed up for the study and completed a pre-session questionnaire before their in-person session via Qualtrics. The pre-session questionnaire colleced basic demographics information and assessed baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) [@nomura; @cacioppo1982]. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.
+Participants signed up for the study and completed a pre-session questionnaire before their in-person session via Qualtrics. The elapsed time between sign-up and the in-person session was at most week and at minimum immediately before the session. The pre-session questionnaire colleced basic demographics information and assessed baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) [@nomura; @cacioppo1982]. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.
 
 In-person sessions were conducted in a quiet, private room at Laurentian University between November and December 2025. Prior to each session, the robot’s interaction policy was configured to the assigned experimental condition.
 
@@ -1102,3 +1127,77 @@ Participants indicated their agreement with the following statements using a 5-p
 -   Task outcome variables are coded once per `session_id × stage`.
 -   Raw dialogue text was retained during coding and removed prior to aggregation.
 -   Multiple turn-level codes may co-occur unless otherwise specified.
+
+## Appendix D {#sec-appendix-d .appendix}
+
+### Real Dialogue Examples
+#### Responsive Condition
+```{r}
+library(gtExtras)
+library(glue)
+make_transcript_rows <- function(df) {
+  df %>%
+    arrange(session_id, timestamp) %>% # important
+    mutate(
+      turn = as.integer(turn_number), # or row_number(), pick ONE
+      latency_s = response_time_ms / 1000,
+      robot_note = glue(
+        "{flags}; expr: {expression}"
+      )
+    ) %>%
+    # pivot to two speaker lines per original turn
+    transmute(
+      across(any_of(c("session_id", "stage", "timestamp", "turn_number"))),
+      turn = row_number(),
+
+      participant = user_input,
+      robot = llm_response,
+      robot_note = robot_note
+    ) %>%
+    pivot_longer(
+      cols = c(participant, robot),
+      names_to = "speaker_raw",
+      values_to = "utterance"
+    ) %>%
+    mutate(
+      speaker = recode(
+        speaker_raw,
+        participant = "Participant",
+        robot = "Robot"
+      ),
+      annotation = if_else(speaker == "Robot", robot_note, NA_character_),
+      line_order = if_else(speaker == "Participant", 1L, 2L)
+    ) %>%
+    arrange(across(any_of(c("session_id", "stage"))), turn, line_order) %>%
+    select(
+      any_of(c("session_id", "stage", "timestamp")),
+      turn,
+      speaker,
+      utterance,
+      annotation
+    ) |>
+    arrange(turn)
+}
+
+transcript_df <- make_transcript_rows(
+  dialogue_turns |> filter(session_id == "P41")
+)
+
+transcript_df |>
+  select(-session_id, -timestamp, -turn) |>
+  filter(grepl('greet|brief|task1', stage)) |>
+  gt(groupname_col = 'stage') |>
+  sub_missing(everything(), missing_text = "") |>
+  tab_options(table.font.size = px(10)) |>
+  tab_style(
+    style = cell_fill(color = "snow"),
+    locations = cells_body(
+      columns = utterance,
+      # Define the condition: close value is less than or equal to open value
+      rows = speaker == "Participant"
+    )
+  )
+
+```
+
+
