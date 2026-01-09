@@ -1128,13 +1128,16 @@ Participants indicated their agreement with the following statements using a 5-p
 -   Raw dialogue text was retained during coding and removed prior to aggregation.
 -   Multiple turn-level codes may co-occur unless otherwise specified.
 
+
+```{r}
+#| eval: false
+library(gtExtras)
+library(glue)
+
 ## Appendix D {#sec-appendix-d .appendix}
 
 ### Real Dialogue Examples
 #### Responsive Condition
-```{r}
-library(gtExtras)
-library(glue)
 make_transcript_rows <- function(df) {
   df %>%
     arrange(session_id, timestamp) %>% # important
