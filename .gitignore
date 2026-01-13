@@ -4,6 +4,7 @@
 *.csv
 /data/
 archive/*.*
+/archive/
 /.quarto/
 *.md
 full_*.*
