@@ -29,6 +29,8 @@ format:
   typst:
     keep-typ: true
     fontsize: 10pt
+  latex:
+    keep-latex: true
   html:
     toc: true
     toc-depth: 4
@@ -37,6 +39,7 @@ format:
 warning: false
 echo: false
 message: false
+keep-tex: true
 bibliography: bibliography.bib
 citation-style: ieee-with-url.csl
 number-sections: true
