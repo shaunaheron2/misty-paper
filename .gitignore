@@ -10,3 +10,4 @@ archive/*.*
 full_*.*
 **/*.quarto_ipynb
 .venv/
+.env
