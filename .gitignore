@@ -9,3 +9,4 @@ archive/*.*
 *.md
 full_*.*
 **/*.quarto_ipynb
+.venv/
