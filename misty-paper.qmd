@@ -673,6 +673,8 @@ Bayesian estimation converged on similar effect magnitudes with high posterior c
 #| label: fig-hrc-posterior
 #| fig-cap: "Note: Posterior distributions of fixed effects from the final TI-HRC model. Shaded regions indicate 80% credible intervals; dashed vertical line denotes a null effect. Positive values indicate higher post-interaction trust scores. (points on a 0-100 scale)"
 #| fig-align: left
+#| 
+library(ggthemes)
 library(bayesplot)
 library(ggdist)
 library(posterior)
@@ -683,10 +685,17 @@ pars <- c(
 )
 
 labels <- c(
-  b_groupRESPONSIVE = "Responsive Policy",
+  b_groupRESPONSIVE = "Responsive vs Control Policy",
   b_nars_pre_c = "NARS (centered)",
   b_native_englishNonMNativeEnglish = "Non-native English speaker"
 )
+
+param_order <- c(
+  "b_groupRESPONSIVE",
+  "b_nars_pre_c",
+  "b_native_englishNonMNativeEnglish"
+)
+
 
 hri_mod_elig <- readRDS('data/analysis_output/hri_mod_elig.rds')
 hrc_mod_elig <- readRDS('data/analysis_output/hrc_mod_elig.rds')
@@ -696,7 +705,10 @@ hri_posterior <- as_draws_df(hri_mod_elig) #<- readRDS('data/analysis_output/hri
 hrc_posterior <- as_draws_df(hrc_mod_elig) #<- readRDS('data/analysis_output/hrc_mod_elig_posterior.rds')
 
 plot_title2 <- ggtitle(
-  "TI-HRC"
+  "Experienced Trust"
+)
+plot_title1 <- ggtitle(
+  "Perceived Trust"
 )
 
 hrc_plot <- mcmc_areas(
@@ -716,33 +728,42 @@ hrc_plot <- mcmc_areas(
     axis.title.y = element_text(size = 9)
   ) 
 
-plot_title1 <- ggtitle(
-  "TPS-HRI"
-)
+
 draws_long <- as_draws_df(hrc_mod_elig) |>
   select(all_of(pars)) |>
-  pivot_longer(everything(), names_to = "param", values_to = "value")
+  pivot_longer(everything(), names_to = "param", values_to = "value") |>
+   mutate(
+    param = factor(param, levels = param_order)
+  )
 
 hrc_plot <- ggplot(draws_long, aes(x = value, y = param)) +
   stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   labs(x = "Posterior estimate", y = NULL) +
-  scale_y_discrete(labels = labels)+xlim(-25,30) +plot_title2
+    theme_few() +
+    theme(axis.text.y = element_text(size = 10))+
+  scale_y_discrete(labels = labels, limits=rev(param_order))+
+  xlim(-25,30) +
+  plot_title2
 
 draws_long <- as_draws_df(hri_mod_elig) |>
   select(all_of(pars)) |>
-  pivot_longer(everything(), names_to = "param", values_to = "value")
+  pivot_longer(everything(), names_to = "param", values_to = "value")|>
+   mutate(
+    param = factor(param, levels = param_order)
+  )
 
 hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
   stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   labs(x = "Posterior estimate", y = NULL) +
-  #scale_y_discrete(labels = labels)+
+  scale_y_discrete(limits=rev(param_order))+
+  theme_few() +
   theme(
     axis.title.y = element_blank(),
     axis.text.y  = element_blank(),
     axis.ticks.y = element_blank()
-  )+xlim(-25,30) +plot_title1
+  )+xlim(-25,30) +plot_title1 
 
 ```
 
@@ -779,10 +800,10 @@ hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
 
 ```{r}
 #| label: fig-finalmodels-posterior
-#| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample) predicting post-interaction trust. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0–100 scale)."
+#| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample: n=24) predicting post-interaction trust. Fixed effects include Responsive vs Control policy, Negative Attitudes Towards Robots (NARS) and Non-native English speaker versus English native speaker. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0–100 scale)."
 #| fig-align: left
 #| fig-width: 8
-#| fig-height: 5
+#| fig-height: 4.5
 library(patchwork)
 # xlims <- c(-30, 30)
 
@@ -790,7 +811,7 @@ library(patchwork)
 # hri_plot <- hri_plot + coord_cartesian(xlim = xlims)
 
 (hrc_plot | hri_plot)+ 
-  plot_annotation(title = 'Posterior Distribution of Post-Interaction Trust',
+  plot_annotation(title = 'Posterior Estimates of Post-Interaction Trust',
   subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = '',  theme = theme(plot.title = element_text(size = 14)))
 
 ```
