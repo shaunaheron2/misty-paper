@@ -9,16 +9,6 @@ format:
     runninghead: "A Preprint"
   arxiv-html: default
 author:
-  - name: M.C. Lau
-    affiliations: 
-          name: Laurentian University
-          department: Bharti School of Engineering
-          address: 935 Ramsey Lake Rd
-          city: Sudbury, ON 
-          postal-code: P3E 2C6
-          country: Canada
-    email: mclau@laurentian.ca
-    orcid: 0000-0003-3517-4900
   - name: Shauna Heron
     affiliations:
           name: Laurentian University
@@ -28,6 +18,16 @@ author:
           postal-code: P3E 2C6
           country: Canada
     email: sheron@laurentian.ca
+    orcid: 0000-0003-3517-4900
+  - name: M.C. Lau
+    affiliations: 
+          name: Laurentian University
+          department: Bharti School of Engineering
+          address: 935 Ramsey Lake Rd
+          city: Sudbury, ON 
+          postal-code: P3E 2C6
+          country: Canada
+    email: mclau@laurentian.ca
     orcid: 0000-0003-3517-4900
 abstract: |
     Trust plays a central role in human–robot collaboration, yet its formation is rarely studied under the constraints of fully autonomous interaction. This pilot study examines how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted recovery. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue, assistance, and repair strategies based on user input and inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when explicitly prompted. Responsive interaction was associated with significantly higher post-interaction trust, despite no reliable differences in overall task accuracy. Sensitivity analyses revealed that experienced trust was highly sensitive to communication breakdown, whereas evaluative trust judgments were more robust. When language-mediated communication broke down, trust remained operative but no longer aligned with the collaborative trust construct assessed here, as interaction became dominated by communication viability rather than coordinated problem solving. These findings underscore that trust formation in human–robot interaction should be examined under fully autonomous conditions, and motivate future work on the design of integrated communication and interaction systems that can better support collaboration under real-world constraints.
@@ -175,7 +175,7 @@ Both conditions operated fully autonomously, without human intervention or scrip
 
 ### Collaborative Task Design
 
-The task structure was modelled after @lin2022b and designed to elicit collaboration under two distinct dependency conditions: enforced collaboration, in which successful task completion required the robot’s involvement, and optional collaboration, in which participants could choose whether and how to engage the robot. To operationalize these conditions, participants completed an immersive, narrative-driven puzzle game consisting of five sequential stages and two timed reasoning tasks. The game positioned participants as investigators searching for a missing robot colleague, with the Misty-II robot serving as a diegetic guide and collaborative partner throughout the interaction. The full session lasted approximately 25 minutes.
+The task structure was modelled after @lin2022 and designed to elicit collaboration under two distinct dependency conditions: enforced collaboration, in which successful task completion required the robot’s involvement, and optional collaboration, in which participants could choose whether and how to engage the robot. To operationalize these conditions, participants completed an immersive, narrative-driven puzzle game consisting of five sequential stages and two timed reasoning tasks. The game positioned participants as investigators searching for a missing robot colleague, with the Misty-II robot serving as a diegetic guide and collaborative partner throughout the interaction. The full session lasted approximately 25 minutes.
 
 Interactions took place in a shared physical workspace that included the Misty-II social robot and a participant-facing computer interface [@mistyrobotics]. The interface was used to display task materials, collect participant responses, and support progression through the game (see @fig-task1). Importantly, the interface did not function as a control mechanism for the robot. Instead, the robot autonomously monitored task progression and participant inputs via the interface and adapted its dialogue and behaviour accordingly.
 
@@ -1019,7 +1019,7 @@ LED colours were used to signal system state to participants. A blue LED indicat
 
 ### Collaborative Tasks
 
-The interaction consisted of two collaborative tasks inspired by the puzzle task desigbed by @lin2022a. In the first task, participants and the robot jointly solved a “who-dunnit” problem by eliminating suspects from a grid based on yes/no questions. The robot possessed ground-truth knowledge but was constrained to answering only feature-based yes/no queries. In the second task, participants and the robot attempted to locate a missing robot by interpreting cryptic system and sensor logs. In this task, the robot did not know the solution and instead provided guidance based on general technical knowledge and logical reasoning.
+The interaction consisted of two collaborative tasks inspired by the puzzle task desigbed by @lin2022. In the first task, participants and the robot jointly solved a “who-dunnit” problem by eliminating suspects from a grid based on yes/no questions. The robot possessed ground-truth knowledge but was constrained to answering only feature-based yes/no queries. In the second task, participants and the robot attempted to locate a missing robot by interpreting cryptic system and sensor logs. In this task, the robot did not know the solution and instead provided guidance based on general technical knowledge and logical reasoning.
 
 Task information and participant responses were presented through a web-based dashboard. The dashboard displayed suspect grids, system logs, and response input fields, and communicated task progression events back to the robot via REST API calls.
 
