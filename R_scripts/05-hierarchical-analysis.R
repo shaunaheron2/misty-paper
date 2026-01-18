@@ -14,13 +14,17 @@ library(lme4)
 library(lmerTest)
 library(ggeffects)
 library(brms)
+library(rstan)
+library(bayesplot)
+
+#theme_set(theme_tidybayes() + panel_border())
+
+rstan_options(auto_write = TRUE)
+options(mc.cores = parallel::detectCores())
 
 session_df <- readRDS("full_session_data.rds")
 survey_df <- readRDS("survey_data.rds") |>
   arrange(post_date)
-
-set_gtsummary_theme(theme_gtsummary_journal("jama"))
-set_gtsummary_theme(theme_gtsummary_compact())
 
 dialogue_session_summary <- read_csv(
   'data/analysis_output/final_dialogue_summary.csv'
@@ -96,7 +100,7 @@ scores_df_full <- df_long_scores_final |>
 scores_df_eligible <- scores_df_full |>
   filter(exclusions != 'exclude')
 
-saveRDS(scores_df_full, "scores_df_full.rds")
+#saveRDS(scores_df_full, "scores_df_full.rds")
 
 ### Priors
 
@@ -126,6 +130,10 @@ priors_tight <- c(
   prior(exponential(1.5), class = "sigma")
 )
 
+hri_elig_df <- scores_df_eligible |>
+  filter(scale == 'HRI_perception_post')
+
+set.seed(15693)
 ## Models Eligible
 
 hri_mod_elig <- brm(
@@ -134,7 +142,7 @@ hri_mod_elig <- brm(
     native_english +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df_eligible |> filter(scale == 'HRI_perception_post'),
+  data = hri_elig_df,
   family = gaussian(),
   prior = priors,
   chains = 4,
@@ -143,10 +151,30 @@ hri_mod_elig <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig.rds')
+hri_posterior <- as.matrix(hri_mod_elig)
+
+saveRDS(hri_posterior, 'data/analysis_output/hri_mod_elig_posterior.rds')
+
+plot_title1 <- ggtitle(
+  "Posterior distributions for HRI Trust Perception Scale",
+  "with medians and 80% intervals"
+)
+
+mcmc_areas(
+  hri_posterior,
+  pars = c(
+    "b_groupRESPONSIVE",
+    "b_nars_pre_c",
+    "b_native_englishNonMNativeEnglish"
+  ),
+  prob = 0.8
+) +
+  plot_title1
 
 hrc_mod_elig <- brm(
   robot_trust_post ~ group +
-    nars_pre_c +
+    (nars_pre_c) +
     native_english +
     (1 | session_id) +
     (1 | trust_items),
@@ -159,6 +187,24 @@ hrc_mod_elig <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+saveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig.rds')
+hrc_posterior <- as.matrix(hrc_mod_elig)
+saveRDS(hrc_posterior, 'data/analysis_output/hrc_mod_elig_posterior.rds')
+plot_title2 <- ggtitle(
+  "Posterior distributions for HRC Trust Experience Scale",
+  "with medians and 80% intervals"
+)
+
+mcmc_areas(
+  hrc_posterior,
+  pars = c(
+    "b_groupRESPONSIVE",
+    "b_nars_pre_c",
+    "b_native_englishNonMNativeEnglish"
+  ),
+  prob = 0.8
+) +
+  plot_title2
 
 
 ## Models Full Sensitivity

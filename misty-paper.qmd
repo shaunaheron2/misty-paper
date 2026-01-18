@@ -132,7 +132,6 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 
 ```
 
-
 ## Introduction
 
 As artificial intelligence (AI) technologies advance, they are increasingly integrated into robotic systems, enabling more adaptive, autonomous, and context-sensitive behaviour in real-world environments. This convergence has accelerated the deployment of robots across safety-critical domains such as manufacturing [@choi2025], mining [@fu2021], and healthcare [@ciuffreda2025], where robots are now expected to operate alongside humans rather than in isolation [@diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but also on whether human users are willing to rely on, communicate with, and coordinate their actions around robotic partners [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance and accidents—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
@@ -668,8 +667,133 @@ To evaluate the robustness of interaction policy effects while controlling for b
 
 Frequentist linear mixed-effects models revealed consistent positive effects of responsive interaction on both trust measures. For experienced trust (TI-HRC), participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition ($\beta$ = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores ($\beta$ = −7.43, SE = 2.81, p = .016), while native English fluency was not significantly associated with trust. Inclusion of random intercepts for individual trust items significantly improved model fit, indicating meaningful item-level variability beyond session-level differences. For perceived trust (TPS-HRI), a comparable pattern emerged, with responsive interaction associated with higher trust scores ($\beta$ = 14.17, SE = 6.50, t = 2.00, p = .046). However, random intercepts for trust items did not improve model fit for this scale, likely reflecting differences in scale format and response interface: TPS-HRI was administered using a continuous slider input via touchpad, whereas TI-HRC employed discrete Likert-style response options. The slider-based interface may have reduced response precision and item-level variability, though meaningful between-condition differences remained detectable at the aggregate level.
 
-Bayesian estimation converged on similar effect magnitudes with high posterior certainty. For TI-HRC, the responsive condition showed a posterior median effect of $\beta$ = 14.86 (95% credible interval \[7.20, 22.09\]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was $\beta$ = 12.73 (95% credible interval \[2.93, 22.17\]), with posterior probability exceeding 99% that the effect was positive. Baseline NARS showed credible negative associations with both outcomes, while native English fluency showed negative associations that were credible for TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI (conditional $R^2$ = 0.64) and moderate for TI-HRC (conditional $R^2$ = 0.42), with fixed effects explaining 16% and 21% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.
+Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in @fig-finalmodels-posterior, for TI-HRC, the responsive condition showed a posterior median effect of $\beta$ = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was $\beta$ = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. Baseline NARS showed credible negative associations with both outcomes, while native English fluency showed negative associations that were credible for TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI (conditional $R^2$ = 0.64) and moderate for TI-HRC (conditional $R^2$ = 0.42), with fixed effects explaining 16% and 21% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.
 
+```{r}
+#| label: fig-hrc-posterior
+#| fig-cap: "Note: Posterior distributions of fixed effects from the final TI-HRC model. Shaded regions indicate 80% credible intervals; dashed vertical line denotes a null effect. Positive values indicate higher post-interaction trust scores. (points on a 0-100 scale)"
+#| fig-align: left
+library(bayesplot)
+library(ggdist)
+library(posterior)
+pars <- c(
+  "b_groupRESPONSIVE",
+  "b_nars_pre_c",
+  "b_native_englishNonMNativeEnglish"
+)
+
+labels <- c(
+  b_groupRESPONSIVE = "Responsive Policy",
+  b_nars_pre_c = "NARS (centered)",
+  b_native_englishNonMNativeEnglish = "Non-native English speaker"
+)
+
+hri_mod_elig <- readRDS('data/analysis_output/hri_mod_elig.rds')
+hrc_mod_elig <- readRDS('data/analysis_output/hrc_mod_elig.rds')
+
+hri_posterior <- as_draws_df(hri_mod_elig) #<- readRDS('data/analysis_output/hri_mod_elig_posterior.rds')
+
+hrc_posterior <- as_draws_df(hrc_mod_elig) #<- readRDS('data/analysis_output/hrc_mod_elig_posterior.rds')
+
+plot_title2 <- ggtitle(
+  "TI-HRC"
+)
+
+hrc_plot <- mcmc_areas(
+  hrc_posterior,
+  pars = c(
+    "b_groupRESPONSIVE",
+    "b_nars_pre_c",
+    "b_native_englishNonMNativeEnglish"
+  ),
+  prob = 0.8
+) +
+  #geom_vline(xintercept = 0, linetype = "dashed") +
+  scale_y_discrete(labels = labels) +
+  labs(x = "Posterior estimate") +
+  plot_title2 +
+  theme(
+    axis.title.y = element_text(size = 9)
+  ) 
+
+plot_title1 <- ggtitle(
+  "TPS-HRI"
+)
+draws_long <- as_draws_df(hrc_mod_elig) |>
+  select(all_of(pars)) |>
+  pivot_longer(everything(), names_to = "param", values_to = "value")
+
+hrc_plot <- ggplot(draws_long, aes(x = value, y = param)) +
+  stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(x = "Posterior estimate", y = NULL) +
+  scale_y_discrete(labels = labels)+xlim(-25,30) +plot_title2
+
+draws_long <- as_draws_df(hri_mod_elig) |>
+  select(all_of(pars)) |>
+  pivot_longer(everything(), names_to = "param", values_to = "value")
+
+hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
+  stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  labs(x = "Posterior estimate", y = NULL) +
+  #scale_y_discrete(labels = labels)+
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y  = element_blank(),
+    axis.ticks.y = element_blank()
+  )+xlim(-25,30) +plot_title1
+
+```
+
+```{r}
+#| label: fig-hri-posterior
+#| fig-cap: "Posterior distributions of fixed effects from the final TPS-HRI model. Shaded regions indicate 80% credible intervals; dashed vertical line denotes a null effect. Positive values indicate higher post-interaction trust scores."
+#| fig-align: left
+# plot_title1 <- ggtitle(
+#   "TPS-HRI"
+# )
+
+# hri_plot <- mcmc_areas(
+#   hri_posterior,
+#   pars = c(
+#     "b_groupRESPONSIVE",
+#     "b_nars_pre_c",
+#     "b_native_englishNonMNativeEnglish"
+#   ),
+#   prob = 0.8
+# ) +
+#   geom_vline(xintercept = 0, linetype = "dashed") +
+#   scale_y_discrete(labels = labels) +
+#   #labs(x = "Posterior estimate of Trust (points on 0-100 trust scale)") +
+#   plot_title1 +
+#   scale_y_discrete(labels = labels)+
+#   theme(
+#     axis.title.y = element_blank(),
+#     axis.text.y  = element_blank(),
+#     axis.ticks.y = element_blank()
+#   )
+
+
+```
+
+```{r}
+#| label: fig-finalmodels-posterior
+#| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models predicting post-interaction trust. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0–100 scale)."
+#| fig-align: left
+#| fig-width: 8
+#| fig-height: 5
+library(patchwork)
+# xlims <- c(-30, 30)
+
+# hrc_plot <- hrc_plot + coord_cartesian(xlim = xlims)
+# hri_plot <- hri_plot + coord_cartesian(xlim = xlims)
+
+(hrc_plot | hri_plot)+ 
+  plot_annotation(title = 'Posterior Distribution of Post-Interaction Trust',
+  subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = 'test',  theme = theme(plot.title = element_text(size = 14)))
+
+```
 ```{r}
 library(lme4)
 library(lmerTest)
@@ -794,7 +918,7 @@ Correlational analyses on the full sample (n=29) revealed patterns consistent wi
 
 Consistent with the experimental manipulation, specific robot dialogue behaviours showed substantial correlations with trust outcomes. Robot empathy expression—quantified as the proportion of dialogue turns in which the robot acknowledged participant affect or expressed understanding—was strongly correlated with both experienced trust (TI-HRC; r = .53, p = .008) and perceived trust (TPS-HRI: r = .65, p = .001). Similarly, robot use of collaborative language (e.g., "we," "let's") was positively associated with experienced trust (TI-HRC: r = .50, p = .012), as was robot encouragement (TI-HRC: r = .45, p = .027; TPS-HRI: r = .42, p = .040). These associations provide evidence that the specific affective and collaborative behaviours implemented in the responsive condition were linked to participants' trust evaluations beyond simple condition assignment.
 
-Participant engagement during interaction, operationalized as the frequency of detected positive affective responses, was positively correlated with perceived trust (r = .52, p = .009) and showed a trending association with experienced trust (r = .30, p = .156). Engaged responses (both AI detected and affective dialogue by the human) were associated with longer interaction duration (r = .54, p = .007), greater use of collaborative language by the robot (r = .50, p = .013), and fewer communication breakdowns (r = −.49, p = .016). This pattern suggests that responsive robot behaviour may have fostered a reciprocal dynamic in which robot affective adaptation elicited participant engagement, particularly in those high in NFC, which in turn supported smoother interaction and higher trust.
+
 
 ```{r}
 #| label: fig-corr-matrix
@@ -877,7 +1001,9 @@ corrplot(
 #write_csv(corr, 'correlation_matrix.csv')
 ```
 
-Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18–.20, p \> .35; overall accuracy: r = −.05 to .19, p \> .37), but did show a significant negative association with the TI-HRC Reliability subscale (r = .4, p \< .05), as well as a negative association with detected frustration, silenct periods and communication breakdowns. The dissociation between task outcomes and overall trust ratings indicates that participants' trust judgments for the most part reflected the quality and affective tone of the interaction process rather than instrumental success on the collaborative tasks. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
+Participant engagement during interaction, operationalized as the frequency of detected positive affective responses, was positively correlated with perceived trust (r = .52, p = .009) and showed a trending association with experienced trust (r = .30, p = .156). Engaged responses (both AI detected and affective dialogue by the human) were associated with longer interaction duration (r = .54, p = .007), greater use of collaborative language by the robot (r = .50, p = .013), and fewer communication breakdowns (r = −.49, p = .016). This pattern suggests that responsive robot behaviour may have fostered a reciprocal dynamic in which robot affective adaptation elicited participant engagement, particularly in those high in NFC, which in turn supported smoother interaction and higher trust.
+
+Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18–.20, p \> .35; overall accuracy: r = −.05 to .19, p \> .37), but did show a significant negative association with the TI-HRC Reliability subscale (r = .40, p \< .05), as well as a negative association with detected frustration, silenct periods and communication breakdowns. The dissociation between task outcomes and overall trust ratings indicates that participants' trust judgments for the most part reflected the quality and affective tone of the interaction process rather than instrumental success on the collaborative tasks. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
 
 ```{r}
 
@@ -1136,7 +1262,6 @@ Participants indicated their agreement with the following statements using a 5-p
 -   Raw dialogue text was retained during coding and removed prior to aggregation.
 -   Multiple turn-level codes may co-occur unless otherwise specified.
 
-
 ```{r}
 #| eval: false
 library(gtExtras)
@@ -1210,5 +1335,3 @@ transcript_df |>
   )
 
 ```
-
-
