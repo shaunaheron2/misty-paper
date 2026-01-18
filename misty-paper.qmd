@@ -790,7 +790,7 @@ library(patchwork)
 # hri_plot <- hri_plot + coord_cartesian(xlim = xlims)
 
 (hrc_plot | hri_plot)+ 
-  plot_annotation(title = 'Eligible Sample: Posterior Distribution of Post-Interaction Trust',
+  plot_annotation(title = 'Posterior Distribution of Post-Interaction Trust',
   subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = '',  theme = theme(plot.title = element_text(size = 14)))
 
 ```
