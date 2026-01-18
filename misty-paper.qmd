@@ -252,7 +252,7 @@ To assess whether this deviation introduced systematic bias, we conducted random
 
 ```{r}
 #| label: tbl-pre
-
+#| tbl-cap: "Baseline participant characteristics by interaction policy (full sample)"
 df_flat_scores_final |>
   #filter(exclusions != 'exclude') |>
   mutate(age = as_factor(age)) |>
@@ -352,13 +352,13 @@ post_table <- df_flat_scores_final |>
 
 ### Primary Analysis: Eligible Sample
 
-Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales. As indicated in @fig-post-eligible, average post-interaction scores on the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales), while differences on the Trust Perception Scale–HRI (TPS-HRI) were approximately 15 points higher in the responsive condition compared to the control (@fig-post-eligible).
+Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As indicated in @fig-post-eligible, average raw post-interaction scores on the Trust in Industrial Human–Robot Collaboration scale (TI-HRC) differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales), while differences on the Trust Perception Scale–HRI (TPS-HRI) were approximately 15 points higher in the responsive condition compared to the control (@fig-post-eligible).
 
 Importantly, overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.
 
 ```{r}
 #| label: tbl-post-eligible
-
+#| tbl-cap: "Post-Interaction Trust Outcomes and Task Accuracy by Policy in the Eligible Sample"
 post_table |>
   filter(exclusions != 'exclude') |>
   select(
@@ -469,7 +469,7 @@ plot2 <- ggbetweenstats(
   title = "Experienced Trust (TI-HRC)",
   results.subtitle = FALSE
 )
-plot1 | plot2
+plot2 | plot1
 ```
 
 Analysis of dialogue interaction patterns confirmed successful manipulation of the interaction policies (see @tbl-post-dialogue-turns). Manual coding of dialogue transcripts revealed substantial and significant differences in robot behaviour across conditions (see Appendix C for coding scheme). In the responsive condition, the robot employed encouragement in 36% of dialogue turns compared to 0% in the control condition (p \< .001), expressed empathy or acknowledged participant affect in 13% of turns versus 0% in the control (p \< .001), and used collaborative language (e.g., "we," "let's") in 42% of turns compared to 5% in control (p \< .001). Interestingly, while both conditions included proactive check-ins following periods of participant silence, the control robot engaged in such check-ins at a higher rate (21% vs. 13% of turns, p = .033), consistent with its reactive policy that limited proactive assistance to structured silence monitoring.
@@ -707,10 +707,10 @@ hri_posterior <- as_draws_df(hri_mod_elig) #<- readRDS('data/analysis_output/hri
 hrc_posterior <- as_draws_df(hrc_mod_elig) #<- readRDS('data/analysis_output/hrc_mod_elig_posterior.rds')
 
 plot_title2 <- ggtitle(
-  "Experienced Trust"
+  "TI-HRC: Experienced Trust"
 )
 plot_title1 <- ggtitle(
-  "Perceived Trust"
+  "TPS-HRI: Perceived Trust"
 )
 
 hrc_plot <- mcmc_areas(
@@ -908,7 +908,7 @@ hri_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  labs(title = "HRI Perceived Trust") +
+  labs(title = "TPS-HRI: Perceived Trust") +
   geom_ribbon(alpha = 0.08) +
   scale_color_manual(
     name = "Policy",
@@ -947,7 +947,7 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     axis.ticks.y = element_blank(),
     legend.position = "none"
   ) +
-  labs(title = "HRC Experienced Trust") +
+  labs(title = "TI-HRC: Experienced Trust") +
   geom_ribbon(alpha = 0.08) +
   scale_color_manual(
     name = "Policy",
