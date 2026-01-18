@@ -899,8 +899,8 @@ hri_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
   labs(
     x = "Communication breakdown \n(proportion)",
     y = "Predicted trust",
-    color = "Group",
-    fill = "Group"
+    color = "Policy",
+    fill = "Policy"
   ) +
   theme_few() +
   theme(
@@ -909,7 +909,22 @@ hri_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     axis.ticks.y = element_blank()
   ) +
   labs(title = "HRI Perceived Trust") +
-  geom_ribbon(alpha = 0.1)
+  geom_ribbon(alpha = 0.08) +
+  scale_color_manual(
+    name = "Policy",
+    values = c(
+      CONTROL = "#7A8DA0", # muted steel-blue
+      RESPONSIVE = "#C98A6A" # muted warm coral
+    )
+  ) +
+  scale_fill_manual(
+    name = "Policy",
+    values = c(
+      CONTROL = "#7A8DA0",
+      RESPONSIVE = "#C98A6A"
+    )
+  )
+
 
 ce <- conditional_effects(
   hrc_mod_mech,
@@ -922,8 +937,8 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
   labs(
     x = "Communication breakdown \n(proportion)",
     y = "Predicted trust",
-    color = "Group",
-    fill = "Group"
+    color = "Policy",
+    fill = "Policy"
   ) +
   theme_few() +
   theme(
@@ -933,7 +948,22 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     legend.position = "none"
   ) +
   labs(title = "HRC Experienced Trust") +
-  geom_ribbon(alpha = 0.18)
+  geom_ribbon(alpha = 0.08) +
+  scale_color_manual(
+    name = "Policy",
+    values = c(
+      CONTROL = "#7A8DA0", # muted steel-blue
+      RESPONSIVE = "#C98A6A" # muted warm coral
+    )
+  ) +
+  scale_fill_manual(
+    name = "Policy",
+    values = c(
+      CONTROL = "#7A8DA0",
+      RESPONSIVE = "#C98A6A"
+    )
+  )
+
 
 (hrc_mod_mech_plot | hri_mod_mech_plot) +
   plot_annotation(
@@ -975,8 +1005,8 @@ ggplot(
   labs(
     x = "Proportion communication breakdown",
     y = "Predicted trust",
-    color = "Group",
-    fill = "Group"
+    color = "Policy",
+    fill = "Policy"
   ) +
   theme_classic()
 
@@ -1016,6 +1046,7 @@ Overall task accuracy did not differ significantly between conditions (60% vs. 6
 
 ```{r}
 #| label: tbl-post-tasks
+#| tbl-cap: "Post-Interaction Task Performance by Policy in the Eligible Sample"
 post_table |>
   filter(exclusions != 'exclude') |>
   select(
@@ -1086,7 +1117,7 @@ Consistent with the experimental manipulation, specific robot dialogue behaviour
 ```{r}
 #| label: fig-corr-matrix
 #| fig-width: 8
-#| fig-height: 6
+#| fig-height: 7
 #| fig-cap: "Correlation Matrix of Key Study Variables"
 df_flat <- df_flat_scores_final |>
   #filter(exclusions != 'exclude') |>
