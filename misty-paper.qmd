@@ -779,7 +779,7 @@ hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
 
 ```{r}
 #| label: fig-finalmodels-posterior
-#| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models predicting post-interaction trust. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0–100 scale)."
+#| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample) predicting post-interaction trust. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0–100 scale)."
 #| fig-align: left
 #| fig-width: 8
 #| fig-height: 5
@@ -790,7 +790,7 @@ library(patchwork)
 # hri_plot <- hri_plot + coord_cartesian(xlim = xlims)
 
 (hrc_plot | hri_plot)+ 
-  plot_annotation(title = 'Posterior Distribution of Post-Interaction Trust',
+  plot_annotation(title = 'Eligible Sample: Posterior Distribution of Post-Interaction Trust',
   subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = 'test',  theme = theme(plot.title = element_text(size = 14)))
 
 ```
@@ -923,7 +923,7 @@ Consistent with the experimental manipulation, specific robot dialogue behaviour
 ```{r}
 #| label: fig-corr-matrix
 #| fig-width: 8
-#| fig-height: 7
+#| fig-height: 6
 #| fig-cap: "Correlation Matrix of Key Study Variables"
 df_flat <- df_flat_scores_final |>
   #filter(exclusions != 'exclude') |>
