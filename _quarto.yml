@@ -3,3 +3,14 @@ project:
   output-dir: docs
   render:
     - misty-paper.qmd
+
+website:
+  title: "misty-paper"
+  navbar: false
+  comments:
+    hypothesis:
+      theme: clean
+
+format:
+  html:
+    toc: true
