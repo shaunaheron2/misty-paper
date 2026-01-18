@@ -673,11 +673,13 @@ Bayesian estimation converged on similar effect magnitudes with high posterior c
 #| label: fig-hrc-posterior
 #| fig-cap: "Note: Posterior distributions of fixed effects from the final TI-HRC model. Shaded regions indicate 80% credible intervals; dashed vertical line denotes a null effect. Positive values indicate higher post-interaction trust scores. (points on a 0-100 scale)"
 #| fig-align: left
-#| 
+#|
 library(ggthemes)
 library(bayesplot)
 library(ggdist)
 library(posterior)
+library(tidybayes)
+library(brms)
 pars <- c(
   "b_groupRESPONSIVE",
   "b_nars_pre_c",
@@ -726,13 +728,13 @@ hrc_plot <- mcmc_areas(
   plot_title2 +
   theme(
     axis.title.y = element_text(size = 9)
-  ) 
+  )
 
 
 draws_long <- as_draws_df(hrc_mod_elig) |>
   select(all_of(pars)) |>
   pivot_longer(everything(), names_to = "param", values_to = "value") |>
-   mutate(
+  mutate(
     param = factor(param, levels = param_order)
   )
 
@@ -740,16 +742,16 @@ hrc_plot <- ggplot(draws_long, aes(x = value, y = param)) +
   stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   labs(x = "Posterior estimate", y = NULL) +
-    theme_few() +
-    theme(axis.text.y = element_text(size = 10))+
-  scale_y_discrete(labels = labels, limits=rev(param_order))+
-  xlim(-25,30) +
+  theme_few() +
+  theme(axis.text.y = element_text(size = 10)) +
+  scale_y_discrete(labels = labels, limits = rev(param_order)) +
+  xlim(-25, 30) +
   plot_title2
 
 draws_long <- as_draws_df(hri_mod_elig) |>
   select(all_of(pars)) |>
-  pivot_longer(everything(), names_to = "param", values_to = "value")|>
-   mutate(
+  pivot_longer(everything(), names_to = "param", values_to = "value") |>
+  mutate(
     param = factor(param, levels = param_order)
   )
 
@@ -757,13 +759,15 @@ hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
   stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
   geom_vline(xintercept = 0, linetype = "dashed") +
   labs(x = "Posterior estimate", y = NULL) +
-  scale_y_discrete(limits=rev(param_order))+
+  scale_y_discrete(limits = rev(param_order)) +
   theme_few() +
   theme(
     axis.title.y = element_blank(),
-    axis.text.y  = element_blank(),
+    axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
-  )+xlim(-25,30) +plot_title1 
+  ) +
+  xlim(-25, 30) +
+  plot_title1
 
 ```
 
@@ -795,7 +799,6 @@ hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
 #     axis.ticks.y = element_blank()
 #   )
 
-
 ```
 
 ```{r}
@@ -810,11 +813,17 @@ library(patchwork)
 # hrc_plot <- hrc_plot + coord_cartesian(xlim = xlims)
 # hri_plot <- hri_plot + coord_cartesian(xlim = xlims)
 
-(hrc_plot | hri_plot)+ 
-  plot_annotation(title = 'Posterior Estimates of Post-Interaction Trust',
-  subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = '',  theme = theme(plot.title = element_text(size = 14)))
+(hrc_plot | hri_plot) +
+  plot_annotation(
+    title = 'Posterior Estimates of Post-Interaction Trust',
+    subtitle = 'Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)',
+    caption = '',
+    theme = theme(plot.title = element_text(size = 14))
+  )
 
 ```
+
+
 ```{r}
 library(lme4)
 library(lmerTest)
@@ -866,7 +875,140 @@ To assess robustness, Bayesian models were refitted including all sessions regar
 
 #### Mechanism Analysis: Communication Breakdown (n=29)
 
-To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with proportional communication breakdown included as an interaction term. For TPS-HRI, the interaction between policy and communication breakdown was weak and centered near zero (posterior median $\beta$ = −1.14, 95% credible interval \[−18.87, 16.28\]), with only 55% probability of being negative and 50% probability of being significant. This broad, unstable posterior distribution suggests that evaluative trust judgments were relatively insensitive to graded variation in communication quality once a basic threshold of viability was established. In contrast, TI-HRC showed a more consistent pattern. The interaction term showed a negative tendency (posterior median $\beta$ = −5.97, 95% credible interval \[−23.01, 10.92\]), with 76% probability of being negative, 71% probability of being significant, and 45% probability of being large. While responsive behaviour was associated with higher experienced trust under low levels of breakdown, this advantage diminished as communication failures accumulated. This differential sensitivity suggests that experienced trust depends critically on the robot's sustained ability to engage in responsive interaction, whereas evaluative trust judgments may rely more on discrete moments of successful collaboration that can occur even within partially degraded interactions.
+To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with proportional communication breakdown included as an interaction term. For TPS-HRI, the interaction between policy and communication breakdown was weak and centered near zero (posterior median $\beta$ = −1.14, 95% credible interval \[−18.87, 16.28\]), with only 55% probability of being negative and 50% probability of being significant. This broad, unstable posterior distribution suggests that evaluative trust judgments were relatively insensitive to graded variation in communication quality once a basic threshold of viability was established. In contrast, TI-HRC showed a more consistent pattern (see @fig-mech-posterior). The interaction term showed a negative tendency (posterior median $\beta$ = −5.97, 95% credible interval \[−23.01, 10.92\]), with 76% probability of being negative, 71% probability of being significant, and 45% probability of being large. While responsive behaviour was associated with higher experienced trust under low levels of communication breakdown, this advantage diminished as communication failures accumulated. This differential sensitivity suggests that experienced trust depends critically on the robot's sustained ability to engage in responsive interaction, whereas evaluative trust judgments may rely more on discrete moments of successful collaboration that can occur even within partially degraded interactions.
+
+```{r}
+#| label: fig-mech-posterior
+#| fig-cap: "Predicted trust scores as a function of communication breakdown, stratified by interaction policy. Panels show experienced trust (left) and perceived trust (right). Lines represent posterior medians and shaded bands indicate 80% credible intervals. Communication breakdown is defined as the proportion of interaction turns flagged as breakdowns; predictions are shown at mean baseline negative attitudes toward robots."
+#| fig-align: left
+#| fig-width: 9
+#| fig-height: 5
+scores_df_full <- readRDS("scores_df_full.rds")
+
+hri_mod_mech <- readRDS('data/analysis_output/hri_mod_mech.rds')
+hrc_mod_mech <- readRDS('data/analysis_output/hrc_mod_mech.rds')
+
+ce <- conditional_effects(
+  hri_mod_mech,
+  effects = "prop_comm_breakdown:group",
+  prob = 0.8, # inner band
+  prob_outer = 0.95 # outer band
+)
+
+hri_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
+  labs(
+    x = "Communication breakdown \n(proportion)",
+    y = "Predicted trust",
+    color = "Group",
+    fill = "Group"
+  ) +
+  theme_few() +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  ) +
+  labs(title = "HRI Perceived Trust") +
+  geom_ribbon(alpha = 0.1)
+
+ce <- conditional_effects(
+  hrc_mod_mech,
+  effects = "prop_comm_breakdown:group",
+  prob = 0.8, # inner band
+  prob_outer = 0.95 # outer band
+)
+
+hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
+  labs(
+    x = "Communication breakdown \n(proportion)",
+    y = "Predicted trust",
+    color = "Group",
+    fill = "Group"
+  ) +
+  theme_few() +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank(),
+    legend.position = "none"
+  ) +
+  labs(title = "HRC Experienced Trust") +
+  geom_ribbon(alpha = 0.18)
+
+(hrc_mod_mech_plot | hri_mod_mech_plot) +
+  plot_annotation(
+    title = 'Trust as a Function of Communication Breakdown',
+    subtitle = 'Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)',
+    caption = '',
+    theme = theme(plot.title = element_text(size = 14))
+  )
+```
+
+```{r}
+#| eval: false
+
+df <- scores_df_full |> filter(scale != 'HRI_perception_post')
+
+# df = the data used to fit the model (or at least same columns/levels)
+grid <- crossing(
+  prop_comm_breakdown = seq(0, 1, length.out = 101),
+  group = levels(df$group)
+) %>%
+  mutate(
+    nars_pre_c = 0 # if it's centered, 0 is perfect
+    # add other covariates here the same way (e.g., native_english = "Native")
+  )
+
+pred_draws <- hrc_mod_mech %>%
+  add_epred_draws(newdata = grid, re_formula = NA)
+
+plot_df <- pred_draws %>%
+  group_by(group, prop_comm_breakdown) %>%
+  median_qi(.epred, .width = c(0.8, 0.95))
+
+ggplot(
+  plot_df,
+  aes(x = prop_comm_breakdown, y = .epred, color = group, fill = group)
+) +
+  geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.2, color = NA) +
+  geom_line() +
+  labs(
+    x = "Proportion communication breakdown",
+    y = "Predicted trust",
+    color = "Group",
+    fill = "Group"
+  ) +
+  theme_classic()
+
+# nars_vals <- quantile(df$nars_pre_c, probs = c(.1, .5, .9), na.rm = TRUE)
+
+# grid <- crossing(
+#   prop_comm_breakdown = seq(0, 1, length.out = 101),
+#   group = levels(df$group),
+#   nars_pre_c = as.numeric(nars_vals)
+# )
+
+# pred_draws <- hrc_mod_mech %>%
+#   add_epred_draws(newdata = grid, re_formula = NA)
+
+# plot_df <- pred_draws %>%
+#   group_by(group, nars_pre_c, prop_comm_breakdown) %>%
+#   median_qi(.epred, .width = c(0.8, 0.95))
+
+# ggplot(
+#   plot_df,
+#   aes(x = prop_comm_breakdown, y = .epred, color = group, fill = group)
+# ) +
+#   geom_ribbon(aes(ymin = .lower, ymax = .upper), alpha = 0.15, color = NA) +
+#   geom_line() +
+#   facet_wrap(
+#     ~nars_pre_c,
+#     labeller = label_bquote(nars_pre_c == .(round(as.numeric(nars_pre_c), 2)))
+#   ) +
+#   theme_classic()
+
+```
+
 
 ### Task performance
 

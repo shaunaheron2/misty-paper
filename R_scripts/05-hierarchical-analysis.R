@@ -151,10 +151,8 @@ hri_mod_elig <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
-saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig.rds')
+#saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig.rds')
 hri_posterior <- as.matrix(hri_mod_elig)
-
-saveRDS(hri_posterior, 'data/analysis_output/hri_mod_elig_posterior.rds')
 
 plot_title1 <- ggtitle(
   "Posterior distributions for HRI Trust Perception Scale",
@@ -187,9 +185,9 @@ hrc_mod_elig <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
-saveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig.rds')
+#saveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig.rds')
 hrc_posterior <- as.matrix(hrc_mod_elig)
-saveRDS(hrc_posterior, 'data/analysis_output/hrc_mod_elig_posterior.rds')
+
 plot_title2 <- ggtitle(
   "Posterior distributions for HRC Trust Experience Scale",
   "with medians and 80% intervals"
@@ -224,6 +222,7 @@ hri_mod_sens <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+#saveRDS(hri_mod_sens, 'data/analysis_output/hri_mod_sens.rds')
 
 hrc_mod_sens <- brm(
   robot_trust_post ~ group +
@@ -240,6 +239,7 @@ hrc_mod_sens <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+#saveRDS(hrc_mod_sens, 'data/analysis_output/hrc_mod_sens.rds')
 
 ## Models Full Mechanism
 
@@ -259,6 +259,7 @@ hri_mod_mech <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+#saveRDS(hri_mod_mech, 'data/analysis_output/hri_mod_mech.rds')
 
 hrc_mod_mech <- brm(
   robot_trust_post ~ group *
@@ -277,6 +278,7 @@ hrc_mod_mech <- brm(
   control = list(adapt_delta = 0.95)
 )
 
+saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech.rds')
 
 summary(hri_mod)
 summary(hrc_mod)
