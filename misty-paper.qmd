@@ -791,7 +791,7 @@ library(patchwork)
 
 (hrc_plot | hri_plot)+ 
   plot_annotation(title = 'Eligible Sample: Posterior Distribution of Post-Interaction Trust',
-  subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = 'test',  theme = theme(plot.title = element_text(size = 14)))
+  subtitle='Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)', caption = '',  theme = theme(plot.title = element_text(size = 14)))
 
 ```
 ```{r}
