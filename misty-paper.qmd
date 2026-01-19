@@ -1325,6 +1325,10 @@ Future work will also extend this research empirically. Larger samples will enab
 
 More broadly, this work underscores the importance of evaluating trust in autonomous robots under conditions that expose, rather than conceal, system limitations. Understanding how trust is negotiated, disrupted, and repaired in the absence of human intervention is essential for the responsible deployment of autonomous robots in real-world collaborative settings.
 
+## References {#refs}
+::: {#refs}
+:::
+
 ## Appendix A {#sec-appendix-a .appendix}
 
 ### Technical Implementation Details
