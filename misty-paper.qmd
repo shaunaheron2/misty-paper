@@ -7,7 +7,35 @@ format:
     linenumbers: false
     doublespacing: false
     runninghead: "A PREPRINT"
-  arxiv-html: default
+  arxiv-html:
+    title-block-banner: true
+    include-in-header:
+      - text: |
+          <style>
+          /* Target the container that holds title, author, date */
+          .quarto-title-block .quarto-title-banner {
+              position: relative;
+              background-color: #6a8f8dff !important; /* Reddish for warning */
+              color: white;
+          }
+          /* Add the preprint label */
+          .quarto-title-block .quarto-title-banner::before {
+              content: "PREPRINT";
+              position: absolute;
+              top: 10px;
+              right: 20px;
+              font-size: 1em;
+              font-weight: bold;
+              padding: 2px 8px;
+              background-color: #f14e4eff;
+              border-radius: 4px;
+              z-index: 10;
+          }
+          /* Adjust title text color if needed */
+          .quarto-title-block .quarto-title-banner .title {
+              color: white !important;
+          }
+          </style>
 author:
   - name: Shauna Heron
     affiliations:
