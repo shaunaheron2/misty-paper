@@ -14,3 +14,5 @@ website:
 format:
   html:
     toc: true
+ # pdf:
+ #   cite-method: biblatex
