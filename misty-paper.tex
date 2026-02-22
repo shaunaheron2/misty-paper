@@ -150,6 +150,11 @@
 \usepackage{orcidlink}
 \usepackage{amsmath}
 \usepackage[T1]{fontenc}
+
+\usepackage{color,soul}
+\definecolor{lightyellow}{rgb}{1,1,0.5}
+\sethlcolor{lightyellow}
+
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -427,6 +432,8 @@ feasibility and identifying technical, interactional, and methodological
 challenges that must be addressed when evaluating affect-responsive
 robots in real-world contexts.
 
+\hl{MC: admit some of the limitations earlier "As a pilot investigation, this study prioritizes feasibility assessment and mechanism exploration over confirmatory hypothesis testing. The sample size is modest, interaction conditions are subject to real-world autonomy constraints, and final condition assignment was not fully randomized due to participant attrition. Accordingly, results should be interpreted as exploratory evidence regarding how interaction policy shapes trust under autonomous spoken-language collaboration, and as guidance for the design of larger, confirmatory studies."}
+
 \section{Methods}\label{methods}
 
 This study employed a between-subjects experimental design to examine
@@ -640,11 +647,9 @@ experimental condition.
 Upon arrival, participants were greeted by the researcher, provided with
 a brief overview of the session, and given instructions for effective
 communication with the robot. Once participants indicated readiness, the
-researcher exited the room, leaving the participant and robot to
-complete the interaction without human presence or observation.
+researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation.
 Participants initiated the interaction by clicking a start button on the
-interface and were informed that they could terminate the session at any
-time without penalty.
+interface and were informed that they could terminate the session at any time without penalty.
 
 Following task completion, participants completed a 21-item
 post-interaction questionnaire assessing trust on a laptop. Participants
@@ -676,7 +681,7 @@ the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to
 reference the robot's behaviour during the dialogue-driven collaborative
 tasks, and response formats were adjusted to ensure interpretability for
 participants without prior robotics experience (see Appendix B for a
-full item list).
+full item list). \hl{MC: Internal consistency of the adapted trust measures was evaluated within the present sample to assess measurement reliability under the modified wording and response formats. Given the pilot sample size, reliability estimates should be interpreted cautiously, but are reported to provide transparency regarding scale performance under fully autonomous interaction conditions.}
 
 Together, these instruments capture complementary dimensions of trust,
 including perceived reliability, task competence, and affective comfort.
@@ -817,6 +822,8 @@ as non-viable, reflecting cases in which spoken-language interaction
 could not be meaningfully sustained. This criterion closely aligned with
 sessions independently flagged by the researcher during administration.
 
+\hl{MC: Consider adding "...because communication viability may itself be influenced by interaction policy, excluding non-viable sessions may introduce selection bias and inflate estimated policy effects."}
+
 Analyses were conducted using three complementary approaches. Primary
 analyses were performed on an eligible sample excluding non-viable
 sessions, reflecting interactions in which the spoken-language protocol
@@ -949,6 +956,8 @@ implemented affect-adaptive, proactive support behaviours while
 maintaining comparable interaction viability to the neutral control
 condition.
 
+
+
 \begin{table}
 
 \caption{\label{tbl-post-dialogue-turns}Post-Interaction Objective
@@ -994,7 +1003,11 @@ Beyond descriptive comparisons, hierarchical models were fitted to
 evaluate the robustness of interaction policy effects while controlling
 for baseline covariates and accounting for measurement structure.
 
+\hl{MC: It is important to note that the responsive interaction policy was associated not only with affective and collaborative dialogue features, but also with longer session durations, increased dialogue content, and slower average response times. As such, responsiveness in the present study reflects a bundled interaction profile rather than a single isolated manipulation. Observed trust differences may therefore partially reflect increased interaction exposure or dialogue richness in addition to affect-adaptive behavior per se. Future work should more finely disentangle these components.}
+
 \subsection{Hierarchical Models}\label{hierarchical-models}
+
+\hl{MC: Consider adding "Given the pilot nature of the study and the modest eligible sample size, hierarchical models were used primarily to estimate effect direction and uncertainty rather than to support strong confirmatory inference. Bayesian modeling was adopted to allow partial pooling across items and to characterize uncertainty under limited data, with results interpreted in terms of effect plausibility rather than binary significance thresholds." }
 
 To evaluate the robustness of interaction policy effects while
 controlling for baseline covariates, mixed-effects models were fitted
@@ -1200,6 +1213,8 @@ Floor ID Accuracy & 7 / 10 (70\%) & 13 / 14 (93\%) & 0.27 \\
 
 \subsection{Individual differences and correlational
 patterns}\label{individual-differences-and-correlational-patterns}
+
+\hl{MC: The following correlational analyses are exploratory in nature. A large number of associations were examined across behavioral, interactional, and self-report measures, and p-values were not corrected for multiple comparisons. Accordingly, these results should be interpreted as hypothesis-generating patterns rather than confirmatory evidence.}
 
 Correlational analyses on the full sample (n=29) revealed patterns
 consistent with the interpretation that trust was shaped by interaction
