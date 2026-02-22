@@ -119,6 +119,11 @@
 \usepackage{orcidlink}
 \usepackage{amsmath}
 \usepackage[T1]{fontenc}
+
+\usepackage{color,soul}
+\definecolor{lightyellow}{rgb}{1,1,0.5}
+\sethlcolor{lightyellow}
+
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -406,6 +411,8 @@ technical, interactional, and methodological challenges that must be
 addressed when evaluating affect-responsive robots in real-world
 contexts.
 
+\hl{MC: admit some of the limitations earlier "As a pilot investigation, this study prioritizes feasibility assessment and mechanism exploration over confirmatory hypothesis testing. The sample size is modest, interaction conditions are subject to real-world autonomy constraints, and final condition assignment was not fully randomized due to participant attrition. Accordingly, results should be interpreted as exploratory evidence regarding how interaction policy shapes trust under autonomous spoken-language collaboration, and as guidance for the design of larger, confirmatory studies."}
+
 \section{Methods}\label{methods}
 
 This study employed a between-subjects experimental design to examine
@@ -644,11 +651,9 @@ experimental condition.
 Upon arrival, participants were greeted by the researcher, provided with
 a brief overview of the session, and given instructions for effective
 communication with the robot. Once participants indicated readiness, the
-researcher exited the room, leaving the participant and robot to
-complete the interaction without human presence or observation.
+researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation.
 Participants initiated the interaction by clicking a start button on the
-interface and were informed that they could terminate the session at any
-time without penalty.
+interface and were informed that they could terminate the session at any time without penalty.
 
 Following task completion, participants completed a 21-item
 post-interaction questionnaire assessing trust on a laptop. Participants
@@ -978,6 +983,8 @@ differences may therefore partially reflect increased interaction
 exposure or dialogue richness in addition to affect-adaptive behavior
 per se. Future work should more finely disentangle these components.
 
+
+
 \begin{table}
 
 \caption{\label{tbl-post-dialogue-turns}Post-Interaction Objective
@@ -1022,6 +1029,8 @@ Human Affective Engagement & 0.04 (0.05) & 0.10 (0.08) & {\bfseries 0.032} \\
 Beyond descriptive comparisons, hierarchical models were fitted to
 evaluate the robustness of interaction policy effects while controlling
 for baseline covariates and accounting for measurement structure.
+
+\hl{MC: It is important to note that the responsive interaction policy was associated not only with affective and collaborative dialogue features, but also with longer session durations, increased dialogue content, and slower average response times. As such, responsiveness in the present study reflects a bundled interaction profile rather than a single isolated manipulation. Observed trust differences may therefore partially reflect increased interaction exposure or dialogue richness in addition to affect-adaptive behavior per se. Future work should more finely disentangle these components.}
 
 \subsection{Hierarchical Models}\label{hierarchical-models}
 
