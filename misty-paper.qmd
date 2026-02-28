@@ -62,13 +62,11 @@ abstract: |
     Trust plays a central role in human–robot collaboration, yet its formation is rarely examined under the constraints of fully autonomous interaction. This pilot study investigated how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted repair. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue and assistance based on inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when prompted. Responsive interaction was associated with significantly higher post-interaction trust under viable communication conditions, despite no reliable differences in overall task accuracy. Sensitivity analyses indicated that affective and experiential components of trust were more sensitive to communication breakdown than evaluative judgments of reliability, and that as language-mediated interaction degraded, the trust advantage associated with responsiveness attenuated and ratings became less clearly interpretable as calibrated evaluations of collaborative competence. These findings suggest that trust in autonomous human–robot interaction emerges from process-level interaction dynamics and operates within constraints imposed by communication viability, highlighting the importance of evaluating trust under real autonomy conditions when designing interactive robotic systems.
     
 keywords: 
-  - human-robot collaboration
-  - HRI
+  - Human-robot collaboration
+  - Human-robot interaction
   - socially assistive robotics
-  - cobots
   - autonomous robot systems
   - embodied AI
-  - spoken language interaction
   - trust in human-robot interaction
   - affect-adaptive robot systems
 bibliography: bibliography.bib
@@ -161,6 +159,8 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 
 ```
 
+## Highlights
+- 
 ## Introduction
 
 As artificial intelligence (AI) technologies advance, they are increasingly integrated into robotic systems, enabling more adaptive, autonomous, and context-sensitive behaviour in real-world environments. This convergence has accelerated the deployment of robots across safety-critical domains such as manufacturing [@choi2025], mining [@fu2021], and healthcare [@ciuffreda2025], where robots are now expected to operate alongside humans rather than in isolation [@diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but also on whether human users are willing to rely on, communicate with, and coordinate their actions around robotic partners [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance and accidents—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
@@ -186,6 +186,9 @@ The present pilot study addresses these gaps by examining trust and collaboratio
 This pilot study had three primary objectives: (1) to design and evaluate the feasibility of an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether a responsive interaction policy influences post-interaction trust and collaborative experience under autonomous conditions; and (3) to explore how behavioural and interaction-level indicators align with subjective trust evaluations. 
 
 Rather than optimizing for flawless interaction, this pilot study prioritizes feasibility assessment and mechanism exploration over confirmatory hypothesis testing. The sample size is modest, interaction conditions subject to real-world autonomy constraints, and final condition assignment was not fully randomized due to participant attrition. Accordingly, results should be interpreted as exploratory evidence regarding how interaction policy shapes trust under autonomous spoken-language collaboration, and as guidance for the design of larger, confirmatory studies. The findings are intended to inform the design of a larger subsequent study by evaluating feasibility and identifying technical, interactional, and methodological challenges that must be addressed when evaluating affect-responsive robots in real-world contexts.
+
+## Funding Source
+This research was supported by a grant from the IAMGOLD President’s Innovation Fund awarded to the first author (ROMEO File #: 6021966). The funder had no role in the design, execution, analysis, or interpretation of the study.
 
 ## Methods
 
@@ -1335,6 +1338,10 @@ These results directly inform the next phase of work at both empirical and syste
 Architecturally, future iterations will move toward more explicit state-based or graph-oriented dialogue management, allowing conditional stage transitions, structured repair strategies, and flexible tool integration. Adaptive language management mechanisms will be explored to detect emerging communication mismatch, such as repeated recognition failures or repair loops, and to adjust linguistic complexity, pacing, or response format accordingly. These refinements are intended to expand the range of conditions under which affect-responsive policies can operate effectively.
 
 More broadly, this pilot study underscores the importance of evaluating trust in autonomous systems under conditions that expose, rather than conceal, system limitations. Understanding how trust is shaped, constrained, and potentially restored under real autonomy conditions is essential for the responsible deployment of social robots in collaborative environments.
+
+## Declaration of generative AI and AI-assisted technologies in the writing process
+
+During the preparation of this work the author used generative AI technologies in the form of large language models (LLMs) to assist with fine-tuning sections of the manuscript, including the introduction, discussion, and limitations. The use of these tools was intended to enhance clarity, coherence, and readability while adhering to the authors' intellectual contributions and interpretations. After using this tool/service, the author reviewed and edited the content as needed and take full responsibility for the content of the published article. Generative AI tools were not used for data analysis, interpretation of results, or the formulation of conclusions, which were based solely on the authors' expertise and judgment.
 
 ## References {#refs}
 ::: {#refs}
