@@ -1,0 +1,178 @@
+/* Poster Styling */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.poster-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* Header Section */
+.header-section {
+  text-align: center;
+  background: linear-gradient(135deg, #6a8f8d 0%, #C98A6A 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.header-section h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.header-section h2 {
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+
+/* Column Layout */
+.columns {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.column {
+  flex: 1;
+}
+
+/* Section Headings */
+h3 {
+  color: #6a8f8d;
+  border-bottom: 3px solid #C98A6A;
+  padding-bottom: 10px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-size: 1.4em;
+}
+
+/* Highlight Boxes */
+.highlight-box {
+  background: #fff4e6;
+  border-left: 5px solid #C98A6A;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 5px;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.insight-box {
+  background: #e8f4f8;
+  border-left: 5px solid #6a8f8d;
+  padding: 15px;
+  margin: 15px 0;
+  border-radius: 5px;
+}
+
+.insight-box h4 {
+  color: #6a8f8d;
+  margin-top: 0;
+  font-size: 1.2em;
+}
+
+.method-box {
+  background: #f8f9fa;
+  border: 2px solid #6a8f8d;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 15px 0;
+}
+
+.method-box p {
+  margin: 10px 0;
+}
+
+/* Footer */
+.footer-section {
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+/* Images */
+img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin: 10px 0;
+}
+
+/* Tables (gt output) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+}
+
+/* Lists */
+ul {
+  line-height: 1.8;
+}
+
+li {
+  margin: 8px 0;
+}
+
+/* Strong text */
+strong {
+  color: #C98A6A;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 1200px) {
+  .columns {
+    flex-direction: column;
+  }
+
+  .column {
+    width: 100% !important;
+  }
+}
+
+/* Print optimization */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  .poster-container {
+    box-shadow: none;
+    padding: 20px;
+  }
+}
+
+/* For visual abstract (simplified version) */
+.visual-abstract {
+  max-width: 1600px;
+  aspect-ratio: 16/9;
+}
+
+.visual-abstract .columns {
+  gap: 40px;
+}
+
+.visual-abstract h3 {
+  font-size: 1.8em;
+}
+
+.visual-abstract .highlight-box {
+  font-size: 1.4em;
+}

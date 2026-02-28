@@ -160,7 +160,12 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 ```
 
 ## Highlights
-- 
+
+  - AI-based affect-adaptive robots increased trust even when task accuracy was unchanged
+  - Experienced trust degraded faster than perceived trust under communication failure
+  - Proactive responsiveness enhanced trust in AI-powered human-robot collaboration
+  - Fully autonomous AI-driven robot study exposes real interaction breakdowns
+
 ## Introduction
 
 As artificial intelligence (AI) technologies advance, they are increasingly integrated into robotic systems, enabling more adaptive, autonomous, and context-sensitive behaviour in real-world environments. This convergence has accelerated the deployment of robots across safety-critical domains such as manufacturing [@choi2025], mining [@fu2021], and healthcare [@ciuffreda2025], where robots are now expected to operate alongside humans rather than in isolation [@diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but also on whether human users are willing to rely on, communicate with, and coordinate their actions around robotic partners [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human–robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance and accidents—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].

@@ -1,0 +1,171 @@
+---
+title: ""
+format:
+  html:
+    embed-resources: true
+    page-layout: custom
+    css: visual-abstract-style.css
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(patchwork)
+library(ggstatsplot)
+
+# Load your data
+df_flat_scores_final <- readRDS("full_dataset_with_items.rds")
+dialogue_session_summary <- read_csv(
+  'data/analysis_output/final_dialogue_summary.csv'
+) |>
+  mutate(exclusions = if_else(mean_comm_breakdown > .6, 'exclude', 'include'))
+
+df_flat_scores_final <- df_flat_scores_final |>
+  left_join(dialogue_session_summary, by = join_by(session_id)) |>
+  mutate(
+    post_trust = scales::rescale(
+      post_trust,
+      to = c(0, 100),
+      min_old = 1,
+      max_old = 5
+    )
+  )
+```
+
+::: {.visual-abstract-container}
+
+<!-- Title -->
+::: {.title-section}
+# Trust in Autonomous Human–Robot Collaboration
+### Effects of Responsive Interaction Policies
+:::
+
+<!-- Main Content Grid -->
+::: {.grid-container}
+
+<!-- Study Design -->
+::: {.box study-design}
+### 🤖 Study Design
+
+![](images/misty-pullback.jpg){width=100%}
+
+**Fully Autonomous AI Robot**
+- No Wizard of Oz
+- Real-time emotion detection
+- Autonomous dialogue management
+
+**N = 29 participants**
+- Responsive vs. Control policy
+- Collaborative puzzle tasks
+:::
+
+<!-- Key Finding -->
+::: {.box key-finding}
+### 📊 Key Finding
+
+```{r trust-plot}
+#| echo: false
+#| fig-width: 7
+#| fig-height: 4
+#| warning: false
+
+ggplot(
+  df_flat_scores_final |> filter(exclusions != 'exclude'),
+  aes(x = group, y = post_trust, fill = group)
+) +
+  geom_violin(alpha = 0.5) +
+  stat_summary(fun = mean, geom = "point", size = 5, color = "red") +
+  stat_summary(
+    fun.data = mean_cl_normal,
+    geom = "errorbar",
+    width = 0.2,
+    color = "red",
+    linewidth = 1
+  ) +
+  scale_fill_manual(
+    values = c("CONTROL" = "#7A8DA0", "RESPONSIVE" = "#C98A6A")
+  ) +
+  theme_minimal(base_size = 16) +
+  labs(
+    y = "Trust Score (0-100)",
+    x = "",
+    title = "Responsive Policy Increased Trust"
+  ) +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", size = 18)
+  )
+```
+
+::: {.stat-highlight}
+**+26 points higher trust**
+**Task accuracy unchanged**
+:::
+
+:::
+
+<!-- Mechanism -->
+::: {.box mechanism}
+### 🎯 Key Insights
+
+**1. Process Over Outcomes**
+Trust driven by interaction quality, not task performance
+
+**2. Differential Sensitivity**
+- ❤️ Affective trust → More sensitive to breakdown
+- ✓ Reliability trust → Less sensitive
+
+**3. Communication Matters**
+Benefits require viable linguistic grounding
+
+```{r mechanism-plot}
+#| echo: false
+#| fig-width: 7
+#| fig-height: 3.5
+#| warning: false
+
+# Simple comparison of interaction characteristics
+df_flat_scores_final |>
+  filter(exclusions != 'exclude') |>
+  select(
+    group,
+    Encouragement = prop_robot_encouragement,
+    Empathy = prop_robot_empathy_expression,
+    Collaborative = prop_robot_collaborative_lang
+  ) |>
+  pivot_longer(-group, names_to = "Behavior", values_to = "Proportion") |>
+  group_by(group, Behavior) |>
+  summarise(mean_prop = mean(Proportion, na.rm = TRUE), .groups = "drop") |>
+  ggplot(aes(x = Behavior, y = mean_prop, fill = group)) +
+  geom_col(position = "dodge", alpha = 0.8) +
+  scale_fill_manual(
+    values = c("CONTROL" = "#7A8DA0", "RESPONSIVE" = "#C98A6A")
+  ) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal(base_size = 14) +
+  labs(
+    y = "% of Dialogue Turns",
+    x = "",
+    title = "Responsive Robot Behaviors",
+    fill = "Policy"
+  ) +
+  theme(plot.title = element_text(face = "bold", size = 16))
+```
+
+:::
+
+<!-- Bottom takeaway -->
+::: {.box takeaway}
+### ⭐ Main Takeaway
+
+**AI-based affect-adaptive robots increase trust through responsive interaction processes—even when task performance is unchanged—but only when communication remains viable.**
+
+**Novel:** First fully autonomous affect-adaptive spoken-language HRI study
+
+**Authors:** Shauna Heron & Meng Cheng Lau | Laurentian University
+:::
+
+:::
+
+:::
+

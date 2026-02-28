@@ -1,0 +1,171 @@
+/* Visual Abstract Styling - Optimized for 16:9 */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.visual-abstract-container {
+  width: 1600px;
+  height: 900px;
+  margin: 0 auto;
+  padding: 40px;
+  box-sizing: border-box;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e8f4f8 100%);
+}
+
+/* Title Section */
+.title-section {
+  text-align: center;
+  background: linear-gradient(135deg, #6a8f8d 0%, #C98A6A 100%);
+  color: white;
+  padding: 25px;
+  border-radius: 12px;
+  margin-bottom: 30px;
+}
+
+.title-section h1 {
+  font-size: 2.8em;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.title-section h3 {
+  font-size: 1.6em;
+  margin: 0;
+  font-weight: 400;
+  border: none;
+  color: white;
+  padding: 0;
+}
+
+/* Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 25px;
+  height: calc(100% - 150px);
+}
+
+/* Individual Boxes */
+.box {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: auto;
+}
+
+.study-design {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.key-finding {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.mechanism {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.takeaway {
+  grid-column: 2;
+  grid-row: 2;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Headings */
+h3 {
+  color: #6a8f8d;
+  font-size: 1.6em;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 3px solid #C98A6A;
+  padding-bottom: 8px;
+}
+
+.takeaway h3 {
+  color: white;
+  border-bottom-color: #C98A6A;
+}
+
+/* Text styling */
+.box p, .box ul {
+  font-size: 1.1em;
+  line-height: 1.6;
+}
+
+.box strong {
+  color: #C98A6A;
+  font-weight: 700;
+}
+
+.box ul {
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+.box li {
+  margin: 8px 0;
+}
+
+/* Stat highlight */
+.stat-highlight {
+  background: #fff4e6;
+  border-left: 5px solid #C98A6A;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: 700;
+  color: #2c3e50;
+}
+
+/* Images */
+img {
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+/* Figures */
+.cell-output-display {
+  margin: 10px 0;
+}
+
+/* Takeaway specific styling */
+.takeaway p {
+  font-size: 1.2em;
+  line-height: 1.8;
+  margin: 15px 0;
+}
+
+.takeaway strong {
+  color: #C98A6A;
+  font-weight: 700;
+}
+
+/* Print optimization */
+@media print {
+  .visual-abstract-container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+}
+
+/* Emoji styling */
+h3::first-letter {
+  font-size: 1.2em;
+}

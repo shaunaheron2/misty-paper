@@ -1,0 +1,415 @@
+---
+title: "Trust in Autonomous Human–Robot Collaboration: Effects of Responsive Interaction Policies"
+author:
+  - name: Shauna Heron
+    affiliation: Laurentian University
+    email: sheron@laurentian.ca
+  - name: Meng Cheng Lau
+    affiliation: Laurentian University
+    email: mclau@laurentian.ca
+format:
+  html:
+    embed-resources: true
+    page-layout: custom
+    grid:
+      body-width: 1400px
+    toc: false
+    css: poster-style.css
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(patchwork)
+library(ggstatsplot)
+library(gt)
+
+# Load your data
+df_flat_scores_final <- readRDS("full_dataset_with_items.rds")
+dialogue_session_summary <- read_csv(
+  'data/analysis_output/final_dialogue_summary.csv'
+) |>
+  mutate(exclusions = if_else(mean_comm_breakdown > .6, 'exclude', 'include'))
+
+df_flat_scores_final <- df_flat_scores_final |>
+  left_join(dialogue_session_summary, by = join_by(session_id)) |>
+  mutate(
+    post_trust = scales::rescale(
+      post_trust,
+      to = c(0, 100),
+      min_old = 1,
+      max_old = 5
+    )
+  )
+```
+
+::: {.poster-container}
+
+<!-- HEADER SECTION -->
+::: {.header-section}
+# Trust in Autonomous Human–Robot Collaboration
+## Effects of Responsive Interaction Policies
+
+**Shauna Heron & Meng Cheng Lau**
+School of Social Sciences, Laurentian University
+*An In-Person Pilot Study*
+:::
+
+<!-- THREE COLUMN LAYOUT -->
+::: {.columns}
+
+<!-- LEFT COLUMN -->
+::: {.column width="30%"}
+
+### 🎯 Research Question
+
+**Can responsive interaction policies increase trust in fully autonomous human-robot collaboration?**
+
+### Background
+
+- Trust is critical for human-robot collaboration
+- Most HRI/HRC studies use **Wizard-of-Oz** control or scripted interactions
+- Real autonomous systems face:
+  - Speech recognition errors
+  - Delayed responses
+  - Misinterpretations
+  - Communication breakdowns
+
+**This study:** Examined trust in HRC under **fully autonomous** affect-adaptive spoken dialogue
+
+### Method
+
+::: {.method-box}
+**Participants:** N = 29 (24 eligible)
+
+**Robot Platform:** Misty II
+
+- Autonomous AI dialogue (Gemini)
+- Emotion detection (DistilRoBERTa)
+- Real-time affect inference
+
+**Design:** Between-subjects
+
+- **Responsive Policy:** Proactive, affect-adaptive assistance
+- **Control Policy:** Reactive, task-focused responses
+
+**Tasks:**
+
+1. Robot-dependent suspect identification (5 min)
+2. Optional-collaboration location puzzle (10 min)
+
+**Measures:**
+
+- Trust Perception Scale–HRI (TPS-HRI)
+- Trust in Industrial HRC (TI-HRC)
+- Task accuracy
+- Dialogue coding (interaction quality)
+:::
+
+![Experimental Setup](images/misty-pullback.jpg){width=100%}
+
+:::
+
+<!-- MIDDLE COLUMN -->
+::: {.column width="40%"}
+
+### 📊 Key Results
+
+#### Main Finding: Responsive Policy Increased Trust in HRI
+
+```{r trust-comparison}
+#| echo: false
+#| fig-width: 9
+#| fig-height: 5
+#| warning: false
+
+plot1 <- ggbetweenstats(
+  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
+  x = group,
+  y = trust_perc_post,
+  conf.level = 0.95,
+  mean.plotting = TRUE,
+  mean.ci = TRUE,
+  ylab = "Trust Score (0-100)",
+  xlab = "",
+  title = "Perceived Trust (TPS-HRI)",
+  results.subtitle = FALSE
+) +
+  theme_minimal(base_size = 14)
+
+plot2 <- ggbetweenstats(
+  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
+  x = group,
+  y = post_trust,
+  conf.level = 0.95,
+  mean.plotting = TRUE,
+  mean.ci = TRUE,
+  ylab = "Trust Score (0-100)",
+  xlab = "",
+  title = "Experienced Trust (TI-HRC)",
+  results.subtitle = FALSE
+) +
+  theme_minimal(base_size = 14)
+
+plot2 | plot1
+```
+
+
+::: {.highlight-box}
+
+- **Responsive Policy:**
+  - **+26 points (TI-HRC)** 
+  - **+15 points (TPS-HRI)**
+- **Effects independent of task accuracy**
+- **Communication viability moderated effects**
+:::
+
+#### Task Performance: No Significant Difference
+
+```{r task-performance}
+#| echo: false
+#| warning: false
+
+df_flat_scores_final |>
+  filter(exclusions != 'exclude') |>
+  select(
+    group,
+    prop_correct,
+    suspect_correct,
+    post_trust,
+    trust_perc_post
+  ) |>
+  group_by(group) |>
+  summarise(
+    prop_correct = mean(prop_correct, na.rm = TRUE),
+    `Robot Dependant Task` = mean(suspect_correct == 1, na.rm = TRUE),
+    `Experienced Trust (TI-HRC)` = mean(post_trust, na.rm = TRUE),
+    `Perceived Trust (TPS-HRI)` = mean(trust_perc_post, na.rm = TRUE)
+  ) |>
+  gt() |>
+  fmt_percent(columns = 2:3, decimals = 0) |>
+  tab_header(title = "Task Accuracy by Condition & Trust") |>
+  tab_options(
+    table.font.size = 16,
+    heading.title.font.size = 18
+  ) |>
+  fmt_number(4:5, decimals = 1) |>
+  cols_label(prop_correct ~ "Overall Accuracy", group ~ 'Robot Policy') |>
+  cols_align(1, align = 'right') |>
+  cols_align(2:5, align = 'center') |>
+  cols_hide(`Robot Dependant Task`) |>
+  tab_footnote(
+    "No significant difference in task accuracy between conditions",
+    locations = cells_body(columns = 2)
+  )
+```
+
+::: {.insight-box}
+**Trust appears shaped by interaction process, not necessarily task outcomes**
+:::
+
+#### Interaction Policy Manipulation Check
+
+```{r manipulation-check}
+#| echo: false
+#| warning: false
+
+# Create summary table of key dialogue behaviors
+df_flat_scores_final |>
+  filter(exclusions != 'exclude') |>
+  mutate(prop_comm_breakdown = n_comm_breakdown / n_task_turns / 2) |>
+  # prop_robot_encouragement = n_robot_encouragement /n_task_turns/2,
+  # prop_robot_empathy_expression = n_robot_empathy_expression / n_task_turns/2,
+  # prop_robot_collaborative_lang = n_robot_collaborative_lang / n_task_turns/2) |>
+  select(
+    group,
+    `Robot Encouragement` = prop_robot_encouragement,
+    `Robot Empathy` = prop_robot_empathy_expression,
+    `Collaborative Language` = prop_robot_collaborative_lang,
+    `Communication Breakdown` = prop_comm_breakdown
+  ) |>
+  group_by(group) |>
+  summarise(across(everything(), ~ mean(.x, na.rm = TRUE))) |>
+  gt() |>
+  fmt_percent(columns = 2:5, decimals = 0) |>
+  tab_header(title = "Dialogue Characteristics (% of turns)") |>
+  tab_options(
+    table.font.size = 14,
+    heading.title.font.size = 16
+  ) |>
+  cols_align(1, align = 'right') |>
+  cols_align(2:5, align = 'center') |>
+  cols_label(group ~ 'Robot Policy') |>
+  tab_footnote(
+    "Responsive policy generated significantly more encouragement, empathy, and collaborative language. A turn is defined as a single utterance/response diad.",
+    locations = cells_body(columns = 2:4)
+  )
+```
+
+::: {.insight-box}
+Experienced trust (TI-HRC): 
+
+- *I trusted that the robot would give me accurate answers*
+- *The way the robot moved made me uneasy*
+
+Perceived trust (TPS-HRI): 
+
+- *What percent of the time was the robot reliable?*
+- *What percent of the time was the robot trustworthy?*
+:::
+
+```{r}
+#| echo: false
+#| warning: false
+
+# Create summary table of key dialogue behaviors
+df_flat_scores_final |>
+  filter(exclusions != 'exclude') |>
+  select(
+    group,
+    #prop_comm_breakdown,
+    prop_human_affective_engagement,
+    n_engaged,
+    n_frust,
+    n_task_turns,
+    n_human_reasoning,
+    n_help_requests,
+    n_comm_breakdown
+    # n_tasks_disengaged,
+    # n_likely_guessed,
+  ) |>
+  group_by(group) |>
+  mutate(
+    #comm_breakdown = n_comm_breakdown / n_task_turns/2,
+    n_human_turns = n_task_turns / 2,
+    prop_engaged = n_engaged / (n_human_turns),
+    prop_frust = n_frust / n_human_turns,
+    prop_human_reasoning = n_human_reasoning / n_human_turns,
+    prop_help_requests = n_help_requests / n_human_turns
+  ) |>
+  select(
+    -n_engaged,
+    -n_frust,
+    -n_task_turns,
+    -n_help_requests,
+    -n_human_reasoning,
+    -n_human_turns,
+    -n_comm_breakdown
+  ) |>
+  summarise(across(everything(), ~ mean(.x, na.rm = TRUE))) |>
+  gt() |>
+  fmt_percent(columns = 2:6, decimals = 0) |>
+  tab_header(title = "Human Dialogue Characteristics (% of human turns)") |>
+  tab_options(
+    table.font.size = 14,
+    heading.title.font.size = 16
+  ) |>
+  cols_align(1, align = 'right') |>
+  cols_align(2:4, align = 'center') |>
+  cols_label(
+    group ~ 'Robot Policy',
+    prop_human_affective_engagement ~ 'Anthropomorhpic Language',
+    prop_engaged ~ 'Engagement Detected',
+    prop_frust ~ 'Frustration Detected',
+    prop_human_reasoning ~ 'Reasoning With Robot',
+    prop_help_requests ~ 'Turns Engaged Robot for Help'
+  ) |>
+  tab_footnote(
+    "Responsive policy generated significantly more encouragement, empathy, and collaborative language",
+    locations = cells_body(columns = 2:4)
+  )
+```
+
+
+
+
+
+:::
+
+<!-- RIGHT COLUMN -->
+::: {.column width="30%"}
+
+### 💡 Key Insights
+
+::: {.insight-box}
+#### 1. Process > Outcomes
+Trust formed through **interaction quality** and **affective responsiveness**, not task success alone
+:::
+
+::: {.insight-box}
+#### 2. Differential Sensitivity
+**Affective trust** more sensitive to communication breakdown than **reliability judgments**
+:::
+
+::: {.insight-box}
+#### 3. Communication Viability Matters
+Responsive policy benefits require **functional linguistic grounding**
+
+When communication collapsed:
+
+- Trust advantage attenuated
+- Ratings less interpretable
+:::
+
+::: {.insight-box}
+#### 4. Real Autonomy = Real Constraints
+Fully autonomous systems expose:
+
+- Speech recognition failures
+- Repair dynamics
+- Interaction breakdowns
+
+**These failures shape trust formation**
+:::
+
+### 🔬 Novel Contributions
+
+✓ **Fully autonomous affect-adaptive spoken-language HRI study**
+✓ **No Wizard-of-Oz control**
+✓ **Real-time emotion detection & adaptation**
+✓ **Process-level trust mechanisms identified**
+
+### 📈 Implications
+
+**For HRI Design:**
+
+- Responsive policies enhance trust under viable communication
+- Communication quality is prerequisite, not just moderator
+- Need adaptive policies that detect/respond to breakdown
+
+**For Research:**
+
+- Importance of testing under real autonomy
+- Trust is process-level, not just outcome-level
+- Communication viability must be measured/reported
+
+### 🔮 Future Directions
+
+- Larger confirmatory sample (n > 100)
+- Stabilize speech recognition pipeline
+- Graph-based dialogue management
+- Adaptive language handling
+- Stronger trust measures
+
+### 📚 References
+
+See full paper for complete references:
+**[QR Code placeholder - add link to preprint/paper]**
+
+### 📧 Contact
+
+**Shauna Heron**
+sheron@laurentian.ca
+
+**Funding:** IAMGOLD President's Innovation Fund
+
+:::
+
+:::
+
+<!-- FOOTER -->
+::: {.footer-section}
+**Key Takeaway:** AI-based affect-adaptive robots may increase trust through responsive interaction processes, even when task performance is unchanged; but only when communication remains viable.
+:::
+
+:::
