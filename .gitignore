@@ -11,3 +11,8 @@ full_*.*
 **/*.quarto_ipynb
 .venv/
 .env
+/analysis_results/
+.claude/
+_extensions/
+dialogue_coding_files/
+reference-materials/
