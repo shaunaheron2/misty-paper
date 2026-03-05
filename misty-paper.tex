@@ -67,6 +67,7 @@
 
 
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -240,17 +241,17 @@ affect-adaptive robot systems
 \begin{itemize}
 \tightlist
 \item
-  AI-based affect-adaptive robots increased trust even when task
-  accuracy was unchanged
+  Robots that adapt to users are rated more trustworthy than robots that
+  only react
 \item
-  Experienced trust degraded faster than perceived trust under
-  communication failure
+  Unprompted help and empathy from robots builds greater collaboration
+  trust
 \item
-  Proactive responsiveness enhanced trust in AI-powered human-robot
-  collaboration
+  Trust advantages of responsive robots disappear when communication
+  breaks down
 \item
-  Fully autonomous AI-driven robot study exposes real interaction
-  breakdowns
+  Affective trust breaks down faster than perceived reliability when
+  communication fails
 \end{itemize}
 
 \section{Introduction}\label{introduction}
@@ -1811,6 +1812,7 @@ Negatively worded items were reverse-scored prior to analysis.
 \subsubsection{Task Outcome Layer
 (Stage-Level)}\label{task-outcome-layer-stage-level}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1844,6 +1846,7 @@ without any help requests to the robot. \\
 \texttt{task\_required\_robot\_help} & binary & At least one robot help
 interaction was required for task completion. \\
 \end{longtable}
+}
 
 \subsection{Dialogue Interaction Layer
 (Turn-Level)}\label{dialogue-interaction-layer-turn-level}
@@ -1851,6 +1854,7 @@ interaction was required for task completion. \\
 \subsubsection*{Human Turn Codes}\label{human-turn-codes}
 \addcontentsline{toc}{subsubsection}{Human Turn Codes}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1874,10 +1878,12 @@ the robot toward problem-solving. \\
 \texttt{human\_confirmation\_seeking} & binary & Participant seeks
 confirmation of a tentative belief or solution. \\
 \end{longtable}
+}
 
 \subsubsection*{Robot Turn Codes}\label{robot-turn-codes}
 \addcontentsline{toc}{subsubsection}{Robot Turn Codes}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1903,6 +1909,7 @@ speech-to-text or input understanding failure. \\
 \texttt{robot\_clarification\_request} & binary & Robot asks the
 participant for information or to repeat or clarify their input. \\
 \end{longtable}
+}
 
 \subsection{Affective Interaction Layer
 (Turn-Level)}\label{affective-interaction-layer-turn-level}
@@ -1911,6 +1918,7 @@ participant for information or to repeat or clarify their input. \\
 behaviour}\label{robot-affective-behaviour}
 \addcontentsline{toc}{subsubsection}{Robot Affective behaviour}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1932,11 +1940,13 @@ encouragement, or reassurance. \\
 \texttt{robot\_emotion\_acknowledgement} & binary & Robot explicitly
 references an inferred participant emotional state. \\
 \end{longtable}
+}
 
 \subsubsection*{Human Affective
 Response}\label{human-affective-response}
 \addcontentsline{toc}{subsubsection}{Human Affective Response}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1958,6 +1968,7 @@ a socially warm or engaged manner (e.g., ``It's up to us, Misty!''
 and/or mirrors or responds to the robot's affective expression and/or
 treats the robot as a social agent. \\
 \end{longtable}
+}
 
 \subsection{Notes}\label{notes}
 

@@ -161,10 +161,10 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 
 ## Highlights
 
-  - AI-based affect-adaptive robot increased trust in collaboration even when task accuracy was unchanged
-  - Experienced trust degraded faster than perceived trust during collaboration under communication failure
-  - Proactive responsiveness enhanced trust in AI-driven human-robot collaboration
-  - Fully autonomous AI-driven human-robot collaboration study exposes real interaction breakdowns
+- Robots that adapt to users are rated more trustworthy than robots that only react
+- Unprompted help and empathy from robots builds greater collaboration trust
+- Trust advantages of responsive robots disappear when communication breaks down
+- Affective trust breaks down faster than perceived reliability when communication fails
 
 ## Introduction
 
@@ -633,7 +633,7 @@ post_table |>
 #| eval: false
 #|
 post_table |>
-  #filter(exclusions != 'exclude') |>
+  filter(exclusions != 'exclude') |>
   select(
     group,
     contains('post'),
@@ -700,7 +700,8 @@ post_table |>
   add_p() |>
   # add_overall() |>
   bold_p() |>
-  modify_caption("Post-Interaction Objective Measures by Policy")
+  modify_caption("Post-Interaction Objective Measures by Policy") |> as_gt() |>
+  gt::gtsave(filename = "images/summary_table.png")
 ```
 
 Beyond descriptive comparisons, hierarchical models were fitted to evaluate the robustness of interaction policy effects while controlling for baseline covariates and accounting for measurement structure.
@@ -988,15 +989,15 @@ ce <- conditional_effects(
 hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
   labs(
     x = "Communication breakdown \n(proportion)",
-    y = "Predicted trust",
+    y = "Predicted trust (points on 0-100 scale)",
     color = "Policy",
     fill = "Policy"
   ) +
   theme_few() +
   theme(
-    axis.title.y = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank(),
+    #axis.title.y = element_blank(),
+    #axis.text.y = element_blank(),
+    #axis.ticks.y = element_blank(),
     legend.position = "none"
   ) +
   labs(title = "TI-HRC: Experienced Trust") +
@@ -1020,7 +1021,7 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
 (hrc_mod_mech_plot | hri_mod_mech_plot) +
   plot_annotation(
     title = 'Trust as a Function of Communication Breakdown',
-    subtitle = 'Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)',
+    subtitle = '',
     caption = '',
     theme = theme(plot.title = element_text(size = 14))
   )
