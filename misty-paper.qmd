@@ -365,7 +365,7 @@ Communication viability was operationalized using a dialogue-level metric derive
 
 For this reason, analyses were conducted using three complementary approaches. Primary analyses were performed on an eligible sample excluding non-viable sessions, reflecting interactions in which the spoken-language protocol and experimental manipulation operated as intended. Full-sample analyses including all sessions were conducted as sensitivity checks. Finally, mechanism-focused analyses compared viable and non-viable sessions on interaction-process metrics (e.g., ASR failure rates, dialogue turn completion, task abandonment) to characterize how severe communication breakdown alters interaction dynamics. Trust measures from non-viable sessions were not interpreted as valid estimates of human-robot trust under functional interaction, as the robot was unable to sustain dialogue or collaborative behaviour in these cases.
 
-All analyses were conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while Bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. All code used for data processing and analysis is available at: [GitHub Repository](https://github.com/shaunaheron2/misty-paper)
+All analyses were conducted using R (version 4.5.1) within the Quarto framework. Data manipulation and visualization utilized the tidyverse suite of packages [@wickham2019], with mixed-effects models fitted using the lme4 and lmerTest packages [@bates2015; @kuznetsova2017] while Bayesian hierarchical models were fitted using the brms package [@burkner2018]. Summary tables were generated using the gtsummary package [@sjoberg2021]. 
 
 ## Results
 
@@ -1338,8 +1338,9 @@ More broadly, this pilot study underscores the importance of evaluating trust in
 ## Ethical approval
 All procedures were approved by the Laurentian University Research Ethics Board (ROMEO File: #6021966). Participants provided written informed consent prior to participation.
 
-## Data Availability
-The data that support the findings of this study are not publicly available due to participant privacy constraints. De-identified data may be made available upon reasonable request to the corresponding author.
+## Data and Code Availability
+
+The analysis code (R) is available at: [GitHub Repository](https://github.com/shaunaheron2/misty-paper). The interaction system and prompt templates used to implement the experimental conditions are also available in the same repository. De-identified participant data (survey scales and session-level summary measures) are available upon reasonable request to the corresponding author. Raw interaction logs are not publicly available due to participant privacy constraints.
 
 ## Conflict of Interest
 
