@@ -1,5 +1,6 @@
 ---
 title: 'Trust in Autonomous Human-Robot Collaboration: Effects of Responsive Interaction Policies'
+subtitle: 'A pilot study'
 format:
   poster-typst:
     size: "36x24"
@@ -99,8 +100,6 @@ Despite specifying English fluency as an eligibility criterion, substantial vari
 \
 **Breakdown affected the two trust dimensions differently:**
 
-\
-
 - **Experienced trust (TI-HRC):** responsiveness advantage attenuated progressively as breakdown accumulated — affective trust depends on sustained interaction quality
 - **Perceived reliability (TPS-HRI):** more robust to breakdown — evaluative judgements appeared to anchor on discrete successful exchanges
 
@@ -126,5 +125,5 @@ The apparent uptick in control condition experienced trust at higher breakdown l
 
 This pilot used a modest eligible sample (n = 24) with semi-random condition assignment, limiting statistical power for higher-order effects. In addition, the responsive policy represents a bundled interaction profile; future work should disentangle affect-adaptation from increased dialogue exposure and session duration. Spoken-language proficiency variability among participants produced non-viable sessions that required exclusion, which may have introduced selection bias. This highlights the need for adaptive policies that detect emerging breakdown rather than assuming linguistic competence. These findings are exploratory and intended to inform a larger confirmatory study.
 
-**Full analytic details and sensitivity analyses available at arXiv link below.**
+*Full analytic details and sensitivity analyses available at arXiv link below.*
 
