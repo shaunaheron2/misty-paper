@@ -47,7 +47,7 @@ author:
           postal-code: P3E 2C6
           country: Canada
     email: sheron@laurentian.ca
-    orcid: 0000-0003-3517-4900
+    orcid: 0000-0002-9262-6718
   - name: Meng Cheng Lau
     affiliations: 
           name: Laurentian University
