@@ -1,5 +1,5 @@
 ---
-title: "Trust in Autonomous Human–Robot Collaboration: Effects of Responsive Interaction Policies"
+title: "Trust in Autonomous Human-Robot Collaboration: Effects of Responsive Interaction Policies"
 author:
   - name: Shauna Heron
     affiliation: Laurentian University
@@ -47,7 +47,7 @@ df_flat_scores_final <- df_flat_scores_final |>
 
 <!-- HEADER SECTION -->
 ::: {.header-section}
-# Trust in Autonomous Human–Robot Collaboration
+# Trust in Autonomous Human-Robot Collaboration
 ## Effects of Responsive Interaction Policies
 
 **Shauna Heron & Meng Cheng Lau**
@@ -100,7 +100,7 @@ School of Social Sciences, Laurentian University
 
 **Measures:**
 
-- Trust Perception Scale–HRI (TPS-HRI)
+- Trust Perception Scale-HRI (TPS-HRI)
 - Trust in Industrial HRC (TI-HRC)
 - Task accuracy
 - Dialogue coding (interaction quality)
