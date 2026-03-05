@@ -157,15 +157,17 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 
 # "P14" "P17" "P30" "P32" "P46" "P47" "P50"
 
+##  • Affect-adaptive robot interaction policy increased post-collaboration trust• Affective trust degraded faster than perceived reliability under communication failure• Proactive responsiveness enhanced trust in AI-driven human-robot collaboration• Fully autonomous HRI study reveals real-world interaction breakdowns
 ```
 
 ## Highlights
 
-  - AI-based affect-adaptive robot increased trust in collaboration even when task accuracy was unchanged
-  - Experienced trust degraded faster than perceived trust during collaboration under communication failure
-  - Proactive responsiveness enhanced trust in AI-driven human-robot collaboration
-  - Fully autonomous AI-driven human-robot collaboration study exposes real interaction breakdowns
-  
+- Robots that adapt to users are rated more trustworthy than robots that only react
+- Unprompted help and empathy from robots builds greater collaboration trust
+- Trust advantages of responsive robots disappear when communication breaks down
+- Affective trust breaks down faster than perceived reliability when communication fails
+
+
 ## Introduction
 
 As artificial intelligence (AI) technologies advance, they are increasingly integrated into robotic systems, enabling more adaptive, autonomous, and context-sensitive behaviour in real-world environments. This convergence has accelerated the deployment of robots across safety-critical domains such as manufacturing [@choi2025], mining [@fu2021], and healthcare [@ciuffreda2025], where robots are now expected to operate alongside humans rather than in isolation [@diab2025; @spitale2023]. In these collaborative settings, successful deployment depends not only on technical performance and safety guarantees, but also on whether human users are willing to rely on, communicate with, and coordinate their actions around robotic partners [@campagna2025; @emaminejad2022]. Trust has therefore emerged as a central determinant of adoption and effective use in human-robot collaboration (HRC) [@wischnewski2023; @campagna2025]. Insufficient trust can lead to disuse or rejection of automation, while excessive trust risks overreliance and accidents—particularly in environments characterized by uncertainty or incomplete information [@devisser2020].
