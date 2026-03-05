@@ -12,7 +12,7 @@ full_*.*
 .venv/
 .env
 /analysis_results/
-.claude/
+/.claude/
 _extensions/
 dialogue_coding_files/
 reference-materials/
