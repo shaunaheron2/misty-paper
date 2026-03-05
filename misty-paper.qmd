@@ -238,7 +238,7 @@ In the first task, participants were asked to identify who had taken the missing
 
 The suspect grid was displayed on the interface and allowed participants to click on and grey out eliminated candidates, while all questions were posed verbally to the robot (see @fig-task1).
 
-![Task 1 interface including the 6 × 4 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.](images/task1-whodunnit2.png){#fig-task1 fig-align="center" width="482"}
+![Task 1 interface including the 6 $×$ 4 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.](images/task1-whodunnit2.png){#fig-task1 fig-align="center" width="482"}
 
 The robot possessed the ground-truth information necessary to answer each question correctly. Successful task completion was therefore fully dependent on interaction with the robot, creating an enforced collaborative dynamic. Participants were required to coordinate a questioning strategy that progressively eliminated candidates based on shared features, narrowing the search space within a five-minute time limit. Efficient performance depended on selecting informative questions (i.e., features that divided the remaining candidates), tracking eliminations, and adapting subsequent questions based on prior answers.
 
@@ -1342,7 +1342,7 @@ Architecturally, future iterations will move toward more explicit state-based or
 
 More broadly, this pilot study underscores the importance of evaluating trust in autonomous systems under conditions that expose, rather than conceal, system limitations. Understanding how trust is shaped, constrained, and potentially restored under real autonomy conditions is essential for the responsible deployment of social robots in collaborative environments.
 
-## Ethical approval
+## Ethical Approval
 
 All procedures were approved by the Laurentian University Research Ethics Board (ROMEO File: #6021966). Participants provided written informed consent prior to participation and were debriefed in-person following the session. Data were de-identified and stored securely in accordance with institutional guidelines.
 
@@ -1364,7 +1364,7 @@ M.C. Lau: Conceptualization, Methodology, Writing - Review & Editing, Supervisio
 
 This work was supported by IAMGOLD President's Innovation Fund (Grant No. 2025-20377).
 
-## Declaration of Generative AI and AI-assisted technologies in the writing process
+## Declaration of Generative AI and AI-assisted Technologies in the Writing Process
 
 During the preparation of this work, the author(s) used Claude (Sonnet 4.6, Anthropic) to review the manuscript for clarity and readability. After reviewing the AI-generated suggestions, the author(s) made revisions to the text as appropriate. The author(s) takes full responsibility for the content of the published work.
 
