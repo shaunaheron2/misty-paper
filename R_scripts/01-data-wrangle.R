@@ -23,8 +23,8 @@ pre_item_names <- sjlabelled::get_label(
   pre,
   def.value = names(pre)
 ) |>
-  str_remove(long_prefix) |> # drop leading boilerplate if present
-  janitor::make_clean_names() # ensure syntactic, unique
+  str_remove(long_prefix) |> #
+  janitor::make_clean_names() #
 
 names(pre) <- pre_item_names
 
@@ -44,8 +44,8 @@ post_item_names <- sjlabelled::get_label(
   post,
   def.value = names(post)
 ) |>
-  str_remove(long_prefix) |> # drop leading boilerplate if present
-  janitor::make_clean_names() # ensure syntactic, unique
+  str_remove(long_prefix) |> #
+  janitor::make_clean_names() #
 
 names(post) <- post_item_names
 

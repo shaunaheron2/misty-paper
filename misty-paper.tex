@@ -119,11 +119,6 @@
 \usepackage{orcidlink}
 \usepackage{amsmath}
 \usepackage[T1]{fontenc}
-
-\usepackage{color,soul}
-\definecolor{lightyellow}{rgb}{1,1,0.5}
-\sethlcolor{lightyellow}
-
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -169,12 +164,12 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Trust in Autonomous Human--Robot Collaboration: Effects of Responsive Interaction Policies},
+  pdftitle={Trust in Autonomous Human-Robot Collaboration: Effects of Responsive Interaction Policies},
   pdfauthor={Shauna Heron; Meng Cheng Lau},
-  pdfkeywords={human-robot collaboration, HRI, socially assistive
-robotics, cobots, autonomous robot systems, embodied AI, spoken language
-interaction, trust in human-robot interaction, affect-adaptive robot
-systems},
+  pdfkeywords={Human-robot collaboration, Human-robot
+interaction, socially assistive robotics, autonomous robot
+systems, embodied AI, trust in human-robot interaction, affect-adaptive
+robot systems},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -185,7 +180,7 @@ systems},
 
 \newcommand{\runninghead}{A Preprint }
 \renewcommand{\runninghead}{A PREPRINT }
-\title{Trust in Autonomous Human--Robot Collaboration: Effects of
+\title{Trust in Autonomous Human-Robot Collaboration: Effects of
 Responsive Interaction Policies}
 \usepackage{etoolbox}
 \makeatletter
@@ -195,7 +190,7 @@ Responsive Interaction Policies}
 \makeatother
 \subtitle{An In-Person Pilot Study}
 \def\asep{\\\\\\ } % default: all authors on same column
-\author{\textbf{Shauna Heron}~\orcidlink{0000-0003-3517-4900}\\School of
+\author{\textbf{Shauna Heron}~\orcidlink{0000-0002-9262-6718}\\School of
 Social Sciences\\Laurentian University\\Sudbury, ON,\ P3E
 2C6\\\href{mailto:sheron@laurentian.ca}{sheron@laurentian.ca}\asep\textbf{Meng
 Cheng Lau}~\orcidlink{0000-0003-3517-4900}\\School of Engineering and
@@ -205,7 +200,7 @@ Computer Science\\Laurentian University\\Sudbury, ON,\ P3E
 \begin{document}
 \maketitle
 \begin{abstract}
-Trust plays a central role in human--robot collaboration, yet its
+Trust plays a central role in human-robot collaboration, yet its
 formation is rarely examined under the constraints of fully autonomous
 interaction. This pilot study investigated how interaction policy
 influences trust during in-person collaboration with a social robot
@@ -225,7 +220,7 @@ of reliability, and that as language-mediated interaction degraded, the
 trust advantage associated with responsiveness attenuated and ratings
 became less clearly interpretable as calibrated evaluations of
 collaborative competence. These findings suggest that trust in
-autonomous human--robot interaction emerges from process-level
+autonomous human-robot interaction emerges from process-level
 interaction dynamics and operates within constraints imposed by
 communication viability, highlighting the importance of evaluating trust
 under real autonomy conditions when designing interactive robotic
@@ -233,13 +228,30 @@ systems.
 \end{abstract}
 {\bfseries \emph Keywords}
 \def\sep{\textbullet\ }
-human-robot collaboration \sep HRI \sep socially assistive
-robotics \sep cobots \sep autonomous robot systems \sep embodied
-AI \sep spoken language interaction \sep trust in human-robot
-interaction \sep 
+Human-robot collaboration \sep Human-robot interaction \sep socially
+assistive robotics \sep autonomous robot systems \sep embodied
+AI \sep trust in human-robot interaction \sep 
 affect-adaptive robot systems
 
 
+
+\section{Highlights}\label{highlights}
+
+\begin{itemize}
+\tightlist
+\item
+  Robots that adapt to users are rated more trustworthy than robots that
+  only react
+\item
+  Unprompted help and empathy from robots builds greater collaboration
+  trust
+\item
+  Trust advantages of responsive robots disappear when communication
+  breaks down
+\item
+  Affective trust breaks down faster than perceived reliability when
+  communication fails
+\end{itemize}
 
 \section{Introduction}\label{introduction}
 
@@ -256,7 +268,7 @@ performance and safety guarantees, but also on whether human users are
 willing to rely on, communicate with, and coordinate their actions
 around robotic partners \autocite{campagna2025,emaminejad2022}. Trust
 has therefore emerged as a central determinant of adoption and effective
-use in human--robot collaboration (HRC)
+use in human-robot collaboration (HRC)
 \autocite{wischnewski2023,campagna2025}. Insufficient trust can lead to
 disuse or rejection of automation, while excessive trust risks
 overreliance and accidents---particularly in environments characterized
@@ -275,7 +287,7 @@ dialogue-driven collaborative tasks, where misunderstandings, delays, or
 ambiguous responses may directly influence users' ongoing assessments of
 a robot's competence and reliability.
 
-A substantial body of human--robot interaction (HRI) research has
+A substantial body of human-robot interaction (HRI) research has
 examined how robot behaviour influences user trust, perceived
 reliability, and cooperation across industrial and social contexts
 \autocite{shayganfar2019,fartook2025}. Trust is typically conceptualized
@@ -334,7 +346,7 @@ available to autonomous robotic platforms in practice, enabling systems
 to move beyond fixed, scripted behaviours toward adaptive interaction
 policies that respond to user state and task context in real time
 \autocite{atone2022}. Improvements in spoken-language processing,
-dialogue state tracking, and large language model--based reasoning now
+dialogue state tracking, and large language model-based reasoning now
 allow robots to adjust not only what they say, but when and how
 assistance is provided during collaboration \autocite{wei}. In parallel,
 advances in affect inference from language and interaction cues have
@@ -348,7 +360,7 @@ surface-level social behaviour
 \autocite{birnbaum2016,shayganfar2019,fartook2025}.
 
 From an engineering perspective, responsiveness in autonomous
-human--robot interaction is not implemented as a single behavioural rule
+human-robot interaction is not implemented as a single behavioural rule
 or surface-level cue, but emerges from the coordination of multiple
 system components responsible for perception, interpretation, and action
 \autocite{arkin2003}. In practice, responsive behaviour depends on the
@@ -417,7 +429,7 @@ contexts.
 
 This study employed a between-subjects experimental design to examine
 how robot interaction policy influences trust and collaboration during
-fully autonomous, in-person human--robot interaction. The sole
+fully autonomous, in-person human-robot interaction. The sole
 experimental factor was the robot's interaction policy. Participants
 were initially randomly assigned to condition; however, final condition
 allocation was partially constrained by participant attrition and
@@ -436,6 +448,40 @@ autonomously by an AI driven centralized dialogue agent responsible for
 coordinating spoken-language understanding, task state, and verbal and
 nonverbal behaviour based on the interaction policy. More detail on the
 robot platform and software architecture is provided in Appendix A.
+
+\subsection{Study Protocol}\label{study-protocol}
+
+Participants signed up for the study, provided informed consent, were
+randomly assigned to a group, and completed a pre-session questionnaire
+before their in-person session via a survey hosted on Qualtrics. The
+elapsed time between sign-up and the in-person session was at most a
+week and at minimum immediately before the session. The pre-session
+questionnaire collected basic demographics information and assessed
+baseline characteristics, including the Negative Attitudes Toward Robots
+Scale (NARS) and the short form of the Need for Cognition scale (NFC-s)
+\autocite{nomura,cacioppo1982}. These measures were used to capture a
+baseline of individual differences that may moderate responses to robot
+interaction.
+
+In-person sessions were conducted in a quiet, private room at Laurentian
+University between November and December 2025. Prior to each session,
+the robot's interaction policy was configured to the assigned
+experimental condition.
+
+Upon arrival, participants were greeted by the researcher, provided with
+a brief overview of the session, and given instructions for effective
+communication with the robot. Once participants indicated readiness, the
+researcher exited the room, leaving the participant and robot to
+complete the interaction without human presence or observation.
+Participants initiated the interaction by clicking a start button on the
+interface and were informed that they could terminate the session at any
+time without penalty.
+
+Following task completion, participants completed a 21-item
+post-interaction questionnaire assessing trust on a provied laptop.
+Participants then engaged in a brief debrief with the researcher and
+were awarded a \$15 gift card. Total session duration averaged
+approximately 30 minutes.
 
 \subsection{Interaction Policies}\label{interaction-policies}
 
@@ -468,13 +514,14 @@ infrastructure.
 
 \subsection{Collaborative Task Design}\label{collaborative-task-design}
 
-The task structure was modelled after \textcite{lin2022} and designed to
-examine collaboration under two distinct dependency conditions: enforced
-collaboration, in which successful task completion required the robot's
-involvement, and optional collaboration, in which participants could
-choose whether and how to engage the robot. To operationalize these
-conditions in a naturalistic way, we embedded both tasks within a single
-immersive, narrative-driven puzzle scenario.
+The task structure was modelled after the interactive and immersive
+puzzle game design by \textcite{lin2022} to examine collaboration under
+two distinct dependency conditions: enforced collaboration, in which
+successful task completion required the robot's involvement, and
+optional collaboration, in which participants could choose whether and
+how to engage the robot. To operationalize these conditions in a
+naturalistic way, we embedded both tasks within a single immersive,
+narrative-driven puzzle scenario.
 
 Participants were positioned as investigators searching for a missing
 laboratory robot named Atlas. The Misty-II robot served as a diegetic
@@ -488,12 +535,12 @@ tasks.
 
 Interactions took place in a shared physical workspace that included the
 Misty-II social robot and a participant-facing computer interface
-\autocite{mistyrobotics}. The interface displayed task materials,
-recorded participant responses, and supported progression through the
-game (see Figure~\ref{fig-task1}). Importantly, it did not function as a
-control mechanism for the robot. Instead, the robot autonomously
-monitored task progression and participant inputs via the interface,
-adapting its dialogue and behaviour accordingly.
+\autocite{mistyrobotics} at Laurentian University. The interface
+displayed task materials, recorded participant responses, and supported
+progression through the game (see Figure~\ref{fig-task1}). Importantly,
+it did not function as a control mechanism for the robot. Instead, the
+robot autonomously monitored task progression and participant inputs via
+the interface, adapting its dialogue and behaviour accordingly.
 
 \begin{figure}
 
@@ -556,9 +603,9 @@ posed verbally to the robot (see Figure~\ref{fig-task1}).
 
 }
 
-\caption{\label{fig-task1}Task 1 interface including the 6 × 4 grid of
-24 candidates. Participants could track those eliminated by clicking on
-subjects which would grey them out. A box was provided to input their
+\caption{\label{fig-task1}Task 1 interface including the 6 \(×\) 4 grid
+of 24 candidates. Participants could track those eliminated by clicking
+on subjects which would grey them out. A box was provided to input their
 final answer and a button included to move to the next task.}
 
 \end{figure}%
@@ -630,37 +677,6 @@ independently or solicit assistance from the robot at their discretion
 \autocite{lin2022}, allowing collaboration to emerge voluntarily rather
 than being structurally enforced.
 
-\subsection{Study Protocol}\label{study-protocol}
-
-Participants signed up for the study and completed a pre-session
-questionnaire before their in-person session via Qualtrics. The elapsed
-time between sign-up and the in-person session was at most week and at
-minimum immediately before the session. The pre-session questionnaire
-colleced basic demographics information and assessed baseline
-characteristics, including the Negative Attitudes Toward Robots Scale
-(NARS) and the short form of the Need for Cognition scale (NFC-s)
-\autocite{nomura,cacioppo1982}. These measures were used to capture a
-baseline of individual differences that may moderate responses to robot
-interaction.
-
-In-person sessions were conducted in a quiet, private room at Laurentian
-University between November and December 2025. Prior to each session,
-the robot's interaction policy was configured to the assigned
-experimental condition.
-
-Upon arrival, participants were greeted by the researcher, provided with
-a brief overview of the session, and given instructions for effective
-communication with the robot. Once participants indicated readiness, the
-researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation.
-Participants initiated the interaction by clicking a start button on the
-interface and were informed that they could terminate the session at any time without penalty.
-
-Following task completion, participants completed a 21-item
-post-interaction questionnaire assessing trust on a laptop. Participants
-then engaged in a brief debrief with the researcher and were awarded a
-\$15 gift card. Total session duration averaged approximately 30
-minutes.
-
 \subsection{Measures}\label{measures}
 
 A combination of self-report and objective measures was used to assess
@@ -676,8 +692,8 @@ baseline of individual differences that may moderate responses to robot
 interaction.
 
 Trust was assessed using two established self-report instruments
-commonly used in human--robot interaction research: the Trust Perception
-Scale--HRI (TPS-HRI) and the Trust in Industrial Human--Robot
+commonly used in human-robot interaction research: the Trust Perception
+Scale-HRI (TPS-HRI) and the Trust in Industrial Human-Robot
 Collaboration scale (TI-HRC) \autocite{schaefer2016,charalambous2016}.
 Both measures were adapted to reflect the specific dialogue-driven task
 context and interaction modality of the present study, while preserving
@@ -699,10 +715,10 @@ scale (NARS) showed good reliability (\(\alpha\) = .81), with subscale
 alphas ranging from .72 to .76. The Need for Cognition scale (NFC)
 demonstrated strong internal consistency (\(\alpha\) = .87). Both
 post-interaction trust measures also exhibited high reliability. The
-Trust Perception Scale--HRI (TPS-HRI) showed strong internal consistency
+Trust Perception Scale-HRI (TPS-HRI) showed strong internal consistency
 overall (\(\alpha\) = .89), with subscale reliabilities ranging from .74
-to .88. The Trust in Industrial Human--Robot Collaboration scale
-(TI-HRC) demonstrated very high internal consistency (\(\alpha\) = .95).
+to .88. The Trust in Industrial Human-Robot Collaboration scale (TI-HRC)
+demonstrated very high internal consistency (\(\alpha\) = .95).
 
 Together, these instruments capture complementary dimensions of trust,
 including perceived reliability, task competence, and affective comfort.
@@ -739,7 +755,7 @@ English, and having normal or corrected-to-normal hearing and vision.
 Participants received a \$15 gift card as compensation for their time;
 some students additionally received partial credit for participating
 depending on their program of study. All procedures were approved by the
-Laurentian University Research Ethics Board (REB \#6021966).
+Laurentian University Research Ethics Board (ROMEO File: \#6021966).
 
 Although English fluency was an eligibility requirement, in-person
 observation during data collection revealed meaningful variability in
@@ -827,12 +843,12 @@ interaction policy (full sample)}
 
 \subsection{Analytic Strategy}\label{analytic-strategy}
 
-Because the study relied fundamentally on spoken-language collaboration,
-analyses were structured to explicitly account for interaction
-viability. Sessions were classified as non-viable when severe
-communication breakdown prevented sustained dialogue between the
-participant and the robot, rendering the experimental manipulation
-inoperative.
+Because the study relied unexpectedly but fundamentally on
+spoken-language collaboration, analyses were structured to explicitly
+account for interaction viability. Sessions were classified as
+non-viable when severe communication breakdown prevented sustained
+dialogue between the participant and the robot, rendering the
+experimental manipulation inoperative.
 
 Communication viability was operationalized using a dialogue-level
 metric derived from manual coding of system logs. For each session, the
@@ -856,8 +872,8 @@ and non-viable sessions on interaction-process metrics (e.g., ASR
 failure rates, dialogue turn completion, task abandonment) to
 characterize how severe communication breakdown alters interaction
 dynamics. Trust measures from non-viable sessions were not interpreted
-as valid estimates of human--robot trust under functional interaction,
-as the robot was unable to sustain dialogue or collaborative behavior in
+as valid estimates of human-robot trust under functional interaction, as
+the robot was unable to sustain dialogue or collaborative behaviour in
 these cases.
 
 All analyses were conducted using R (version 4.5.1) within the Quarto
@@ -867,9 +883,7 @@ fitted using the lme4 and lmerTest packages
 \autocite{bates2015,kuznetsova2017} while Bayesian hierarchical models
 were fitted using the brms package \autocite{burkner2018}. Summary
 tables were generated using the gtsummary package
-\autocite{sjoberg2021}. All code used for data processing and analysis
-is available at:
-\href{https://github.com/shaunaheron2/misty-paper}{GitHub Repository}
+\autocite{sjoberg2021}.
 
 \section{Results}\label{results}
 
@@ -890,10 +904,10 @@ indicated higher trust ratings in the responsive condition relative to
 the control condition across both trust scales (see
 Table~\ref{tbl-post-eligible}). As indicated in
 Figure~\ref{fig-post-eligible}, average raw post-interaction scores on
-the Trust in Industrial Human--Robot Collaboration scale (TI-HRC)
+the Trust in Industrial Human-Robot Collaboration scale (TI-HRC)
 differed by approximately 26 points (Likert 1-5 converted to 0-100 scale
 for easier comparison across scales), while differences on the Trust
-Perception Scale--HRI (TPS-HRI) were approximately 15 points higher in
+Perception Scale-HRI (TPS-HRI) were approximately 15 points higher in
 the responsive condition compared to the control
 (Figure~\ref{fig-post-eligible}).
 
@@ -955,35 +969,38 @@ Table~\ref{tbl-post-dialogue-turns}). Manual coding of dialogue
 transcripts revealed substantial and significant differences in robot
 behaviour across conditions (see Appendix C for coding scheme). In the
 responsive condition, the robot employed encouragement in 36\% of
-dialogue turns compared to 0\% in the control condition (p \textless{}
-.001), expressed empathy or acknowledged participant affect in 13\% of
-turns versus 0\% in the control (p \textless{} .001), and used
-collaborative language (e.g., ``we,'' ``let's'') in 42\% of turns
-compared to 5\% in control (p \textless{} .001). Interestingly, while
-both conditions included proactive check-ins following periods of
-participant silence, the control robot engaged in such check-ins at a
-higher rate (21\% vs.~13\% of turns, p = .033), consistent with its
-reactive policy that limited proactive assistance to structured silence
-monitoring.
+dialogue turns (e.g., ``You're asking great questions!'') compared to
+0\% in the control condition (p \textless{} .001), expressed empathy or
+acknowledged participant affect in 13\% of turns (e.g., ``I sense you're
+frustrated, but we can figure this out together!'') versus 0\% in the
+control condition (p \textless{} .001), and used collaborative language
+(e.g., ``we,'' ``let's'') in 42\% of turns compared to 5\% in the
+control group (p \textless{} .001). While both conditions included
+proactive check-ins following periods of participant silence, the
+control robot engaged in such check-ins at a higher rate (21\% vs.~13\%
+of turns, p = .033), which reflects both the lower levels of
+collaborative engagement from participants resulting in more silence and
+the control condition's reactive policy that limited assistance to
+structured silence monitoring.
 
-Critically, proportions of communication breakdown did not differ
-between conditions (25\% vs.~22\%, p = .70), indicating that interaction
-policy did not systematically impact technical speech recognition
-viability among eligible participants. Participants in the responsive
-condition also exhibited higher levels of AI-detected engagement during
-interaction, with an average of 3.50 engaged responses (SD = 1.95)
+Importantly, the proportion of turns coded with communication breakdowns
+(i.e., sentence fragments or complete misunderstandings) did not differ
+between conditions (25\% vs.~22\%, p = .70), indicating speech
+recognition viability among eligible participants was the same between
+groups. Participants in the responsive condition also exhibited higher
+levels of AI-detected engagement during interaction (i.e., the AI
+``perceived'' participants as responsive and interactive in
+collaboration), with an average of 3.50 engaged responses (SD = 1.95)
 compared to 2.00 (SD = 2.21) in the control condition. Consistent with
 these dialogue differences, interactions in the responsive condition
 were characterized by longer session durations and slower robot response
-times, reflecting the latency and time associated with executing
+times which reflects the latency and time associated with executing
 additional dialogue and affective support behaviours. As such,
 responsiveness in the present study reflects a bundled interaction
 profile rather than a single isolated manipulation. Observed trust
-differences may therefore partially reflect increased interaction
-exposure or dialogue richness in addition to affect-adaptive behavior
-per se. Future work should more finely disentangle these components.
-
-
+differences may therefore partially reflect differences in interaction
+exposure or dialogue richness in addition to affect-adaptive behaviour.
+Future work should more carefully disentangle these components.
 
 \begin{table}
 
@@ -1030,8 +1047,6 @@ Beyond descriptive comparisons, hierarchical models were fitted to
 evaluate the robustness of interaction policy effects while controlling
 for baseline covariates and accounting for measurement structure.
 
-%\hl{MC: It is important to note that the responsive interaction policy was associated not only with affective and collaborative dialogue features, but also with longer session durations, increased dialogue content, and slower average response times. As such, responsiveness in the present study reflects a bundled interaction profile rather than a single isolated manipulation. Observed trust differences may therefore partially reflect increased interaction exposure or dialogue richness in addition to affect-adaptive behavior per se. Future work should more finely disentangle these components.}
-
 \subsection{Hierarchical Models}\label{hierarchical-models}
 
 Given the pilot nature of the study and the modest sample size,
@@ -1061,7 +1076,7 @@ but was retained due to its relevance for spoken-language interaction
 viability.
 
 Bayesian models used weakly informative, scale-appropriate priors. The
-intercept was assigned a Normal(50, 25) prior, reflecting the 0--100
+intercept was assigned a Normal(50, 25) prior, reflecting the 0-100
 trust score range and centering estimates near the midpoint of the
 scale. Fixed effects were assigned Normal(0, 10) priors to constrain
 effects to plausible magnitudes. Random-effect and residual standard
@@ -1123,7 +1138,7 @@ densities show posterior distributions; points indicate posterior
 medians; thick and thin intervals denote 80\% and 95\% credible
 intervals, respectively. The dashed vertical line marks a null effect,
 and positive values indicate higher trust scores on the respective scale
-(points on a 0--100 scale).}
+(points on a 0-100 scale).}
 
 \end{figure}%
 
@@ -1280,15 +1295,16 @@ Consistent with the experimental manipulation, specific robot dialogue
 behaviours showed substantial correlations with trust outcomes. Robot
 empathy expression---quantified as the proportion of dialogue turns in
 which the robot acknowledged participant affect or expressed
-understanding---was strongly correlated with both experienced trust
-(TI-HRC; r = .53, p = .008) and perceived trust (TPS-HRI: r = .65, p =
-.001). Similarly, robot use of collaborative language (e.g., ``we,''
-``let's'') was positively associated with experienced trust (TI-HRC: r =
-.50, p = .012), as was robot encouragement (TI-HRC: r = .45, p = .027;
-TPS-HRI: r = .42, p = .040). These associations provide evidence that
-the specific affective and collaborative behaviours implemented in the
-responsive condition were linked to participants' trust evaluations
-beyond simple condition assignment.
+understanding (e.g., ``I sense your frustrated, how can I help?''), was
+strongly correlated with both experienced trust (TI-HRC; r = .53, p =
+.008) and perceived trust (TPS-HRI: r = .65, p = .001). Similarly, robot
+use of collaborative language (e.g., ``we,'' ``let's'') was positively
+associated with experienced trust (TI-HRC: r = .50, p = .012), as was
+robot encouragement (TI-HRC: r = .45, p = .027; TPS-HRI: r = .42, p =
+.040). These associations suggest that the specific affective and
+collaborative behaviours implemented in the responsive condition were
+linked to participants' trust evaluations beyond simple condition
+assignment.
 
 \begin{figure}
 
@@ -1306,7 +1322,8 @@ Variables}
 Participant engagement during interaction, operationalized as the frequency of detected positive affective responses, was positively correlated with perceived trust (r = .52, p = .009) and showed a trending association with experienced trust (r = .30, p = .156). Engaged responses (both AI detected and affective dialogue by the human) were associated with longer interaction duration (r = .54, p = .007), greater use of collaborative language by the robot (r = .50, p = .013), and fewer communication breakdowns (r = -.49, p = .016). This pattern suggests that responsive robot behaviour may have fostered a reciprocal dynamic in which robot affective adaptation elicited participant engagement, particularly in those high in NFC, which in turn supported smoother interaction and higher trust.
 
 Notably, objective task performance showed no significant association
-with either full trust measure (suspect accuracy: r = .18, -.20, p \textgreater{} .35; overall accuracy: r = -.05 to .19, p \textgreater{}
+with either full trust measure (suspect accuracy: r = .18-.20, p
+\textgreater{} .35; overall accuracy: r = -.05 to .19, p \textgreater{}
 .37), but did show a significant negative association with the TI-HRC
 Reliability subscale (r = .40, p \textless{} .05), as well as a negative
 association with detected frustration, silent periods and communication
@@ -1320,7 +1337,7 @@ mediator of interaction policy effects.
 \section{Discussion}\label{discussion}
 
 This pilot study examined how a responsive interaction policy influences
-trust during embodied, fully autonomous, spoken-language human--robot
+trust during embodied, fully autonomous, spoken-language human-robot
 collaboration. Unlike much prior work in HRI trust research, all
 dialogue management, affect inference, task progression, and response
 generation were executed autonomously and in real time, without
@@ -1346,7 +1363,7 @@ conceptualize trust as an emergent property of interaction dynamics
 rather than a static attribute of the system or a simple function of
 performance outcomes \autocite{lee2004,devisser2020}.
 
-Trust in human--robot interaction is widely recognized as
+Trust in human-robot interaction is widely recognized as
 multidimensional, encompassing perceptions of reliability and competence
 as well as affective comfort and perceived collaboration
 \autocite{lee2004,devisser2020}. The use of two validated trust measures
@@ -1474,8 +1491,8 @@ of this pilot study.
 
 This pilot study provides evidence that affect-responsive interaction
 policies can influence trust during fully autonomous, in-person
-human--robot collaboration. The observed effects emerged independently
-of overall task accuracy, reinforcing the central role of interaction
+human-robot collaboration. The observed effects emerged independently of
+overall task accuracy, reinforcing the central role of interaction
 quality and affective responsiveness in shaping collaborative
 experience.
 
@@ -1512,6 +1529,53 @@ conceal, system limitations. Understanding how trust is shaped,
 constrained, and potentially restored under real autonomy conditions is
 essential for the responsible deployment of social robots in
 collaborative environments.
+
+\section{Ethical Approval}\label{ethical-approval}
+
+All procedures were approved by the Laurentian University Research
+Ethics Board (ROMEO File: \#6021966). Participants provided written
+informed consent prior to participation and were debriefed in-person
+following the session. Data were de-identified and stored securely in
+accordance with institutional guidelines.
+
+\section{Data and Code Availability}\label{data-and-code-availability}
+
+The analysis code (R) is available at:
+\href{https://github.com/shaunaheron2/misty-paper}{GitHub Repository}.
+The interaction system and prompt templates used to implement the
+experimental conditions (Python) are also available in the same
+repository. De-identified participant data (survey scales and
+session-level summary measures) are available upon reasonable request to
+the corresponding author. Raw interaction logs are not publicly
+available due to participant privacy constraints.
+
+\section{Conflict of Interest}\label{conflict-of-interest}
+
+The authors declare no conflicts of interest.
+
+\section{Author Contributions}\label{author-contributions}
+
+S. Heron: Conceptualization, Methodology, Software, Formal Analysis,
+Investigation, Data Curation, Writing - Original Draft, Writing - Review
+\& Editing, Visualization.
+
+M.C. Lau: Conceptualization, Methodology, Writing - Review \& Editing,
+Supervision.
+
+\section{Funding}\label{funding}
+
+This work was supported by IAMGOLD President's Innovation Fund (Grant
+No.~2025-20377).
+
+\section{Declaration of Generative AI and AI-assisted Technologies in
+the Writing
+Process}\label{declaration-of-generative-ai-and-ai-assisted-technologies-in-the-writing-process}
+
+During the preparation of this work, the author(s) used Claude (Sonnet
+4.6, Anthropic) to review the manuscript for clarity and readability.
+After reviewing the AI-generated suggestions, the author(s) made
+revisions to the text as appropriate. The author(s) takes full
+responsibility for the content of the published work.
 
 \section{References}\label{refs}
 
@@ -1690,7 +1754,7 @@ reliability.
 \subsection{Trust Perception Scale HRI
 (TPS-HRI)}\label{trust-perception-scale-hri-tps-hri}
 
-Participants rated the following items on a percentage scale (0--100\%),
+Participants rated the following items on a percentage scale (0-100\%),
 indicating the proportion of time each statement applied to the robot
 during the interaction.
 
@@ -1724,8 +1788,8 @@ during the interaction.
   What percent of the time did this robot answer the questions asked?
 \end{itemize}
 
-\subsection{Trust in Industrial Human--Robot Collaboration
-(TI-HRC)}\label{trust-in-industrial-humanrobot-collaboration-ti-hrc}
+\subsection{Trust in Industrial Human-Robot Collaboration
+(TI-HRC)}\label{trust-in-industrial-human-robot-collaboration-ti-hrc}
 
 Participants indicated their agreement with the following statements
 using a 5-point Likert-type scale (Strongly Disagree to Strongly Agree).
