@@ -1247,6 +1247,9 @@ The robot’s nonverbal behaviour was implemented through a library of custom ac
 
 LED colours were used to signal system state to participants. A blue LED indicated active listening, while a purple LED indicated processing or speaking.
 
+![A selection of facial expressions the language model could choose from each turn. Retrieved from [1] N. T. White, B. Cagiltay, J. E. Michaelis, and B. Mutlu, “Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction,” in Interaction Design and Children, Athens Greece: ACM, Jun. 2021, pp. 314–325. doi: 10.1145/3459990.3460714.
+](images/misty-expressions.jpg){#fig-task1 fig-align="center" width="100%"}
+
 ### Collaborative Tasks
 
 The interaction consisted of two collaborative tasks inspired by the puzzle task desigbed by @lin2022. In the first task, participants and the robot jointly solved a “who-dunnit” problem by eliminating suspects from a grid based on yes/no questions. The robot possessed ground-truth knowledge but was constrained to answering only feature-based yes/no queries. In the second task, participants and the robot attempted to locate a missing robot by interpreting cryptic system and sensor logs. In this task, the robot did not know the solution and instead provided guidance based on general technical knowledge and logical reasoning.
