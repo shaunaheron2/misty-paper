@@ -21,7 +21,6 @@
 
   // Institution logo.
   $if(institution-logo)$ univ_logo: "$institution-logo$", $endif$
-
   // Footer text.
   // For instance, Name of Conference, Date, Location.
   // or Course Name, Date, Instructor.
@@ -51,6 +50,7 @@
 
   // University logo's scale (in %).
   $if(univ-logo-scale)$ univ_logo_scale: $univ-logo-scale$, $endif$
+  //$if(qr-code-scale)$ qr_code_scale: $qr-code-scale$, $endif$
 
   // University logo's column size (in in).
   $if(univ-logo-column-size)$ univ_logo_column_size: $univ-logo-column-size$, $endif$

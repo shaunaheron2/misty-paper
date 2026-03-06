@@ -700,7 +700,8 @@ post_table |>
   add_p() |>
   # add_overall() |>
   bold_p() |>
-  modify_caption("Post-Interaction Objective Measures by Policy") |> as_gt() |>
+  modify_caption("Post-Interaction Objective Measures by Policy") |>
+  as_gt() |>
   gt::gtsave(filename = "images/summary_table.png")
 ```
 
@@ -718,9 +719,6 @@ Bayesian models used weakly informative, scale-appropriate priors. The intercept
 
 #### Primary Analysis: Eligible Sample (n = 24)
 
-Frequentist linear mixed-effects models revealed consistent positive effects of responsive interaction on both trust measures. For experienced trust (TI-HRC), participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition ($\beta$ = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores ($\beta$ = -7.43, SE = 2.81, p = .016), while native English fluency was not significantly associated with trust. Inclusion of random intercepts for individual trust items improved model fit, indicating meaningful item-level variability beyond session-level differences. For perceived trust (TPS-HRI), a comparable pattern emerged, with responsive interaction associated with higher trust scores ($\beta$ = 14.17, SE = 6.50, t = 2.00, p = .046). However, random intercepts for trust items did not improve model fit for this scale, likely reflecting differences in scale format and response interface: TPS-HRI was administered using a continuous slider input via touchpad, whereas TI-HRC employed discrete Likert-style response options. The slider-based interface may have reduced response precision and item-level variability, though meaningful between-condition differences remained detectable at the aggregate level.
-
-Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in @fig-finalmodels-posterior, for TI-HRC, the responsive condition showed a posterior median effect of $\beta$ = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was $\beta$ = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. Baseline NARS showed credible negative associations with both outcomes, while native English fluency showed negative associations that were credible for TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI (conditional $R^2$ = 0.64) and moderate for TI-HRC (conditional $R^2$ = 0.42), with fixed effects explaining 16% and 21% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.
 
 ```{r}
 #| label: fig-hrc-posterior
@@ -766,24 +764,6 @@ plot_title1 <- ggtitle(
   "TPS-HRI: Perceived Trust"
 )
 
-hrc_plot <- mcmc_areas(
-  hrc_posterior,
-  pars = c(
-    "b_groupRESPONSIVE",
-    "b_nars_pre_c",
-    "b_native_englishNonMNativeEnglish"
-  ),
-  prob = 0.8
-) +
-  #geom_vline(xintercept = 0, linetype = "dashed") +
-  scale_y_discrete(labels = labels) +
-  labs(x = "Posterior estimate") +
-  plot_title2 +
-  theme(
-    axis.title.y = element_text(size = 9)
-  )
-
-
 draws_long <- as_draws_df(hrc_mod_elig) |>
   select(all_of(pars)) |>
   pivot_longer(everything(), names_to = "param", values_to = "value") |>
@@ -791,12 +771,24 @@ draws_long <- as_draws_df(hrc_mod_elig) |>
     param = factor(param, levels = param_order)
   )
 
-hrc_plot <- ggplot(draws_long, aes(x = value, y = param)) +
+param_colors <- c(
+  b_groupRESPONSIVE = "#C98A6A",
+  b_nars_pre_c = "#999999",
+  b_native_englishNonMNativeEnglish = "#999999"
+)
+
+hrc_plot <- ggplot(draws_long, aes(x = value, y = param, fill = param)) +
   stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(x = "Posterior estimate", y = NULL) +
+  labs(x = "Estimated Effect on Trust", y = NULL) +
   theme_few() +
-  theme(axis.text.y = element_text(size = 10)) +
+  theme(
+    axis.text.y = element_text(size = 8, face = "bold"),
+    axis.title.x = element_text(size = 8),
+    plot.title = element_text(size = 10),
+    legend.position = "none"
+  ) +
+  scale_fill_manual(values = param_colors) +
   scale_y_discrete(labels = labels, limits = rev(param_order)) +
   xlim(-25, 30) +
   plot_title2
@@ -808,58 +800,38 @@ draws_long <- as_draws_df(hri_mod_elig) |>
     param = factor(param, levels = param_order)
   )
 
-hri_plot <- ggplot(draws_long, aes(x = value, y = param)) +
+hri_plot <- ggplot(draws_long, aes(x = value, y = param, fill = param)) +
   stat_halfeye(.width = c(0.8, 0.95), point_interval = median_qi) +
   geom_vline(xintercept = 0, linetype = "dashed") +
-  labs(x = "Posterior estimate", y = NULL) +
+  labs(x = "Estimated Effect on Trust", y = NULL) +
+  scale_fill_manual(values = param_colors) +
   scale_y_discrete(limits = rev(param_order)) +
   theme_few() +
   theme(
     axis.title.y = element_blank(),
     axis.text.y = element_blank(),
-    axis.ticks.y = element_blank()
+    axis.title.x = element_text(size = 8),
+    axis.ticks.y = element_blank(),
+    plot.title = element_text(size = 10),
+    legend.position = "none"
   ) +
   xlim(-25, 30) +
   plot_title1
 
 ```
 
-```{r}
-#| label: fig-hri-posterior
-#| fig-cap: "Posterior distributions of fixed effects from the final TPS-HRI model. Shaded regions indicate 80% credible intervals; dashed vertical line denotes a null effect. Positive values indicate higher post-interaction trust scores."
-#| fig-align: left
-# plot_title1 <- ggtitle(
-#   "TPS-HRI"
-# )
 
-# hri_plot <- mcmc_areas(
-#   hri_posterior,
-#   pars = c(
-#     "b_groupRESPONSIVE",
-#     "b_nars_pre_c",
-#     "b_native_englishNonMNativeEnglish"
-#   ),
-#   prob = 0.8
-# ) +
-#   geom_vline(xintercept = 0, linetype = "dashed") +
-#   scale_y_discrete(labels = labels) +
-#   #labs(x = "Posterior estimate of Trust (points on 0-100 trust scale)") +
-#   plot_title1 +
-#   scale_y_discrete(labels = labels)+
-#   theme(
-#     axis.title.y = element_blank(),
-#     axis.text.y  = element_blank(),
-#     axis.ticks.y = element_blank()
-#   )
+Frequentist linear mixed-effects models revealed consistent positive effects of responsive interaction on both trust measures. For experienced trust (TI-HRC), participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition ($\beta$ = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores ($\beta$ = -7.43, SE = 2.81, p = .016), while native English fluency was not significantly associated with trust. Inclusion of random intercepts for individual trust items improved model fit, indicating meaningful item-level variability beyond session-level differences. For perceived trust (TPS-HRI), a comparable pattern emerged, with responsive interaction associated with higher trust scores ($\beta$ = 14.17, SE = 6.50, t = 2.00, p = .046). However, random intercepts for trust items did not improve model fit for this scale, likely reflecting differences in scale format and response interface: TPS-HRI was administered using a continuous slider input via touchpad, whereas TI-HRC employed discrete Likert-style response options. The slider-based interface may have reduced response precision and item-level variability, though meaningful between-condition differences remained detectable at the aggregate level.
 
-```
+Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in @fig-finalmodels-posterior, for TI-HRC, the responsive condition showed a posterior median effect of $\beta$ = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was $\beta$ = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. Baseline NARS showed credible negative associations with both outcomes, while native English fluency showed negative associations that were credible for TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI (conditional $R^2$ = 0.64) and moderate for TI-HRC (conditional $R^2$ = 0.42), with fixed effects explaining 16% and 21% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.
 
 ```{r}
+#| fig-width: 6
+#| fig-height: 3.5
 #| label: fig-finalmodels-posterior
 #| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample: n=24) predicting post-interaction trust. Fixed effects include Responsive vs Control policy, Negative Attitudes Towards Robots (NARS) and Non-native English speaker versus English native speaker. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0-100 scale)."
 #| fig-align: left
-#| fig-width: 8
-#| fig-height: 4.5
+
 library(patchwork)
 # xlims <- c(-30, 30)
 
@@ -869,11 +841,73 @@ library(patchwork)
 (hrc_plot | hri_plot) +
   plot_annotation(
     title = 'Posterior Estimates of Post-Interaction Trust',
-    subtitle = 'Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)',
+
+    #subtitle = 'Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)',
     caption = '',
-    theme = theme(plot.title = element_text(size = 14))
+    theme = theme(plot.title = element_text(size = 12))
+  ) +
+  plot_layout(guides = "collect")
+
+```
+
+
+
+
+```{r}
+#| eval: false
+#| label: fig-hri-posterior
+#| fig-cap: "Posterior distributions of fixed effects from the final TPS-HRI model. Shaded regions indicate 80% credible intervals; dashed vertical line denotes a null effect. Positive values indicate higher post-interaction trust scores."
+#| fig-align: left
+# plot_title1 <- ggtitle(
+#   "TPS-HRI"
+# )
+
+hrc_plot <- mcmc_areas(
+  hrc_posterior,
+  pars = c(
+    "b_groupRESPONSIVE",
+    "b_nars_pre_c",
+    "b_native_englishNonMNativeEnglish"
+  ),
+  prob = 0.8
+) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  scale_y_discrete(labels = labels) +
+  labs(x = "Change in Trust") +
+  plot_title2 +
+  theme(
+    axis.title.y = element_text(size = 8),
+    axis.title.x = element_text(size = 7),
   )
 
+hri_plot <- mcmc_areas(
+  hri_posterior,
+  pars = c(
+    "b_groupRESPONSIVE",
+    "b_nars_pre_c",
+    "b_native_englishNonMNativeEnglish"
+  ),
+  prob = 0.8
+) +
+  geom_vline(xintercept = 0, linetype = "dashed") +
+  scale_y_discrete(labels = labels) +
+  #labs(x = "Posterior estimate of Trust (points on 0-100 trust scale)") +
+  plot_title1 +
+  scale_y_discrete(labels = labels) +
+  theme(
+    axis.title.y = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+(hrc_plot | hri_plot) +
+  plot_annotation(
+    title = 'Posterior Estimates of Post-Interaction Trust',
+
+    #subtitle = 'Experienced Trust (TI-HRC) and Perceived Trust (TPS-HRI)',
+    caption = '',
+    theme = theme(plot.title = element_text(size = 12))
+  ) +
+  plot_layout(guides = "collect")
 ```
 
 
@@ -928,7 +962,17 @@ To assess robustness, Bayesian models were refitted including all sessions regar
 
 #### Mechanism Analysis: Communication Breakdown (n=29)
 
-To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with the proportion of turns characterized by communication breakdown included as an interaction term. For TPS-HRI, the interaction between policy and communication breakdown was weak and centered near zero (posterior median $\beta$ = -1.14, 95% credible interval \[-18.87, 16.28\]), with only 55% probability of being negative and 50% probability of being significant. This broad, unstable posterior distribution suggests that evaluative trust judgments were relatively insensitive to graded variation in communication quality once a basic threshold of viability was established. In contrast, TI-HRC showed a more consistent pattern (see @fig-mech-posterior). The interaction term showed a negative tendency (posterior median $\beta$ = -5.97, 95% credible interval \[-23.01, 10.92\]), with 76% probability of being negative, 71% probability of being significant, and 45% probability of being large. While responsive behaviour was associated with higher experienced trust under low levels of communication breakdown, this advantage diminished as communication failures accumulated. This differential sensitivity suggests that experienced trust depends critically on the robot's sustained ability to engage in responsive interaction, whereas evaluative trust judgments may rely more on discrete moments of successful collaboration that can occur even within partially degraded interactions.
+  To examine whether communication quality moderated the effect of interaction policy on
+  trust, Bayesian models were fitted in the full sample with the proportion of turns
+  characterized by communication breakdown included as an interaction term.
+  @fig-mech-posterior shows predicted trust as a function of communication breakdown for
+  each condition and trust measure.
+
+  For TI-HRC (experienced trust), the responsive condition showed consistently higher trust than control at low levels of communication breakdown, but this advantage diminished as breakdown increased (interaction posterior median $\beta$ = -5.97, 95% credible interval [-23.01, 10.92]; 76% probability of a negative interaction). This pattern is consistent with the interpretation that experienced trust depends on the robot's sustained ability to deliver responsive behaviour: when communication fails frequently, the affect-adaptive features that define the responsive policy cannot be expressed, and the trust advantage over the control condition erodes. In contrast, TPS-HRI (perceived trust) showed a weak and unstable interaction centered near zero (posterior median $\beta$ = -1.14, 95% credible interval [-18.87, 16.28]; 55% probability negative), with both conditions showing broadly similar and relatively flat predicted trust across the breakdown range.
+
+  This suggests that evaluative trust judgments are less sensitive to graded communication degradation, potentially because they are anchored by discrete moments of successful collaboration that can occur even within partially disrupted interactions.
+
+  Together, these results clarify the sensitivity analysis findings. The attenuation of the responsive policy effect in the full sample is not simply noise from increased variability, but reflects the inclusion of sessions in which the communication channel required to deliver the responsive manipulation had substantially failed. This supports both the exclusion criterion applied in the primary analysis and the broader interpretation that experienced trust, in particular, is contingent on sustained interaction quality.
 
 ```{r}
 #| label: fig-mech-posterior
@@ -958,8 +1002,8 @@ hri_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
   theme_few() +
   theme(
     axis.title.y = element_blank(),
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank()
+    #  axis.text.y = element_blank(),
+    #axis.ticks.y = element_blank()
   ) +
   labs(title = "TPS-HRI: Perceived Trust") +
   geom_ribbon(alpha = 0.08) +
@@ -976,7 +1020,8 @@ hri_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
       CONTROL = "#7A8DA0",
       RESPONSIVE = "#C98A6A"
     )
-  )
+  ) +
+  ylim(55, 80)
 
 
 ce <- conditional_effects(
@@ -1015,16 +1060,19 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
       CONTROL = "#7A8DA0",
       RESPONSIVE = "#C98A6A"
     )
-  )
+  ) +
+  ylim(55, 80)
 
 
 (hrc_mod_mech_plot | hri_mod_mech_plot) +
   plot_annotation(
-    title = 'Trust as a Function of Communication Breakdown',
+    title = 'Predicted Trust as a Function of Communication Breakdown',
     subtitle = '',
     caption = '',
-    theme = theme(plot.title = element_text(size = 14))
-  )
+    theme = theme(plot.title = element_text(size = 12))
+  ) +
+  plot_layout(guides = "collect")
+
 ```
 
 ```{r}
@@ -1134,7 +1182,7 @@ post_table |>
       all_categorical() ~ "{n} / {N} ({p}%)"
     ),
     label = list(
-      suspect_correct ~ "Suspect ID Accuracy (robot dependent)",
+      suspect_correct ~ "Suspect ID (robot dep.)",
       # status_correct ~ "Status Accuracy",
       # duration_mins ~ "Avg Session Duration (mins)",
       # n_turns ~ "Dialogue Turns",
@@ -1144,18 +1192,21 @@ post_table |>
       prop_correct ~ "% Task Accuracy",
       # n_engaged ~ "Engaged Responses",
       # n_frust ~ "Frustrated Responses",
-      building_correct ~ "Building ID Accuracy",
-      zone_correct ~ "Zone ID Accuracy",
-      floor_correct ~ "Floor ID Accuracy"
+      building_correct ~ "Building ID",
+      zone_correct ~ "Zone ID",
+      floor_correct ~ "Floor ID"
       # trust_perc_post ~ "Trust Perception Scale HRI",
       # post_trust ~ "Trust in Industrial HRI Collaboration"
     )
   ) |>
   add_p() |>
   # add_overall() |>
-  bold_p() |>
-  #bold_labels() |>
-  modify_caption("Post-Interaction Task Performance by Policy")
+  #bold_p() |>
+  bold_labels() |>
+  modify_caption("Post-Interaction Task Performance by Policy") #|>
+#as_gt() |>
+# cols_width(1 ~ '20%')
+#gt::gtsave(filename = "images/task_table.png")
 
 ```
 

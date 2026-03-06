@@ -1172,28 +1172,41 @@ interaction itself.
 (n=29)}\label{mechanism-analysis-communication-breakdown-n29}
 
 To examine whether communication quality moderated the effect of
-interaction policy, Bayesian models were fitted in the full sample with
-the proportion of turns characterized by communication breakdown
-included as an interaction term. For TPS-HRI, the interaction between
-policy and communication breakdown was weak and centered near zero
-(posterior median \(\beta\) = -1.14, 95\% credible interval {[}-18.87,
-16.28{]}), with only 55\% probability of being negative and 50\%
-probability of being significant. This broad, unstable posterior
-distribution suggests that evaluative trust judgments were relatively
-insensitive to graded variation in communication quality once a basic
-threshold of viability was established. In contrast, TI-HRC showed a
-more consistent pattern (see Figure~\ref{fig-mech-posterior}). The
-interaction term showed a negative tendency (posterior median \(\beta\)
-= -5.97, 95\% credible interval {[}-23.01, 10.92{]}), with 76\%
-probability of being negative, 71\% probability of being significant,
-and 45\% probability of being large. While responsive behaviour was
-associated with higher experienced trust under low levels of
-communication breakdown, this advantage diminished as communication
-failures accumulated. This differential sensitivity suggests that
-experienced trust depends critically on the robot's sustained ability to
-engage in responsive interaction, whereas evaluative trust judgments may
-rely more on discrete moments of successful collaboration that can occur
-even within partially degraded interactions.
+interaction policy on trust, Bayesian models were fitted in the full
+sample with the proportion of turns characterized by communication
+breakdown included as an interaction term.
+Figure~\ref{fig-mech-posterior} shows predicted trust as a function of
+communication breakdown for each condition and trust measure.
+
+For TI-HRC (experienced trust), the responsive condition showed
+consistently higher trust than control at low levels of communication
+breakdown, but this advantage diminished as breakdown increased
+(interaction posterior median \(\beta\) = -5.97, 95\% credible interval
+{[}-23.01, 10.92{]}; 76\% probability of a negative interaction). This
+pattern is consistent with the interpretation that experienced trust
+depends on the robot's sustained ability to deliver responsive
+behaviour: when communication fails frequently, the affect-adaptive
+features that define the responsive policy cannot be expressed, and the
+trust advantage over the control condition erodes. In contrast, TPS-HRI
+(perceived trust) showed a weak and unstable interaction centered near
+zero (posterior median \(\beta\) = -1.14, 95\% credible interval
+{[}-18.87, 16.28{]}; 55\% probability negative), with both conditions
+showing broadly similar and relatively flat predicted trust across the
+breakdown range.
+
+This suggests that evaluative trust judgments are less sensitive to
+graded communication degradation, potentially because they are anchored
+by discrete moments of successful collaboration that can occur even
+within partially disrupted interactions.
+
+Together, these results clarify the sensitivity analysis findings. The
+attenuation of the responsive policy effect in the full sample is not
+simply noise from increased variability, but reflects the inclusion of
+sessions in which the communication channel required to deliver the
+responsive manipulation had substantially failed. This supports both the
+exclusion criterion applied in the primary analysis and the broader
+interpretation that experienced trust, in particular, is contingent on
+sustained interaction quality.
 
 \begin{figure}
 
@@ -1244,11 +1257,11 @@ Policy in the Eligible Sample}
 \toprule
 \textbf{Characteristic} & \textbf{CONTROL}  N = 10\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
 \midrule\addlinespace[2.5pt]
-\% Task Accuracy & 0.60 (0.21) & 0.66 (0.23) & 0.47 \\ 
-Suspect ID Accuracy (robot dependent) & 3 / 10 (30\%) & 9 / 14 (64\%) & 0.10 \\ 
-Building ID Accuracy & 7 / 10 (70\%) & 11 / 14 (79\%) & 0.67 \\ 
-Zone ID Accuracy & 5 / 10 (50\%) & 4 / 14 (29\%) & 0.40 \\ 
-Floor ID Accuracy & 7 / 10 (70\%) & 13 / 14 (93\%) & 0.27 \\ 
+{\bfseries \% Task Accuracy} & 0.60 (0.21) & 0.66 (0.23) & 0.47 \\ 
+{\bfseries Suspect ID (robot dep.)} & 3 / 10 (30\%) & 9 / 14 (64\%) & 0.10 \\ 
+{\bfseries Building ID} & 7 / 10 (70\%) & 11 / 14 (79\%) & 0.67 \\ 
+{\bfseries Zone ID} & 5 / 10 (50\%) & 4 / 14 (29\%) & 0.40 \\ 
+{\bfseries Floor ID} & 7 / 10 (70\%) & 13 / 14 (93\%) & 0.27 \\ 
 \bottomrule
 \end{tabular*}
 \begin{minipage}{\linewidth}
