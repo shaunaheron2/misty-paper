@@ -67,6 +67,7 @@
 
 
 \usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
@@ -234,24 +235,6 @@ AI \sep trust in human-robot interaction \sep
 affect-adaptive robot systems
 
 
-
-\section{Highlights}\label{highlights}
-
-\begin{itemize}
-\tightlist
-\item
-  Robots that adapt to users are rated more trustworthy than robots that
-  only react
-\item
-  Unprompted help and empathy from robots builds greater collaboration
-  trust
-\item
-  Trust advantages of responsive robots disappear when communication
-  breaks down
-\item
-  Affective trust breaks down faster than perceived reliability when
-  communication fails
-\end{itemize}
 
 \section{Introduction}\label{introduction}
 
@@ -470,10 +453,26 @@ Upon arrival, participants were greeted by the researcher, provided with
 a brief overview of the session, and given instructions for effective
 communication with the robot. Once participants indicated readiness, the
 researcher exited the room, leaving the participant and robot to
-complete the interaction without human presence or observation.
-Participants initiated the interaction by clicking a start button on the
-interface and were informed that they could terminate the session at any
-time without penalty.
+complete the interaction without human presence or observation (see
+Figure~\ref{fig-task1}). Participants initiated the interaction by
+clicking a start button on the interface and were informed that they
+could terminate the session at any time without penalty.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=4.375in,height=\textheight,keepaspectratio]{images/misty-pullback.jpg}
+
+}
+
+\caption{\label{fig-setup}Experimental setup showing the autonomous
+robot and participant-facing task interface used during in-person
+sessions. Participants entered task responses and navigated between task
+stages using the interface, while the robot autonomously tracked task
+state and adapted its interaction based on participant input.}
+
+\end{figure}%
 
 Following task completion, participants completed a 21-item
 post-interaction questionnaire assessing trust on a provied laptop.
@@ -535,26 +534,10 @@ Interactions took place in a shared physical workspace that included the
 Misty-II social robot and a participant-facing computer interface
 \autocite{mistyrobotics} at Laurentian University. The interface
 displayed task materials, recorded participant responses, and supported
-progression through the game (see Figure~\ref{fig-task1}). Importantly,
-it did not function as a control mechanism for the robot. Instead, the
-robot autonomously monitored task progression and participant inputs via
-the interface, adapting its dialogue and behaviour accordingly.
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=5.02083in,height=\textheight,keepaspectratio]{images/misty-pullback.jpg}
-
-}
-
-\caption{\label{fig-setup}Experimental setup showing the autonomous
-robot and participant-facing task interface used during in-person
-sessions. Participants entered task responses and navigated between task
-stages using the interface, while the robot autonomously tracked task
-state and adapted its interaction based on participant input.}
-
-\end{figure}%
+progression through the game. Importantly, it did not function as a
+control mechanism for the robot. Instead, the robot autonomously
+monitored task progression and participant inputs via the interface,
+adapting its dialogue and behaviour accordingly.
 
 The interaction began with a brief greeting phase during which the robot
 introduced itself and engaged in rapport-building dialogue (e.g., ``Hi,
@@ -587,26 +570,10 @@ identity due to laboratory security protocols. Instead, she could answer
 only yes/no questions about observable features of the individual in the
 footage (e.g., ``Was the suspect wearing a hat?''). This constraint
 established the robot as the sole source of task-relevant information
-while maintaining narrative plausibility.
-
-The suspect grid was displayed on the interface and allowed participants
-to click on and grey out eliminated candidates, while all questions were
-posed verbally to the robot (see Figure~\ref{fig-task1}).
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=5.02083in,height=\textheight,keepaspectratio]{images/task1-whodunnit2.png}
-
-}
-
-\caption{\label{fig-task1}Task 1 interface including the 6 \(×\) 4 grid
-of 24 candidates. Participants could track those eliminated by clicking
-on subjects which would grey them out. A box was provided to input their
-final answer and a button included to move to the next task.}
-
-\end{figure}%
+while maintaining narrative plausibility. The suspect grid was displayed
+on the interface and allowed participants to click on and grey out
+eliminated candidates, while all questions were posed verbally to the
+robot (see Figure~\ref{fig-task1}).
 
 The robot possessed the ground-truth information necessary to answer
 each question correctly. Successful task completion was therefore fully
@@ -617,6 +584,21 @@ shared features, narrowing the search space within a five-minute time
 limit. Efficient performance depended on selecting informative questions
 (i.e., features that divided the remaining candidates), tracking
 eliminations, and adapting subsequent questions based on prior answers.
+
+\begin{figure}
+
+\centering{
+
+\includegraphics[width=4.375in,height=\textheight,keepaspectratio]{images/task1-whodunnit.png}
+
+}
+
+\caption{\label{fig-task1}Task 1 interface including the 6 \(×\) 4 grid
+of 24 candidates. Participants could track those eliminated by clicking
+on subjects which would grey them out. A box was provided to input their
+final answer and a button included to move to the next task.}
+
+\end{figure}%
 
 This structure made the task sensitive to interaction quality.
 Inefficient questioning, repeated queries, or uncertainty about next
@@ -637,23 +619,9 @@ The second task involved a more open-ended reasoning challenge designed
 to shift the dependency structure from enforced to optional
 collaboration. Participants were presented with multiple technical logs
 through a simulated terminal interface that could be used to infer the
-location of the missing robot (see Figure~\ref{fig-task2}). The task was
-intentionally cryptic and difficult to solve within the allotted ten
-minutes without synthesizing information across multiple sources.
-
-\begin{figure}
-
-\centering{
-
-\includegraphics[width=5.02083in,height=\textheight,keepaspectratio]{images/task2-cryptic-puzzle.png}
-
-}
-
-\caption{\label{fig-task2}The task 2 interface presented multiple
-technical logs through a simulated terminal interface that could be used
-to determine the location of the missing robot.}
-
-\end{figure}%
+location of the missing robot. The task was intentionally cryptic and
+difficult to solve within the allotted ten minutes without synthesizing
+information across multiple sources.
 
 The logs contained partial and indirect clues related to the robot's
 activity, such as wireless connectivity records, sensor readings, and
@@ -733,18 +701,35 @@ measures.
 
 \subsubsection{Objective Measures}\label{objective-measures}
 
-Table~\ref{tbl-post-dialogue-turns} outlines objective task metrics
-including the average number of dialogue turns, session duration,
-response time (robot dialogue latency), as well as the number of engaged
-versus frustrated responses the robot detected--all obtained from log
-data. Behavioural engagement metrics were derived from interaction logs
-and manually coded dialogue transcripts, including the proportion of
-turns characterized by communication breakdowns, human and robot
-reasoning, robot helpful and unhelpful guidance, robot and human
-affective engagement and other task-relevant human and robot
-contributions. See Appendix C for a full coding scheme.
+Self-report measures were complemented by objective interaction metrics
+derived from system logs and manually coded dialogue transcripts. These
+measures captured the behavioural and process-level dynamics of
+collaboration, including interaction timing, task performance, speech
+recognition quality, and the quality of spoken-language exchange are
+aspects of the interaction that self-report alone would not fully
+characterise.
 
-\subsection{Participants}\label{participants}
+Coded metrics were derived from interaction logs and manually coded
+dialogue transcripts. For the purposes of dialogue coding, a turn was
+defined as a participant utterance and the robot's subsequent response,
+treated as a single exchange unit. Table~\ref{tbl-post-dialogue-turns}
+outlines objective task metrics including the average number of dialogue
+turns, session duration, response time (robot dialogue latency), and the
+number of engaged versus frustrated responses the robot detected --- all
+obtained from log data. Coded metrics from manual transcript analysis
+included the proportion of turns characterized by communication
+breakdowns --- defined as turns in which the ASR pipeline returned
+fragmented or linguistically incoherent output that prevented the robot
+from extracting sufficient content to respond meaningfully. This
+definition excludes silent turns, in which no speech was detected within
+a given timeframe and the robot issued a condition-appropriate check-in;
+silence was treated as a distinct interaction event and coded
+separately. Other coded metrics included human and robot reasoning,
+robot helpful and unhelpful guidance, robot and human affective
+engagement, and other task-relevant human and robot contributions. See
+Appendix C for a full coding scheme.
+
+\subsection{Participants}\label{sec-participants}
 
 A total of 29 participants were recruited from the Laurentian University
 community via word of mouth and the SONA recruitment system. Eligibility
@@ -756,30 +741,35 @@ depending on their program of study. All procedures were approved by the
 Laurentian University Research Ethics Board (ROMEO File: \#6021966).
 
 Although English fluency was an eligibility requirement, in-person
-observation during data collection revealed meaningful variability in
-participants' functional spoken-language proficiency. The researcher
-therefore documented observed language proficiency and monitored
-interaction quality during each session in anticipation of potential
-speech-based system limitations.
+sessions revealed meaningful variability in participants' functional
+spoken-language proficiency that was not captured in the online
+screening stage. In several sessions, the researcher observed difficulty
+in communication with participants prior to the robot interaction;
+suggesting that self-reported or screener-assessed fluency did not
+always reflect the level of spoken-language proficiency required for
+real-time autonomous speech recognition. Given the spoken-language
+demands of the task, the researcher documented these observations in
+session notes as a methodological record, in anticipation of potential
+downstream effects on interaction quality.
 
-Subsequent review of interaction transcripts and system logs indicated
+Subsequent review of interaction transcripts and system logs confirmed
 that a subset of sessions exhibited severe and sustained communication
-failure, characterized by fragmented or unintelligible automatic speech
-recognition (ASR) output and stalled dialogue. In these sessions, the
-robot was unable to extract sufficient linguistic content to maintain
-conversation, respond meaningfully to participant input, or support task
-progression. These interaction failures are described in detail in the
-Analytic Strategy and Results sections.
+failure, characterized by fragmented or unintelligible ASR output and
+stalled dialogue. In these sessions, the robot was unable to extract
+sufficient linguistic content to establish a conversation, respond
+meaningfully to participant input, or support task progression. These
+interaction failures are described in detail in the Analytic Strategy
+and Results sections.
 
 \subsubsection{Randomization Check}\label{randomization-check}
 
 Participants were initially assigned to the responsive or control
 condition by Qualtrics using an automated randomization procedure at the
-time of online sign-up. However, because several scheduled participants
-did not attend their in-person session, replacement participants were
-assigned to the next available session slot rather than re-randomized.
-As a result, the final condition assignment should be considered
-semi-random rather than strictly randomized.
+time of sign-up. However, because several scheduled participants did not
+attend their in-person session, replacement participants were assigned
+to the next available session slot rather than re-randomized. As a
+result, the final condition assignment should be considered semi-random
+rather than strictly randomized.
 
 To assess whether this deviation introduced systematic bias, we
 conducted randomization checks comparing participants across conditions
@@ -841,24 +831,28 @@ interaction policy (full sample)}
 
 \subsection{Analytic Strategy}\label{analytic-strategy}
 
-Because the study relied unexpectedly but fundamentally on
-spoken-language collaboration, analyses were structured to explicitly
-account for interaction viability. Sessions were classified as
-non-viable when severe communication breakdown prevented sustained
-dialogue between the participant and the robot, rendering the
-experimental manipulation inoperative.
+Analyses were structured to explicitly account for interaction
+viability, given the spoken-language demands of the task and the
+variability in communication quality observed across sessions (see
+Section~\ref{sec-participants}). Sessions were classified as non-viable
+when severe communication breakdown prevented sustained dialogue between
+the participant and the robot, rendering the experimental manipulation
+inoperative.
 
 Communication viability was operationalized using a dialogue-level
 metric derived from manual coding of system logs. For each session, the
 proportion of dialogue turns affected by speech-recognition failure
-(i.e., fragmented or unintelligible utterances) was computed. Sessions
-in which more than 60\% of dialogue turns were affected were classified
-as non-viable, reflecting cases in which spoken-language interaction
-could not be meaningfully sustained. This criterion closely aligned with
-sessions independently flagged by the researcher during administration.
-It should be noted that because communication viability may itself be
-influenced by interaction policy, excluding non-viable sessions may have
-introduced selection bias and inflated estimated policy effects.
+(i.e., fragmented or unintelligible utterances) was computed. For the
+purposes of dialogue coding, a turn was defined as a participant
+utterance and the robot's subsequent response, treated as a single
+exchange unit. Sessions in which more than 60\% of dialogue turns were
+affected were classified as non-viable, reflecting cases in which
+spoken-language interaction could not be meaningfully sustained. This
+criterion closely aligned with sessions independently flagged by the
+researcher during administration. It should be noted that because
+communication viability may itself be influenced by interaction policy,
+excluding non-viable sessions may have introduced selection bias and
+inflated estimated policy effects.
 
 For this reason, analyses were conducted using three complementary
 approaches. Primary analyses were performed on an eligible sample
@@ -868,7 +862,7 @@ intended. Full-sample analyses including all sessions were conducted as
 sensitivity checks. Finally, mechanism-focused analyses compared viable
 and non-viable sessions on interaction-process metrics (e.g., ASR
 failure rates, dialogue turn completion, task abandonment) to
-characterize how severe communication breakdown alters interaction
+characterise how severe communication breakdown alters interaction
 dynamics. Trust measures from non-viable sessions were not interpreted
 as valid estimates of human-robot trust under functional interaction, as
 the robot was unable to sustain dialogue or collaborative behaviour in
@@ -888,37 +882,33 @@ tables were generated using the gtsummary package
 Of the 29 completed sessions, 5 met the pre-specified criterion for
 non-viable interaction due to severe and persistent communication
 failure. These sessions were characterized by high rates of ASR failure,
-incomplete dialogue sequences, and skipped task stages.
+incomplete dialogue sequences, and skipped task stages. Primary results
+are therefore reported for the eligible sample (n = 24), with
+full-sample and mechanism-focused analyses reported as sensitivity and
+exploratory analyses, respectively.
 
-Primary results are therefore reported for the eligible sample (n = 24),
-with full-sample and mechanism-focused analyses reported as sensitivity
-and exploratory analyses, respectively.
-
-\subsection{Primary Analysis: Eligible
-Sample}\label{primary-analysis-eligible-sample}
+\subsection{Descriptive Analysis: Eligible
+Sample}\label{descriptive-analysis-eligible-sample}
 
 Simple descriptive comparisons of post-interaction trust measures
 indicated higher trust ratings in the responsive condition relative to
 the control condition across both trust scales (see
-Table~\ref{tbl-post-eligible}). As indicated in
-Figure~\ref{fig-post-eligible}, average raw post-interaction scores on
-the Trust in Industrial Human-Robot Collaboration scale (TI-HRC)
-differed by approximately 26 points (Likert 1-5 converted to 0-100 scale
-for easier comparison across scales), while differences on the Trust
-Perception Scale-HRI (TPS-HRI) were approximately 15 points higher in
-the responsive condition compared to the control
-(Figure~\ref{fig-post-eligible}).
-
-Importantly, overall task accuracy did not differ significantly between
-conditions (detailed task performance results are reported below),
-suggesting that observed differences in trust were not driven by
+Table~\ref{tbl-post-eligible}). As Figure~\ref{fig-post-eligible} shows,
+average raw post-interaction scores on the Trust in Industrial
+Human-Robot Collaboration scale (TI-HRC) differed by approximately 26
+points (Likert 1-5 converted to 0-100 scale for easier comparison across
+scales), while differences on the Trust Perception Scale-HRI (TPS-HRI)
+were approximately 15 points higher in the responsive condition compared
+to the control. Overall task accuracy did not differ significantly
+between conditions (detailed task performance results are reported
+below), suggesting that observed differences in trust were not driven by
 differential task success but rather by the quality of the interaction
 process itself.
 
 \begin{table}
 
-\caption{\label{tbl-post-eligible}Post-Interaction Trust Outcomes and
-Task Accuracy by Policy in the Eligible Sample}
+\caption{\label{tbl-post-eligible}Post-Interaction Trust and Task
+Accuracy (eligible sample)}
 
 \centering{
 
@@ -945,22 +935,6 @@ Overall Task Accuracy & 0.60 (0.21) & 0.66 (0.23) & 0.47 \\
 
 \end{table}%
 
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/fig-post-eligible-1.pdf}}
-
-}
-
-\caption{\label{fig-post-eligible}Distribution of Trust Perception by
-interaction policy. Points represent individual observations; violins
-depict score distributions. Red points indicate group means with 95\%
-confidence intervals. Statistical comparisons are reported in the
-Results section.}
-
-\end{figure}%
-
 Analysis of dialogue interaction patterns confirmed successful
 manipulation of the interaction policies (see
 Table~\ref{tbl-post-dialogue-turns}). Manual coding of dialogue
@@ -980,6 +954,22 @@ of turns, p = .033), which reflects both the lower levels of
 collaborative engagement from participants resulting in more silence and
 the control condition's reactive policy that limited assistance to
 structured silence monitoring.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/fig-post-eligible-1.pdf}}
+
+}
+
+\caption{\label{fig-post-eligible}Distribution of Trust Perception by
+interaction policy. Points represent individual observations; violins
+depict score distributions. Red points indicate group means with 95\%
+confidence intervals. Statistical comparisons are reported in the
+Results section.}
+
+\end{figure}%
 
 Importantly, the proportion of turns coded with communication breakdowns
 (i.e., sentence fragments or complete misunderstandings) did not differ
@@ -1114,14 +1104,15 @@ condition showed a posterior median effect of \(\beta\) = 14.98 (95\%
 credible interval {[}7.29, 22.22{]}), with near-unity probability of a
 positive effect. For TPS-HRI, the posterior median was \(\beta\) = 12.76
 (95\% credible interval {[}2.96, 22.06{]}), with posterior probability
-exceeding 99\% that the effect was positive. Baseline NARS showed
-credible negative associations with both outcomes, while native English
-fluency showed negative associations that were credible for TPS-HRI but
-uncertain for TI-HRC. Model fit was substantial for TPS-HRI (conditional
-\(R^2\) = 0.64) and moderate for TI-HRC (conditional \(R^2\) = 0.42),
-with fixed effects explaining 16\% and 21\% of variance, respectively.
-The smaller item-level variance for TI-HRC suggests greater coherence
-among affective trust items under functional interaction conditions.
+exceeding 99\% that the effect was positive. As expected baseline NARS
+showed credible negative associations with both outcomes, while native
+English fluency showed negative associations that were credible for
+TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI
+(conditional \(R^2\) = 0.64) and moderate for TI-HRC (conditional
+\(R^2\) = 0.42), with fixed effects explaining 16\% and 21\% of
+variance, respectively. The smaller item-level variance for TI-HRC
+suggests greater coherence among affective trust items under functional
+interaction conditions.
 
 \begin{figure}
 
@@ -1130,13 +1121,12 @@ among affective trust items under functional interaction conditions.
 \caption{\label{fig-finalmodels-posterior}Posterior distributions of
 fixed effects from the final Bayesian mixed-effects models (eligible
 sample: n=24) predicting post-interaction trust. Fixed effects include
-Responsive vs Control policy, Negative Attitudes Towards Robots (NARS)
-and Non-native English speaker versus English native speaker. Half-eye
-densities show posterior distributions; points indicate posterior
-medians; thick and thin intervals denote 80\% and 95\% credible
-intervals, respectively. The dashed vertical line marks a null effect,
-and positive values indicate higher trust scores on the respective scale
-(points on a 0-100 scale).}
+policy, Negative Attitudes Towards Robots (NARS) and language (binary).
+Half-eye densities show posterior distributions; points indicate
+posterior medians; thick and thin intervals denote 80\% and 95\%
+credible intervals, respectively. The dashed vertical line marks a null
+effect, and positive values indicate higher trust scores on the
+respective scale (points on a 0-100 scale).}
 
 \end{figure}%
 
@@ -1171,40 +1161,54 @@ interaction itself.
 To examine whether communication quality moderated the effect of
 interaction policy, Bayesian models were fitted in the full sample with
 the proportion of turns characterized by communication breakdown
-included as an interaction term. For TPS-HRI, the interaction between
-policy and communication breakdown was weak and centered near zero
-(posterior median \(\beta\) = -1.14, 95\% credible interval {[}-18.87,
-16.28{]}), with only 55\% probability of being negative and 50\%
-probability of being significant. This broad, unstable posterior
-distribution suggests that evaluative trust judgments were relatively
-insensitive to graded variation in communication quality once a basic
-threshold of viability was established. In contrast, TI-HRC showed a
-more consistent pattern (see Figure~\ref{fig-mech-posterior}). The
-interaction term showed a negative tendency (posterior median \(\beta\)
-= -5.97, 95\% credible interval {[}-23.01, 10.92{]}), with 76\%
-probability of being negative, 71\% probability of being significant,
-and 45\% probability of being large. While responsive behaviour was
-associated with higher experienced trust under low levels of
-communication breakdown, this advantage diminished as communication
-failures accumulated. This differential sensitivity suggests that
-experienced trust depends critically on the robot's sustained ability to
-engage in responsive interaction, whereas evaluative trust judgments may
-rely more on discrete moments of successful collaboration that can occur
-even within partially degraded interactions.
+included as an interaction term. Predicted trust as a function of
+breakdown proportion for each condition and trust measure is shown in
+Figure~\ref{fig-mech-posterior}.
 
 \begin{figure}
 
 \pandocbounded{\includegraphics[keepaspectratio]{misty-paper_files/figure-pdf/fig-mech-posterior-1.pdf}}
 
-\caption{\label{fig-mech-posterior}Predicted trust scores as a function
-of communication breakdown, stratified by interaction policy. Panels
-show experienced trust (left) and perceived trust (right). Lines
-represent posterior medians and shaded bands indicate 80\% credible
-intervals. Communication breakdown is defined as the proportion of
-interaction turns flagged as breakdowns; predictions are shown at mean
-baseline negative attitudes toward robots.}
+\caption{\label{fig-mech-posterior}Predicted trust as a function of
+communication breakdown by interaction policy. Panels show experienced
+trust (left) and perceived trust (right). Lines represent posterior
+medians and shaded bands indicate 80\% credible intervals. Communication
+breakdown is defined as the proportion of interaction turns flagged as
+breakdowns; predictions are shown at mean baseline negative attitudes
+toward robots.}
 
 \end{figure}%
+
+The two trust dimensions responded differently to communication
+degradation. For experienced trust (TI-HRC), the responsive condition
+showed consistently higher trust than control at low breakdown levels,
+but this advantage attenuated as breakdown increased (posterior median
+\(\beta\) = -5.97, 95\% CI {[}-23.01, 10.92{]}; 76\% probability
+negative). This pattern is consistent with the interpretation that
+experienced trust depends on the robot's sustained ability to deliver
+responsive behaviour --- when communication fails frequently, the
+affect-adaptive features that define the responsive policy cannot be
+expressed, and the trust advantage erodes. In contrast, perceived trust
+(TPS-HRI) showed a weak, unstable interaction centered near zero
+(posterior median \(\beta\) = -1.14, 95\% CI {[}-18.87, 16.28{]}; 55\%
+probability negative), suggesting evaluative reliability judgements are
+less sensitive to graded communication degradation; at least in this
+small sample. This may reflect the fact that perceived trust is anchored
+by discrete moments of successful collaboration: a robot that continues
+attempting to engage despite communication difficulties may still signal
+competence, even if sustained rapport cannot be established.
+
+These results clarify the sensitivity analysis findings. The attenuation
+of the responsive policy effect in the full sample reflects the
+inclusion of sessions in which the communication level required to
+deliver the responsive manipulation had substantially failed (defined as
+\textgreater60\% of turns affected by ASR failure) and is not simply
+noise from increased variability. This supports both the exclusion
+criterion applied in the primary analysis and the broader interpretation
+that experienced trust, in particular, is contingent on sustained
+interaction quality. Put plainly, a robot that cannot understand you
+cannot adapt to you and without adaptation, the responsive policy offers
+nothing the control policy does not.
 
 \subsection{Task performance}\label{task-performance}
 
@@ -1465,14 +1469,18 @@ in prompt design and natural language understanding and robustness
 rather than participant reasoning and likely contributed to some
 interaction breakdowns.
 
-Measurement-related factors may have introduced additional noise. One
-trust instrument relied on continuous slider-based responses
-administered via a laptop touchpad, whereas the other used discrete,
-clickable Likert-style responses. Touchpad-based slider interaction can
-be awkward and imprecise for some users, which may have attenuated
-effects on the continuous scale relative to the Likert-based measure.
-Future work should consider standardizing response modalities across
-trust measures to reduce measurement noise and improve sensitivity.
+Measurement-related factors may have introduced additional noise. The
+TPS-HRI trust instrument (perceived trust) relied on a continuous
+slider-based input administered via a laptop touchpad, whereas the
+TI-HRC relied on a discrete, clickable, Likert-style response.
+Touchpad-based slider interaction can be awkward and imprecise for some
+users, which may have attenuated effects on the continuous scale
+relative to the Likert-based measure. Future work should consider
+standardizing response modalities across trust measures to reduce
+measurement noise and improve sensitivity as well as incorporating
+additional process-level measures of trust dynamics during interaction
+(e.g., real-time trust ratings, physiological indicators) to complement
+post-interaction evaluations.
 
 An additional limitation concerns the absence of a non-embodied
 comparison condition. The present study examined responsiveness within
@@ -1847,6 +1855,7 @@ Negatively worded items were reverse-scored prior to analysis.
 \subsubsection{Task Outcome Layer
 (Stage-Level)}\label{task-outcome-layer-stage-level}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1866,20 +1875,10 @@ Description
 \texttt{task\_outcome} & categorical & Final task status
 (\texttt{completed}, \texttt{timeout}, \texttt{skipped},
 \texttt{partial}, \texttt{abandoned}). \\
-\texttt{task\_completed} & binary & Task goal was fully completed. \\
-\texttt{task\_timed\_out} & binary & Task ended due to expiration of the
-time limit. \\
-\texttt{task\_skipped} & binary & Participant explicitly skipped or
-advanced past the stage. \\
-\texttt{task\_partially\_completed} & binary & Task progress was made,
-but the full solution was not reached. \\
-\texttt{task\_abandoned} & binary & Participant disengaged or stopped
-attempting the task before timeout. \\
 \texttt{task\_completed\_without\_help} & binary & Task was completed
 without any help requests to the robot. \\
-\texttt{task\_required\_robot\_help} & binary & At least one robot help
-interaction was required for task completion. \\
 \end{longtable}
+}
 
 \subsection{Dialogue Interaction Layer
 (Turn-Level)}\label{dialogue-interaction-layer-turn-level}
@@ -1887,6 +1886,7 @@ interaction was required for task completion. \\
 \subsubsection*{Human Turn Codes}\label{human-turn-codes}
 \addcontentsline{toc}{subsubsection}{Human Turn Codes}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3750}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1909,11 +1909,15 @@ implicitly asks the robot for help or guidance. \\
 the robot toward problem-solving. \\
 \texttt{human\_confirmation\_seeking} & binary & Participant seeks
 confirmation of a tentative belief or solution. \\
+\texttt{human\_sentence\_fragment} & binary & Unintelligable sentence
+fragment \\
 \end{longtable}
+}
 
 \subsubsection*{Robot Turn Codes}\label{robot-turn-codes}
 \addcontentsline{toc}{subsubsection}{Robot Turn Codes}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1938,7 +1942,10 @@ incorrect guidance. \\
 speech-to-text or input understanding failure. \\
 \texttt{robot\_clarification\_request} & binary & Robot asks the
 participant for information or to repeat or clarify their input. \\
+\texttt{robot\_reasoning} & binary & Robot reasons out loud with the
+participant to assist problem-solving \\
 \end{longtable}
+}
 
 \subsection{Affective Interaction Layer
 (Turn-Level)}\label{affective-interaction-layer-turn-level}
@@ -1947,6 +1954,7 @@ participant for information or to repeat or clarify their input. \\
 behaviour}\label{robot-affective-behaviour}
 \addcontentsline{toc}{subsubsection}{Robot Affective behaviour}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1967,12 +1975,16 @@ Description
 encouragement, or reassurance. \\
 \texttt{robot\_emotion\_acknowledgement} & binary & Robot explicitly
 references an inferred participant emotional state. \\
+\texttt{robot\_collaborative\_language} & binary & Robot uses language
+like ``we'', ``lets'', ``together''. \\
 \end{longtable}
+}
 
 \subsubsection*{Human Affective
 Response}\label{human-affective-response}
 \addcontentsline{toc}{subsubsection}{Human Affective Response}
 
+{\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3889}}
   >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2500}}
@@ -1994,6 +2006,7 @@ a socially warm or engaged manner (e.g., ``It's up to us, Misty!''
 and/or mirrors or responds to the robot's affective expression and/or
 treats the robot as a social agent. \\
 \end{longtable}
+}
 
 \subsection{Notes}\label{notes}
 
