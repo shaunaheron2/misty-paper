@@ -472,7 +472,7 @@ Analysis of dialogue interaction patterns confirmed successful manipulation of t
 #| label: fig-post-eligible
 #| fig-cap: "Distribution of Trust Perception by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
 #| fig-width: 7
-#| fig-height: 3.2
+#| fig-height: 4
 library(patchwork)
 plot1 <- ggbetweenstats(
   data = df_flat_scores_final |> filter(exclusions != 'exclude'),
@@ -488,6 +488,7 @@ plot1 <- ggbetweenstats(
   title = "Perceived Trust (TPS-HRI)",
   results.subtitle = FALSE
 ) +
+  ylim(0, 100) +
   theme(plot.title = element_text(size = 11))
 
 plot2 <- ggbetweenstats(
@@ -504,8 +505,13 @@ plot2 <- ggbetweenstats(
   title = "Experienced Trust (TI-HRC)",
   results.subtitle = FALSE
 ) +
+  ylim(0, 100) +
   theme(plot.title = element_text(size = 11))
-plot2 | plot1
+(plot2 | plot1) +
+  plot_annotation(
+    # title = "Post-Interaction Trust by Interaction Policy (eligible sample)",
+    theme = theme(plot.title = element_text(size = 14))
+  )
 ```
 
 
