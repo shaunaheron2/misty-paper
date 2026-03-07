@@ -35,6 +35,9 @@
   // Color of the footer.
   $if(footer-color)$ footer_color: "$footer-color$", $endif$
 
+  // Optional funder/sponsor logo in the footer.
+  $if(footer-logo)$ footer_logo: "$footer-logo$", $endif$
+
   // DEFAULTS
   // ========
   // For 3-column posters, these are generally good defaults.

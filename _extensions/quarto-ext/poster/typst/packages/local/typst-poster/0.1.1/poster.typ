@@ -30,6 +30,9 @@
   // Color of the footer.
   footer_color: "Hex Color Code",
 
+  // Optional funder/sponsor logo in the footer.
+  footer_logo: "",
+
   // DEFAULTS
   // ========
   // For 3-column posters, these are generally good defaults.
@@ -44,7 +47,7 @@
   num_columns: "3",
 
   // University logo's scale (in %).
-  univ_logo_scale: "100",
+  univ_logo_scale: "80",
 
   // University logo's column size (in in).
   univ_logo_column_size: "10",
@@ -68,7 +71,7 @@
   body
 ) = {
   // Set the body font.
-  set text(font: "STIX Two Text", size: 16pt)
+  set text(font: "Fira Nerd Font", size: 16pt)
   let sizes = size.split("x")
   let width = int(sizes.at(0)) * 1in
   let height = int(sizes.at(1)) * 1in
@@ -89,19 +92,20 @@
     margin: 
       (top: 1in, left: 2in, right: 2in, bottom: 2in),
     footer: [
-      #set align(center)
-      #set text(32pt)
       #block(
         fill: rgb(footer_color),
         width: 100%,
         inset: 20pt,
         radius: 10pt,
         [
-          #text(font: "Courier", size: footer_url_font_size, footer_url) 
-          #h(1fr) 
-          #text(size: footer_text_font_size, smallcaps(footer_text)) 
-          #h(1fr) 
-          #text(font: "Courier", size: footer_url_font_size, footer_email_ids)
+          #let logo_cell = if footer_logo != "" { image(footer_logo, height: footer_text_font_size) } else { [] }
+          #grid(
+            columns: (1fr, 1fr, 1fr),
+            align: (left + horizon, center + horizon, right + horizon),
+            logo_cell,
+            text(size: footer_text_font_size, smallcaps(footer_text)),
+            text(font: "Fira Nerd Font", size: footer_url_font_size, footer_email_ids),
+          )
         ]
       )
     ]
@@ -161,7 +165,7 @@
   }
 
   // Arranging the logo, title, authors, and department in the header.
-  align(center,
+  align(left,
     grid(
       rows: 2,
       columns: (univ_logo_column_size, title_column_size),

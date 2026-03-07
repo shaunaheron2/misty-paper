@@ -479,6 +479,7 @@ post_table |>
   )
 ```
 
+
 ```{r}
 #| label: fig-post-eligible
 #| fig-cap: "Distribution of Trust Perception by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section."
@@ -498,7 +499,9 @@ plot1 <- ggbetweenstats(
   xlab = " ",
   title = "Perceived Trust (TPS-HRI)",
   results.subtitle = FALSE
-)
+) +
+  ylim(0, 100) +
+  theme(plot.title = element_text(size = 11))
 
 plot2 <- ggbetweenstats(
   data = df_flat_scores_final |> filter(exclusions != 'exclude'),
@@ -513,8 +516,14 @@ plot2 <- ggbetweenstats(
   xlab = " ",
   title = "Experienced Trust (TI-HRC)",
   results.subtitle = FALSE
-)
-plot2 | plot1
+) +
+  ylim(0, 100) +
+  theme(plot.title = element_text(size = 11))
+(plot2 | plot1) +
+  plot_annotation(
+    # title = "Post-Interaction Trust by Interaction Policy (eligible sample)",
+    theme = theme(plot.title = element_text(size = 14))
+  )
 ```
 
 Analysis of dialogue interaction patterns confirmed successful manipulation of the interaction policies (see @tbl-post-dialogue-turns). Manual coding of dialogue transcripts revealed substantial and significant differences in robot behaviour across conditions (see Appendix C for coding scheme). In the responsive condition, the robot employed encouragement in 36% of dialogue turns compared to 0% in the control condition (p \< .001), expressed empathy or acknowledged participant affect in 13% of turns versus 0% in the control (p \< .001), and used collaborative language (e.g., "we," "let's") in 42% of turns compared to 5% in control (p \< .001). Interestingly, while both conditions included proactive check-ins following periods of participant silence, the control robot engaged in such check-ins at a higher rate (21% vs. 13% of turns, p = .033), consistent with its reactive policy that limited proactive assistance to structured silence monitoring.
