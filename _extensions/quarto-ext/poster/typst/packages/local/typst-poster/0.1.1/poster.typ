@@ -104,7 +104,7 @@
             align: (left + horizon, center + horizon, right + horizon),
             logo_cell,
             text(size: footer_text_font_size, smallcaps(footer_text)),
-            text(font: "Fira Nerd Font", size: footer_url_font_size, footer_email_ids),
+            text(font: "STIX", size: footer_url_font_size, footer_email_ids),
           )
         ]
       )
