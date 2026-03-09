@@ -1005,7 +1005,7 @@ Correlational analyses on the full sample (n=29) revealed patterns consistent wi
 
 As expected, higher Need for Cognition (NFC) scores were negatively associated with baseline Negative Attitudes Towards Robots (NARS; r = -.48, p = .01), indicating that individuals who enjoy effortful thinking tend to hold more positive prior attitudes toward robots. However, neither NFC nor NARS showed significant associations with post-interaction trust outcomes (r = -.17 to -.33, p \> .11), suggesting that the impact of responsive robot behaviour was relatively independent of participants' baseline dispositions toward robots or cognitive engagement preferences. At the same time, higher NFC scores were strongly associated with greater engagement in reasoning dialogue during collaboration (r = .57, p = .003), indicating that cognitive engagement tendencies may have influenced interaction behaviour even if they did not directly determine trust evaluations (see @fig-corr-matrix).
 
-Consistent with the experimental manipulation, specific robot dialogue behaviours showed substantial correlations with trust outcomes. Robot empathy expression—quantified as the proportion of dialogue turns in which the robot acknowledged participant affect or expressed understanding (e.g., "I sense your frustrated, how can I help?"), was strongly correlated with both experienced trust (TI-HRC; r = .53, p = .008) and perceived trust (TPS-HRI: r = .65, p = .001). Similarly, robot use of collaborative language (e.g., "we," "let's") was positively associated with experienced trust (TI-HRC: r = .50, p = .012), as was robot encouragement (TI-HRC: r = .45, p = .027; TPS-HRI: r = .42, p = .040). These associations suggest that the specific affective and collaborative behaviours implemented in the responsive condition were linked to participants' trust evaluations beyond simple condition assignment.
+Consistent with the experimental manipulation, specific robot dialogue behaviours showed substantial correlations with trust outcomes. Robot empathy expression—quantified as the proportion of dialogue turns in which the robot acknowledged participant affect or expressed understanding (e.g., "I sense your frustrated, how can I help?")—was strongly correlated with both experienced trust (TI-HRC; r = .53, p = .008) and perceived trust (TPS-HRI: r = .65, p = .001). Similarly, robot use of collaborative language (e.g., "we," "let's") was positively associated with experienced trust (TI-HRC: r = .50, p = .012), as was robot encouragement (TI-HRC: r = .45, p = .027; TPS-HRI: r = .42, p = .040). These associations suggest that the specific affective and collaborative behaviours implemented in the responsive condition were linked to participants' trust evaluations beyond simple condition assignment.
 
 
 ```{r}
@@ -1364,12 +1364,6 @@ Participants indicated their agreement with the following statements using a 5-p
 | Variable | Type | Description |
 |----------------------------|------------------|--------------------------|
 | `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner (e.g., "It's up to us, Misty!" and/or mirrors or responds to the robot’s affective expression and/or treats the robot as a social agent. |
-
-### Notes
-
--   Turn-level variables were coded per dialogue turn.
--   Task outcome variables were coded once per session_id × stage.
--   Raw dialogue text was retained during coding and removed prior to aggregation.
 
 ```{r}
 #| eval: false
