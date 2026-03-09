@@ -65,7 +65,7 @@
   footer_url_font_size: "30",
 
   // Footer's text font size (in pt).
-  footer_text_font_size: "40",
+  footer_text_font_size: "30",
 
   // The poster's content.
   body
@@ -100,8 +100,8 @@
         [
           #let logo_cell = if footer_logo != "" { image(footer_logo, height: footer_text_font_size) } else { [] }
           #grid(
-            columns: (1fr, 1fr, 1fr),
-            align: (left + horizon, center + horizon, right + horizon),
+            columns: (1fr, 3fr, 1fr),
+            align: (left + horizon, left + horizon, right + horizon),
             logo_cell,
             text(size: footer_text_font_size, smallcaps(footer_text)),
             text(font: "STIX", size: footer_url_font_size, footer_email_ids),
