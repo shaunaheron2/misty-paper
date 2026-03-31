@@ -5,7 +5,7 @@ format:
   poster-typst:
     size: "36x24"
     poster-authors: "S. Heron, M.C. Lau"
-    departments: "Schools of Social Science & Engineering and Computer Science"
+    departments: "Schools of Psychology & Engineering and Computer Science"
     institution-logo: "./images/lu-iamgold6.pdf"
     footer-text: "This work was supported by IAMGOLD President’s Innovation Fund (Grant No. 2025-20377)."
     footer-emails: "sheron@laurentian.ca"
