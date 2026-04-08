@@ -53,8 +53,7 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
     post_trust = scales::rescale(
       post_trust,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      range = c(1, 5)
     )
   )
 
@@ -152,6 +151,7 @@ hri_mod_elig <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig.rds')
+# saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig_corrected.rds')
 hri_posterior <- as.matrix(hri_mod_elig)
 
 plot_title1 <- ggtitle(
@@ -186,6 +186,8 @@ hrc_mod_elig <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig.rds')
+# aveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig_corrected.rds')
+
 hrc_posterior <- as.matrix(hrc_mod_elig)
 
 plot_title2 <- ggtitle(
@@ -223,6 +225,7 @@ hri_mod_sens <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hri_mod_sens, 'data/analysis_output/hri_mod_sens.rds')
+saveRDS(hri_mod_sens, 'data/analysis_output/hri_mod_sens_corrected.rds')
 
 hrc_mod_sens <- brm(
   robot_trust_post ~ group +
@@ -239,6 +242,7 @@ hrc_mod_sens <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+saveRDS(hrc_mod_sens, 'data/analysis_output/hrc_mod_sens_corrected.rds')
 #saveRDS(hrc_mod_sens, 'data/analysis_output/hrc_mod_sens.rds')
 
 ## Models Full Mechanism
@@ -259,6 +263,7 @@ hri_mod_mech <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
+saveRDS(hri_mod_mech, 'data/analysis_output/hri_mod_mech_corrected.rds')
 #saveRDS(hri_mod_mech, 'data/analysis_output/hri_mod_mech.rds')
 
 hrc_mod_mech <- brm(
@@ -277,8 +282,8 @@ hrc_mod_mech <- brm(
   warmup = 1000,
   control = list(adapt_delta = 0.95)
 )
-
-saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech.rds')
+saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech_corrected.rds')
+#saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech.rds')
 
 summary(hri_mod)
 summary(hrc_mod)

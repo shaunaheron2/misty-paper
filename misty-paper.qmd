@@ -145,8 +145,7 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
     post_trust = scales::rescale(
       post_trust,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      from = c(1, 5)
     )
   ) #|>
 #filter(exclusions != 'exclude')
@@ -382,13 +381,14 @@ Of the 29 completed sessions, 5 met the pre-specified criterion for non-viable i
 Primary results are therefore reported for the eligible sample (n = 24), with full-sample and mechanism-focused analyses reported as sensitivity and exploratory analyses, respectively.
 
 ```{r}
+
 post_table <- df_flat_scores_final |>
   select(group, contains('post'), contains('correct'), exclusions, 63:90) |> #76
   data.frame() |>
-  mutate(across(
-    contains('post_trust'),
-    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
-  )) |>
+  # mutate(across(
+  #   contains('post_trust'),
+  #   ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
+  # )) |>
   select(
     -post_date
   )
@@ -759,8 +759,8 @@ param_order <- c(
 )
 
 
-hri_mod_elig <- readRDS('data/analysis_output/hri_mod_elig.rds')
-hrc_mod_elig <- readRDS('data/analysis_output/hrc_mod_elig.rds')
+hri_mod_elig <- readRDS('data/analysis_output/hri_mod_elig_corrected.rds')
+hrc_mod_elig <- readRDS('data/analysis_output/hrc_mod_elig_corrected.rds')
 
 hri_posterior <- as_draws_df(hri_mod_elig) #<- readRDS('data/analysis_output/hri_mod_elig_posterior.rds')
 
@@ -991,8 +991,8 @@ To assess robustness, Bayesian models were refitted including all sessions regar
 #| fig-height: 5
 scores_df_full <- readRDS("scores_df_full.rds")
 
-hri_mod_mech <- readRDS('data/analysis_output/hri_mod_mech.rds')
-hrc_mod_mech <- readRDS('data/analysis_output/hrc_mod_mech.rds')
+hri_mod_mech <- readRDS('data/analysis_output/hri_mod_mech_corrected.rds')
+hrc_mod_mech <- readRDS('data/analysis_output/hrc_mod_mech_corrected.rds')
 
 ce <- conditional_effects(
   hri_mod_mech,
