@@ -1,47 +1,11 @@
 ---
 title: "Trust in Autonomous Human-Robot Collaboration: Effects of Responsive Interaction Policies"
 subtitle: "An In-Person Pilot Study"
-format:
-  arxiv-pdf:
-    keep-tex: true  
-    linenumbers: false
-    doublespacing: false
-    runninghead: "A PREPRINT"
-    cite-method: biblatex
-  arxiv-html:
-    title-block-banner: true
-    include-in-header:
-      - text: |
-          <style>
-          /* Target the container that holds title, author, date */
-          .quarto-title-block .quarto-title-banner {
-              position: relative;
-              background-color: #6a8f8dff !important; /* Reddish for warning */
-              color: white;
-          }
-          /* Add the preprint label */
-          .quarto-title-block .quarto-title-banner::before {
-              content: "PREPRINT";
-              position: absolute;
-              top: 10px;
-              right: 20px;
-              font-size: 1em;
-              font-weight: bold;
-              padding: 2px 8px;
-              background-color: #f14e4eff;
-              border-radius: 4px;
-              z-index: 10;
-          }
-          /* Adjust title text color if needed */
-          .quarto-title-block .quarto-title-banner .title {
-              color: white !important;
-          }
-          </style>
 author:
   - name: Shauna Heron
     affiliations:
           name: Laurentian University
-          department: School of Social Sciences
+          department: School of Psychology
           address: 935 Ramsey Lake Rd
           city: Sudbury, ON 
           postal-code: P3E 2C6
@@ -60,7 +24,6 @@ author:
     orcid: 0000-0003-3517-4900
 abstract: |
     Trust plays a central role in human-robot collaboration, yet its formation is rarely examined under the constraints of fully autonomous interaction. This pilot study investigated how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted repair. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue and assistance based on inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when prompted. Responsive interaction was associated with significantly higher post-interaction trust under viable communication conditions, despite no reliable differences in overall task accuracy. Sensitivity analyses indicated that affective and experiential components of trust were more sensitive to communication breakdown than evaluative judgments of reliability, and that as language-mediated interaction degraded, the trust advantage associated with responsiveness attenuated and ratings became less clearly interpretable as calibrated evaluations of collaborative competence. These findings suggest that trust in autonomous human-robot interaction emerges from process-level interaction dynamics and operates within constraints imposed by communication viability, highlighting the importance of evaluating trust under real autonomy conditions when designing interactive robotic systems.
-    
 keywords: 
   - Human-robot collaboration
   - Human-robot interaction
@@ -69,9 +32,21 @@ keywords:
   - embodied AI
   - trust in human-robot interaction
   - affect-adaptive robot systems
+date: last-modified
 bibliography: bibliography.bib
-citation-style: ieee-with-url.csl
-number-sections: true
+format:
+  elsevier-pdf:
+    keep-tex: true
+    journal:
+      name: Journal Name
+      formatting: preprint #doubleblind
+      # model: 3p # Don't set a model with preprint
+      cite-style: authoryear
+      highlights:
+        - Robots that adapt to users are rated more trustworthy than robots that only react
+        - Unprompted help and empathy from robots builds greater collaboration trust
+        - Trust advantages of responsive robots disappear when communication breaks down
+        - Affective trust breaks down faster than perceived reliability when communication fails
 warning: false
 echo: false
 message: false
@@ -198,7 +173,7 @@ Rather than optimizing for flawless interaction, this pilot study prioritizes fe
 
 This study employed a between-subjects experimental design to examine how robot interaction policy influences trust and collaboration during fully autonomous, in-person human-robot interaction. The sole experimental factor was the robot’s interaction policy. Participants were initially randomly assigned to condition; however, final condition allocation was partially constrained by participant attrition and scheduling, as described below.
 
-Throughout this paper, references to “the robot” denote the autonomous interactive system comprising the Misty-II hardware platform and an integrated offboard software pipeline. Spoken-language understanding, dialogue management, task logic, and interaction policy execution were handled on an external edge device which interfaced with the robot via websocket interfaces. The Misty-II platform was responsible for audio capture, text to speech, and the execution of embodied behaviours including facial expressions, body movement, and LED signalling. Despite this distributed execution, all interaction decisions were generated autonomously by an AI driven centralized dialogue agent responsible for coordinating spoken-language understanding, task state, and verbal and nonverbal behaviour based on the interaction policy. More detail on the robot platform and software architecture is provided in Appendix A.
+Throughout this paper, references to “the robot” denote the autonomous interactive system comprising the Misty-II hardware platform and an integrated offboard software pipeline [@mistyrobotics]. Spoken-language understanding, dialogue management, task logic, and interaction policy execution were handled on an external edge device which interfaced with the robot via websocket interfaces. The Misty-II platform was responsible for audio capture, text to speech, and the execution of embodied behaviours including facial expressions, body movement, and LED signalling. Despite this distributed execution, all interaction decisions were generated autonomously by an AI driven centralized dialogue agent responsible for coordinating spoken-language understanding, task state, and verbal and nonverbal behaviour based on the interaction policy. More detail on the robot platform and software architecture is provided in Appendix A.
 
 ### Study Protocol
 
@@ -363,7 +338,8 @@ df_flat_scores_final |>
   bold_labels() |>
   modify_caption(
     "Participant Demographics and Baseline Characteristics by Group"
-  )
+  ) |>
+  as_kable()
 ```
 
 ### Analytic Strategy
@@ -460,7 +436,8 @@ post_table |>
 
   add_p() |>
   # add_overall() |>
-  bold_p() #|>
+  bold_p() |>
+  as_kable() #|>
 #bold_labels() |>
 # as_kable_extra(format = "latex", booktabs = TRUE) |>
 # kable_styling(latex_options = "HOLD_position")
@@ -622,8 +599,9 @@ post_table |>
   bold_p() |>
   #bold_labels() |>
   modify_caption("Post-Interaction Objective Measures by Policy") |>
-  as_gt() |>
-  tab_options(latex.tbl.pos = "h")
+  # as_gt() |>
+  # tab_options(latex.tbl.pos = "h") |>
+  as_kable()
 ```
 
 
@@ -993,7 +971,8 @@ post_table |>
   # add_overall() |>
   bold_p() |>
   #bold_labels() |>
-  modify_caption("Post-Interaction Task Performance by Policy")
+  modify_caption("Post-Interaction Task Performance by Policy") |>
+  as_kable()
 
 ```
 
