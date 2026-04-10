@@ -53,8 +53,7 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
     post_trust = scales::rescale(
       post_trust,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      from = c(1, 5)
     )
   )
 
@@ -100,7 +99,7 @@ scores_df_full <- df_long_scores_final |>
 scores_df_eligible <- scores_df_full |>
   filter(exclusions != 'exclude')
 
-#saveRDS(scores_df_full, "scores_df_full.rds")
+#saveRDS(scores_df_full, "scores_df_full_scaled.rds")
 
 ### Priors
 
@@ -152,6 +151,7 @@ hri_mod_elig <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig.rds')
+saveRDS(hri_mod_elig, 'data/analysis_output/hri_mod_elig_corrected.rds')
 hri_posterior <- as.matrix(hri_mod_elig)
 
 plot_title1 <- ggtitle(
@@ -186,6 +186,8 @@ hrc_mod_elig <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig.rds')
+saveRDS(hrc_mod_elig, 'data/analysis_output/hrc_mod_elig_corrected.rds')
+
 hrc_posterior <- as.matrix(hrc_mod_elig)
 
 plot_title2 <- ggtitle(
@@ -223,6 +225,7 @@ hri_mod_sens <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hri_mod_sens, 'data/analysis_output/hri_mod_sens.rds')
+saveRDS(hri_mod_sens, 'data/analysis_output/hri_mod_sens_corrected.rds')
 
 hrc_mod_sens <- brm(
   robot_trust_post ~ group +
@@ -240,6 +243,7 @@ hrc_mod_sens <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hrc_mod_sens, 'data/analysis_output/hrc_mod_sens.rds')
+saveRDS(hrc_mod_sens, 'data/analysis_output/hrc_mod_sens_corrected.rds')
 
 ## Models Full Mechanism
 
@@ -260,6 +264,7 @@ hri_mod_mech <- brm(
   control = list(adapt_delta = 0.95)
 )
 #saveRDS(hri_mod_mech, 'data/analysis_output/hri_mod_mech.rds')
+saveRDS(hri_mod_mech, 'data/analysis_output/hri_mod_mech_corrected.rds')
 
 hrc_mod_mech <- brm(
   robot_trust_post ~ group *
@@ -278,33 +283,34 @@ hrc_mod_mech <- brm(
   control = list(adapt_delta = 0.95)
 )
 
-saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech.rds')
+#saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech.rds')
+saveRDS(hrc_mod_mech, 'data/analysis_output/hrc_mod_mech_corrected.rds')
 
-summary(hri_mod)
-summary(hrc_mod)
+summary(hri_mod_elig)
+summary(hrc_mod_elig)
 
-pp_check(hri_mod) # post_trust_perc
-pp_check(hrc_mod) # post_trust (likert)
+pp_check(hri_mod_elig) # post_trust_perc
+pp_check(hrc_mod_elig) # post_trust (likert)
 
-nuts_params(hri_mod) %>% count(Parameter == "divergent__")
-nuts_params(hrc_mod) %>% count(Parameter == "divergent__")
+nuts_params(hri_mod_elig) %>% count(Parameter == "divergent__")
+nuts_params(hrc_mod_elig) %>% count(Parameter == "divergent__")
 
-post <- posterior::as_draws_df(hri_mod)
-
-mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
-mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
-mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
-mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
-
-post <- posterior::as_draws_df(hrc_mod)
+post <- posterior::as_draws_df(hri_mod_elig)
 
 mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
 mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
 mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
 mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
 
-VarCorr(hri_mod)
-VarCorr(hrc_mod)
+post <- posterior::as_draws_df(hrc_mod_elig)
+
+mean(post$b_groupRESPONSIVE > 0) # P(effect > 0)
+mean(post$b_groupRESPONSIVE > 5) # P(effect > small)
+mean(post$b_groupRESPONSIVE > 10) # P(effect > moderate)
+mean(post$b_groupRESPONSIVE > 15) # P(effect > large)
+
+VarCorr(hri_mod_elig)
+VarCorr(hrc_mod_elig)
 
 ## Lmer models
 
@@ -357,7 +363,7 @@ mod_dep <- lmer(
   robot_trust_post ~ group +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 
 mod_dep2 <- lmer(
@@ -365,7 +371,7 @@ mod_dep2 <- lmer(
     prop_comm_breakdown +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 mod_dep3 <- lmer(
   robot_trust_post ~ group *
@@ -373,7 +379,7 @@ mod_dep3 <- lmer(
     nars_pre_c +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 mod_dep4 <- lmer(
   robot_trust_post ~ group *
@@ -382,78 +388,6 @@ mod_dep4 <- lmer(
     native_english +
     (1 | session_id) +
     (1 | trust_items),
-  data = scores_df |> filter(scale != 'HRI_perception_post')
-)
-compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)
-
-baseline <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-
-# adding robot_xp worsens fit
-mod_dep2 <- lmer(
-  robot_trust_post ~ group +
-    robot_xp +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-# adding nars improves fit
-mod_dep3 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-# adding native english improves fit
-mod_dep4 <- lmer(
-  robot_trust_post ~ group +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df_full |> filter(scale != 'HRI_perception_post')
-)
-
-mod_dep <- lmer(
-  robot_trust_post ~ group +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-
-mod_dep2 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-mod_dep3 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
-)
-mod_dep4 <- lmer(
-  robot_trust_post ~ group *
-    prop_comm_breakdown +
-    nars_pre_c +
-    native_english +
-    (1 | session_id) +
-    (1 | trust_items),
-  data = scores_df |> filter(scale == 'HRI_perception_post')
+  data = scores_df_eligible |> filter(scale != 'HRI_perception_post')
 )
 compare_performance(mod_dep, mod_dep2, mod_dep3, mod_dep4, rank = TRUE)

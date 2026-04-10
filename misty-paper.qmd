@@ -120,8 +120,7 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
     post_trust = scales::rescale(
       post_trust,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      from = c(1, 5)
     )
   ) #|>
 #filter(exclusions != 'exclude')
@@ -362,7 +361,7 @@ post_table <- df_flat_scores_final |>
   data.frame() |>
   mutate(across(
     contains('post_trust'),
-    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
+    ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
   )) |>
   select(
     -post_date
@@ -809,10 +808,10 @@ To examine whether communication quality moderated the effect of interaction pol
 #| fig-align: left
 #| fig-width: 9
 #| fig-height: 5
-scores_df_full <- readRDS("scores_df_full.rds")
+scores_df_full <- readRDS("scores_df_full_scaled.rds")
 
-hri_mod_mech <- readRDS('data/analysis_output/hri_mod_mech.rds')
-hrc_mod_mech <- readRDS('data/analysis_output/hrc_mod_mech.rds')
+hri_mod_mech <- readRDS('data/analysis_output/hri_mod_mech_corrected.rds')
+hrc_mod_mech <- readRDS('data/analysis_output/hrc_mod_mech_corrected.rds')
 
 ce <- conditional_effects(
   hri_mod_mech,
