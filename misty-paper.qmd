@@ -45,9 +45,9 @@ format:
       #layout: twocolumn
       cite-style: authoryear
       highlights:
+        - Robots that are responsive to users are rated more trustworthy than a robot that only reacts
         - Unprompted help and empathy from robots can build greater collaboration trust
         - Trust advantages of responsive robots disappear when communication breaks down
-        - Affective trust breaks down faster than perceived reliability when communication fails
 warning: false
 echo: false
 message: false
