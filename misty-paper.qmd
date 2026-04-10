@@ -183,7 +183,7 @@ In-person sessions were conducted in a quiet, private room at Laurentian Univers
 
 Upon arrival, participants were greeted by the researcher, provided with a brief overview of the session, and given instructions for effective communication with the robot. Once participants indicated readiness, the researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation (see @fig-task1). Participants initiated the interaction by clicking a start button on the interface and were informed that they could terminate the session at any time without penalty.
 
-![Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input.](images/misty-pullback.jpg){#fig-setup fig-align="center" width="420"}
+![Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input.](images/misty_pullback_lineart_final_hand.png){#fig-setup fig-align="center" width="420"}
 
 Following task completion, participants completed a 21-item post-interaction questionnaire assessing trust on a provied laptop. Participants then engaged in a brief debrief with the researcher and were awarded a \$15 gift card. Total session duration averaged approximately 30 minutes.
 
@@ -215,7 +215,7 @@ In the first task, participants were asked to identify who had taken the missing
 
 The robot possessed the ground-truth information necessary to answer each question correctly. Successful task completion was therefore fully dependent on interaction with the robot, creating an enforced collaborative dynamic. Participants were required to coordinate a questioning strategy that progressively eliminated candidates based on shared features, narrowing the search space within a five-minute time limit. Efficient performance depended on selecting informative questions (i.e., features that divided the remaining candidates), tracking eliminations, and adapting subsequent questions based on prior answers.
 
-![Task 1 interface including the 6 $×$ 4 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.](images/task1-whodunnit.png){#fig-task1 fig-align="center" width="420"}
+![Task 1 interface including the 4 $×$ 6 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.](images/task1-whodunnit.png){#fig-task1 fig-align="center" width="420"}
 
 This structure made the task sensitive to interaction quality. Inefficient questioning, repeated queries, or uncertainty about next steps could slow progress and increase cognitive load, whereas effective coordination supported rapid elimination and convergence on a solution. The constrained yes/no format ensured consistent informational bandwidth across participants and conditions, while still allowing meaningful variation in collaboration strategy. The robot’s behaviour under the responsive policy was designed to support this process by providing adaptive guidance, encouragement, and clarification when participants appeared to struggle or become disengaged, whereas the neutral robot provided only direct answers without additional support.
 
@@ -1191,7 +1191,7 @@ During the preparation of this work, the author(s) used Claude (Sonnet 4.6, Anth
 
 ### Technical Implementation Details
 
-The experimental system comprised a fully autonomous, multi-stage collaborative task in which participants interacted with the Misty II social robot to solve a two-part investigative scenario. Interaction was mediated through spoken dialogue and a companion web interface, allowing the robot and participant to jointly reason about task information. The system was designed as a mixed-initiative dialogue architecture with optional affect-responsive behaviour, implemented without human intervention during experimental sessions.
+The experimental system comprised a fully autonomous, multi-stage collaborative task in which participants interacted with the Misty II social robot to solve a two-part investigative scenario [@mistyrobotics]. Interaction was mediated through spoken dialogue and a companion web interface, allowing the robot and participant to jointly reason about task information. The system was designed as a mixed-initiative dialogue architecture with optional affect-responsive behaviour, implemented without human intervention during experimental sessions.
 
 #### Hardware Platform
 
@@ -1199,13 +1199,13 @@ The robot platform used in this study was the Misty II social robot. Misty II is
 
 #### Software Architecture
 
-All system components were implemented in Python (version 3.10) [@python]. The software architecture integrated robot control, speech processing, dialogue management, task logic, and data logging into a single autonomous pipeline. Core dependencies included the Misty Robotics Python SDK for robot control, the Deepgram SDK for speech recognition [@misty; @deepgram], FFmpeg for audio stream processing, Flask and Flask-SocketIO for the web-based task interface, and DuckDB for structured data logging [@duckdb2026].
+All system components were implemented in Python (version 3.10) [@python]. The software architecture integrated robot control, speech processing, dialogue management, task logic, and data logging into a single autonomous pipeline. Core dependencies included the Misty Robotics Python SDK for robot control, the Deepgram SDK for speech recognition [@mistyrobotics; @deepgram], FFmpeg for audio stream processing, Flask and Flask-SocketIO for the web-based task interface, and DuckDB for structured data logging [@duckdb2026].
 
 #### Dialogue Management and Large Language Model Integration
 
 Dialogue was managed using the LangChain framework, which provided abstraction over message handling, memory persistence, and large language model integration [@Chase_LangChain_2022]. The system used Google’s Gemini API as the underlying language model, configured to produce strictly JSON-formatted outputs to ensure reliable downstream parsing and execution on the robot [@gemini].
 
-The deployed model was `gemini-2.5-flash-lite`, selected for its low-latency response characteristics. Generation temperature was set to 0.7 to balance coherence and variability. Conversation history was maintained using a buffer-based memory mechanism, allowing the robot to reference prior exchanges within a session while resetting memory between participants. Conversation histories were stored as session-specific JSON files to enable post-hoc analysis and recovery.
+The deployed model was `gemini-2.5-flash-lite`, selected for its low-latency response characteristics. Generation temperature was set to 0.7 to balance coherence and variability. Conversation history was maintained using a buffer-based memory mechanism, allowing the robot to reference prior exchanges within a session while resetting memory between participants. Conversation histories were stored as session-specific JSON files to enable post-hoc analysis and recovery [@gemini].
 
 #### Prompt Structure and Context Injection
 
@@ -1215,24 +1215,24 @@ System prompts were constructed dynamically at each dialogue turn. Each prompt c
 
 Speech-to-text processing was handled by Deepgram’s Nova-2 model using real-time WebSocket streaming [@deepgram]. The system employed adaptive endpointing and voice activity detection to support conversational turn-taking. Endpointing thresholds differed across task stages, with shorter timeouts during dialogue-driven stages and longer timeouts during log-reading phases.
 
-Text-to-speech output was generated using Misty II’s onboard TTS engine, which produces a synthetic robotic voice. Although external TTS options (including OpenAI and Deepgram Aura voices) were implemented and tested, the onboard voice was selected to reduce latency and avoid introducing human-like vocal qualities that could independently influence trust perceptions.
+Text-to-speech output was generated using Misty II’s onboard TTS engine, which produces a synthetic robotic voice. Although external TTS options (including OpenAI and Deepgram Aura voices) were implemented and tested, the onboard voice was selected to reduce latency and avoid introducing human-like vocal qualities that could independently influence trust perceptions [@OpenAI2023ChatGPT].
 
 ### Emotion Detection and Affective State Mapping
 
-Participant affect was inferred from transcribed utterances using a DistilRoBERTa-based emotion classification model fine-tuned for English-language emotion detection. The model produced categorical predictions (e.g., joy, frustration, anxiety, neutral), which were mapped to higher-level interaction states such as positive engagement, irritation, or confusion. In the responsive condition, these inferred states were used to guide dialogue strategy and nonverbal behaviour selection.
+Participant affect was inferred from transcribed utterances using a DistilRoBERTa-based emotion classification model fine-tuned for English-language emotion detection [@sanh2019distilbert]. The model produced categorical predictions (e.g., joy, frustration, anxiety, neutral), which were mapped to higher-level interaction states such as positive engagement, irritation, or confusion. In the responsive condition, these inferred states were used to guide dialogue strategy and nonverbal behaviour selection.
 
 ### Multimodal Behaviour Generation
 
-The robot’s nonverbal behaviour was implemented through a library of custom action scripts combining facial expressions, LED patterns, arm movements, and head motions. At each dialogue turn, the language model selected an expression label from a predefined set, which was then translated into a coordinated multimodal action. In the responsive condition, additional backchannel behaviours were triggered during participant speech, including listening cues and emotion-matched expressions.
+The robot’s nonverbal behaviour was implemented through a library of custom action scripts combining facial expressions, LED patterns, arm movements, and head motions. At each dialogue turn, the language model selected an expression label from a predefined set, which was then translated into a coordinated multimodal action. In the responsive condition, additional backchannel behaviours were triggered during participant speech, including listening cues and emotion-matched expressions [@mistyrobotics].
 
 LED colours were used to signal system state to participants. A blue LED indicated active listening, while a purple LED indicated processing or speaking.
 
 ![A selection of facial expressions the language model could choose from each turn. Retrieved from [1] N. T. White, B. Cagiltay, J. E. Michaelis, and B. Mutlu, “Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction,” in Interaction Design and Children, Athens Greece: ACM, Jun. 2021, pp. 314–325. doi: 10.1145/3459990.3460714.
-](images/misty-expressions.jpg){#fig-task1 fig-align="center" width="90%"}
+](images/misty-expressions.jpg){#fig-expressions fig-align="center" width="90%"}
 
 ### Collaborative Tasks
 
-The interaction consisted of two collaborative tasks inspired by the puzzle task desigbed by @lin2022. In the first task, participants and the robot jointly solved a “who-dunnit” problem by eliminating suspects from a grid based on yes/no questions. The robot possessed ground-truth knowledge but was constrained to answering only feature-based yes/no queries. In the second task, participants and the robot attempted to locate a missing robot by interpreting cryptic system and sensor logs. In this task, the robot did not know the solution and instead provided guidance based on general technical knowledge and logical reasoning.
+The interaction consisted of two collaborative tasks inspired by the puzzle task designed by @lin2022. In the first task, participants and the robot jointly solved a “who-dunnit” problem by eliminating suspects from a grid based on yes/no questions. The robot possessed ground-truth knowledge but was constrained to answering only feature-based yes/no queries. In the second task, participants and the robot attempted to locate a missing robot by interpreting cryptic system and sensor logs. In this task, the robot did not know the solution and instead provided guidance based on general technical knowledge and logical reasoning.
 
 Task information and participant responses were presented through a web-based dashboard. The dashboard displayed suspect grids, system logs, and response input fields, and communicated task progression events back to the robot via REST API calls.
 
@@ -1248,7 +1248,7 @@ Silence handling was implemented using a fixed threshold, after which the robot 
 
 ### Inter-process Communication
 
-System components communicated via a set of Flask-based REST endpoints. These endpoints synchronized task stage state, detected participant submissions, managed timer events, and allowed limited facilitator override when necessary. All communication between the web interface and the robot occurred locally to ensure low latency and experimental reliability.
+System components communicated via a set of Flask-based REST endpoints [@pallets2024flask]. These endpoints synchronized task stage state, detected participant submissions, managed timer events, and allowed limited facilitator override when necessary. All communication between the web interface and the robot occurred locally to ensure low latency and experimental reliability.
 
 ## Appendix B {#sec-appendix-b .appendix}
 
@@ -1337,7 +1337,7 @@ Participants indicated their agreement with the following statements using a 5-p
 
 | Variable | Type | Description |
 |----------------------------|------------------|--------------------------|
-| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner (e.g., "It's up to us, Misty!" and/or mirrors or responds to the robot’s affective expression and/or treats the robot as a social agent. |
+| `human_affective_engagement` | binary | Participant responds in a socially warm or engaged manner (e.g., "It's up to us, Misty!") and/or mirrors or responds to the robot’s affective expression and/or treats the robot as a social agent. |
 
 ```{r}
 #| eval: false
