@@ -39,6 +39,7 @@ d2$group <- factor(
 # ---- palette ------------------------------------------------------------
 teal <- "#3a7d7b" # responsive
 grey <- "#9aa3a3" # reactive
+dark_grey <- "#505a5a" # reactive text (readable)
 ink <- "#1f2a2a"
 bg <- "#ffffff"
 
@@ -106,7 +107,7 @@ p1 <- ggplot() +
     y = 1.55,
     label = "Reactive",
     fontface = "bold",
-    colour = grey,
+    colour = dark_grey,
     size = 3.6
   ) +
   annotate(
@@ -114,8 +115,17 @@ p1 <- ggplot() +
     x = 2.2,
     y = 0.95,
     label = "task-only replies",
-    colour = grey,
+    colour = dark_grey,
     size = 2.5
+  ) +
+  annotate(
+    "text",
+    x = 1.9,
+    y = 3.1,
+    label = "\u2699",
+    colour = ink,
+    face = "bold",
+    size = 5
   ) +
   annotate(
     "rect",
@@ -144,6 +154,14 @@ p1 <- ggplot() +
     label = "affect-adaptive",
     colour = teal,
     size = 2.5
+  ) +
+  annotate(
+    "text",
+    x = 8.1,
+    y = 3.1,
+    label = "\u2665",
+    colour = teal,
+    size = 4.5
   ) +
   annotate(
     "text",
@@ -189,7 +207,7 @@ p1 <- ggplot() +
     plot.subtitle = element_text(
       size = 9.5,
       face = 'bold',
-      colour = grey,
+      colour = dark_grey,
       hjust = 0.5,
       margin = margin(b = 4)
     ),
@@ -238,7 +256,7 @@ p2 <- ggplot() +
   ) +
   scale_y_continuous(limits = c(25, 105), breaks = c(25, 50, 75, 100)) +
   labs(
-    title = "Responsive Policy Increased Trust",
+    title = "Responsive Policy Increases Trust",
     subtitle = paste0("+", delta, " points with responsive policy")
   ) +
   theme_minimal(base_family = "sans", base_size = 10) +
@@ -271,60 +289,58 @@ p2 <- ggplot() +
 # ============================================================
 p3 <- ggplot() +
   xlim(0, 10) +
-  ylim(0, 10) +
+  ylim(0, 12) +
   annotate(
-    "text",
-    x = 5,
-    y = 9.6,
-    label = " ",
-    fontface = "bold",
-    size = 3.8,
-    colour = ink
+    "polygon",
+    x = c(1.2, 8.8, 8.8, 1.2),
+    y = c(8.8, 4.5, 2.8, 3.2),
+    fill = teal,
+    alpha = 0.10
   ) +
   annotate(
     "segment",
     x = 1.2,
-    y = 7.2,
+    y = 8.8,
     xend = 8.8,
-    yend = 4.2,
+    yend = 4.5,
     colour = teal,
     linewidth = 1.4
   ) +
   annotate(
     "segment",
     x = 1.2,
-    y = 4.0,
+    y = 3.2,
     xend = 8.8,
-    yend = 3.7,
+    yend = 2.8,
     colour = grey,
     linewidth = 1.4
   ) +
   annotate(
     "text",
-    x = 9.0,
-    y = 4.5,
-    label = "Responsive",
+    x = 1.3,
+    y = 9.25,
+    label = "Responsive \u2665",
     colour = teal,
     size = 2.8,
-    hjust = 1,
+    hjust = 0,
     fontface = "bold"
   ) +
   annotate(
     "text",
-    x = 9.0,
-    y = 3.4,
+    x = 1.3,
+    y = 2.55,
     label = "Reactive",
-    colour = grey,
+    colour = dark_grey,
     size = 2.8,
-    hjust = 1,
+    hjust = 0,
     fontface = "bold"
   ) +
   annotate(
     "segment",
     x = 1.0,
-    y = 2.6,
+    y = 1.0,
     xend = 9.2,
-    yend = 2.6,
+    yend = 1.0,
     colour = ink,
     linewidth = 0.4,
     arrow = arrow(length = unit(0.15, "cm"), type = "closed")
@@ -332,9 +348,9 @@ p3 <- ggplot() +
   annotate(
     "segment",
     x = 1.0,
-    y = 2.6,
+    y = 1.0,
     xend = 1.0,
-    yend = 8.0,
+    yend = 10.5,
     colour = ink,
     linewidth = 0.4,
     arrow = arrow(length = unit(0.15, "cm"), type = "closed")
@@ -342,7 +358,7 @@ p3 <- ggplot() +
   annotate(
     "text",
     x = 5.1,
-    y = 2.05,
+    y = 0.4,
     label = "communication breakdown \u2192",
     size = 2.6,
     colour = ink
@@ -350,37 +366,23 @@ p3 <- ggplot() +
   annotate(
     "text",
     x = 0.55,
-    y = 5.3,
+    y = 5.75,
     label = "trust",
     size = 2.6,
     colour = ink,
     angle = 90
   ) +
-  annotate(
-    "text",
-    x = 5,
-    y = 1.0,
-    label = "Trust gap shrinks as language grounding fails",
-    size = 2.7,
-    face = "bold",
-    colour = ink,
-    fontface = "italic"
-  ) +
   base_theme +
   coord_cartesian(expand = FALSE, clip = "off") +
   labs(
-    title = "\u2026 When Communication Holds",
-    subtitle = paste0(
-      " ",
-      " "
-    )
+    title = "Only When Communication Works",
+    subtitle = "Trust gap narrows as language grounding fails"
   ) +
   theme_minimal(base_family = "sans", base_size = 10) +
   theme(
     plot.background = element_rect(fill = bg, colour = NA),
     panel.background = element_rect(fill = bg, colour = NA),
     panel.grid.major.x = element_blank(),
-    #panel.grid.minor = element_blank(),
     panel.grid.major.y = element_line(colour = "grey92"),
     axis.title = element_blank(),
     axis.text = element_blank(),
@@ -391,26 +393,37 @@ p3 <- ggplot() +
       hjust = 0.5
     ),
     plot.subtitle = element_text(
-      size = 9.5,
-      face = 'bold',
+      size = 8.5,
       colour = ink,
       hjust = 0.5,
+      face = "italic",
       margin = margin(b = 4)
     ),
-    plot.margin = margin(10, 10, 10, 10)
+    plot.margin = margin(10, 10, 14, 10)
   )
 
 # ============================================================
 # COMPOSE + EXPORT
 # ============================================================
-va <- p1 +
-  p2 +
-  p3 +
-  plot_layout(widths = c(1, 1.05, 1)) &
-  theme(plot.background = element_rect(fill = bg, colour = NA))
+va <- p1 + p2 + p3 + plot_layout(widths = c(1, 1.05, 1))
+va <- va & theme(plot.background = element_rect(fill = bg, colour = NA))
+va <- va +
+  plot_annotation(
+    caption = "Heron & Lau (2025). Trust in Autonomous Human-Robot Collaboration: Effects of Responsive Interaction Policies. \u00b7 Misty II image \u00a9 Misty Robotics",
+    theme = theme(
+      plot.background = element_rect(fill = bg, colour = NA),
+      plot.caption = element_text(
+        size = 7,
+        colour = dark_grey,
+        hjust = 0,
+        face = "italic",
+        margin = margin(t = 4, b = 4)
+      )
+    )
+  )
 
 
-# Elsevier graphical abstract: min 1328 x 531 px @ 300dpi
+# Elsevier graphical abstract: min 1328 x 531 px @ 300dpi (taller is fine)
 ggsave(
   "visual_abstract.pdf",
   va,

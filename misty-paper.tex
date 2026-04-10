@@ -6,7 +6,8 @@
 %
 \documentclass[
   authoryear,
-  preprint]{elsarticle}
+  preprint,
+  3p]{elsarticle}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{5}
@@ -108,6 +109,13 @@
 \bibliographystyle{elsarticle-harv}
 
 
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{array}
+\usepackage{anyfontsize}
+\usepackage{multirow}
 \makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
@@ -210,27 +218,29 @@ policy, in which the robot provided only direct, task-relevant responses
 when prompted. Responsive interaction was associated with significantly
 higher post-interaction trust under viable communication conditions,
 despite no reliable differences in overall task accuracy. Sensitivity
-analyses indicated that affective and experiential components of trust
-were more sensitive to communication breakdown than evaluative judgments
-of reliability, and that as language-mediated interaction degraded, the
-trust advantage associated with responsiveness attenuated and ratings
-became less clearly interpretable as calibrated evaluations of
-collaborative competence. These findings suggest that trust in
-autonomous human-robot interaction emerges from process-level
+analyses indicated a pattern consistent with affective and experiential
+components of trust being more sensitive to communication breakdown than
+evaluative judgments of reliability, and that as language-mediated
+interaction degraded, the trust advantage associated with responsiveness
+attenuated and ratings became less clearly interpretable as calibrated
+evaluations of collaborative competence. These findings suggest that
+trust in autonomous human-robot interaction emerges from process-level
 interaction dynamics and operates within constraints imposed by
 communication viability, highlighting the importance of evaluating trust
 under real autonomy conditions when designing interactive robotic
 systems.
 \end{abstract}
 
+\begin{graphicalabstract}
+\pandocbounded{\includegraphics[keepaspectratio]{images/visual_abstract.png}}
+\end{graphicalabstract}
 
 
 \begin{highlights}
-\item Robots that adapt to users are rated more trustworthy than robots
-that only react\item Unprompted help and empathy from robots builds
-greater collaboration trust\item Trust advantages of responsive robots
-disappear when communication breaks down\item Affective trust breaks
-down faster than perceived reliability when communication fails
+\item Unprompted help and empathy from robots can build greater
+collaboration trust\item Trust advantages of responsive robots disappear
+when communication breaks down\item Affective trust breaks down faster
+than perceived reliability when communication fails
 \end{highlights}
 
 
@@ -785,81 +795,56 @@ responsive and control conditions were comparable with respect to
 demographic characteristics, prior experience with robots, and baseline
 attitudes toward robots, including gender, age, Negative Attitudes
 Toward Robots (NARS), and Need for Cognition scores (see
-Table~\ref{tbl-pre}; \citet{cacioppo1982}). These patterns were
-consistent across both the eligible and full analytic samples,
-suggesting that the final group composition remained well balanced
-despite the partial breakdown of the intended randomization procedure.
+Table~\ref{tbl-pre})\citep{cacioppo1982}. These patterns were consistent
+across both the eligible and full analytic samples, suggesting that the
+final group composition remained well balanced despite the partial
+breakdown of the intended randomization procedure.
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2935}}
-  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.0761}}
-  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2283}}
-  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.2609}}
-  >{\centering\arraybackslash}p{(\linewidth - 8\tabcolsep) * \real{0.1413}}@{}}
+\begin{table}
 
 \caption{\label{tbl-pre}Baseline participant characteristics by
 interaction policy (full sample)}
 
-\tabularnewline
+\centering{
 
-\caption{Participant Demographics and Baseline Characteristics by
-Group}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Characteristic}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{N}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{CONTROL} N = 13
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{RESPONSIVE} N = 16
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{p-value}
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Characteristic}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{N}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{CONTROL} N = 13
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{RESPONSIVE} N = 16
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{p-value}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{Gender} & 27 & & & 0.84 \\
-Woman & & 6 / 13 (46\%) & 7 / 14 (50\%) & \\
-Man & & 7 / 13 (54\%) & 7 / 14 (50\%) & \\
-\textbf{Age Group} & 27 & & & 0.35 \\
-18-24 & & 5 / 13 (38\%) & 7 / 14 (50\%) & \\
-25-34 & & 4 / 13 (31\%) & 2 / 14 (14\%) & \\
-34-44 & & 1 / 13 (7.7\%) & 4 / 14 (29\%) & \\
-45+ & & 3 / 13 (23\%) & 1 / 14 (7.1\%) & \\
-\textbf{Program} & 25 & & & \textgreater0.99 \\
-Psychology & & 1 / 13 (7.7\%) & 1 / 12 (8.3\%) & \\
-Engineering & & 2 / 13 (15\%) & 1 / 12 (8.3\%) & \\
-Computer Science & & 7 / 13 (54\%) & 6 / 12 (50\%) & \\
-Earth Sciences & & 0 / 13 (0\%) & 1 / 12 (8.3\%) & \\
-Other & & 3 / 13 (23\%) & 3 / 12 (25\%) & \\
-\textbf{Experience with Robots} & 29 & 7 / 13 (54\%) & 4 / 16 (25\%) &
-0.14 \\
-\textbf{Native English Speaker} & 29 & & & 0.53 \\
-Native English & & 5 / 13 (38\%) & 8 / 16 (50\%) & \\
-Non-Native English & & 8 / 13 (62\%) & 8 / 16 (50\%) & \\
-\textbf{NARS Overall} & 29 & 38 (8) & 38 (7) & 0.79 \\
-\textbf{Need for Cognition} & 29 & 3.62 (0.78) & 3.74 (0.74) & 0.55 \\
-\textbf{Dialogue Viability} & 29 & & & 0.63 \\
-exclude & & 3 / 13 (23\%) & 2 / 16 (13\%) & \\
-include & & 10 / 13 (77\%) & 14 / 16 (88\%) & \\
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lcccc}
+\toprule
+\textbf{Characteristic} & \textbf{N} & \textbf{CONTROL}  N = 13\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 16\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+{\bfseries Gender} & 27 &  &  & 0.84 \\ 
+    Woman &  & 6 / 13 (46\%) & 7 / 14 (50\%) &  \\ 
+    Man &  & 7 / 13 (54\%) & 7 / 14 (50\%) &  \\ 
+{\bfseries Age Group} & 27 &  &  & 0.35 \\ 
+    18-24 &  & 5 / 13 (38\%) & 7 / 14 (50\%) &  \\ 
+    25-34 &  & 4 / 13 (31\%) & 2 / 14 (14\%) &  \\ 
+    34-44 &  & 1 / 13 (7.7\%) & 4 / 14 (29\%) &  \\ 
+    45+ &  & 3 / 13 (23\%) & 1 / 14 (7.1\%) &  \\ 
+{\bfseries Program} & 25 &  &  & >0.99 \\ 
+    Psychology &  & 1 / 13 (7.7\%) & 1 / 12 (8.3\%) &  \\ 
+    Engineering &  & 2 / 13 (15\%) & 1 / 12 (8.3\%) &  \\ 
+    Computer Science &  & 7 / 13 (54\%) & 6 / 12 (50\%) &  \\ 
+    Earth Sciences &  & 0 / 13 (0\%) & 1 / 12 (8.3\%) &  \\ 
+    Other &  & 3 / 13 (23\%) & 3 / 12 (25\%) &  \\ 
+{\bfseries Experience with Robots} & 29 & 7 / 13 (54\%) & 4 / 16 (25\%) & 0.14 \\ 
+{\bfseries Native English Speaker} & 29 &  &  & 0.53 \\ 
+    Native English &  & 5 / 13 (38\%) & 8 / 16 (50\%) &  \\ 
+    Non-Native English &  & 8 / 13 (62\%) & 8 / 16 (50\%) &  \\ 
+{\bfseries NARS Overall} & 29 & 38 (8) & 38 (7) & 0.79 \\ 
+{\bfseries Need for Cognition} & 29 & 3.62 (0.78) & 3.74 (0.74) & 0.55 \\ 
+{\bfseries Dialogue Viability} & 29 &  &  & 0.63 \\ 
+    exclude &  & 3 / 13 (23\%) & 2 / 16 (13\%) &  \\ 
+    include &  & 10 / 13 (77\%) & 14 / 16 (88\%) &  \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}n / N (\%); Mean (SD)\\
+\textsuperscript{\textit{2}}Pearson's Chi-squared test; Fisher's exact test; Wilcoxon rank sum test\\
+\end{minipage}
 
-\end{longtable}
+}
+
+\end{table}%
 
 \subsection{Analytic Strategy}\label{analytic-strategy}
 
@@ -925,55 +910,45 @@ Simple descriptive comparisons of post-interaction trust measures
 indicated higher trust ratings in the responsive condition relative to
 the control condition across both trust scales (see
 Table~\ref{tbl-post-eligible}). As Figure~\ref{fig-post-eligible} shows,
-average raw post-interaction scores on the Trust in Industrial
-Human-Robot Collaboration scale (TI-HRC) differed by approximately 26
-points (Likert 1-5 converted to 0-100 scale for easier comparison across
-scales), while differences on the Trust Perception Scale-HRI (TPS-HRI)
-were approximately 15 points higher in the responsive condition compared
-to the control. Overall task accuracy did not differ significantly
+average post-interaction scores differed by approximately 18 points
+between conditions on both the Trust in Industrial Human-Robot
+Collaboration scale (TI-HRC; Likert 1-5 converted to 0-100 scale) and
+the Trust Perception Scale-HRI (TPS-HRI), with the responsive condition
+consistently higher. Overall task accuracy did not differ significantly
 between conditions (detailed task performance results are reported
 below), suggesting that observed differences in trust were not driven by
 differential task success but rather by the quality of the interaction
 process itself.
 
-{
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3176}}
-  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2471}}
-  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2824}}
-  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1529}}@{}}
+\begin{table}
 
 \caption{\label{tbl-post-eligible}Post-Interaction Trust and Task
 Accuracy (eligible sample)}
 
-\tabularnewline
+\centering{
 
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Characteristic}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{CONTROL} N = 10
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{RESPONSIVE} N = 14
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{p-value}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Experienced Trust (TI-HRC) & 39 (22) & 67 (21) & \textbf{0.004} \\
-Subscales & & & \\
-Reliability & 40 (24) & 65 (18) & \textbf{0.012} \\
-Trust Perception & 42 (23) & 60 (22) & 0.075 \\
-Affective Trust & 50 (31) & 79 (22) & \textbf{0.018} \\
-Perceived Trust (TPS-HRI) & 59 (17) & 77 (18) & \textbf{0.022} \\
-Overall Task Accuracy & 0.60 (0.21) & 0.66 (0.23) & 0.47 \\
-
-\end{longtable}
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+\textbf{Characteristic} & \textbf{CONTROL}  N = 10\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+Experienced Trust (TI-HRC) & 58 (14) & 76 (13) & {\bfseries 0.004} \\ 
+Subscales &  &  &  \\ 
+    Reliability & 55 (18) & 74 (13) & {\bfseries 0.012} \\ 
+    Trust Perception & 57 (17) & 70 (16) & 0.075 \\ 
+    Affective Trust & 63 (23) & 84 (17) & {\bfseries 0.018} \\ 
+Perceived Trust (TPS-HRI) & 59 (17) & 77 (18) & {\bfseries 0.022} \\ 
+Overall Task Accuracy & 0.60 (0.21) & 0.66 (0.23) & 0.47 \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Mean (SD)\\
+\textsuperscript{\textit{2}}Wilcoxon rank sum test; Wilcoxon rank sum exact test\\
+\end{minipage}
 
 }
+
+\end{table}%
 
 Analysis of dialogue interaction patterns confirmed successful
 manipulation of the interaction policies (see
@@ -1030,72 +1005,46 @@ differences may therefore partially reflect differences in interaction
 exposure or dialogue richness in addition to affect-adaptive behaviour.
 Future work should more carefully disentangle these components.
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.4082}}
-  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2143}}
-  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2449}}
-  >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1327}}@{}}
+\begin{table}
 
-\caption{\label{tbl-post-dialogue-turns}Post-Interaction Objective
-Measure Averages by Policy in the Eligible Sample}
+\caption{\label{tbl-post-dialogue-turns}Post-interaction dialogue
+metrics by interaction policy (eligible sample)}
 
-\tabularnewline
+\centering{
 
-\caption{Post-Interaction Objective Measures by Policy}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Characteristic}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{CONTROL} N = 10
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{RESPONSIVE} N = 14
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{p-value}
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Characteristic}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{CONTROL} N = 10
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{RESPONSIVE} N = 14
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{p-value}
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Objective Measure Averages & & & \\
-Dialogue Turns & 34 (9) & 33 (5) & 0.45 \\
-Session Duration (min) & 13.24 (3.06) & 15.26 (2.12) & 0.084 \\
-Response Time (ms) & 14.37 (3.76) & 17.24 (2.52) &
-\textbf{\textless0.001} \\
-Silent Periods & 5.60 (1.96) & 4.71 (2.05) & 0.29 \\
-Engaged Responses & 2.00 (2.21) & 3.50 (1.95) & \textbf{0.040} \\
-Frustrated Responses & 0.60 (0.70) & 0.93 (1.21) & 0.68 \\
-\% of Dialogue Turns Characterized by\ldots{} & & & \\
-Comm. Breakdowns & 0.25 (0.17) & 0.22 (0.16) & 0.70 \\
-Human Affective Engagement & 0.04 (0.05) & 0.10 (0.08) &
-\textbf{0.032} \\
-Human Reasoning & 0.26 (0.12) & 0.35 (0.16) & 0.21 \\
-Robot Reasoning & 0.12 (0.07) & 0.37 (0.14) & \textbf{\textless0.001} \\
-Robot Helpful Guidance & 0.68 (0.08) & 0.84 (0.08) &
-\textbf{\textless0.001} \\
-Robot Unhelpful Contributions & 0.08 (0.04) & 0.02 (0.03) &
-\textbf{0.003} \\
-Robot Encouragement & 0.00 (0.00) & 0.36 (0.11) &
-\textbf{\textless0.001} \\
-Robot Empathy Expression & 0.00 (0.00) & 0.13 (0.09) &
-\textbf{\textless0.001} \\
-Robot Collaborative Language & 0.05 (0.05) & 0.42 (0.16) &
-\textbf{\textless0.001} \\
-Robot Proactive Check-ins & 0.21 (0.08) & 0.13 (0.08) &
-\textbf{0.033} \\
+\fontsize{10.0pt}{12.0pt}\selectfont
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lccc}
+\toprule
+\textbf{Characteristic} & \textbf{CONTROL}  N = 10\textsuperscript{\textit{1}} & \textbf{RESPONSIVE}  N = 14\textsuperscript{\textit{1}} & \textbf{p-value}\textsuperscript{\textit{2}} \\ 
+\midrule\addlinespace[2.5pt]
+Objective Measure Averages &  &  &  \\ 
+    Dialogue Turns & 34 (9) & 33 (5) & 0.45 \\ 
+    Session Duration (min) & 13.24 (3.06) & 15.26 (2.12) & 0.084 \\ 
+    Response Time (ms) & 14.37 (3.76) & 17.24 (2.52) & {\bfseries <0.001} \\ 
+    Silent Periods & 5.60 (1.96) & 4.71 (2.05) & 0.29 \\ 
+    Engaged Responses & 2.00 (2.21) & 3.50 (1.95) & {\bfseries 0.040} \\ 
+    Frustrated Responses & 0.60 (0.70) & 0.93 (1.21) & 0.68 \\ 
+\% of Dialogue Turns Characterized by... &  &  &  \\ 
+    Comm. Breakdowns & 0.25 (0.17) & 0.22 (0.16) & 0.70 \\ 
+    Human Affective Engagement & 0.04 (0.05) & 0.10 (0.08) & {\bfseries 0.032} \\ 
+    Human Reasoning & 0.26 (0.12) & 0.35 (0.16) & 0.21 \\ 
+    Robot Reasoning & 0.12 (0.07) & 0.37 (0.14) & {\bfseries <0.001} \\ 
+    Robot Helpful Guidance & 0.68 (0.08) & 0.84 (0.08) & {\bfseries <0.001} \\ 
+    Robot Unhelpful Contributions & 0.08 (0.04) & 0.02 (0.03) & {\bfseries 0.003} \\ 
+    Robot Encouragement & 0.00 (0.00) & 0.36 (0.11) & {\bfseries <0.001} \\ 
+    Robot Empathy Expression & 0.00 (0.00) & 0.13 (0.09) & {\bfseries <0.001} \\ 
+    Robot Collaborative Language & 0.05 (0.05) & 0.42 (0.16) & {\bfseries <0.001} \\ 
+    Robot Proactive Check-ins & 0.21 (0.08) & 0.13 (0.08) & {\bfseries 0.033} \\ 
+\bottomrule
+\end{tabular*}
+\begin{minipage}{\linewidth}
+\textsuperscript{\textit{1}}Mean (SD)\\
+\textsuperscript{\textit{2}}Wilcoxon rank sum test; Wilcoxon rank sum exact test\\
+\end{minipage}
 
-\end{longtable}
+}
+
+\end{table}%
 
 Beyond descriptive comparisons, hierarchical models were fitted to
 evaluate the robustness of interaction policy effects while controlling
@@ -1172,13 +1121,13 @@ positive effect. For TPS-HRI, the posterior median was \(\beta\) = 12.76
 (95\% credible interval {[}2.96, 22.06{]}), with posterior probability
 exceeding 99\% that the effect was positive. As expected baseline NARS
 showed credible negative associations with both outcomes, while native
-English fluency showed negative associations that were credible for
-TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI
-(conditional \(R^2\) = 0.64) and moderate for TI-HRC (conditional
-\(R^2\) = 0.42), with fixed effects explaining 16\% and 21\% of
-variance, respectively. The smaller item-level variance for TI-HRC
-suggests greater coherence among affective trust items under functional
-interaction conditions.
+English fluency showed credible negative associations for both outcomes,
+though the association was stronger for TPS-HRI. Model fit was
+substantial for TPS-HRI (conditional \(R^2\) = 0.64) and moderate for
+TI-HRC (conditional \(R^2\) = 0.42), with fixed effects explaining 16\%
+and 22\% of variance, respectively. The smaller item-level variance for
+TI-HRC suggests greater coherence among affective trust items under
+functional interaction conditions.
 
 \begin{figure}
 
@@ -1203,23 +1152,24 @@ To assess robustness, Bayesian models were refitted including all
 sessions regardless of communication viability. The responsive
 interaction effect remained positive for both trust measures but showed
 substantial attenuation compared to the eligible sample. For TPS-HRI,
-the posterior median effect was \(\beta\) = 7.04 (95\% credible interval
-{[}-1.83, 15.67{]}). Although uncertainty increased and the credible
+the posterior median effect was \(\beta\) = 7.08 (95\% credible interval
+{[}-1.63, 15.71{]}). Although uncertainty increased and the credible
 interval included zero, the posterior probability of a positive effect
 remained high (\textgreater94\%). Model fit decreased relative to the
 eligible sample (conditional \(R^2\) = 0.44), indicating increased
 unexplained variability when sessions with severe communication
 breakdown were included. For TI-HRC, attenuation was more pronounced.
-The posterior median effect decreased to \(\beta\) = 7.17 (95\% credible
-interval {[}-1.97, 16.70{]}), with reduced probability of a large
+The posterior median effect decreased to \(\beta\) = 7.15 (95\% credible
+interval {[}-2.09, 16.21{]}), with reduced probability of a large
 effect. Model fit remained moderate (conditional \(R^2\) = 0.60), but
 residual variance increased, consistent with the inclusion of
 interactions in which collaborative behaviour could not be sustained.
-These results indicate that experienced trust is particularly sensitive
-to interaction breakdown, and that trust ratings obtained under
-non-functional interaction conditions do not reflect graded variation in
-collaborative experience but rather reflect the collapse of the
-interaction itself.
+These results indicate that both trust measures are sensitive to
+interaction breakdown, with a pattern consistent with experienced trust
+being more affected --- a distinction examined more directly in the
+mechanism analysis below. Trust ratings obtained under non-functional
+interaction conditions do not reflect graded variation in collaborative
+experience but rather reflect the collapse of the interaction itself.
 
 \subsubsection{Mechanism Analysis: Communication Breakdown
 (n=29)}\label{mechanism-analysis-communication-breakdown-n29}
@@ -1249,14 +1199,14 @@ The two trust dimensions responded differently to communication
 degradation. For experienced trust (TI-HRC), the responsive condition
 showed consistently higher trust than control at low breakdown levels,
 but this advantage attenuated as breakdown increased (posterior median
-\(\beta\) = -5.97, 95\% CI {[}-23.01, 10.92{]}; 76\% probability
+\(\beta\) = -7.60, 95\% CI {[}-24.54, 9.56{]}; 81\% probability
 negative). This pattern is consistent with the interpretation that
 experienced trust depends on the robot's sustained ability to deliver
 responsive behaviour --- when communication fails frequently, the
 affect-adaptive features that define the responsive policy cannot be
 expressed, and the trust advantage erodes. In contrast, perceived trust
-(TPS-HRI) showed a weak, unstable interaction centered near zero
-(posterior median \(\beta\) = -1.14, 95\% CI {[}-18.87, 16.28{]}; 55\%
+(TPS-HRI) showed a more modest, uncertain negative interaction
+(posterior median \(\beta\) = -3.94, 95\% CI {[}-21.16, 13.42{]}; 67\%
 probability negative), suggesting evaluative reliability judgements are
 less sensitive to graded communication degradation; at least in this
 small sample. This may reflect the fact that perceived trust is anchored
@@ -1299,6 +1249,8 @@ accuracy differences indicates that observed trust differences cannot be
 attributed simply to differential task success, but rather reflect
 distinct responses to the interaction process itself.
 
+{
+
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.3958}}
   >{\centering\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2188}}
@@ -1310,19 +1262,6 @@ Policy in the Eligible Sample}
 
 \tabularnewline
 
-\caption{Post-Interaction Task Performance by Policy}\tabularnewline
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-\textbf{Characteristic}
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{CONTROL} N = 10
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{RESPONSIVE} N = 14
-\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
-\textbf{p-value}
-\end{minipage} \\
-\midrule\noalign{}
-\endfirsthead
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 \textbf{Characteristic}
@@ -1345,6 +1284,8 @@ Zone ID Accuracy & 5 / 10 (50\%) & 4 / 14 (29\%) & 0.40 \\
 Floor ID Accuracy & 7 / 10 (70\%) & 13 / 14 (93\%) & 0.27 \\
 
 \end{longtable}
+
+}
 
 \subsection{Individual differences and correlational
 patterns}\label{individual-differences-and-correlational-patterns}
@@ -1468,11 +1409,12 @@ as well as affective comfort and perceived collaboration
 in the present study allowed these components to be examined in
 parallel. Rather than treating trust as a static attribute of the
 system, the results suggest that it functioned as an evaluation of the
-collaborative experience as it unfolded over time. Notably, affective
-and experiential components of trust were more sensitive to interaction
-degradation than reliability-focused evaluations, reinforcing the view
-that trust in autonomous HRI is shaped by process-level interaction
-dynamics rather than performance outcomes alone.
+collaborative experience as it unfolded over time. Notably, a pattern
+consistent with greater sensitivity of affective and experiential trust
+components to interaction degradation emerged, relative to
+reliability-focused evaluations, reinforcing the view that trust in
+autonomous HRI is shaped by process-level interaction dynamics rather
+than performance outcomes alone.
 
 These differences became particularly apparent under conditions of
 reduced communication viability. When speech recognition failures

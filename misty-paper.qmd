@@ -23,7 +23,7 @@ author:
     email: mclau@laurentian.ca
     orcid: 0000-0003-3517-4900
 abstract: |
-    Trust plays a central role in human-robot collaboration, yet its formation is rarely examined under the constraints of fully autonomous interaction. This pilot study investigated how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted repair. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue and assistance based on inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when prompted. Responsive interaction was associated with significantly higher post-interaction trust under viable communication conditions, despite no reliable differences in overall task accuracy. Sensitivity analyses indicated that affective and experiential components of trust were more sensitive to communication breakdown than evaluative judgments of reliability, and that as language-mediated interaction degraded, the trust advantage associated with responsiveness attenuated and ratings became less clearly interpretable as calibrated evaluations of collaborative competence. These findings suggest that trust in autonomous human-robot interaction emerges from process-level interaction dynamics and operates within constraints imposed by communication viability, highlighting the importance of evaluating trust under real autonomy conditions when designing interactive robotic systems.
+    Trust plays a central role in human-robot collaboration, yet its formation is rarely examined under the constraints of fully autonomous interaction. This pilot study investigated how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted repair. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue and assistance based on inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when prompted. Responsive interaction was associated with significantly higher post-interaction trust under viable communication conditions, despite no reliable differences in overall task accuracy. Sensitivity analyses indicated a pattern consistent with affective and experiential components of trust being more sensitive to communication breakdown than evaluative judgments of reliability, and that as language-mediated interaction degraded, the trust advantage associated with responsiveness attenuated and ratings became less clearly interpretable as calibrated evaluations of collaborative competence. These findings suggest that trust in autonomous human-robot interaction emerges from process-level interaction dynamics and operates within constraints imposed by communication viability, highlighting the importance of evaluating trust under real autonomy conditions when designing interactive robotic systems.
 keywords: 
   - Human-robot collaboration
   - Human-robot interaction
@@ -40,11 +40,12 @@ format:
     journal:
       name: Journal Name
       formatting: preprint #doubleblind
-      # model: 3p # Don't set a model with preprint
+      model: 3p # Don't set a model with preprint
+      graphical-abstract: "![](images/visual_abstract.png)"
+      #layout: twocolumn
       cite-style: authoryear
       highlights:
-        - Robots that adapt to users are rated more trustworthy than robots that only react
-        - Unprompted help and empathy from robots builds greater collaboration trust
+        - Unprompted help and empathy from robots can build greater collaboration trust
         - Trust advantages of responsive robots disappear when communication breaks down
         - Affective trust breaks down faster than perceived reliability when communication fails
 warning: false
@@ -268,7 +269,7 @@ Subsequent review of interaction transcripts and system logs confirmed that a su
 
 Participants were initially assigned to the responsive or control condition by Qualtrics using an automated randomization procedure at the time of sign-up. However, because several scheduled participants did not attend their in-person session, replacement participants were assigned to the next available session slot rather than re-randomized. As a result, the final condition assignment should be considered semi-random rather than strictly randomized.
 
-To assess whether this deviation introduced systematic bias, we conducted randomization checks comparing participants across conditions on key baseline variables. Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including gender, age, Negative Attitudes Toward Robots (NARS), and Need for Cognition scores (see @tbl-pre; @cacioppo1982). These patterns were consistent across both the eligible and full analytic samples, suggesting that the final group composition remained well balanced despite the partial breakdown of the intended randomization procedure.
+To assess whether this deviation introduced systematic bias, we conducted randomization checks comparing participants across conditions on key baseline variables. Across analyses, participants in the responsive and control conditions were comparable with respect to demographic characteristics, prior experience with robots, and baseline attitudes toward robots, including gender, age, Negative Attitudes Toward Robots (NARS), and Need for Cognition scores (see @tbl-pre)[@cacioppo1982]. These patterns were consistent across both the eligible and full analytic samples, suggesting that the final group composition remained well balanced despite the partial breakdown of the intended randomization procedure.
 
 ```{r}
 #| label: tbl-pre
@@ -302,13 +303,6 @@ df_flat_scores_final |>
     by = group,
     type = list(
       nars_pre ~ 'continuous',
-      # nars_social_influence_robots ~ 'continuous',
-      # nars_emotion_robots ~ 'continuous',
-      # nars_interaction_robots ~ 'continuous',
-      #human_trust_pre ~ 'continuous',
-      #robot_trust_pre ~ 'continuous',
-
-      #ai_trust_pre ~ 'continuous',
       nfc_pre ~ 'continuous'
     ),
     statistic = list(
@@ -336,9 +330,9 @@ df_flat_scores_final |>
   bold_p() |>
   bold_labels() |>
   modify_caption(
-    "Participant Demographics and Baseline Characteristics by Group"
-  ) |>
-  as_kable()
+    "Baseline participant characteristics by interaction policy (full sample)"
+  ) #|>
+#as_kable()
 ```
 
 ### Analytic Strategy
@@ -359,10 +353,6 @@ Of the 29 completed sessions, 5 met the pre-specified criterion for non-viable i
 post_table <- df_flat_scores_final |>
   select(group, contains('post'), contains('correct'), exclusions, 63:90) |> #76
   data.frame() |>
-  mutate(across(
-    contains('post_trust'),
-    ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
-  )) |>
   select(
     -post_date
   )
@@ -372,12 +362,16 @@ post_table <- df_flat_scores_final |>
 
 ### Descriptive Analysis: Eligible Sample
 
-Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As @fig-post-eligible shows, average raw post-interaction scores on the Trust in Industrial Human-Robot Collaboration scale (TI-HRC) differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales), while differences on the Trust Perception Scale-HRI (TPS-HRI) were approximately 15 points higher in the responsive condition compared to the control. Overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.
+Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As @fig-post-eligible shows, average post-interaction scores differed by approximately 18 points between conditions on both the Trust in Industrial Human-Robot Collaboration scale (TI-HRC; Likert 1-5 converted to 0-100 scale) and the Trust Perception Scale-HRI (TPS-HRI), with the responsive condition consistently higher. Overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.
 
 ```{r}
 #| label: tbl-post-eligible
 #| tbl-cap: "Post-Interaction Trust and Task Accuracy (eligible sample)"
 post_table |>
+  mutate(across(
+    c(post_trust_reliability, post_trust_perception, post_trust_feelings),
+    ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
+  )) |>
   filter(exclusions != 'exclude') |>
   select(
     group,
@@ -435,8 +429,8 @@ post_table |>
 
   add_p() |>
   # add_overall() |>
-  bold_p() |>
-  as_kable() #|>
+  bold_p() # |>
+#as_kable() #|>
 #bold_labels() |>
 # as_kable_extra(format = "latex", booktabs = TRUE) |>
 # kable_styling(latex_options = "HOLD_position")
@@ -495,7 +489,7 @@ Importantly, the proportion of turns coded with communication breakdowns (i.e., 
 
 ```{r}
 #| label: tbl-post-dialogue-turns
-#| tbl-cap: "Post-Interaction Objective Measure Averages by Policy in the Eligible Sample"
+#| tbl-cap: "Post-interaction dialogue metrics by interaction policy (eligible sample)"
 post_table |>
   filter(exclusions != 'exclude') |>
   select(
@@ -557,7 +551,6 @@ post_table |>
       #post_trust ~ "Trust in Industrial HRI Collaboration",
       prop_comm_breakdown ~ "Comm. Breakdowns",
       prop_human_reasoning ~ "Human Reasoning",
-
       prop_robot_reasoning ~ "Robot Reasoning",
       prop_robot_helpful_guidance ~ "Robot Helpful Guidance",
       prop_robot_unhelpful ~ "Robot Unhelpful Contributions",
@@ -578,7 +571,8 @@ post_table |>
       prop_robot_encouragement,
       prop_robot_empathy_expression,
       prop_robot_proactive_checkin,
-      prop_robot_collaborative_lang
+      prop_robot_collaborative_lang,
+      prop_human_affective_engagement
     ),
     header = "% of Dialogue Turns Characterized by..."
   ) |>
@@ -596,11 +590,10 @@ post_table |>
   add_p() |>
   # add_overall() |>
   bold_p() |>
-  #bold_labels() |>
-  modify_caption("Post-Interaction Objective Measures by Policy") |>
-  # as_gt() |>
-  # tab_options(latex.tbl.pos = "h") |>
-  as_kable()
+  # bold_labels() |>
+  modify_caption(
+    "**Post-Interaction Objective Measures by Policy (eligible sample)**"
+  )
 ```
 
 
@@ -651,8 +644,8 @@ param_order <- c(
 )
 
 
-hri_mod_elig <- readRDS('data/analysis_output/hri_mod_elig.rds')
-hrc_mod_elig <- readRDS('data/analysis_output/hrc_mod_elig.rds')
+hri_mod_elig <- readRDS('data/analysis_output/hri_mod_elig_corrected.rds')
+hrc_mod_elig <- readRDS('data/analysis_output/hrc_mod_elig_corrected.rds')
 
 hri_posterior <- as_draws_df(hri_mod_elig) #<- readRDS('data/analysis_output/hri_mod_elig_posterior.rds')
 
@@ -721,7 +714,7 @@ hri_plot <- ggplot(draws_long, aes(x = value, y = param, fill = param)) +
   plot_title1
 ```
 
-Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in @fig-finalmodels-posterior, for TI-HRC, the responsive condition showed a posterior median effect of $\beta$ = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was $\beta$ = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. As expected baseline NARS showed credible negative associations with both outcomes, while native English fluency showed negative associations that were credible for TPS-HRI but uncertain for TI-HRC. Model fit was substantial for TPS-HRI (conditional $R^2$ = 0.64) and moderate for TI-HRC (conditional $R^2$ = 0.42), with fixed effects explaining 16% and 21% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.
+Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in @fig-finalmodels-posterior, for TI-HRC, the responsive condition showed a posterior median effect of $\beta$ = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was $\beta$ = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. As expected baseline NARS showed credible negative associations with both outcomes, while native English fluency showed credible negative associations for both outcomes, though the association was stronger for TPS-HRI. Model fit was substantial for TPS-HRI (conditional $R^2$ = 0.64) and moderate for TI-HRC (conditional $R^2$ = 0.42), with fixed effects explaining 16% and 22% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.
 
 ```{r}
 #| label: fig-finalmodels-posterior
@@ -794,13 +787,16 @@ scores_df_eligible <- df_long_scores_final |>
 
 #### Sensitivity Analysis: Full Sample (n = 29)
 
-To assess robustness, Bayesian models were refitted including all sessions regardless of communication viability. The responsive interaction effect remained positive for both trust measures but showed substantial attenuation compared to the eligible sample. For TPS-HRI, the posterior median effect was $\beta$ = 7.04 (95% credible interval \[-1.83, 15.67\]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (\>94%). Model fit decreased relative to the eligible sample (conditional $R^2$ = 0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included. For TI-HRC, attenuation was more pronounced. The posterior median effect decreased to $\beta$ = 7.17 (95% credible interval \[-1.97, 16.70\]), with reduced probability of a large effect. Model fit remained moderate (conditional $R^2$ = 0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that experienced trust is particularly sensitive to interaction breakdown, and that trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience but rather reflect the collapse of the interaction itself.
+To assess robustness, Bayesian models were refitted including all sessions regardless of communication viability. The responsive interaction effect remained positive for both trust measures but showed substantial attenuation compared to the eligible sample. For TPS-HRI, the posterior median effect was $\beta$ = 7.08 (95% credible interval \[-1.63, 15.71\]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (\>94%). Model fit decreased relative to the eligible sample (conditional $R^2$ = 0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included. For TI-HRC, attenuation was more pronounced. The posterior median effect decreased to $\beta$ = 7.15 (95% credible interval \[-2.09, 16.21\]), with reduced probability of a large effect. Model fit remained moderate (conditional $R^2$ = 0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that both trust measures are sensitive to interaction breakdown, with a pattern consistent with experienced trust being more affected — a distinction examined more directly in the mechanism analysis below. Trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience but rather reflect the collapse of the interaction itself.
 
 #### Mechanism Analysis: Communication Breakdown (n=29)
 
 To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with the proportion of turns characterized by communication breakdown included as an interaction term. Predicted trust as a function of breakdown proportion for each condition and trust measure is shown in @fig-mech-posterior.
 
-
+```{r}
+hrc_sens <- readRDS('data/analysis_output/hrc_mod_sens_corrected.rds')
+hri_sens <- readRDS('data/analysis_output/hri_mod_sens_corrected.rds')
+```
 
 ```{r}
 #| label: fig-mech-posterior
@@ -903,7 +899,7 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
 
 ```
 
-The two trust dimensions responded differently to communication degradation. For experienced trust (TI-HRC), the responsive condition showed consistently higher trust than control at low breakdown levels, but this advantage attenuated as breakdown increased (posterior median $\beta$ = -5.97, 95% CI [-23.01, 10.92]; 76% probability negative). This pattern is consistent with the interpretation that experienced trust depends on the robot's sustained ability to deliver responsive behaviour — when communication fails frequently, the affect-adaptive features that define the responsive policy cannot be expressed, and the trust advantage erodes. In contrast, perceived trust (TPS-HRI) showed a weak, unstable interaction centered near zero (posterior median $\beta$ = -1.14, 95% CI [-18.87, 16.28]; 55% probability negative), suggesting evaluative reliability judgements are less sensitive to graded communication degradation; at least in this small sample. This may reflect the fact that perceived trust is anchored by discrete moments of successful collaboration: a robot that continues attempting to engage despite communication difficulties may still signal competence, even if sustained rapport cannot be established.
+The two trust dimensions responded differently to communication degradation. For experienced trust (TI-HRC), the responsive condition showed consistently higher trust than control at low breakdown levels, but this advantage attenuated as breakdown increased (posterior median $\beta$ = -7.60, 95% CI [-24.54, 9.56]; 81% probability negative). This pattern is consistent with the interpretation that experienced trust depends on the robot's sustained ability to deliver responsive behaviour — when communication fails frequently, the affect-adaptive features that define the responsive policy cannot be expressed, and the trust advantage erodes. In contrast, perceived trust (TPS-HRI) showed a more modest, uncertain negative interaction (posterior median $\beta$ = -3.94, 95% CI [-21.16, 13.42]; 67% probability negative), suggesting evaluative reliability judgements are less sensitive to graded communication degradation; at least in this small sample. This may reflect the fact that perceived trust is anchored by discrete moments of successful collaboration: a robot that continues attempting to engage despite communication difficulties may still signal competence, even if sustained rapport cannot be established.
 
 These results clarify the sensitivity analysis findings. The attenuation of the responsive policy effect in the full sample reflects the inclusion of sessions in which the communication level required to deliver the responsive manipulation had substantially failed (defined as >60% of turns affected by ASR failure) and is not simply noise from increased variability. This supports both the exclusion criterion applied in the primary analysis and the broader interpretation that experienced trust, in particular, is contingent on sustained interaction quality. Put plainly, a robot that cannot understand you cannot adapt to you and without adaptation, the responsive policy offers nothing the control policy does not.
 
@@ -970,7 +966,7 @@ post_table |>
   # add_overall() |>
   bold_p() |>
   #bold_labels() |>
-  modify_caption("Post-Interaction Task Performance by Policy") |>
+  # modify_caption("Post-Interaction Task Performance by Policy") |>
   as_kable()
 
 ```
@@ -1123,7 +1119,7 @@ This pilot study examined how a responsive interaction policy influences trust d
 
 Across analytic approaches, the responsive interaction policy was associated with higher post-interaction trust compared to a neutral, reactive control policy when interaction remained viable. These differences emerged without reliable differences in overall task accuracy. Although the robot-dependent task showed a descriptive advantage for the responsive condition, this effect did not reach statistical significance in the present pilot sample. Taken together, this pattern suggests that trust judgments were shaped more strongly by the quality and tone of the interaction process than by instrumental task success alone. This is consistent with theoretical accounts that conceptualize trust as an emergent property of interaction dynamics rather than a static attribute of the system or a simple function of performance outcomes [@lee2004; @devisser2020]. 
 
-Trust in human-robot interaction is widely recognized as multidimensional, encompassing perceptions of reliability and competence as well as affective comfort and perceived collaboration [@lee2004; @devisser2020]. The use of two validated trust measures in the present study allowed these components to be examined in parallel. Rather than treating trust as a static attribute of the system, the results suggest that it functioned as an evaluation of the collaborative experience as it unfolded over time. Notably, affective and experiential components of trust were more sensitive to interaction degradation than reliability-focused evaluations, reinforcing the view that trust in autonomous HRI is shaped by process-level interaction dynamics rather than performance outcomes alone.
+Trust in human-robot interaction is widely recognized as multidimensional, encompassing perceptions of reliability and competence as well as affective comfort and perceived collaboration [@lee2004; @devisser2020]. The use of two validated trust measures in the present study allowed these components to be examined in parallel. Rather than treating trust as a static attribute of the system, the results suggest that it functioned as an evaluation of the collaborative experience as it unfolded over time. Notably, a pattern consistent with greater sensitivity of affective and experiential trust components to interaction degradation emerged, relative to reliability-focused evaluations, reinforcing the view that trust in autonomous HRI is shaped by process-level interaction dynamics rather than performance outcomes alone.
 
 These differences became particularly apparent under conditions of reduced communication viability. When speech recognition failures accumulated and conversational grounding could not be re-established, the trust advantage associated with responsiveness diminished. In these degraded sessions, the responsive policy continued generating proactive assistance and repair-oriented behaviour. However, when linguistic grounding could not be restored, these behaviours did not reliably recover collaboration and may instead have increased cognitive load relative to the neutral policy’s more restrained style. This pattern suggests that affect-responsive policies operate within a viability window: they enhance trust when grounding is intact but cannot compensate for sustained communicative breakdown.
 
@@ -1232,7 +1228,7 @@ The robot’s nonverbal behaviour was implemented through a library of custom ac
 LED colours were used to signal system state to participants. A blue LED indicated active listening, while a purple LED indicated processing or speaking.
 
 ![A selection of facial expressions the language model could choose from each turn. Retrieved from [1] N. T. White, B. Cagiltay, J. E. Michaelis, and B. Mutlu, “Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction,” in Interaction Design and Children, Athens Greece: ACM, Jun. 2021, pp. 314–325. doi: 10.1145/3459990.3460714.
-](images/misty-expressions.jpg){#fig-task1 fig-align="center" width="100%"}
+](images/misty-expressions.jpg){#fig-task1 fig-align="center" width="90%"}
 
 ### Collaborative Tasks
 
