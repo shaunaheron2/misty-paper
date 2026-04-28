@@ -394,7 +394,7 @@ post_table <- df_flat_scores_final |>
 
 ### Primary Analysis: Eligible Sample
 
-Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As indicated in @fig-post-eligible, average raw post-interaction scores on the Trust in Industrial Human-Robot Collaboration scale (TI-HRC) differed by approximately 26 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales), while differences on the Trust Perception Scale-HRI (TPS-HRI) were approximately 15 points higher in the responsive condition compared to the control (@fig-post-eligible).
+Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see @tbl-post-eligible). As indicated in @fig-post-eligible, average raw post-interaction scores on the Trust in Industrial Human-Robot Collaboration scale (TI-HRC) and Trust Perception Scale-HRI (TPS-HRI) differed by approximately 18 points (Likert 1-5 converted to 0-100 scale for easier comparison across scales) in the responsive condition compared to the control (@fig-post-eligible).
 
 Importantly, overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.
 
@@ -402,6 +402,10 @@ Importantly, overall task accuracy did not differ significantly between conditio
 #| label: tbl-post-eligible
 #| tbl-cap: "Post-Interaction Trust Outcomes and Task Accuracy by Policy in the Eligible Sample"
 post_table |>
+  mutate(across(
+    post_trust_reliability:post_trust_feelings,
+    ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
+  )) |>
   filter(exclusions != 'exclude') |>
   select(
     group,
@@ -497,7 +501,7 @@ plot1 <- ggbetweenstats(
   title = "Perceived Trust (TPS-HRI)",
   results.subtitle = FALSE
 ) +
-  ylim(0, 100) +
+  ylim(20, 100) +
   theme(plot.title = element_text(size = 11))
 
 plot2 <- ggbetweenstats(
@@ -514,7 +518,7 @@ plot2 <- ggbetweenstats(
   title = "Experienced Trust (TI-HRC)",
   results.subtitle = FALSE
 ) +
-  ylim(0, 100) +
+  ylim(20, 100) +
   theme(plot.title = element_text(size = 11))
 (plot2 | plot1) +
   plot_annotation(
