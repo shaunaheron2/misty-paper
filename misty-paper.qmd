@@ -140,7 +140,6 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 #- Unprompted help and empathy from robots builds greater collaboration trust
 #- Trust advantages of responsive robots disappear when communication breaks down
 #- Affective trust breaks down faster than perceived reliability when communication fails
-
 ```
 
 ## Introduction
@@ -356,8 +355,6 @@ post_table <- df_flat_scores_final |>
   select(
     -post_date
   )
-
-
 ```
 
 ### Descriptive Analysis: Eligible Sample
@@ -735,7 +732,6 @@ library(patchwork)
     caption = '',
     theme = theme(plot.title = element_text(size = 10))
   )
-
 ```
 
 
@@ -782,7 +778,6 @@ scores_df_eligible <- df_long_scores_final |>
 
 #hist(scores_dfrobot_trust_post)
 #hist(scores_df$robot_trust_post_c)
-
 ```
 
 #### Sensitivity Analysis: Full Sample (n = 29)
@@ -896,7 +891,6 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     theme = theme(plot.title = element_text(size = 14))
   ) +
   plot_layout(guides = "collect")
-
 ```
 
 The two trust dimensions responded differently to communication degradation. For experienced trust (TI-HRC), the responsive condition showed consistently higher trust than control at low breakdown levels, but this advantage attenuated as breakdown increased (posterior median $\beta$ = -7.60, 95% CI [-24.54, 9.56]; 81% probability negative). This pattern is consistent with the interpretation that experienced trust depends on the robot's sustained ability to deliver responsive behaviour — when communication fails frequently, the affect-adaptive features that define the responsive policy cannot be expressed, and the trust advantage erodes. In contrast, perceived trust (TPS-HRI) showed a more modest, uncertain negative interaction (posterior median $\beta$ = -3.94, 95% CI [-21.16, 13.42]; 67% probability negative), suggesting evaluative reliability judgements are less sensitive to graded communication degradation; at least in this small sample. This may reflect the fact that perceived trust is anchored by discrete moments of successful collaboration: a robot that continues attempting to engage despite communication difficulties may still signal competence, even if sustained rapport cannot be established.
@@ -968,7 +962,6 @@ post_table |>
   #bold_labels() |>
   # modify_caption("Post-Interaction Task Performance by Policy") |>
   as_kable()
-
 ```
 
 ### Individual differences and correlational patterns
@@ -1068,7 +1061,6 @@ Participant engagement during interaction, operationalized as the frequency of d
 Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18-.20, p \> .35; overall accuracy: r = -.05 to .19, p \> .37), but did show a significant negative association with the TI-HRC Reliability subscale (r = .40, p \< .05), as well as a negative association with detected frustration, silent periods and communication breakdowns. The dissociation between task outcomes and overall trust ratings suggests that participants’ trust judgments primarily reflected the quality and affective tone of the interaction process rather than instrumental task success. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
 
 ```{r}
-
 library(lme4)
 library(lmerTest)
 library(ggeffects)
@@ -1110,7 +1102,6 @@ scores_df <- df_long_scores_final |>
 
 #hist(scores_df$robot_trust_post)
 #hist(scores_df$robot_trust_post_c)
-
 ```
 
 ## Discussion
@@ -1410,5 +1401,4 @@ transcript_df |>
       rows = speaker == "Participant"
     )
   )
-
 ```
