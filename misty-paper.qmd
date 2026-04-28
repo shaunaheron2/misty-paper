@@ -145,8 +145,9 @@ df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
     post_trust = scales::rescale(
       post_trust,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      from = c(1, 5)
+      # min_old = 1,
+      # max_old = 5
     )
   ) #|>
 #filter(exclusions != 'exclude')
@@ -165,7 +166,6 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 #- Unprompted help and empathy from robots builds greater collaboration trust
 #- Trust advantages of responsive robots disappear when communication breaks down
 #- Affective trust breaks down faster than perceived reliability when communication fails
-
 ```
 
 ## Introduction
@@ -384,15 +384,13 @@ Of the 29 completed sessions, 5 met the pre-specified criterion for non-viable i
 post_table <- df_flat_scores_final |>
   select(group, contains('post'), contains('correct'), exclusions, 63:90) |> #76
   data.frame() |>
-  mutate(across(
-    contains('post_trust'),
-    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
-  )) |>
+  # mutate(across(
+  #   contains('post_trust'),
+  #   ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
+  # )) |>
   select(
     -post_date
   )
-
-
 ```
 
 ### Descriptive Analysis: Eligible Sample
@@ -488,7 +486,7 @@ plot1 <- ggbetweenstats(
   title = "Perceived Trust (TPS-HRI)",
   results.subtitle = FALSE
 ) +
-  ylim(0, 100) +
+  ylim(20, 100) +
   theme(plot.title = element_text(size = 11))
 
 plot2 <- ggbetweenstats(
@@ -505,7 +503,7 @@ plot2 <- ggbetweenstats(
   title = "Experienced Trust (TI-HRC)",
   results.subtitle = FALSE
 ) +
-  ylim(0, 100) +
+  ylim(20, 100) +
   theme(plot.title = element_text(size = 11))
 (plot2 | plot1) +
   plot_annotation(
@@ -765,7 +763,6 @@ library(patchwork)
     caption = '',
     theme = theme(plot.title = element_text(size = 10))
   )
-
 ```
 
 
@@ -812,7 +809,6 @@ scores_df_eligible <- df_long_scores_final |>
 
 #hist(scores_dfrobot_trust_post)
 #hist(scores_df$robot_trust_post_c)
-
 ```
 
 #### Sensitivity Analysis: Full Sample (n = 29)
@@ -923,7 +919,6 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     theme = theme(plot.title = element_text(size = 14))
   ) +
   plot_layout(guides = "collect")
-
 ```
 
 The two trust dimensions responded differently to communication degradation. For experienced trust (TI-HRC), the responsive condition showed consistently higher trust than control at low breakdown levels, but this advantage attenuated as breakdown increased (posterior median $\beta$ = -5.97, 95% CI [-23.01, 10.92]; 76% probability negative). This pattern is consistent with the interpretation that experienced trust depends on the robot's sustained ability to deliver responsive behaviour — when communication fails frequently, the affect-adaptive features that define the responsive policy cannot be expressed, and the trust advantage erodes. In contrast, perceived trust (TPS-HRI) showed a weak, unstable interaction centered near zero (posterior median $\beta$ = -1.14, 95% CI [-18.87, 16.28]; 55% probability negative), suggesting evaluative reliability judgements are less sensitive to graded communication degradation; at least in this small sample. This may reflect the fact that perceived trust is anchored by discrete moments of successful collaboration: a robot that continues attempting to engage despite communication difficulties may still signal competence, even if sustained rapport cannot be established.
@@ -994,7 +989,6 @@ post_table |>
   bold_p() |>
   #bold_labels() |>
   modify_caption("Post-Interaction Task Performance by Policy")
-
 ```
 
 ### Individual differences and correlational patterns
@@ -1094,7 +1088,6 @@ Participant engagement during interaction, operationalized as the frequency of d
 Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18-.20, p \> .35; overall accuracy: r = -.05 to .19, p \> .37), but did show a significant negative association with the TI-HRC Reliability subscale (r = .40, p \< .05), as well as a negative association with detected frustration, silent periods and communication breakdowns. The dissociation between task outcomes and overall trust ratings suggests that participants’ trust judgments primarily reflected the quality and affective tone of the interaction process rather than instrumental task success. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
 
 ```{r}
-
 library(lme4)
 library(lmerTest)
 library(ggeffects)
@@ -1136,7 +1129,6 @@ scores_df <- df_long_scores_final |>
 
 #hist(scores_df$robot_trust_post)
 #hist(scores_df$robot_trust_post_c)
-
 ```
 
 ## Discussion
@@ -1436,5 +1428,4 @@ transcript_df |>
       rows = speaker == "Participant"
     )
   )
-
 ```
