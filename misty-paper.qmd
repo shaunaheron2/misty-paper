@@ -155,7 +155,6 @@ df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
 # filter(exclusions != 'exclude')
 
 # "P14" "P17" "P30" "P32" "P46" "P47" "P50"
-
 ```
 
 ## Highlights
@@ -381,7 +380,6 @@ Of the 29 completed sessions, 5 met the pre-specified criterion for non-viable i
 Primary results are therefore reported for the eligible sample (n = 24), with full-sample and mechanism-focused analyses reported as sensitivity and exploratory analyses, respectively.
 
 ```{r}
-
 post_table <- df_flat_scores_final |>
   select(group, contains('post'), contains('correct'), exclusions, 63:90) |> #76
   data.frame() |>
@@ -392,7 +390,6 @@ post_table <- df_flat_scores_final |>
   select(
     -post_date
   )
-
 ```
 
 ### Primary Analysis: Eligible Sample
@@ -826,7 +823,6 @@ hri_plot <- ggplot(draws_long, aes(x = value, y = param, fill = param)) +
   ) +
   xlim(-25, 30) +
   plot_title1
-
 ```
 
 
@@ -840,7 +836,6 @@ Bayesian estimation converged on similar effect magnitudes with high posterior c
 #| label: fig-finalmodels-posterior
 #| fig-cap: "Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample: n=24) predicting post-interaction trust. Fixed effects include Responsive vs Control policy, Negative Attitudes Towards Robots (NARS) and Non-native English speaker versus English native speaker. Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0-100 scale)."
 #| fig-align: left
-
 library(patchwork)
 # xlims <- c(-30, 30)
 
@@ -856,7 +851,6 @@ library(patchwork)
     theme = theme(plot.title = element_text(size = 12))
   ) +
   plot_layout(guides = "collect")
-
 ```
 
 
@@ -962,7 +956,6 @@ scores_df_eligible <- df_long_scores_final |>
 
 #hist(scores_dfrobot_trust_post)
 #hist(scores_df$robot_trust_post_c)
-
 ```
 
 #### Sensitivity Analysis: Full Sample (n = 29)
@@ -1081,12 +1074,10 @@ hrc_mod_mech_plot <- plot(ce, plot = FALSE)[[1]] +
     theme = theme(plot.title = element_text(size = 12))
   ) +
   plot_layout(guides = "collect")
-
 ```
 
 ```{r}
 #| eval: false
-
 df <- scores_df_full |> filter(scale != 'HRI_perception_post')
 
 # df = the data used to fit the model (or at least same columns/levels)
@@ -1146,7 +1137,6 @@ ggplot(
 #     labeller = label_bquote(nars_pre_c == .(round(as.numeric(nars_pre_c), 2)))
 #   ) +
 #   theme_classic()
-
 ```
 
 
@@ -1216,7 +1206,6 @@ post_table |>
 #as_gt() |>
 # cols_width(1 ~ '20%')
 #gt::gtsave(filename = "images/task_table.png")
-
 ```
 
 ### Individual differences and correlational patterns
@@ -1316,7 +1305,6 @@ Participant engagement during interaction, operationalized as the frequency of d
 Notably, objective task performance showed no significant association with either full trust measure (suspect accuracy: r = .18-.20, p \> .35; overall accuracy: r = -.05 to .19, p \> .37), but did show a significant negative association with the TI-HRC Reliability subscale (r = .40, p \< .05), as well as a negative association with detected frustration, silent periods and communication breakdowns. The dissociation between task outcomes and overall trust ratings suggests that participants’ trust judgments primarily reflected the quality and affective tone of the interaction process rather than instrumental task success. Task performance was not included as a covariate in primary models to avoid conditioning on a potential mediator of interaction policy effects.
 
 ```{r}
-
 library(lme4)
 library(lmerTest)
 library(ggeffects)
@@ -1358,7 +1346,6 @@ scores_df <- df_long_scores_final |>
 
 #hist(scores_df$robot_trust_post)
 #hist(scores_df$robot_trust_post_c)
-
 ```
 
 ## Discussion
@@ -1642,5 +1629,4 @@ transcript_df |>
       rows = speaker == "Participant"
     )
   )
-
 ```

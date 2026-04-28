@@ -67,8 +67,8 @@ This pilot study addresses that gap by examining how interaction policy shapes t
 ::: {.block fill=rgb("#e8efedff") inset="10pt" radius="4pt"}
 **Responsive vs. Control (eligible sample, n = 24):**
 
-- **+26 points on Experienced Trust** (TI-HRC), p = .004 (affective, embodied trust formed during interaction)
-- **+15 points on Perceived Trust** (TPS-HRI), p = .022 (retrospective reliability judgements)
+- **+18 points on Experienced Trust** (TI-HRC), p = .004 (affective, embodied trust formed during interaction)
+- **+17 points on Perceived Trust** (TPS-HRI), p = .022 (retrospective reliability judgements)
 - Both effects held after controlling for baseline robot attitudes (NARS)
 - Effects were **independent of task accuracy** (p = .47)
 :::

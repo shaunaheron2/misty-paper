@@ -37,8 +37,7 @@ df_flat_scores_final <- df_flat_scores_final |>
     post_trust = scales::rescale(
       post_trust,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      from = c(1, 5)
     )
   )
 ```
@@ -122,7 +121,6 @@ School of Social Sciences, Laurentian University
 #| fig-width: 9
 #| fig-height: 5
 #| warning: false
-
 plot1 <- ggbetweenstats(
   data = df_flat_scores_final |> filter(exclusions != 'exclude'),
   x = group,
@@ -169,7 +167,6 @@ plot2 | plot1
 ```{r task-performance}
 #| echo: false
 #| warning: false
-
 df_flat_scores_final |>
   filter(exclusions != 'exclude') |>
   select(
@@ -213,7 +210,6 @@ df_flat_scores_final |>
 ```{r manipulation-check}
 #| echo: false
 #| warning: false
-
 # Create summary table of key dialogue behaviors
 df_flat_scores_final |>
   filter(exclusions != 'exclude') |>
@@ -261,7 +257,6 @@ Perceived trust (TPS-HRI):
 ```{r}
 #| echo: false
 #| warning: false
-
 # Create summary table of key dialogue behaviors
 df_flat_scores_final |>
   filter(exclusions != 'exclude') |>
