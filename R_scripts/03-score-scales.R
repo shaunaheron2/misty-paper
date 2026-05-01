@@ -303,8 +303,7 @@ dep2_df <- df_flat_scores_final |>
     robot_trust_post = scales::rescale(
       robot_trust_rev,
       to = c(0, 100),
-      min_old = 1,
-      max_old = 5
+      from = c(1, 5)
     )
   ) |>
   select(-robot_trust_rev) |>
