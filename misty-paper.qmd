@@ -41,7 +41,7 @@ format:
       name: Journal Name
       formatting: preprint #doubleblind
       model: 3p # Don't set a model with preprint
-      graphical-abstract: "![](images/visual_abstract.png)"
+      graphical-abstract: "![](images/visual-abstract.png)"
       #layout: twocolumn
       cite-style: authoryear
       highlights:
