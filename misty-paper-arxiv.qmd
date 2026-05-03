@@ -140,14 +140,14 @@ dialogue_session_summary <- read_csv(
   )
 
 df_flat_scores_final <- readRDS("full_dataset_with_items.rds") |>
-  left_join(dialogue_session_summary, by = join_by(session_id)) |>
-  mutate(
-    post_trust = scales::rescale(
-      post_trust,
-      to = c(0, 100),
-      from = c(1, 5)
-    )
-  ) #|>
+  left_join(dialogue_session_summary, by = join_by(session_id)) #|>
+#mutate(
+#  post_trust = scales::rescale(
+#   post_trust,
+#   to = c(0, 100),
+#   from = c(1, 5)
+# )
+# ) #|>
 #filter(exclusions != 'exclude')
 
 df_long_scores_final <- readRDS("full_dataset_long_trust_post.csv") |>
@@ -378,7 +378,7 @@ post_table <- df_flat_scores_final |>
   data.frame() |>
   mutate(across(
     contains('post_trust'),
-    ~ scales::rescale(.x, to = c(0, 100), min_old = 1, max_old = 5)
+    ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
   )) |>
   select(
     -post_date
@@ -393,10 +393,10 @@ Simple descriptive comparisons of post-interaction trust measures indicated high
 #| label: tbl-post-eligible
 #| tbl-cap: "Post-Interaction Trust and Task Accuracy (eligible sample)"
 post_table |>
-  mutate(across(
-    c(post_trust_reliability, post_trust_perception, post_trust_feelings),
-    ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
-  )) |>
+  # mutate(across(
+  #   c(post_trust_reliability, post_trust_perception, post_trust_feelings),
+  #   ~ scales::rescale(.x, to = c(0, 100), from = c(1, 5))
+  # )) |>
   filter(exclusions != 'exclude') |>
   select(
     group,
