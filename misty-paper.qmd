@@ -39,7 +39,7 @@ format:
     keep-tex: true
     journal:
       name: Journal Name
-      formatting: preprint #doubleblind
+      formatting: doubleblind #preprint #doubleblind
       model: 3p # Don't set a model with preprint
       graphical-abstract: "![](images/visual-abstract.png)"
       #layout: twocolumn
