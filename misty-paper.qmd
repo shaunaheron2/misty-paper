@@ -446,7 +446,7 @@ Analysis of dialogue interaction patterns confirmed successful manipulation of t
 #| fig-height: 4
 library(patchwork)
 plot1 <- ggbetweenstats(
-  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
+  data = post_table |> filter(exclusions != 'exclude'),
   x = group,
   y = trust_perc_post,
   # type = "p",
@@ -463,7 +463,7 @@ plot1 <- ggbetweenstats(
   theme(plot.title = element_text(size = 11))
 
 plot2 <- ggbetweenstats(
-  data = df_flat_scores_final |> filter(exclusions != 'exclude'),
+  data = post_table |> filter(exclusions != 'exclude'),
   x = group,
   y = post_trust,
   # type = "p",
