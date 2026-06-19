@@ -6,6 +6,7 @@
 %
 \documentclass[
   authoryear,
+  preprint,
   3p]{elsarticle}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
@@ -217,17 +218,19 @@ policy, in which the robot provided only direct, task-relevant responses
 when prompted. Responsive interaction was associated with significantly
 higher post-interaction trust under viable communication conditions,
 despite no reliable differences in overall task accuracy. Sensitivity
-analyses indicated a pattern consistent with affective and experiential
-components of trust being more sensitive to communication breakdown than
-evaluative judgments of reliability, and that as language-mediated
-interaction degraded, the trust advantage associated with responsiveness
-attenuated and ratings became less clearly interpretable as calibrated
-evaluations of collaborative competence. These findings suggest that
-trust in autonomous human-robot interaction emerges from process-level
-interaction dynamics and operates within constraints imposed by
-communication viability, highlighting the importance of evaluating trust
-under real autonomy conditions when designing interactive robotic
-systems.
+analyses revealed a tentative pattern in which experienced trust ratings
+(TI-HRC) appeared more sensitive to communication breakdown than
+perceived trust evaluations (TPS-HRI), though the small sample size and
+exploratory design preclude firm conclusions about differential
+sensitivity across trust dimensions; as language-mediated interaction
+degraded, the trust advantage associated with responsiveness attenuated
+and ratings became less clearly interpretable as calibrated evaluations
+of collaborative competence. These preliminary findings are consistent
+with the interpretation that trust in autonomous human-robot interaction
+is shaped by process-level interaction dynamics and operates within
+constraints imposed by communication viability, highlighting the
+importance of evaluating trust under real autonomy conditions when
+designing interactive robotic systems.
 \end{abstract}
 
 \begin{graphicalabstract}
@@ -315,17 +318,35 @@ the same constraints and breakdowns encountered in real-world deployment
 \citep{campagna2025}.
 
 Yet in practice, much of the existing HRI trust literature has relied on
-scripted behaviours, simulated environments, or Wizard-of-Oz paradigms
-in which a human operator covertly manages the robot's behaviour
-\citep{bettencourt2025, campagna2025}. While these approaches are
-valuable for isolating specific design factors, they obscure the
+scripted behaviours, simulated environments, or Wizard-of-Oz (WoZ)
+paradigms in which a human operator covertly manages the robot's
+behaviour \citep{bettencourt2025, campagna2025}. While these approaches
+are valuable for isolating specific design factors, they obscure the
 interaction breakdowns and system imperfections that characterize
-deployed autonomous robots. Limitations such as speech recognition
-errors, delayed responses, misinterpretations of user intent, and
-incomplete affect sensing are not peripheral issues but defining
-features of real-world interaction. These failures are likely to play a
-decisive role in shaping trust and collaboration, yet remain
-underrepresented in empirical evaluations \citep{campagna2025}.
+deployed autonomous robots. Prior work has established that robot
+failures broadly undermine trust: behavioural errors reduce cooperation
+and perceived reliability \citep{salem2015}, users can exhibit overtrust
+even following observable performance failures \citep{robinette2016},
+and a recent systematic review identifies hardware and software failures
+as consistent trust barriers across deployment contexts
+\citep{gratsjova2025}. However, a qualitatively distinct form of
+failure---speech-channel breakdown arising from automatic speech
+recognition (ASR) errors---has received comparatively little empirical
+attention, and this gap is not incidental. Under WoZ paradigms,
+spoken-language understanding is performed by a human operator who can
+accommodate non-native speech, disfluencies, and unexpected phrasing in
+ways that ASR pipelines cannot, effectively absorbing communication
+failures before they enter the interaction. As a result, speech-channel
+viability cannot manifest as an observable variable in WoZ research,
+because it is the operator, not the robot's autonomous systems,
+performing speech comprehension. Speech-channel breakdown only becomes
+empirically tractable in systems where dialogue is managed fully
+autonomously---a level of sophistication that large language
+model-driven architectures have only recently made feasible for
+naturalistic collaborative interaction \citep{wei, campagna2025}.
+Consequently, how ASR-driven communication failure interacts with trust
+dynamics and interaction policy under full autonomy remains largely
+unexamined.
 
 Within HRI, a range of design strategies have been proposed to support
 appropriate trust calibration during collaboration, including robot
@@ -525,6 +546,24 @@ Both conditions operated fully autonomously without human intervention
 and otherwise used the same underlying task logic and sensing
 infrastructure.
 
+It should be noted that the responsive and neutral policies differed on
+multiple dimensions simultaneously, including dialogue content,
+affective framing, check-in style, the frequency and nature of proactive
+guidance, and the overall volume of robot-initiated interaction. These
+features are functionally interdependent: affect-responsive behaviour
+requires additional dialogue turns to express, and proactive assistance
+necessarily increases session duration and robot response latency
+relative to a purely reactive policy. As a result, the responsive
+condition constitutes a bundled interaction profile rather than a single
+isolated manipulation, and the present design cannot determine the
+contribution of any individual component to observed differences in
+trust. The study is therefore best understood as an evaluation of a
+coherent interaction policy---one that integrates affective
+responsiveness, proactive assistance, and collaborative
+dialogue---rather than a test of any single behavioural feature in
+isolation. Disentangling the contributions of specific components
+remains an important direction for subsequent work.
+
 \subsection{Collaborative Task Design}\label{collaborative-task-design}
 
 The task structure was modelled after the interactive and immersive
@@ -667,11 +706,10 @@ trust, engagement, and task performance.
 \subsubsection{Self-Report Measures}\label{self-report-measures}
 
 Participants completed a pre-session questionnaire assessing baseline
-characteristics, including the Negative Attitudes Toward Robots Scale
-(NARS) and the short form of the Need for Cognition scale (NFC-s)
-\citep{cacioppo1982, nomura}. These measures were used to capture a
-baseline of individual differences that may moderate responses to robot
-interaction.
+characteristics, including NARS and the short form of the Need for
+Cognition scale (NFC-s) \citep{cacioppo1982, nomura}. These measures
+were used to capture a baseline of individual differences that may
+moderate responses to robot interaction.
 
 Trust was assessed using two established self-report instruments
 commonly used in human-robot interaction research: the Trust Perception
@@ -692,15 +730,15 @@ cautiously, but are reported to provide transparency regarding scale
 performance under fully autonomous interaction conditions.
 
 All self-report scales demonstrated acceptable to strong internal
-consistency in the present sample. The Negative Attitudes Toward Robots
-scale (NARS) showed good reliability (\(\alpha\) = .81), with subscale
-alphas ranging from .72 to .76. The Need for Cognition scale (NFC)
-demonstrated strong internal consistency (\(\alpha\) = .87). Both
-post-interaction trust measures also exhibited high reliability. The
-Trust Perception Scale-HRI (TPS-HRI) showed strong internal consistency
-overall (\(\alpha\) = .89), with subscale reliabilities ranging from .74
-to .88. The Trust in Industrial Human-Robot Collaboration scale (TI-HRC)
-demonstrated very high internal consistency (\(\alpha\) = .95).
+consistency in the present sample. NARS showed good reliability
+(\(\alpha\) = .81), with subscale alphas ranging from .72 to .76. The
+Need for Cognition scale (NFC) demonstrated strong internal consistency
+(\(\alpha\) = .87). Both post-interaction trust measures also exhibited
+high reliability. The Trust Perception Scale-HRI (TPS-HRI) showed strong
+internal consistency overall (\(\alpha\) = .89), with subscale
+reliabilities ranging from .74 to .88. The Trust in Industrial
+Human-Robot Collaboration scale (TI-HRC) demonstrated very high internal
+consistency (\(\alpha\) = .95).
 
 Together, these instruments capture complementary dimensions of trust,
 including perceived reliability, task competence, and affective comfort.
@@ -902,8 +940,9 @@ are therefore reported for the eligible sample (n = 24), with
 full-sample and mechanism-focused analyses reported as sensitivity and
 exploratory analyses, respectively.
 
-\subsection{Descriptive Analysis: Eligible
-Sample}\label{descriptive-analysis-eligible-sample}
+\subsection{Responsive Interaction Was Associated with Higher Trust
+Independent of Task
+Accuracy}\label{responsive-interaction-was-associated-with-higher-trust-independent-of-task-accuracy}
 
 Simple descriptive comparisons of post-interaction trust measures
 indicated higher trust ratings in the responsive condition relative to
@@ -996,13 +1035,12 @@ collaboration), with an average of 3.50 engaged responses (SD = 1.95)
 compared to 2.00 (SD = 2.21) in the control condition. Consistent with
 these dialogue differences, interactions in the responsive condition
 were characterized by longer session durations and slower robot response
-times which reflects the latency and time associated with executing
-additional dialogue and affective support behaviours. As such,
-responsiveness in the present study reflects a bundled interaction
-profile rather than a single isolated manipulation. Observed trust
-differences may therefore partially reflect differences in interaction
-exposure or dialogue richness in addition to affect-adaptive behaviour.
-Future work should more carefully disentangle these components.
+times, reflecting the latency associated with executing additional
+dialogue and affective support behaviours. As noted in the Interaction
+Policies section, these differences are functionally interdependent
+features of the responsive policy rather than independent variables, and
+observed trust differences may partly reflect interaction exposure or
+dialogue richness in addition to affect-adaptive behaviour.
 
 \begin{table}
 
@@ -1049,7 +1087,9 @@ Beyond descriptive comparisons, hierarchical models were fitted to
 evaluate the robustness of interaction policy effects while controlling
 for baseline covariates and accounting for measurement structure.
 
-\subsection{Hierarchical Models}\label{hierarchical-models}
+\subsection{Policy Effects on Trust Were Confirmed Across Frequentist
+and Bayesian
+Models}\label{policy-effects-on-trust-were-confirmed-across-frequentist-and-bayesian-models}
 
 Given the pilot nature of the study and the modest sample size,
 hierarchical modeling was used to estimate effect direction and
@@ -1087,8 +1127,9 @@ estimates while retaining flexibility. All models demonstrated
 satisfactory convergence (\(\hat{R}\) \(\leq\) 1.01; effective sample
 sizes \textgreater{} 1000).
 
-\subsubsection{Primary Analysis: Eligible Sample (n =
-24)}\label{primary-analysis-eligible-sample-n-24}
+\subsubsection{Responsive Policy Produced Credible Increases in Both
+Trust Measures (n =
+24)}\label{responsive-policy-produced-credible-increases-in-both-trust-measures-n-24}
 
 Frequentist linear mixed-effects models revealed consistent positive
 effects of responsive interaction on both trust measures. For
@@ -1144,8 +1185,9 @@ respective scale (points on a 0-100 scale).}
 
 \end{figure}%
 
-\subsubsection{Sensitivity Analysis: Full Sample (n =
-29)}\label{sensitivity-analysis-full-sample-n-29}
+\subsubsection{Including Sessions with Communication Failure Attenuated
+but Did Not Eliminate the Policy Effect (n =
+29)}\label{including-sessions-with-communication-failure-attenuated-but-did-not-eliminate-the-policy-effect-n-29}
 
 To assess robustness, Bayesian models were refitted including all
 sessions regardless of communication viability. The responsive
@@ -1170,8 +1212,9 @@ mechanism analysis below. Trust ratings obtained under non-functional
 interaction conditions do not reflect graded variation in collaborative
 experience but rather reflect the collapse of the interaction itself.
 
-\subsubsection{Mechanism Analysis: Communication Breakdown
-(n=29)}\label{mechanism-analysis-communication-breakdown-n29}
+\subsubsection{Communication Breakdown Moderated the Trust Advantage of
+Responsive Interaction (n =
+29)}\label{communication-breakdown-moderated-the-trust-advantage-of-responsive-interaction-n-29}
 
 To examine whether communication quality moderated the effect of
 interaction policy, Bayesian models were fitted in the full sample with
@@ -1225,7 +1268,8 @@ interaction quality. Put plainly, a robot that cannot understand you
 cannot adapt to you and without adaptation, the responsive policy offers
 nothing the control policy does not.
 
-\subsection{Task performance}\label{task-performance}
+\subsection{Trust Differences Were Not Attributable to Differential Task
+Accuracy}\label{trust-differences-were-not-attributable-to-differential-task-accuracy}
 
 Overall task accuracy did not differ significantly between conditions
 (60\% vs.~66\%, p = .534), nor did performance on individual task
@@ -1286,8 +1330,9 @@ Floor ID Accuracy & 7 / 10 (70\%) & 13 / 14 (93\%) & 0.27 \\
 
 }
 
-\subsection{Individual differences and correlational
-patterns}\label{individual-differences-and-correlational-patterns}
+\subsection{Trust Correlated with Interaction Dynamics Rather Than
+Individual Differences or Task
+Outcomes}\label{trust-correlated-with-interaction-dynamics-rather-than-individual-differences-or-task-outcomes}
 
 The following correlational analyses are exploratory in nature. A broad
 set of associations was examined across behavioural, interactional, and
@@ -1408,12 +1453,13 @@ as well as affective comfort and perceived collaboration
 in the present study allowed these components to be examined in
 parallel. Rather than treating trust as a static attribute of the
 system, the results suggest that it functioned as an evaluation of the
-collaborative experience as it unfolded over time. Notably, a pattern
-consistent with greater sensitivity of affective and experiential trust
-components to interaction degradation emerged, relative to
-reliability-focused evaluations, reinforcing the view that trust in
-autonomous HRI is shaped by process-level interaction dynamics rather
-than performance outcomes alone.
+collaborative experience as it unfolded over time. Notably, a tentative
+pattern emerged in which the experienced trust measure (TI-HRC) appeared
+more sensitive to interaction degradation than the perceived trust
+measure (TPS-HRI), which is consistent with the conceptual distinction
+between these instruments but should be interpreted cautiously given the
+sample size and the absence of a formally validated multidimensional
+measurement model in this context.
 
 These differences became particularly apparent under conditions of
 reduced communication viability. When speech recognition failures
