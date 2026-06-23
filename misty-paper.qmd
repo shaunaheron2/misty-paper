@@ -200,6 +200,12 @@ Upon arrival, participants were greeted by the researcher, provided with a brief
 
 Following task completion, participants completed a 21-item post-interaction questionnaire assessing trust on a provied laptop. Participants then engaged in a brief debrief with the researcher and were awarded a \$15 gift card. Total session duration averaged approximately 30 minutes.
 
+![Experimental procedure and analytic sample determination. NARS = Negative
+Attitudes Toward Robots Scale; NFC-s = Need for Cognition (short form); TI-HRC
+= Trust in Industrial Human–Robot Collaboration scale; TPS-HRI = Trust
+Perception Scale – Human–Robot Interaction; ASR = automatic speech
+recognition.](procedural_flowchart.svg){#fig-procedure width=90%}
+
 ### Interaction Policies
 
 Across both tasks, interaction behaviour was governed by one of two interaction policies that differed in how the robot was intended to initiate, frame, and adapt its contributions during collaboration. Under both policies, the robot continuously monitored interaction timing and issued brief check-ins following extended periods of participant silence in order to preserve interaction continuity. In the neutral, reactive condition, these check-ins were minimal and task-focused, serving only to signal availability without providing guidance, encouragement, or additional framing (e.g., "I'm ready for your next question.").

@@ -8,7 +8,7 @@
 
 <meta name="author" content="Shauna Heron">
 <meta name="author" content="Meng Cheng Lau">
-<meta name="dcterms.date" content="2026-05-04">
+<meta name="dcterms.date" content="2026-06-23">
 <meta name="keywords" content="Human-robot collaboration, Human-robot interaction, socially assistive robotics, autonomous robot systems, embodied AI, trust in human-robot interaction, affect-adaptive robot systems">
 
 <title>Trust in Autonomous Human-Robot Collaboration: Effects of Responsive Interaction Policies</title>
@@ -135,7 +135,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">May 4, 2026</p>
+      <p class="date">June 23, 2026</p>
     </div>
   </div>
   
@@ -145,7 +145,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title">Abstract</div>
-    <p>Trust plays a central role in human-robot collaboration, yet its formation is rarely examined under the constraints of fully autonomous interaction. This pilot study investigated how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted repair. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue and assistance based on inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when prompted. Responsive interaction was associated with significantly higher post-interaction trust under viable communication conditions, despite no reliable differences in overall task accuracy. Sensitivity analyses indicated a pattern consistent with affective and experiential components of trust being more sensitive to communication breakdown than evaluative judgments of reliability, and that as language-mediated interaction degraded, the trust advantage associated with responsiveness attenuated and ratings became less clearly interpretable as calibrated evaluations of collaborative competence. These findings suggest that trust in autonomous human-robot interaction emerges from process-level interaction dynamics and operates within constraints imposed by communication viability, highlighting the importance of evaluating trust under real autonomy conditions when designing interactive robotic systems.</p>
+    <p>Trust plays a central role in human-robot collaboration, yet its formation is rarely examined under the constraints of fully autonomous interaction. This pilot study investigated how interaction policy influences trust during in-person collaboration with a social robot operating without Wizard-of-Oz control or scripted repair. Participants completed a multi-stage collaborative task with a mobile robot that autonomously managed spoken-language dialogue, affect inference, and task progression. Two interaction policies were compared: a responsive policy, in which the robot proactively adapted its dialogue and assistance based on inferred interaction state, and a neutral, reactive policy, in which the robot provided only direct, task-relevant responses when prompted. Responsive interaction was associated with significantly higher post-interaction trust under viable communication conditions, despite no reliable differences in overall task accuracy. Sensitivity analyses revealed a tentative pattern in which experienced trust ratings (TI-HRC) appeared more sensitive to communication breakdown than perceived trust evaluations (TPS-HRI), though the small sample size and exploratory design preclude firm conclusions about differential sensitivity across trust dimensions; as language-mediated interaction degraded, the trust advantage associated with responsiveness attenuated and ratings became less clearly interpretable as calibrated evaluations of collaborative competence. These preliminary findings are consistent with the interpretation that trust in autonomous human-robot interaction is shaped by process-level interaction dynamics and operates within constraints imposed by communication viability, highlighting the importance of evaluating trust under real autonomy conditions when designing interactive robotic systems.</p>
   </div>
 </div>
 
@@ -165,14 +165,22 @@ window.Quarto = {
 <p>In HRC, trust is commonly understood as a willingness to rely on an agent under conditions of uncertainty and risk <span class="citation" data-cites="muir1994 hancock2011">(<a href="#ref-muir1994" role="doc-biblioref">MUIR 1994</a>; <a href="#ref-hancock2011" role="doc-biblioref">Hancock et al. 2011</a>)</span>. This reliance is dynamically calibrated, shaping how closely users monitor a robot, when they intervene, and whether they defer or override its actions. Appropriately calibrated trust supports effective coordination, whereas under-trust may result in disengagement or redundant oversight, and over-trust can lead to inappropriate reliance and unsafe outcomes <span class="citation" data-cites="devisser2020">(<a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>. These dynamics are especially pronounced in dialogue-driven collaborative tasks, where misunderstandings, delays, or ambiguous responses may directly influence users’ ongoing assessments of a robot’s competence and reliability.</p>
 <p>A substantial body of human-robot interaction (HRI) research has examined how robot behaviour influences user trust, perceived reliability, and cooperation across industrial and social contexts <span class="citation" data-cites="shayganfar2019 fartook2025">(<a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>; <a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>. Trust is typically conceptualized as a multidimensional construct encompassing cognitive evaluations of competence, predictability, and reliability, alongside a behavioural willingness to collaborate toward shared goals under conditions of risk or uncertainty <span class="citation" data-cites="muir1994 hancock2011 devisser2020">(<a href="#ref-muir1994" role="doc-biblioref">MUIR 1994</a>; <a href="#ref-hancock2011" role="doc-biblioref">Hancock et al. 2011</a>; <a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>. Despite this multidimensional framing, empirical studies have most often operationalized trust using post-interaction self-report questionnaires collected following short, highly controlled, and often scripted interactions. While such measures provide valuable global assessments of user attitudes, they offer limited insight into how trust is negotiated, disrupted, and repaired during ongoing interaction—particularly in autonomous systems where errors and ambiguities are unavoidable <span class="citation" data-cites="maure">(<a href="#ref-maure" role="doc-biblioref">Maure and Bruno 2025</a>)</span>.</p>
 <p>Studying trust as an interactional process therefore requires experimental settings in which users engage with robots that exhibit both adaptive behaviour and realistic system limitations <span class="citation" data-cites="campagna2025">(<a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>. In such settings, trust is shaped not only by task success but by how robots handle uncertainty, errors, and misalignment during interaction. Fully autonomous systems, where dialogue management and response generation occur without human intervention, provide a critical testbed for examining these dynamics, as they expose users to the same constraints and breakdowns encountered in real-world deployment <span class="citation" data-cites="campagna2025">(<a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>.</p>
-<p>Yet in practice, much of the existing HRI trust literature has relied on scripted behaviours, simulated environments, or Wizard-of-Oz paradigms in which a human operator covertly manages the robot’s behaviour <span class="citation" data-cites="bettencourt2025 campagna2025">(<a href="#ref-bettencourt2025" role="doc-biblioref">Bettencourt et al. 2025</a>; <a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>. While these approaches are valuable for isolating specific design factors, they obscure the interaction breakdowns and system imperfections that characterize deployed autonomous robots. Limitations such as speech recognition errors, delayed responses, misinterpretations of user intent, and incomplete affect sensing are not peripheral issues but defining features of real-world interaction. These failures are likely to play a decisive role in shaping trust and collaboration, yet remain underrepresented in empirical evaluations <span class="citation" data-cites="campagna2025">(<a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>.</p>
+<p>Yet in practice, much of the existing HRI trust literature has relied on scripted behaviours, simulated environments, or Wizard-of-Oz (WoZ) paradigms in which a human operator covertly manages the robot’s behaviour <span class="citation" data-cites="bettencourt2025 campagna2025">(<a href="#ref-bettencourt2025" role="doc-biblioref">Bettencourt et al. 2025</a>; <a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>. While these approaches are valuable for isolating specific design factors, they obscure the interaction breakdowns and system imperfections that characterize deployed autonomous robots. Prior work has established that robot failures broadly undermine trust: behavioural errors reduce cooperation and perceived reliability <span class="citation" data-cites="salem2015">(<a href="#ref-salem2015" role="doc-biblioref">Salem et al. 2015</a>)</span>, users can exhibit overtrust even following observable performance failures <span class="citation" data-cites="robinette2016">(<a href="#ref-robinette2016" role="doc-biblioref">Robinette et al. 2016</a>)</span>, and a recent systematic review identifies hardware and software failures as consistent trust barriers across deployment contexts <span class="citation" data-cites="gratsjova2025">(<a href="#ref-gratsjova2025" role="doc-biblioref">Firmino de Souza et al. 2025</a>)</span>. However, a qualitatively distinct form of failure—speech-channel breakdown arising from automatic speech recognition (ASR) errors—has received comparatively little empirical attention, and this gap is not incidental. Under WoZ paradigms, spoken-language understanding is performed by a human operator who can accommodate non-native speech, disfluencies, and unexpected phrasing in ways that ASR pipelines cannot, effectively absorbing communication failures before they enter the interaction. As a result, speech-channel viability cannot manifest as an observable variable in WoZ research, because it is the operator, not the robot’s autonomous systems, performing speech comprehension. Speech-channel breakdown only becomes empirically tractable in systems where dialogue is managed fully autonomously—a level of sophistication that large language model-driven architectures have only recently made feasible for naturalistic collaborative interaction <span class="citation" data-cites="wei campagna2025">(<a href="#ref-wei" role="doc-biblioref">Wei et al., n.d.</a>; <a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>. Consequently, how ASR-driven communication failure interacts with trust dynamics and interaction policy under full autonomy remains largely unexamined.</p>
 <p>Within HRI, a range of design strategies have been proposed to support appropriate trust calibration during collaboration, including robot appearance <span class="citation" data-cites="nicolas2021">(<a href="#ref-nicolas2021" role="doc-biblioref">Nicolas and Agnieszka 2021</a>)</span>, transparency cues <span class="citation" data-cites="zhang2019">(<a href="#ref-zhang2019" role="doc-biblioref">Zhang et al. 2019</a>)</span>, explanations of system intent, adaptive feedback <span class="citation" data-cites="val-calvo2020">(<a href="#ref-val-calvo2020" role="doc-biblioref">Val-Calvo et al. 2020</a>)</span>, and interaction pacing <span class="citation" data-cites="kok2020">(<a href="#ref-kok2020" role="doc-biblioref">Kok and Soh 2020</a>)</span>. Many of these approaches aim to help users form accurate expectations about a robot’s capabilities and limitations, particularly in contexts involving uncertainty or partial observability. Among these strategies, adaptive interaction behaviour—how and when a robot responds to user state and task context—has been identified as a particularly influential factor in shaping perceptions of competence, reliability, and collaboration <span class="citation" data-cites="fartook2025">(<a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>.</p>
 <p>Recent advances in AI have expanded the range of interaction strategies available to autonomous robotic platforms in practice, enabling systems to move beyond fixed, scripted behaviours toward adaptive interaction policies that respond to user state and task context in real time <span class="citation" data-cites="atone2022">(<a href="#ref-atone2022" role="doc-biblioref">Atone and Bhalchandra 2022</a>)</span>. Improvements in spoken-language processing, dialogue state tracking, and large language model-based reasoning now allow robots to adjust not only what they say, but when and how assistance is provided during collaboration <span class="citation" data-cites="wei">(<a href="#ref-wei" role="doc-biblioref">Wei et al., n.d.</a>)</span>. In parallel, advances in affect inference from language and interaction cues have made it increasingly feasible for robots to incorporate estimates of user emotional state into interaction management <span class="citation" data-cites="mcduff spitale2023">(<a href="#ref-mcduff" role="doc-biblioref">McDuff and Berger, n.d.</a>; <a href="#ref-spitale2023" role="doc-biblioref">Spitale et al. 2023</a>)</span>. As a result, responsiveness in contemporary HRI is increasingly understood as a property of an underlying interaction policy, governing how a robot interprets cues, initiates support, and manages uncertainty, rather than as a surface-level social behaviour <span class="citation" data-cites="birnbaum2016 shayganfar2019 fartook2025">(<a href="#ref-birnbaum2016" role="doc-biblioref">Birnbaum et al. 2016</a>; <a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>; <a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>.</p>
 <p>From an engineering perspective, responsiveness in autonomous human-robot interaction is not implemented as a single behavioural rule or surface-level cue, but emerges from the coordination of multiple system components responsible for perception, interpretation, and action <span class="citation" data-cites="arkin2003">(<a href="#ref-arkin2003" role="doc-biblioref">Arkin et al. 2003</a>)</span>. In practice, responsive behaviour depends on the integration of dialogue management, state tracking, and inference mechanisms that estimate task progress, interaction uncertainty, and user affect. Proactive assistance based on this integrated state representation differs fundamentally from reactive, request-based behaviour; for example, a robot may offer clarification, encouragement, or pacing adjustments when confusion, hesitation, or frustration is inferred, rather than waiting for an explicit request for help <span class="citation" data-cites="birnbaum2016">(<a href="#ref-birnbaum2016" role="doc-biblioref">Birnbaum et al. 2016</a>)</span>.</p>
 <p>Implementing such behaviour requires autonomous systems to manage spoken-language dialogue, maintain interaction state over time, and coordinate verbal and nonverbal responses in real time, all while operating under noise, latency, and sensing uncertainty <span class="citation" data-cites="campagna2025">(<a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>. As a result, responsiveness in deployed systems reflects properties of the overall interaction architecture, not merely the presence or absence of adaptive dialogue. Despite growing interest in responsive and affect-aware robots, relatively little empirical work has examined how such integrated interaction systems operate under fully autonomous conditions, or how their behaviour shapes trust and collaboration when communication breakdowns cannot be externally repaired <span class="citation" data-cites="campagna2025">(<a href="#ref-campagna2025" role="doc-biblioref">Campagna and Rehm 2025</a>)</span>.</p>
 <p>The present pilot study addresses these gaps by examining trust and collaboration during in-person interaction with a fully autonomous social robot in which participants collaborated with one of two versions of the same robot platform during a dialogue-driven puzzle task requiring shared problem solving. In both conditions, all interaction management, including speech recognition, dialogue state tracking, task progression, and response generation was handled and logged autonomously by a centralized dialogue agent without human intervention. In the responsive condition, the robot employed a proactive, affect-aware interaction policy, adapting its assistance based on conversational cues and inferred user affect (e.g., frustration or engagement). In the neutral condition, the robot followed a reactive policy, providing basic guidance and periodic check-ins, otherwise providing assistance only when explicitly requested.</p>
 <p>The pilot study had three primary objectives: (1) to design and evaluate the feasibility of an autonomous spoken-language interaction system with affect-responsive behaviour on a mobile robot platform; (2) to assess whether a responsive interaction policy influences post-interaction trust and collaborative experience under autonomous conditions; and (3) to explore how behavioural and interaction-level indicators align with subjective trust evaluations.</p>
-<p>Rather than optimizing for flawless interaction, this pilot study prioritizes feasibility assessment and mechanism exploration over confirmatory hypothesis testing. The sample size is modest, interaction conditions subject to real-world autonomy constraints, and final condition assignment was not fully randomized due to participant attrition. Accordingly, results should be interpreted as exploratory evidence regarding how interaction policy shapes trust under autonomous spoken-language collaboration, and as guidance for the design of larger, confirmatory studies. The findings are intended to inform the design of a larger subsequent study by evaluating feasibility and identifying technical, interactional, and methodological challenges that must be addressed when evaluating affect-responsive robots in real-world contexts.</p>
+<p>Three features distinguish this study from the broader HRI trust literature. First, the entire interaction was managed fully autonomously: no human operator performed any portion of speech recognition, dialogue management, or response selection, exposing participants to authentic ASR errors, response latencies, and misinterpretations of the kind that characterize deployed autonomous systems rather than controlled laboratory simulations. Second, speech-channel viability varied naturally across sessions as a direct consequence of real-world ASR constraints, making it an empirically observable variable—one that is structurally inaccessible in WoZ paradigms, where operator-mediated speech comprehension absorbs such failures before they affect the interaction. Third, the affect-responsive policy was implemented as a property of an integrated autonomous system—coordinating dialogue management, affect inference, and task-state tracking in real time—rather than as a surface-level scripted behaviour or isolated manipulation. Together, these features position the study to examine trust dynamics under conditions that more closely approximate real-world deployment than prior paradigms relying on WoZ control, scripted dialogue, or idealized communication channels. o Rather than optimizing for flawless interaction, this pilot study prioritizes feasibility assessment and mechanism exploration over confirmatory hypothesis testing. The sample size is modest, interaction conditions subject to real-world autonomy constraints, and final condition assignment was not fully randomized due to participant attrition. Accordingly, results should be interpreted against the directional predictions outlined below as exploratory evidence regarding how interaction policy shapes trust under autonomous spoken-language collaboration, and as guidance for the design of larger, confirmatory studies. The findings are intended to inform the design of a larger subsequent study by evaluating feasibility and identifying technical, interactional, and methodological challenges that must be addressed when evaluating affect-responsive robots in real-world contexts.</p>
+<section id="theoretical-rationale-and-study-predictions" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-rationale-and-study-predictions">Theoretical Rationale and Study Predictions</h3>
+<p>The present study is grounded in a process-oriented account of trust in human-robot interaction, in which trust is understood not as a static judgment of system capability but as an evaluation that emerges from and is updated during interaction <span class="citation" data-cites="lee2004 devisser2020">(<a href="#ref-lee2004" role="doc-biblioref">Lee and See 2004</a>; <a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>. From this perspective, how a robot manages dialogue, uncertainty, and user affect during collaboration should be a primary driver of trust formation, independent of task outcome. Affect-responsive interaction — characterised by proactive assistance, empathic framing, and collaborative dialogue — has been identified as a particularly influential behavioural profile in shaping perceptions of competence, empathy, and collaboration quality in prior HRI research <span class="citation" data-cites="birnbaum2016 shayganfar2019 fartook2025">(<a href="#ref-birnbaum2016" role="doc-biblioref">Birnbaum et al. 2016</a>; <a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>; <a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>. Building on this theoretical basis, the present study was guided by two directional predictions and two theoretically motivated individual-difference variables.</p>
+<p><strong>P1: Responsive interaction and trust.</strong> Participants interacting with the responsive robot were expected to report higher post-interaction trust than those in the neutral, reactive condition. This prediction follows directly from prior work linking affect-aware and proactive robot behaviour to perceptions of trustworthiness, competence, and collaborative quality <span class="citation" data-cites="birnbaum2016 shayganfar2019 fartook2025">(<a href="#ref-birnbaum2016" role="doc-biblioref">Birnbaum et al. 2016</a>; <a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>; <a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>.</p>
+<p><strong>P2: Responsive interaction and collaborative performance.</strong> Participants in the responsive condition were expected to show a performance advantage on tasks requiring sustained robot collaboration. This prediction follows from research suggesting that affective cues and proactive support promote mutual grounding and smoother task coordination <span class="citation" data-cites="emaminejad2022 lin2022">(<a href="#ref-emaminejad2022" role="doc-biblioref">Emaminejad and Akhavian 2022</a>; <a href="#ref-lin2022" role="doc-biblioref">Lin et al. 2022</a>)</span>. Critically, this effect was expected to be contingent on task structure: enforced collaboration tasks, where participants must rely on the robot to progress, were expected to benefit more from responsive interaction than optional collaboration tasks, where participants can complete the task independently regardless of robot behaviour.</p>
+<p>Two individual-difference variables were included on theoretical grounds but were not treated as formal moderation hypotheses. Baseline negative attitudes toward robots (NARS) were expected to negatively predict post-interaction trust, consistent with prior work showing that pre-existing robot-negative dispositions suppress trust formation <span class="citation" data-cites="nomura hancock2011">(<a href="#ref-nomura" role="doc-biblioref">Nomura et al., n.d.</a>; <a href="#ref-hancock2011" role="doc-biblioref">Hancock et al. 2011</a>)</span>. Need for Cognition (NFC) was included based on prior work linking cognitive engagement tendencies to openness toward complex autonomous agents <span class="citation" data-cites="cacioppo1982">(<a href="#ref-cacioppo1982" role="doc-biblioref">Cacioppo and Petty 1982</a>)</span>; however, given the small sample and pilot design, it was examined in a correlational rather than moderation framework.</p>
+<p>Beyond these a priori predictions, several analyses in this study are explicitly exploratory and arose from empirical observations during data collection rather than pre-specified design choices. In particular, substantial variability in spoken-language interaction viability was observed across sessions — a consequence of real-world ASR constraints rather than a planned manipulation. Sensitivity and mechanism analyses examining the role of communication breakdown were therefore post-hoc in nature and should be interpreted as hypothesis-generating observations. This distinction between a priori predictions and exploratory analyses is maintained throughout the Results and Discussion.</p>
+</section>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
@@ -182,11 +190,11 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="study-protocol">Study Protocol</h3>
 <p>Participants signed up for the study, provided informed consent, were randomly assigned to a group, and completed a pre-session questionnaire before their in-person session via a survey hosted on Qualtrics. The elapsed time between sign-up and the in-person session was at most a week and at minimum immediately before the session. The pre-session questionnaire collected basic demographics information and assessed baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) <span class="citation" data-cites="nomura cacioppo1982">(<a href="#ref-nomura" role="doc-biblioref">Nomura et al., n.d.</a>; <a href="#ref-cacioppo1982" role="doc-biblioref">Cacioppo and Petty 1982</a>)</span>. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.</p>
 <p>In-person sessions were conducted in a quiet, private room at Laurentian University between November and December 2025. Prior to each session, the robot’s interaction policy was configured to the assigned experimental condition.</p>
-<p>Upon arrival, participants were greeted by the researcher, provided with a brief overview of the session, and given instructions for effective communication with the robot. Once participants indicated readiness, the researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation (see <a href="#fig-task1" class="quarto-xref">Figure&nbsp;2</a>). Participants initiated the interaction by clicking a start button on the interface and were informed that they could terminate the session at any time without penalty.</p>
+<p>Upon arrival, participants were greeted by the researcher, provided with a brief overview of the session, and given instructions for effective communication with the robot. Once participants indicated readiness, the researcher exited the room, leaving the participant and robot to complete the interaction without human presence or observation (see <a href="#fig-task1" class="quarto-xref">Figure&nbsp;3</a>). Participants initiated the interaction by clicking a start button on the interface and were informed that they could terminate the session at any time without penalty.</p>
 <div id="fig-setup" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/misty_pullback_lineart_final_hand.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="420">
+<img src="procedural_flowchart.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" width="420">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Experimental setup showing the autonomous robot and participant-facing task interface used during in-person sessions. Participants entered task responses and navigated between task stages using the interface, while the robot autonomously tracked task state and adapted its interaction based on participant input.
@@ -194,12 +202,23 @@ Figure&nbsp;1: Experimental setup showing the autonomous robot and participant-f
 </figure>
 </div>
 <p>Following task completion, participants completed a 21-item post-interaction questionnaire assessing trust on a provied laptop. Participants then engaged in a brief debrief with the researcher and were awarded a $15 gift card. Total session duration averaged approximately 30 minutes.</p>
+<div id="fig-procedure" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-procedure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<embed src="figures/procedure-flowchart.pdf" class="img-fluid" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-procedure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Experimental procedure and analytic sample determination. NARS = Negative Attitudes Toward Robots Scale; NFC-s = Need for Cognition (short form); TI-HRC = Trust in Industrial Human–Robot Collaboration scale; TPS-HRI = Trust Perception Scale – Human–Robot Interaction; ASR = automatic speech recognition.
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="interaction-policies" class="level3">
 <h3 class="anchored" data-anchor-id="interaction-policies">Interaction Policies</h3>
 <p>Across both tasks, interaction behaviour was governed by one of two interaction policies that differed in how the robot was intended to initiate, frame, and adapt its contributions during collaboration. Under both policies, the robot continuously monitored interaction timing and issued brief check-ins following extended periods of participant silence in order to preserve interaction continuity. In the neutral, reactive condition, these check-ins were minimal and task-focused, serving only to signal availability without providing guidance, encouragement, or additional framing (e.g., “I’m ready for your next question.”).</p>
 <p>In contrast, under the responsive policy, the robot’s utterances were affectively framed and context-sensitive. In addition to answering questions, the robot proactively adapted its dialogue, assistance, and repair strategies based on inferred interaction state, such as hesitation, frustration, or apparent difficulty. This included acknowledging task difficulty, offering encouragement, and proposing collaborative reasoning (e.g., “I can tell you’re frustrated, don’t worry! we can reason through this together”), rather than waiting for an explicit request for help. Beyond differences in check-in style, the responsive robot also initiated guidance or clarification when interaction stagnated, whereas the neutral robot limited its contributions to basic task guidance and direct queries.</p>
 <p>Both conditions operated fully autonomously without human intervention and otherwise used the same underlying task logic and sensing infrastructure.</p>
+<p>It should be noted that the responsive and neutral policies differed on multiple dimensions simultaneously, including dialogue content, affective framing, check-in style, the frequency and nature of proactive guidance, and the overall volume of robot-initiated interaction. These features are functionally interdependent: affect-responsive behaviour requires additional dialogue turns to express, and proactive assistance necessarily increases session duration and robot response latency relative to a purely reactive policy. As a result, the responsive condition constitutes a bundled interaction profile rather than a single isolated manipulation, and the present design cannot determine the contribution of any individual component to observed differences in trust. The study is therefore best understood as an evaluation of a coherent interaction policy—one that integrates affective responsiveness, proactive assistance, and collaborative dialogue—rather than a test of any single behavioural feature in isolation. Disentangling the contributions of specific components remains an important direction for subsequent work.</p>
 </section>
 <section id="collaborative-task-design" class="level3">
 <h3 class="anchored" data-anchor-id="collaborative-task-design">Collaborative Task Design</h3>
@@ -211,7 +230,7 @@ Figure&nbsp;1: Experimental setup showing the autonomous robot and participant-f
 <p>Participants advanced between stages using the interface, either in response to the robot’s prompts or at their own discretion. All spoken dialogue and interaction events were managed autonomously by the robot and logged automatically for analysis.</p>
 <section id="task-1-robot-dependent-collaborative-reasoning" class="level4">
 <h4 class="anchored" data-anchor-id="task-1-robot-dependent-collaborative-reasoning">Task 1: Robot-Dependent Collaborative Reasoning</h4>
-<p>In the first task, participants were asked to identify who had taken the missing robot from a 6 × 4 grid of 24 potential “suspects.” Within the narrative, Misty informed participants that she had access to internal security footage but was unable to directly reveal the suspect’s identity due to laboratory security protocols. Instead, she could answer only yes/no questions about observable features of the individual in the footage (e.g., “Was the suspect wearing a hat?”). This constraint established the robot as the sole source of task-relevant information while maintaining narrative plausibility. The suspect grid was displayed on the interface and allowed participants to click on and grey out eliminated candidates, while all questions were posed verbally to the robot (see <a href="#fig-task1" class="quarto-xref">Figure&nbsp;2</a>).</p>
+<p>In the first task, participants were asked to identify who had taken the missing robot from a 6 × 4 grid of 24 potential “suspects.” Within the narrative, Misty informed participants that she had access to internal security footage but was unable to directly reveal the suspect’s identity due to laboratory security protocols. Instead, she could answer only yes/no questions about observable features of the individual in the footage (e.g., “Was the suspect wearing a hat?”). This constraint established the robot as the sole source of task-relevant information while maintaining narrative plausibility. The suspect grid was displayed on the interface and allowed participants to click on and grey out eliminated candidates, while all questions were posed verbally to the robot (see <a href="#fig-task1" class="quarto-xref">Figure&nbsp;3</a>).</p>
 <p>The robot possessed the ground-truth information necessary to answer each question correctly. Successful task completion was therefore fully dependent on interaction with the robot, creating an enforced collaborative dynamic. Participants were required to coordinate a questioning strategy that progressively eliminated candidates based on shared features, narrowing the search space within a five-minute time limit. Efficient performance depended on selecting informative questions (i.e., features that divided the remaining candidates), tracking eliminations, and adapting subsequent questions based on prior answers.</p>
 <div id="fig-task1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -219,7 +238,7 @@ Figure&nbsp;1: Experimental setup showing the autonomous robot and participant-f
 <img src="images/task1-whodunnit.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="420">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-task1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Task 1 interface including the 4 <span class="math inline">\(×\)</span> 6 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.
+Figure&nbsp;3: Task 1 interface including the 4 <span class="math inline">\(×\)</span> 6 grid of 24 candidates. Participants could track those eliminated by clicking on subjects which would grey them out. A box was provided to input their final answer and a button included to move to the next task.
 </figcaption>
 </figure>
 </div>
@@ -237,9 +256,9 @@ Figure&nbsp;2: Task 1 interface including the 4 <span class="math inline">\(×\)
 <p>A combination of self-report and objective measures was used to assess trust, engagement, and task performance.</p>
 <section id="self-report-measures" class="level4">
 <h4 class="anchored" data-anchor-id="self-report-measures">Self-Report Measures</h4>
-<p>Participants completed a pre-session questionnaire assessing baseline characteristics, including the Negative Attitudes Toward Robots Scale (NARS) and the short form of the Need for Cognition scale (NFC-s) <span class="citation" data-cites="cacioppo1982 nomura">(<a href="#ref-cacioppo1982" role="doc-biblioref">Cacioppo and Petty 1982</a>; <a href="#ref-nomura" role="doc-biblioref">Nomura et al., n.d.</a>)</span>. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.</p>
+<p>Participants completed a pre-session questionnaire assessing baseline characteristics, including NARS and the short form of the Need for Cognition scale (NFC-s) <span class="citation" data-cites="cacioppo1982 nomura">(<a href="#ref-cacioppo1982" role="doc-biblioref">Cacioppo and Petty 1982</a>; <a href="#ref-nomura" role="doc-biblioref">Nomura et al., n.d.</a>)</span>. These measures were used to capture a baseline of individual differences that may moderate responses to robot interaction.</p>
 <p>Trust was assessed using two established self-report instruments commonly used in human-robot interaction research: the Trust Perception Scale-HRI (TPS-HRI) and the Trust in Industrial Human-Robot Collaboration scale (TI-HRC) <span class="citation" data-cites="schaefer2016 charalambous2016">(<a href="#ref-schaefer2016" role="doc-biblioref">Schaefer 2016</a>; <a href="#ref-charalambous2016" role="doc-biblioref">Charalambous et al. 2016</a>)</span>. Both measures were adapted to reflect the specific dialogue-driven task context and interaction modality of the present study, while preserving the original constructs and response intent of each scale. 9 items were retained from the TI-HRC and 12 items from the TPS-HRI. Item wording was modified to reference the robot’s behaviour during the dialogue-driven collaborative tasks and response formats were adjusted to ensure interpretability for participants without prior robotics experience (see Appendix B for a full item list). Internal consistency of the adapted trust measures was evaluated within the present sample to assess measurement reliability under the modified wording and response formats. Given the pilot sample size, reliability estimates should be interpreted cautiously, but are reported to provide transparency regarding scale performance under fully autonomous interaction conditions.</p>
-<p>All self-report scales demonstrated acceptable to strong internal consistency in the present sample. The Negative Attitudes Toward Robots scale (NARS) showed good reliability (<span class="math inline">\(\alpha\)</span> = .81), with subscale alphas ranging from .72 to .76. The Need for Cognition scale (NFC) demonstrated strong internal consistency (<span class="math inline">\(\alpha\)</span> = .87). Both post-interaction trust measures also exhibited high reliability. The Trust Perception Scale-HRI (TPS-HRI) showed strong internal consistency overall (<span class="math inline">\(\alpha\)</span> = .89), with subscale reliabilities ranging from .74 to .88. The Trust in Industrial Human-Robot Collaboration scale (TI-HRC) demonstrated very high internal consistency (<span class="math inline">\(\alpha\)</span> = .95).</p>
+<p>All self-report scales demonstrated acceptable to strong internal consistency in the present sample. NARS showed good reliability (<span class="math inline">\(\alpha\)</span> = .81), with subscale alphas ranging from .72 to .76. The Need for Cognition scale (NFC) demonstrated strong internal consistency (<span class="math inline">\(\alpha\)</span> = .87). Both post-interaction trust measures also exhibited high reliability. The Trust Perception Scale-HRI (TPS-HRI) showed strong internal consistency overall (<span class="math inline">\(\alpha\)</span> = .89), with subscale reliabilities ranging from .74 to .88. The Trust in Industrial Human-Robot Collaboration scale (TI-HRC) demonstrated very high internal consistency (<span class="math inline">\(\alpha\)</span> = .95).</p>
 <p>Together, these instruments capture complementary dimensions of trust, including perceived reliability, task competence, and affective comfort. However, they differ in their conceptual emphasis: the TPS-HRI primarily operationalizes trust as a reflective judgement of system performance (i.e., “What percent of the time was the robot reliable”), whereas the TI-HRC scale emphasizes trust as an experienced, embodied response arising during interaction (i.e., “The way the robot moved made me feel uneasy”). Despite this complementarity, both measures rely on retrospective self-report and may be insensitive to moment-to-moment trust dynamics as collaboration unfolds. For this reason, questionnaire data were interpreted alongside behavioural and interaction-level measures.</p>
 </section>
 <section id="objective-measures" class="level4">
@@ -265,23 +284,23 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
 </figcaption>
 <div aria-describedby="tbl-pre-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="fvtomkasph" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#fvtomkasph table {
+<div id="gedojssaaj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gedojssaaj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#fvtomkasph thead, #fvtomkasph tbody, #fvtomkasph tfoot, #fvtomkasph tr, #fvtomkasph td, #fvtomkasph th {
+#gedojssaaj thead, #gedojssaaj tbody, #gedojssaaj tfoot, #gedojssaaj tr, #gedojssaaj td, #gedojssaaj th {
   border-style: none;
 }
 
-#fvtomkasph p {
+#gedojssaaj p {
   margin: 0;
   padding: 0;
 }
 
-#fvtomkasph .gt_table {
+#gedojssaaj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -307,12 +326,12 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-left-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_caption {
+#gedojssaaj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#fvtomkasph .gt_title {
+#gedojssaaj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -324,7 +343,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-bottom-width: 0;
 }
 
-#fvtomkasph .gt_subtitle {
+#gedojssaaj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -336,7 +355,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-top-width: 0;
 }
 
-#fvtomkasph .gt_heading {
+#gedojssaaj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -348,13 +367,13 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-right-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_bottom_border {
+#gedojssaaj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_col_headings {
+#gedojssaaj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -369,7 +388,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-right-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_col_heading {
+#gedojssaaj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -389,7 +408,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   overflow-x: hidden;
 }
 
-#fvtomkasph .gt_column_spanner_outer {
+#gedojssaaj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -401,15 +420,15 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   padding-right: 4px;
 }
 
-#fvtomkasph .gt_column_spanner_outer:first-child {
+#gedojssaaj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#fvtomkasph .gt_column_spanner_outer:last-child {
+#gedojssaaj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#fvtomkasph .gt_column_spanner {
+#gedojssaaj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -421,11 +440,11 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   width: 100%;
 }
 
-#fvtomkasph .gt_spanner_row {
+#gedojssaaj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#fvtomkasph .gt_group_heading {
+#gedojssaaj .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -451,7 +470,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   text-align: left;
 }
 
-#fvtomkasph .gt_empty_group_heading {
+#gedojssaaj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -466,15 +485,15 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   vertical-align: middle;
 }
 
-#fvtomkasph .gt_from_md > :first-child {
+#gedojssaaj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#fvtomkasph .gt_from_md > :last-child {
+#gedojssaaj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#fvtomkasph .gt_row {
+#gedojssaaj .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -493,7 +512,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   overflow-x: hidden;
 }
 
-#fvtomkasph .gt_stub {
+#gedojssaaj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -506,7 +525,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   padding-right: 5px;
 }
 
-#fvtomkasph .gt_stub_row_group {
+#gedojssaaj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -520,15 +539,15 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   vertical-align: top;
 }
 
-#fvtomkasph .gt_row_group_first td {
+#gedojssaaj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#fvtomkasph .gt_row_group_first th {
+#gedojssaaj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#fvtomkasph .gt_summary_row {
+#gedojssaaj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -538,16 +557,16 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   padding-right: 5px;
 }
 
-#fvtomkasph .gt_first_summary_row {
+#gedojssaaj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_first_summary_row.thick {
+#gedojssaaj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#fvtomkasph .gt_last_summary_row {
+#gedojssaaj .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -557,7 +576,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-bottom-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_grand_summary_row {
+#gedojssaaj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -567,7 +586,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   padding-right: 5px;
 }
 
-#fvtomkasph .gt_first_grand_summary_row {
+#gedojssaaj .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -577,7 +596,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-top-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_last_grand_summary_row_top {
+#gedojssaaj .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -587,11 +606,11 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-bottom-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_striped {
+#gedojssaaj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#fvtomkasph .gt_table_body {
+#gedojssaaj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -600,7 +619,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-bottom-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_footnotes {
+#gedojssaaj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -614,7 +633,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-right-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_footnote {
+#gedojssaaj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -623,7 +642,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   padding-right: 5px;
 }
 
-#fvtomkasph .gt_sourcenotes {
+#gedojssaaj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -637,7 +656,7 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   border-right-color: #D3D3D3;
 }
 
-#fvtomkasph .gt_sourcenote {
+#gedojssaaj .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -645,72 +664,72 @@ Table&nbsp;1: Baseline participant characteristics by interaction policy (full s
   padding-right: 5px;
 }
 
-#fvtomkasph .gt_left {
+#gedojssaaj .gt_left {
   text-align: left;
 }
 
-#fvtomkasph .gt_center {
+#gedojssaaj .gt_center {
   text-align: center;
 }
 
-#fvtomkasph .gt_right {
+#gedojssaaj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#fvtomkasph .gt_font_normal {
+#gedojssaaj .gt_font_normal {
   font-weight: normal;
 }
 
-#fvtomkasph .gt_font_bold {
+#gedojssaaj .gt_font_bold {
   font-weight: bold;
 }
 
-#fvtomkasph .gt_font_italic {
+#gedojssaaj .gt_font_italic {
   font-style: italic;
 }
 
-#fvtomkasph .gt_super {
+#gedojssaaj .gt_super {
   font-size: 65%;
 }
 
-#fvtomkasph .gt_footnote_marks {
+#gedojssaaj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#fvtomkasph .gt_asterisk {
+#gedojssaaj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#fvtomkasph .gt_indent_1 {
+#gedojssaaj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#fvtomkasph .gt_indent_2 {
+#gedojssaaj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#fvtomkasph .gt_indent_3 {
+#gedojssaaj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#fvtomkasph .gt_indent_4 {
+#gedojssaaj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#fvtomkasph .gt_indent_5 {
+#gedojssaaj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#fvtomkasph .katex-display {
+#gedojssaaj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#fvtomkasph div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#gedojssaaj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -967,9 +986,9 @@ N = 16<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
 <p>Of the 29 completed sessions, 5 met the pre-specified criterion for non-viable interaction due to severe and persistent communication failure. These sessions were characterized by high rates of ASR failure, incomplete dialogue sequences, and skipped task stages. Primary results are therefore reported for the eligible sample (n = 24), with full-sample and mechanism-focused analyses reported as sensitivity and exploratory analyses, respectively.</p>
-<section id="descriptive-analysis-eligible-sample" class="level3">
-<h3 class="anchored" data-anchor-id="descriptive-analysis-eligible-sample">Descriptive Analysis: Eligible Sample</h3>
-<p>Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see <a href="#tbl-post-eligible" class="quarto-xref">Table&nbsp;2</a>). As <a href="#fig-post-eligible" class="quarto-xref">Figure&nbsp;3</a> shows, average post-interaction scores differed by approximately 18 points between conditions on both the Trust in Industrial Human-Robot Collaboration scale (TI-HRC; Likert 1-5 converted to 0-100 scale) and the Trust Perception Scale-HRI (TPS-HRI), with the responsive condition consistently higher. Overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.</p>
+<section id="responsive-interaction-was-associated-with-higher-trust-independent-of-task-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="responsive-interaction-was-associated-with-higher-trust-independent-of-task-accuracy">Responsive Interaction Was Associated with Higher Trust Independent of Task Accuracy</h3>
+<p>Simple descriptive comparisons of post-interaction trust measures indicated higher trust ratings in the responsive condition relative to the control condition across both trust scales (see <a href="#tbl-post-eligible" class="quarto-xref">Table&nbsp;2</a>). As <a href="#fig-post-eligible" class="quarto-xref">Figure&nbsp;4</a> shows, average post-interaction scores differed by approximately 18 points between conditions on both the Trust in Industrial Human-Robot Collaboration scale (TI-HRC; Likert 1-5 converted to 0-100 scale) and the Trust Perception Scale-HRI (TPS-HRI), with the responsive condition consistently higher. Overall task accuracy did not differ significantly between conditions (detailed task performance results are reported below), suggesting that observed differences in trust were not driven by differential task success but rather by the quality of the interaction process itself.</p>
 <div class="cell">
 <div id="tbl-post-eligible" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -978,23 +997,23 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
 </figcaption>
 <div aria-describedby="tbl-post-eligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="gbrfygcuzu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#gbrfygcuzu table {
+<div id="oeoaeubuuk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#oeoaeubuuk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#gbrfygcuzu thead, #gbrfygcuzu tbody, #gbrfygcuzu tfoot, #gbrfygcuzu tr, #gbrfygcuzu td, #gbrfygcuzu th {
+#oeoaeubuuk thead, #oeoaeubuuk tbody, #oeoaeubuuk tfoot, #oeoaeubuuk tr, #oeoaeubuuk td, #oeoaeubuuk th {
   border-style: none;
 }
 
-#gbrfygcuzu p {
+#oeoaeubuuk p {
   margin: 0;
   padding: 0;
 }
 
-#gbrfygcuzu .gt_table {
+#oeoaeubuuk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1020,12 +1039,12 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-left-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_caption {
+#oeoaeubuuk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#gbrfygcuzu .gt_title {
+#oeoaeubuuk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1037,7 +1056,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-bottom-width: 0;
 }
 
-#gbrfygcuzu .gt_subtitle {
+#oeoaeubuuk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1049,7 +1068,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-top-width: 0;
 }
 
-#gbrfygcuzu .gt_heading {
+#oeoaeubuuk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1061,13 +1080,13 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-right-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_bottom_border {
+#oeoaeubuuk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_col_headings {
+#oeoaeubuuk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1082,7 +1101,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-right-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_col_heading {
+#oeoaeubuuk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1102,7 +1121,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   overflow-x: hidden;
 }
 
-#gbrfygcuzu .gt_column_spanner_outer {
+#oeoaeubuuk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1114,15 +1133,15 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   padding-right: 4px;
 }
 
-#gbrfygcuzu .gt_column_spanner_outer:first-child {
+#oeoaeubuuk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#gbrfygcuzu .gt_column_spanner_outer:last-child {
+#oeoaeubuuk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#gbrfygcuzu .gt_column_spanner {
+#oeoaeubuuk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1134,11 +1153,11 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   width: 100%;
 }
 
-#gbrfygcuzu .gt_spanner_row {
+#oeoaeubuuk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#gbrfygcuzu .gt_group_heading {
+#oeoaeubuuk .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1164,7 +1183,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   text-align: left;
 }
 
-#gbrfygcuzu .gt_empty_group_heading {
+#oeoaeubuuk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1179,15 +1198,15 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   vertical-align: middle;
 }
 
-#gbrfygcuzu .gt_from_md > :first-child {
+#oeoaeubuuk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#gbrfygcuzu .gt_from_md > :last-child {
+#oeoaeubuuk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#gbrfygcuzu .gt_row {
+#oeoaeubuuk .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1206,7 +1225,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   overflow-x: hidden;
 }
 
-#gbrfygcuzu .gt_stub {
+#oeoaeubuuk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1219,7 +1238,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   padding-right: 5px;
 }
 
-#gbrfygcuzu .gt_stub_row_group {
+#oeoaeubuuk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1233,15 +1252,15 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   vertical-align: top;
 }
 
-#gbrfygcuzu .gt_row_group_first td {
+#oeoaeubuuk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#gbrfygcuzu .gt_row_group_first th {
+#oeoaeubuuk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#gbrfygcuzu .gt_summary_row {
+#oeoaeubuuk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1251,16 +1270,16 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   padding-right: 5px;
 }
 
-#gbrfygcuzu .gt_first_summary_row {
+#oeoaeubuuk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_first_summary_row.thick {
+#oeoaeubuuk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#gbrfygcuzu .gt_last_summary_row {
+#oeoaeubuuk .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1270,7 +1289,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-bottom-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_grand_summary_row {
+#oeoaeubuuk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1280,7 +1299,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   padding-right: 5px;
 }
 
-#gbrfygcuzu .gt_first_grand_summary_row {
+#oeoaeubuuk .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1290,7 +1309,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-top-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_last_grand_summary_row_top {
+#oeoaeubuuk .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1300,11 +1319,11 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-bottom-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_striped {
+#oeoaeubuuk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#gbrfygcuzu .gt_table_body {
+#oeoaeubuuk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1313,7 +1332,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-bottom-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_footnotes {
+#oeoaeubuuk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1327,7 +1346,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-right-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_footnote {
+#oeoaeubuuk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1336,7 +1355,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   padding-right: 5px;
 }
 
-#gbrfygcuzu .gt_sourcenotes {
+#oeoaeubuuk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1350,7 +1369,7 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   border-right-color: #D3D3D3;
 }
 
-#gbrfygcuzu .gt_sourcenote {
+#oeoaeubuuk .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1358,72 +1377,72 @@ Table&nbsp;2: Post-Interaction Trust and Task Accuracy (eligible sample)
   padding-right: 5px;
 }
 
-#gbrfygcuzu .gt_left {
+#oeoaeubuuk .gt_left {
   text-align: left;
 }
 
-#gbrfygcuzu .gt_center {
+#oeoaeubuuk .gt_center {
   text-align: center;
 }
 
-#gbrfygcuzu .gt_right {
+#oeoaeubuuk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#gbrfygcuzu .gt_font_normal {
+#oeoaeubuuk .gt_font_normal {
   font-weight: normal;
 }
 
-#gbrfygcuzu .gt_font_bold {
+#oeoaeubuuk .gt_font_bold {
   font-weight: bold;
 }
 
-#gbrfygcuzu .gt_font_italic {
+#oeoaeubuuk .gt_font_italic {
   font-style: italic;
 }
 
-#gbrfygcuzu .gt_super {
+#oeoaeubuuk .gt_super {
   font-size: 65%;
 }
 
-#gbrfygcuzu .gt_footnote_marks {
+#oeoaeubuuk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#gbrfygcuzu .gt_asterisk {
+#oeoaeubuuk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#gbrfygcuzu .gt_indent_1 {
+#oeoaeubuuk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#gbrfygcuzu .gt_indent_2 {
+#oeoaeubuuk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#gbrfygcuzu .gt_indent_3 {
+#oeoaeubuuk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#gbrfygcuzu .gt_indent_4 {
+#oeoaeubuuk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#gbrfygcuzu .gt_indent_5 {
+#oeoaeubuuk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#gbrfygcuzu .katex-display {
+#oeoaeubuuk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#gbrfygcuzu div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#oeoaeubuuk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1517,13 +1536,13 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <img src="misty-paper_files/figure-html/fig-post-eligible-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-post-eligible-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Distribution of Trust Perception by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section.
+Figure&nbsp;4: Distribution of Trust Perception by interaction policy. Points represent individual observations; violins depict score distributions. Red points indicate group means with 95% confidence intervals. Statistical comparisons are reported in the Results section.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Importantly, the proportion of turns coded with communication breakdowns (i.e., sentence fragments or complete misunderstandings) did not differ between conditions (25% vs.&nbsp;22%, p = .70), indicating speech recognition viability among eligible participants was the same between groups. Participants in the responsive condition also exhibited higher levels of AI-detected engagement during interaction (i.e., the AI “perceived” participants as responsive and interactive in collaboration), with an average of 3.50 engaged responses (SD = 1.95) compared to 2.00 (SD = 2.21) in the control condition. Consistent with these dialogue differences, interactions in the responsive condition were characterized by longer session durations and slower robot response times which reflects the latency and time associated with executing additional dialogue and affective support behaviours. As such, responsiveness in the present study reflects a bundled interaction profile rather than a single isolated manipulation. Observed trust differences may therefore partially reflect differences in interaction exposure or dialogue richness in addition to affect-adaptive behaviour. Future work should more carefully disentangle these components.</p>
+<p>Importantly, the proportion of turns coded with communication breakdowns (i.e., sentence fragments or complete misunderstandings) did not differ between conditions (25% vs.&nbsp;22%, p = .70), indicating speech recognition viability among eligible participants was the same between groups. Participants in the responsive condition also exhibited higher levels of AI-detected engagement during interaction (i.e., the AI “perceived” participants as responsive and interactive in collaboration), with an average of 3.50 engaged responses (SD = 1.95) compared to 2.00 (SD = 2.21) in the control condition. Consistent with these dialogue differences, interactions in the responsive condition were characterized by longer session durations and slower robot response times, reflecting the latency associated with executing additional dialogue and affective support behaviours. As noted in the Interaction Policies section, these differences are functionally interdependent features of the responsive policy rather than independent variables, and observed trust differences may partly reflect interaction exposure or dialogue richness in addition to affect-adaptive behaviour.</p>
 <div class="cell">
 <div id="tbl-post-dialogue-turns" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1532,23 +1551,23 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
 </figcaption>
 <div aria-describedby="tbl-post-dialogue-turns-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="vekdyjngke" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vekdyjngke table {
+<div id="wovuzyrrgk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wovuzyrrgk table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vekdyjngke thead, #vekdyjngke tbody, #vekdyjngke tfoot, #vekdyjngke tr, #vekdyjngke td, #vekdyjngke th {
+#wovuzyrrgk thead, #wovuzyrrgk tbody, #wovuzyrrgk tfoot, #wovuzyrrgk tr, #wovuzyrrgk td, #wovuzyrrgk th {
   border-style: none;
 }
 
-#vekdyjngke p {
+#wovuzyrrgk p {
   margin: 0;
   padding: 0;
 }
 
-#vekdyjngke .gt_table {
+#wovuzyrrgk .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1574,12 +1593,12 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-left-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_caption {
+#wovuzyrrgk .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vekdyjngke .gt_title {
+#wovuzyrrgk .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1591,7 +1610,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-bottom-width: 0;
 }
 
-#vekdyjngke .gt_subtitle {
+#wovuzyrrgk .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1603,7 +1622,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-top-width: 0;
 }
 
-#vekdyjngke .gt_heading {
+#wovuzyrrgk .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1615,13 +1634,13 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-right-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_bottom_border {
+#wovuzyrrgk .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_col_headings {
+#wovuzyrrgk .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1636,7 +1655,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-right-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_col_heading {
+#wovuzyrrgk .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1656,7 +1675,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   overflow-x: hidden;
 }
 
-#vekdyjngke .gt_column_spanner_outer {
+#wovuzyrrgk .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1668,15 +1687,15 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   padding-right: 4px;
 }
 
-#vekdyjngke .gt_column_spanner_outer:first-child {
+#wovuzyrrgk .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vekdyjngke .gt_column_spanner_outer:last-child {
+#wovuzyrrgk .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vekdyjngke .gt_column_spanner {
+#wovuzyrrgk .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1688,11 +1707,11 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   width: 100%;
 }
 
-#vekdyjngke .gt_spanner_row {
+#wovuzyrrgk .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vekdyjngke .gt_group_heading {
+#wovuzyrrgk .gt_group_heading {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1718,7 +1737,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   text-align: left;
 }
 
-#vekdyjngke .gt_empty_group_heading {
+#wovuzyrrgk .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1733,15 +1752,15 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   vertical-align: middle;
 }
 
-#vekdyjngke .gt_from_md > :first-child {
+#wovuzyrrgk .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vekdyjngke .gt_from_md > :last-child {
+#wovuzyrrgk .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vekdyjngke .gt_row {
+#wovuzyrrgk .gt_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1760,7 +1779,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   overflow-x: hidden;
 }
 
-#vekdyjngke .gt_stub {
+#wovuzyrrgk .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1773,7 +1792,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   padding-right: 5px;
 }
 
-#vekdyjngke .gt_stub_row_group {
+#wovuzyrrgk .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1787,15 +1806,15 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   vertical-align: top;
 }
 
-#vekdyjngke .gt_row_group_first td {
+#wovuzyrrgk .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vekdyjngke .gt_row_group_first th {
+#wovuzyrrgk .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vekdyjngke .gt_summary_row {
+#wovuzyrrgk .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1805,16 +1824,16 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   padding-right: 5px;
 }
 
-#vekdyjngke .gt_first_summary_row {
+#wovuzyrrgk .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_first_summary_row.thick {
+#wovuzyrrgk .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vekdyjngke .gt_last_summary_row {
+#wovuzyrrgk .gt_last_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1824,7 +1843,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-bottom-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_grand_summary_row {
+#wovuzyrrgk .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1834,7 +1853,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   padding-right: 5px;
 }
 
-#vekdyjngke .gt_first_grand_summary_row {
+#wovuzyrrgk .gt_first_grand_summary_row {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1844,7 +1863,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-top-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_last_grand_summary_row_top {
+#wovuzyrrgk .gt_last_grand_summary_row_top {
   padding-top: 1px;
   padding-bottom: 1px;
   padding-left: 5px;
@@ -1854,11 +1873,11 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-bottom-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_striped {
+#wovuzyrrgk .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vekdyjngke .gt_table_body {
+#wovuzyrrgk .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1867,7 +1886,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-bottom-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_footnotes {
+#wovuzyrrgk .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1881,7 +1900,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-right-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_footnote {
+#wovuzyrrgk .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 1px;
@@ -1890,7 +1909,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   padding-right: 5px;
 }
 
-#vekdyjngke .gt_sourcenotes {
+#wovuzyrrgk .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1904,7 +1923,7 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   border-right-color: #D3D3D3;
 }
 
-#vekdyjngke .gt_sourcenote {
+#wovuzyrrgk .gt_sourcenote {
   font-size: 90%;
   padding-top: 1px;
   padding-bottom: 1px;
@@ -1912,72 +1931,72 @@ Table&nbsp;3: Post-interaction dialogue metrics by interaction policy (eligible 
   padding-right: 5px;
 }
 
-#vekdyjngke .gt_left {
+#wovuzyrrgk .gt_left {
   text-align: left;
 }
 
-#vekdyjngke .gt_center {
+#wovuzyrrgk .gt_center {
   text-align: center;
 }
 
-#vekdyjngke .gt_right {
+#wovuzyrrgk .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vekdyjngke .gt_font_normal {
+#wovuzyrrgk .gt_font_normal {
   font-weight: normal;
 }
 
-#vekdyjngke .gt_font_bold {
+#wovuzyrrgk .gt_font_bold {
   font-weight: bold;
 }
 
-#vekdyjngke .gt_font_italic {
+#wovuzyrrgk .gt_font_italic {
   font-style: italic;
 }
 
-#vekdyjngke .gt_super {
+#wovuzyrrgk .gt_super {
   font-size: 65%;
 }
 
-#vekdyjngke .gt_footnote_marks {
+#wovuzyrrgk .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vekdyjngke .gt_asterisk {
+#wovuzyrrgk .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vekdyjngke .gt_indent_1 {
+#wovuzyrrgk .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vekdyjngke .gt_indent_2 {
+#wovuzyrrgk .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vekdyjngke .gt_indent_3 {
+#wovuzyrrgk .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vekdyjngke .gt_indent_4 {
+#wovuzyrrgk .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vekdyjngke .gt_indent_5 {
+#wovuzyrrgk .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vekdyjngke .katex-display {
+#wovuzyrrgk .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vekdyjngke div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#wovuzyrrgk div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -2134,16 +2153,16 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 </div>
 <p>Beyond descriptive comparisons, hierarchical models were fitted to evaluate the robustness of interaction policy effects while controlling for baseline covariates and accounting for measurement structure.</p>
 </section>
-<section id="hierarchical-models" class="level3">
-<h3 class="anchored" data-anchor-id="hierarchical-models">Hierarchical Models</h3>
+<section id="policy-effects-on-trust-were-confirmed-across-frequentist-and-bayesian-models" class="level3">
+<h3 class="anchored" data-anchor-id="policy-effects-on-trust-were-confirmed-across-frequentist-and-bayesian-models">Policy Effects on Trust Were Confirmed Across Frequentist and Bayesian Models</h3>
 <p>Given the pilot nature of the study and the modest sample size, hierarchical modeling was used to estimate effect direction and associated uncertainty rather than to support definitive confirmatory claims. A Bayesian framework was adopted to allow partial pooling across trust items and sessions, improving parameter stability under limited data. Results are therefore interpreted in terms of effect magnitude and posterior uncertainty rather than binary significance thresholds.</p>
 <p>To operationalize this approach, mixed-effects models were fitted using both frequentist and Bayesian estimation frameworks. All models included interaction policy (responsive vs.&nbsp;control) as the primary fixed effect, with baseline negative attitudes toward robots (NARS) and native English fluency included as covariates. Random intercepts for sessions and trust items accounted for the repeated-measures structure. Frequentist models provided hypothesis tests against null effects, whereas Bayesian models quantified posterior uncertainty and enabled evaluation across varying levels of communication viability.</p>
 <p>Model building proceeded by comparing a baseline model containing interaction policy alone against models incorporating theoretically motivated covariates. Adding NARS scores significantly improved model fit (<span class="math inline">\(\chi^2\)</span> = 4.82, p = .028), whereas prior experience with robots did not. Native English fluency did not significantly improve model fit but was retained due to its relevance for spoken-language interaction viability.</p>
 <p>Bayesian models used weakly informative, scale-appropriate priors. The intercept was assigned a Normal(50, 25) prior, reflecting the 0-100 trust score range and centering estimates near the midpoint of the scale. Fixed effects were assigned Normal(0, 10) priors to constrain effects to plausible magnitudes. Random-effect and residual standard deviations were assigned Exponential(1) priors to regularize variance estimates while retaining flexibility. All models demonstrated satisfactory convergence (<span class="math inline">\(\hat{R}\)</span> <span class="math inline">\(\leq\)</span> 1.01; effective sample sizes &gt; 1000).</p>
-<section id="primary-analysis-eligible-sample-n-24" class="level4">
-<h4 class="anchored" data-anchor-id="primary-analysis-eligible-sample-n-24">Primary Analysis: Eligible Sample (n = 24)</h4>
+<section id="responsive-policy-produced-credible-increases-in-both-trust-measures-n-24" class="level4">
+<h4 class="anchored" data-anchor-id="responsive-policy-produced-credible-increases-in-both-trust-measures-n-24">Responsive Policy Produced Credible Increases in Both Trust Measures (n = 24)</h4>
 <p>Frequentist linear mixed-effects models revealed consistent positive effects of responsive interaction on both trust measures. For experienced trust (TI-HRC), participants who interacted with the responsive robot reported significantly higher post-interaction trust than those in the control condition (<span class="math inline">\(\beta\)</span> = 16.28, SE = 5.14, t = 3.17, p = .005). Higher baseline negative attitudes toward robots were associated with lower trust scores (<span class="math inline">\(\beta\)</span> = -7.43, SE = 2.81, p = .016), while native English fluency was not significantly associated with trust. Inclusion of random intercepts for individual trust items improved model fit, indicating meaningful item-level variability beyond session-level differences. For perceived trust (TPS-HRI), a comparable pattern emerged, with responsive interaction associated with higher trust scores (<span class="math inline">\(\beta\)</span> = 14.17, SE = 6.50, t = 2.00, p = .046). However, random intercepts for trust items did not improve model fit for this scale, likely reflecting differences in scale format and response interface: TPS-HRI was administered using a continuous slider input via touchpad, whereas TI-HRC employed discrete Likert-style response options. The slider-based interface may have reduced response precision and item-level variability, though meaningful between-condition differences remained detectable at the aggregate level.</p>
-<p>Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in <a href="#fig-finalmodels-posterior" class="quarto-xref">Figure&nbsp;4</a>, for TI-HRC, the responsive condition showed a posterior median effect of <span class="math inline">\(\beta\)</span> = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was <span class="math inline">\(\beta\)</span> = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. As expected baseline NARS showed credible negative associations with both outcomes, while native English fluency showed credible negative associations for both outcomes, though the association was stronger for TPS-HRI. Model fit was substantial for TPS-HRI (conditional <span class="math inline">\(R^2\)</span> = 0.64) and moderate for TI-HRC (conditional <span class="math inline">\(R^2\)</span> = 0.42), with fixed effects explaining 16% and 22% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.</p>
+<p>Bayesian estimation converged on similar effect magnitudes with high posterior certainty. As illustrated in <a href="#fig-finalmodels-posterior" class="quarto-xref">Figure&nbsp;5</a>, for TI-HRC, the responsive condition showed a posterior median effect of <span class="math inline">\(\beta\)</span> = 14.98 (95% credible interval [7.29, 22.22]), with near-unity probability of a positive effect. For TPS-HRI, the posterior median was <span class="math inline">\(\beta\)</span> = 12.76 (95% credible interval [2.96, 22.06]), with posterior probability exceeding 99% that the effect was positive. As expected baseline NARS showed credible negative associations with both outcomes, while native English fluency showed credible negative associations for both outcomes, though the association was stronger for TPS-HRI. Model fit was substantial for TPS-HRI (conditional <span class="math inline">\(R^2\)</span> = 0.64) and moderate for TI-HRC (conditional <span class="math inline">\(R^2\)</span> = 0.42), with fixed effects explaining 16% and 22% of variance, respectively. The smaller item-level variance for TI-HRC suggests greater coherence among affective trust items under functional interaction conditions.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div id="fig-finalmodels-posterior" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
@@ -2152,20 +2171,20 @@ N = 14<span class="gt_footnote_marks" style="white-space:nowrap;font-style:itali
 <img src="misty-paper_files/figure-html/fig-finalmodels-posterior-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-finalmodels-posterior-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample: n=24) predicting post-interaction trust. Fixed effects include policy, Negative Attitudes Towards Robots (NARS) and language (binary). Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0-100 scale).
+Figure&nbsp;5: Posterior distributions of fixed effects from the final Bayesian mixed-effects models (eligible sample: n=24) predicting post-interaction trust. Fixed effects include policy, Negative Attitudes Towards Robots (NARS) and language (binary). Half-eye densities show posterior distributions; points indicate posterior medians; thick and thin intervals denote 80% and 95% credible intervals, respectively. The dashed vertical line marks a null effect, and positive values indicate higher trust scores on the respective scale (points on a 0-100 scale).
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="sensitivity-analysis-full-sample-n-29" class="level4">
-<h4 class="anchored" data-anchor-id="sensitivity-analysis-full-sample-n-29">Sensitivity Analysis: Full Sample (n = 29)</h4>
+<section id="including-sessions-with-communication-failure-attenuated-but-did-not-eliminate-the-policy-effect-n-29" class="level4">
+<h4 class="anchored" data-anchor-id="including-sessions-with-communication-failure-attenuated-but-did-not-eliminate-the-policy-effect-n-29">Including Sessions with Communication Failure Attenuated but Did Not Eliminate the Policy Effect (n = 29)</h4>
 <p>To assess robustness, Bayesian models were refitted including all sessions regardless of communication viability. The responsive interaction effect remained positive for both trust measures but showed substantial attenuation compared to the eligible sample. For TPS-HRI, the posterior median effect was <span class="math inline">\(\beta\)</span> = 7.08 (95% credible interval [-1.63, 15.71]). Although uncertainty increased and the credible interval included zero, the posterior probability of a positive effect remained high (&gt;94%). Model fit decreased relative to the eligible sample (conditional <span class="math inline">\(R^2\)</span> = 0.44), indicating increased unexplained variability when sessions with severe communication breakdown were included. For TI-HRC, attenuation was more pronounced. The posterior median effect decreased to <span class="math inline">\(\beta\)</span> = 7.15 (95% credible interval [-2.09, 16.21]), with reduced probability of a large effect. Model fit remained moderate (conditional <span class="math inline">\(R^2\)</span> = 0.60), but residual variance increased, consistent with the inclusion of interactions in which collaborative behaviour could not be sustained. These results indicate that both trust measures are sensitive to interaction breakdown, with a pattern consistent with experienced trust being more affected — a distinction examined more directly in the mechanism analysis below. Trust ratings obtained under non-functional interaction conditions do not reflect graded variation in collaborative experience but rather reflect the collapse of the interaction itself.</p>
 </section>
-<section id="mechanism-analysis-communication-breakdown-n29" class="level4">
-<h4 class="anchored" data-anchor-id="mechanism-analysis-communication-breakdown-n29">Mechanism Analysis: Communication Breakdown (n=29)</h4>
-<p>To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with the proportion of turns characterized by communication breakdown included as an interaction term. Predicted trust as a function of breakdown proportion for each condition and trust measure is shown in <a href="#fig-mech-posterior" class="quarto-xref">Figure&nbsp;5</a>.</p>
+<section id="communication-breakdown-moderated-the-trust-advantage-of-responsive-interaction-n-29" class="level4">
+<h4 class="anchored" data-anchor-id="communication-breakdown-moderated-the-trust-advantage-of-responsive-interaction-n-29">Communication Breakdown Moderated the Trust Advantage of Responsive Interaction (n = 29)</h4>
+<p>To examine whether communication quality moderated the effect of interaction policy, Bayesian models were fitted in the full sample with the proportion of turns characterized by communication breakdown included as an interaction term. Predicted trust as a function of breakdown proportion for each condition and trust measure is shown in <a href="#fig-mech-posterior" class="quarto-xref">Figure&nbsp;6</a>.</p>
 <div class="cell" data-layout-align="left">
 <div class="cell-output-display">
 <div id="fig-mech-posterior" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
@@ -2174,7 +2193,7 @@ Figure&nbsp;4: Posterior distributions of fixed effects from the final Bayesian 
 <img src="misty-paper_files/figure-html/fig-mech-posterior-1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="864">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mech-posterior-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: Predicted trust as a function of communication breakdown by interaction policy. Panels show experienced trust (left) and perceived trust (right). Lines represent posterior medians and shaded bands indicate 80% credible intervals. Communication breakdown is defined as the proportion of interaction turns flagged as breakdowns; predictions are shown at mean baseline negative attitudes toward robots.
+Figure&nbsp;6: Predicted trust as a function of communication breakdown by interaction policy. Panels show experienced trust (left) and perceived trust (right). Lines represent posterior medians and shaded bands indicate 80% credible intervals. Communication breakdown is defined as the proportion of interaction turns flagged as breakdowns; predictions are shown at mean baseline negative attitudes toward robots.
 </figcaption>
 </figure>
 </div>
@@ -2184,8 +2203,8 @@ Figure&nbsp;5: Predicted trust as a function of communication breakdown by inter
 <p>These results clarify the sensitivity analysis findings. The attenuation of the responsive policy effect in the full sample reflects the inclusion of sessions in which the communication level required to deliver the responsive manipulation had substantially failed (defined as &gt;60% of turns affected by ASR failure) and is not simply noise from increased variability. This supports both the exclusion criterion applied in the primary analysis and the broader interpretation that experienced trust, in particular, is contingent on sustained interaction quality. Put plainly, a robot that cannot understand you cannot adapt to you and without adaptation, the responsive policy offers nothing the control policy does not.</p>
 </section>
 </section>
-<section id="task-performance" class="level3">
-<h3 class="anchored" data-anchor-id="task-performance">Task performance</h3>
+<section id="trust-differences-were-not-attributable-to-differential-task-accuracy" class="level3">
+<h3 class="anchored" data-anchor-id="trust-differences-were-not-attributable-to-differential-task-accuracy">Trust Differences Were Not Attributable to Differential Task Accuracy</h3>
 <p>Overall task accuracy did not differ significantly between conditions (60% vs.&nbsp;66%, p = .534), nor did performance on individual task components reach statistical significance (see <a href="#tbl-post-tasks" class="quarto-xref">Table&nbsp;4</a>). However, a notable pattern emerged when examining task structure. For the suspect identification task (Task 1), which required robot collaboration to complete accurately, participants in the responsive condition achieved more than double the accuracy of those in the control condition (64% vs.&nbsp;30%, p = .106), representing a large effect that approached but did not reach conventional significance thresholds given the pilot sample size. In contrast, performance on the location identification task components (building, zone, and floor identification), where robot assistance was optional, showed no consistent directional advantage for either condition. These patterns suggest that responsive robot behaviour may particularly benefit collaborative performance on tasks requiring sustained interaction and mutual grounding, though larger samples are needed to establish statistical reliability. Critically, the absence of significant overall accuracy differences indicates that observed trust differences cannot be attributed simply to differential task success, but rather reflect distinct responses to the interaction process itself.</p>
 <div class="cell">
 <div id="tbl-post-tasks" class="cell quarto-float quarto-figure quarto-figure-center anchored">
@@ -2249,11 +2268,11 @@ Table&nbsp;4: Post-Interaction Task Performance by Policy in the Eligible Sample
 </div>
 </div>
 </section>
-<section id="individual-differences-and-correlational-patterns" class="level3">
-<h3 class="anchored" data-anchor-id="individual-differences-and-correlational-patterns">Individual differences and correlational patterns</h3>
+<section id="trust-correlated-with-interaction-dynamics-rather-than-individual-differences-or-task-outcomes" class="level3">
+<h3 class="anchored" data-anchor-id="trust-correlated-with-interaction-dynamics-rather-than-individual-differences-or-task-outcomes">Trust Correlated with Interaction Dynamics Rather Than Individual Differences or Task Outcomes</h3>
 <p>The following correlational analyses are exploratory in nature. A broad set of associations was examined across behavioural, interactional, and self-report measures, and p-values were not adjusted for multiple comparisons. These analyses are therefore intended to identify potentially meaningful patterns and generate hypotheses for future work rather than to provide confirmatory statistical tests.</p>
-<p>Correlational analyses on the full sample (n=29) revealed patterns consistent with the interpretation that trust was shaped more strongly by interaction dynamics than by stable individual predispositions or objective task outcomes. A full correlation matrix is provided in <a href="#fig-corr-matrix" class="quarto-xref">Figure&nbsp;6</a> to visualize the broader pattern of associations.</p>
-<p>As expected, higher Need for Cognition (NFC) scores were negatively associated with baseline Negative Attitudes Towards Robots (NARS; r = -.48, p = .01), indicating that individuals who enjoy effortful thinking tend to hold more positive prior attitudes toward robots. However, neither NFC nor NARS showed significant associations with post-interaction trust outcomes (r = -.17 to -.33, p &gt; .11), suggesting that the impact of responsive robot behaviour was relatively independent of participants’ baseline dispositions toward robots or cognitive engagement preferences. At the same time, higher NFC scores were strongly associated with greater engagement in reasoning dialogue during collaboration (r = .57, p = .003), indicating that cognitive engagement tendencies may have influenced interaction behaviour even if they did not directly determine trust evaluations (see <a href="#fig-corr-matrix" class="quarto-xref">Figure&nbsp;6</a>).</p>
+<p>Correlational analyses on the full sample (n=29) revealed patterns consistent with the interpretation that trust was shaped more strongly by interaction dynamics than by stable individual predispositions or objective task outcomes. A full correlation matrix is provided in <a href="#fig-corr-matrix" class="quarto-xref">Figure&nbsp;7</a> to visualize the broader pattern of associations.</p>
+<p>As expected, higher Need for Cognition (NFC) scores were negatively associated with baseline Negative Attitudes Towards Robots (NARS; r = -.48, p = .01), indicating that individuals who enjoy effortful thinking tend to hold more positive prior attitudes toward robots. However, neither NFC nor NARS showed significant associations with post-interaction trust outcomes (r = -.17 to -.33, p &gt; .11), suggesting that the impact of responsive robot behaviour was relatively independent of participants’ baseline dispositions toward robots or cognitive engagement preferences. At the same time, higher NFC scores were strongly associated with greater engagement in reasoning dialogue during collaboration (r = .57, p = .003), indicating that cognitive engagement tendencies may have influenced interaction behaviour even if they did not directly determine trust evaluations (see <a href="#fig-corr-matrix" class="quarto-xref">Figure&nbsp;7</a>).</p>
 <p>Consistent with the experimental manipulation, specific robot dialogue behaviours showed substantial correlations with trust outcomes. Robot empathy expression—quantified as the proportion of dialogue turns in which the robot acknowledged participant affect or expressed understanding (e.g., “I sense your frustrated, how can I help?”)—was strongly correlated with both experienced trust (TI-HRC; r = .53, p = .008) and perceived trust (TPS-HRI: r = .65, p = .001). Similarly, robot use of collaborative language (e.g., “we,” “let’s”) was positively associated with experienced trust (TI-HRC: r = .50, p = .012), as was robot encouragement (TI-HRC: r = .45, p = .027; TPS-HRI: r = .42, p = .040). These associations suggest that the specific affective and collaborative behaviours implemented in the responsive condition were linked to participants’ trust evaluations beyond simple condition assignment.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -2263,7 +2282,7 @@ Table&nbsp;4: Post-Interaction Task Performance by Policy in the Eligible Sample
 <img src="misty-paper_files/figure-html/fig-corr-matrix-1.png" class="img-fluid figure-img" width="768">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Correlation Matrix of Key Study Variables
+Figure&nbsp;7: Correlation Matrix of Key Study Variables
 </figcaption>
 </figure>
 </div>
@@ -2276,16 +2295,19 @@ Figure&nbsp;6: Correlation Matrix of Key Study Variables
 <section id="discussion" class="level2">
 <h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
 <p>This pilot study examined how a responsive interaction policy influences trust during embodied, fully autonomous, spoken-language human-robot collaboration. Unlike much prior work in HRI trust research, all dialogue management, affect inference, task progression, and response generation were executed autonomously and in real time, without Wizard-of-Oz control or scripted repair. Participants were therefore exposed not only to adaptive interaction behaviour, but also to the latency, recognition errors, and coordination failures characteristic of deployed autonomous systems. The study was conducted as a pilot, with the primary aim of assessing feasibility and clarifying mechanisms under these realistic constraints rather than providing definitive confirmatory tests.</p>
-<p>Across analytic approaches, the responsive interaction policy was associated with higher post-interaction trust compared to a neutral, reactive control policy when interaction remained viable. These differences emerged without reliable differences in overall task accuracy. Although the robot-dependent task showed a descriptive advantage for the responsive condition, this effect did not reach statistical significance in the present pilot sample. Taken together, this pattern suggests that trust judgments were shaped more strongly by the quality and tone of the interaction process than by instrumental task success alone. This is consistent with theoretical accounts that conceptualize trust as an emergent property of interaction dynamics rather than a static attribute of the system or a simple function of performance outcomes <span class="citation" data-cites="lee2004 devisser2020">(<a href="#ref-lee2004" role="doc-biblioref">Lee and See 2004</a>; <a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>.</p>
-<p>Trust in human-robot interaction is widely recognized as multidimensional, encompassing perceptions of reliability and competence as well as affective comfort and perceived collaboration <span class="citation" data-cites="lee2004 devisser2020">(<a href="#ref-lee2004" role="doc-biblioref">Lee and See 2004</a>; <a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>. The use of two validated trust measures in the present study allowed these components to be examined in parallel. Rather than treating trust as a static attribute of the system, the results suggest that it functioned as an evaluation of the collaborative experience as it unfolded over time. Notably, a pattern consistent with greater sensitivity of affective and experiential trust components to interaction degradation emerged, relative to reliability-focused evaluations, reinforcing the view that trust in autonomous HRI is shaped by process-level interaction dynamics rather than performance outcomes alone.</p>
-<p>These differences became particularly apparent under conditions of reduced communication viability. When speech recognition failures accumulated and conversational grounding could not be re-established, the trust advantage associated with responsiveness diminished. In these degraded sessions, the responsive policy continued generating proactive assistance and repair-oriented behaviour. However, when linguistic grounding could not be restored, these behaviours did not reliably recover collaboration and may instead have increased cognitive load relative to the neutral policy’s more restrained style. This pattern suggests that affect-responsive policies operate within a viability window: they enhance trust when grounding is intact but cannot compensate for sustained communicative breakdown.</p>
+<p>Across analytic approaches, the responsive interaction policy was associated with higher post-interaction trust compared to a neutral, reactive control policy when interaction remained viable. These differences emerged without reliable differences in overall task accuracy. Although the robot-dependent task showed a descriptive advantage for the responsive condition (30% vs.&nbsp;64% correct), this effect did not reach statistical significance in the present pilot sample, likely reflecting limited power rather than a true null effect given the magnitude of the observed difference. Taken together, this pattern suggests that trust judgments were shaped more strongly by the quality and tone of the interaction process than by instrumental task success alone — consistent with P1 and directionally consistent with P2, as specified in the Theoretical Rationale. This aligns with theoretical accounts that conceptualize trust as an emergent property of interaction dynamics rather than a static attribute of the system or a simple function of performance outcomes <span class="citation" data-cites="lee2004 devisser2020">(<a href="#ref-lee2004" role="doc-biblioref">Lee and See 2004</a>; <a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>.</p>
+<p>Several theoretical mechanisms may account for why responsive interaction produced higher trust independent of task accuracy. From a social presence perspective, proactive engagement cues — including unsolicited offers of assistance, empathic acknowledgment of participant state, and collaborative dialogue orientation — signal that the robot is monitoring and responding to the user as a social partner rather than merely as a task executor <span class="citation" data-cites="birnbaum2016 shayganfar2019">(<a href="#ref-birnbaum2016" role="doc-biblioref">Birnbaum et al. 2016</a>; <a href="#ref-shayganfar2019" role="doc-biblioref">Shayganfar et al. 2019</a>)</span>. This perceived attentiveness is associated with affective evaluations of trustworthiness and benevolence in human-agent interaction, independent of task outcome <span class="citation" data-cites="birnbaum2016">(<a href="#ref-birnbaum2016" role="doc-biblioref">Birnbaum et al. 2016</a>)</span>. Social exchange accounts offer a complementary explanation: unsolicited assistance constitutes a form of investment in the collaboration, and participants may have responded by extending reciprocal trust — attributing cooperative intent to a robot that proactively supported them without being asked <span class="citation" data-cites="fartook2025">(<a href="#ref-fartook2025" role="doc-biblioref">Fartook et al. 2025</a>)</span>. Proactive dialogue also facilitates the mutual grounding necessary for participants to feel understood and coordinated with their robotic partner. When participants perceive the robot as accurately tracking their task state and emotional engagement, this supports both competence-based trust (the robot knows what it’s doing) and rapport-based evaluations (the robot is working with me). These mechanisms are consistent with the process-oriented framing underlying P1: responsiveness operates not as a single cue but as a policy-level property that continuously updates the participant’s evaluation of the robot’s intent, capability, and collaborative orientation throughout the session.</p>
+<p>Trust in human-robot interaction is widely recognized as multidimensional, encompassing perceptions of reliability and competence as well as affective comfort and perceived collaboration <span class="citation" data-cites="lee2004 devisser2020">(<a href="#ref-lee2004" role="doc-biblioref">Lee and See 2004</a>; <a href="#ref-devisser2020" role="doc-biblioref">Visser et al. 2020</a>)</span>. The use of two validated trust measures in the present study allowed these components to be examined in parallel. Rather than treating trust as a static attribute of the system, the results suggest that it functioned as an evaluation of the collaborative experience as it unfolded over time. Notably, a tentative pattern emerged in which the experienced trust measure (TI-HRC) appeared more sensitive to interaction degradation than the perceived trust measure (TPS-HRI), which is consistent with the conceptual distinction between these instruments but should be interpreted cautiously given the sample size and the absence of a formally validated multidimensional measurement model in this context.</p>
+<p>These differences became particularly apparent under conditions of reduced communication viability, and the pattern of attenuation provides insight into the mechanism underlying the main effect. When speech recognition failures accumulated and conversational grounding could not be re-established, the trust advantage associated with responsiveness diminished substantially. This moderation can be understood mechanistically in terms of what affect-responsive policies require to function: they depend on an intact dialogue channel to perceive user state, infer affect, and generate contextually appropriate proactive responses. When the speech channel degrades, the robot’s affect inference and task-state tracking break down, severing the feedback loop through which responsiveness is expressed. In this degraded state, the responsive policy continued generating proactive and engagement-oriented outputs — but without accurate perception of user state, these outputs were increasingly mismatched to the actual interaction context. Proactive assistance or empathic framing generated in response to misrecognized input may be experienced as incoherent or unreliable, potentially amplifying the negative effects of communication failure rather than offsetting them. By contrast, the neutral, reactive policy — which makes fewer inferential demands on the speech channel and generates fewer unsolicited responses — is more robust to degraded input. This differential robustness explains why the trust gap narrowed specifically under communication failure: it was not simply that both conditions deteriorated in parallel, but that the communicative infrastructure the responsive policy requires to express itself was unavailable, while the neutral policy’s more restrained style remained serviceable. Affect-responsive policies thus operate within a communication viability window — below that threshold, the adaptive machinery cannot function as intended, and the policy’s characteristic behaviours may become a source of coordination burden rather than trust support. This boundary condition has direct implications for deployment: systems employing affect-responsive policies should incorporate explicit communication monitoring and graceful degradation strategies to limit this failure mode in real-world settings. Taken together, this pattern is consistent with the exploratory analyses reported under the P2-adjacent communication breakdown analysis and provides a mechanistic account of why dialogue continuity is a prerequisite for the trust benefits of responsiveness.</p>
 <p>A key aspect of this study is that these dynamics were observed under full autonomy. Because failures were not covertly repaired by a human experimenter, communication viability became an explicit feature of the interaction rather than a hidden nuisance variable. This visibility clarifies an important constraint: trust formation in spoken-language HRI presupposes sufficient linguistic grounding. When that grounding collapses, trust ratings may no longer reflect calibrated evaluations of competence or benevolence, but instead the breakdown of the collaborative process itself.</p>
 <p>Taken together, the findings support a process-oriented account of trust in autonomous HRI. Trust appears to emerge from how a system manages uncertainty, repair, and coordination over time, rather than from task performance alone. This pilot study identifies both promising effects of affect-responsive interaction policies under viable conditions and clear constraints imposed by communication breakdown. These insights provide a concrete foundation for the design of subsequent studies aimed at stabilizing language grounding and more precisely isolating the mechanisms through which responsiveness shapes collaborative experience.</p>
 </section>
 <section id="limitations" class="level2">
 <h2 class="anchored" data-anchor-id="limitations">Limitations</h2>
 <p>Several limitations constrain interpretation of the present findings and point directly to areas for refinement.</p>
-<p>The study was conducted as a pilot with a small sample size, limiting statistical power for detecting higher-order interactions involving task structure, communication quality, and individual differences. Although effect sizes were often substantial and broadly consistent across analytic approaches, uncertainty remains high. Replication with larger samples will be necessary to establish the stability of these effects and to more robustly test proposed mediation pathways.</p>
+<p>The study was conducted as a pilot with a small sample size (eligible n = 24; full n = 29), which limits statistical power for detecting effects, particularly higher-order interactions involving task structure, communication quality, and individual differences. Cell sizes were also unequal, with n = 10 participants in the responsive condition and n = 14 in the neutral condition among eligible sessions, reducing precision for between-group comparisons and widening credible intervals in Bayesian estimation. Although effect sizes were often substantial and broadly consistent across frequentist and Bayesian approaches, uncertainty remains high throughout. The study should be treated as generating directional evidence rather than definitive estimates, and replication with larger, balanced samples will be necessary to establish the stability of these effects and to formally test proposed mediation pathways.</p>
+<p>Condition assignment was partially compromised by participant attrition during recruitment. Participants were initially assigned to experimental conditions using an automated randomization procedure at the point of online sign-up. However, several assigned participants did not attend their scheduled in-person session; replacement participants were then assigned to the next available slot without re-randomization, resulting in a semi-random rather than strictly randomized final allocation. Randomization checks comparing groups on all measured baseline characteristics — including NARS, NFC, age, gender, and prior robot experience — revealed no systematic differences, providing some evidence against gross confounding (see Table 1). Nevertheless, randomization checks assess only observed covariates. Residual confounding from unmeasured characteristics — such as general comfort with ambiguity, verbal fluency in structured conversational tasks, or domain-specific motivation — cannot be excluded, and causal interpretation of observed group differences should be qualified accordingly.</p>
+<p>The decision to exclude sessions with severe communication breakdown from primary analyses introduces a potential source of selection bias that warrants explicit acknowledgment. Exclusion was based on a pre-specified dialogue viability criterion (more than 60% of turns affected by ASR failure), applied consistently and independently of outcome values. However, communication viability was not fully independent of participant characteristics — excluded sessions were concentrated among participants whose spoken English, while meeting pre-screening standards, was insufficiently recognized by the ASR pipeline during in-person interaction. If these participants differed systematically from retained participants on characteristics associated with trust outcomes — for example, if the additional cognitive demand of working around communication failures also increased wariness toward the robot — the effect estimates in the primary eligible-sample analyses could be upwardly biased. This risk is partially mitigated by the full-sample sensitivity analyses and the mechanism-focused analyses examining excluded sessions on interaction-process metrics; however, these approaches are insufficient to fully resolve the selection bias concern. Future studies should implement more robust and inclusive pre-screening procedures for ASR compatibility to reduce attrition of this kind.</p>
 <p>Spoken-language interaction viability emerged as a central constraint, revealing an important direction for future research. Although English fluency was an eligibility requirement, substantial variability in functional spoken-language proficiency was observed during in-person sessions. In a subset of interactions, persistent speech recognition failure prevented the experimental manipulation from operating as intended, leading to exclusion from primary analyses on methodological grounds. Rather than reflecting a shortcoming of the experimental design, these cases highlight a fundamental challenge for autonomous spoken-language HRI: trust and collaboration presuppose a minimum level of linguistic grounding, and when that grounding fails, higher-level interaction constructs are no longer meaningfully instantiated.</p>
 <p>The visibility of this constraint is itself a consequence of autonomy. In scripted or Wizard-of-Oz paradigms, language breakdown can be covertly repaired or masked by human intervention. In fully autonomous systems, communication viability becomes an explicit property of the interaction that must be detected, managed, and responded to by the robot. This points to a clear research direction focused on interaction policies that recognize emerging language mismatch and adapt accordingly, rather than assuming linguistic competence as a fixed prerequisite.</p>
 <p>Natural language understanding was also constrained by the task-specific policy design used in the robot-dependent task. Fixed mappings between participant questions and predefined task features meant that semantically valid but unexpected phrasing, synonym use, or multi-attribute queries occasionally led to misinterpretation or incorrect responses (e.g., treating “orange hair” as distinct from the ground-truth feature “red hair”). These failures reflect limitations in prompt design and natural language understanding and robustness rather than participant reasoning and likely contributed to some interaction breakdowns.</p>
@@ -2377,6 +2399,9 @@ Emaminejad, Newsha, and Reza Akhavian. 2022. <span>“Trustworthy AI and Robotic
 <div id="ref-fartook2025" class="csl-entry" role="listitem">
 Fartook, Ori, Zachary McKendrick, Tal Oron-Gilad, and Jessica R. Cauchard. 2025. <span>“Enhancing Emotional Support in Human-Robot Interaction: Implementing Emotion Regulation Mechanisms in a Personal Drone.”</span> <em>Computers in Human Behavior: Artificial Humans</em> 4 (May): 100146. <a href="https://doi.org/10.1016/j.chbah.2025.100146">https://doi.org/10.1016/j.chbah.2025.100146</a>.
 </div>
+<div id="ref-gratsjova2025" class="csl-entry" role="listitem">
+Firmino de Souza, Debora, Sonia Sousa, Kadri Kristjuhan-Ling, et al. 2025. <span>“Trust and Trustworthiness from Human-Centered Perspective in <span>Human–Robot</span> Interaction (<span>HRI</span>)—<span>A</span> Systematic Literature Review.”</span> <em>Electronics</em> 14 (8): 1557. <a href="https://doi.org/10.3390/electronics14081557">https://doi.org/10.3390/electronics14081557</a>.
+</div>
 <div id="ref-fu2021" class="csl-entry" role="listitem">
 Fu, Wenjun, Ying Xu, Liangping Liu, and Liang Zhang. 2021. <span>“Design and Research of Intelligent Safety Monitoring Robot for Coal Mine Shaft Construction.”</span> <em>Advances in Civil Engineering</em> 2021 (1): 6897767. <a href="https://doi.org/10.1155/2021/6897767">https://doi.org/10.1155/2021/6897767</a>.
 </div>
@@ -2407,9 +2432,6 @@ Maure, Romain, and Barbara Bruno. 2025. <span>“Autonomy in Socially Assistive 
 <div id="ref-mcduff" class="csl-entry" role="listitem">
 McDuff, Daniel, and Jonah Berger. n.d. <em>Do Facial Expressions Predict Ad Sharing? A Large-Scale Observational Study</em>. <a href="https://doi.org/10.48550/arXiv.1912.10311">https://doi.org/10.48550/arXiv.1912.10311</a>.
 </div>
-<div id="ref-duckdb2026" class="csl-entry" role="listitem">
-Mühleisen, Hannes, and Mark Raasveldt. 2026. <em>Duckdb: DBI Package for the DuckDB Database Management System</em>. <a href="https://r.duckdb.org/">https://r.duckdb.org/</a>.
-</div>
 <div id="ref-muir1994" class="csl-entry" role="listitem">
 MUIR, BONNIE M. 1994. <span>“Trust in Automation: Part i. Theoretical Issues in the Study of Trust and Human Intervention in Automated Systems.”</span> <em>Ergonomics</em> 37 (11): 1905–22. <a href="https://doi.org/10.1080/00140139408964957">https://doi.org/10.1080/00140139408964957</a>.
 </div>
@@ -2422,11 +2444,14 @@ Nomura, Tatsuya, Tomohiro Suzuki, Takayuki Kanda, and Kensuke Kato. n.d. <em>Neg
 <div id="ref-OpenAI2023ChatGPT" class="csl-entry" role="listitem">
 OpenAI. 2023. <em>ChatGPT</em>. <a href="https://chat.openai.com/">https://chat.openai.com/</a>.
 </div>
-<div id="ref-pallets2024flask" class="csl-entry" role="listitem">
-Pallets. 2024. <em>Flask Web Framework</em>. <a href="https://palletsprojects.com/p/flask/">https://palletsprojects.com/p/flask/</a>.
-</div>
 <div id="ref-python" class="csl-entry" role="listitem">
 Python Software Foundation. 2023. <em>Python Language Reference, Version 3.10</em>. <a href="https://www.python.org" class="uri">Https://www.python.org</a>.
+</div>
+<div id="ref-robinette2016" class="csl-entry" role="listitem">
+Robinette, Paul, Wenchen Li, Robert Allen, Ayanna M. Howard, and Alan R. Wagner. 2016. <span>“Overtrust of Robots in Emergency Evacuation Scenarios.”</span> <em>Proceedings of the 11th <span>ACM/IEEE</span> International Conference on Human-Robot Interaction</em>, HRI ’16, 101–8. <a href="https://doi.org/10.1109/HRI.2016.7451740">https://doi.org/10.1109/HRI.2016.7451740</a>.
+</div>
+<div id="ref-salem2015" class="csl-entry" role="listitem">
+Salem, Maha, Gabriella Lakatos, Farshid Amirabdollahian, and Kerstin Dautenhahn. 2015. <span>“Would You Trust a (Faulty) Robot? <span>E</span>ffects of Error, Task Type and Personality on Human-Robot Cooperation and Trust.”</span> <em>Proceedings of the Tenth Annual <span>ACM/IEEE</span> International Conference on Human-Robot Interaction</em>, HRI ’15, 141–48. <a href="https://doi.org/10.1145/2696454.2696497">https://doi.org/10.1145/2696454.2696497</a>.
 </div>
 <div id="ref-sanh2019distilbert" class="csl-entry" role="listitem">
 <span class="nocase">Sanh, V. et al.</span> 2019. <span>“DistilBERT, a Distilled Version of BERT: Smaller, Faster, Cheaper and Lighter.”</span> <em>NeurIPS</em>.
@@ -2476,18 +2501,11 @@ Zhang, Yaoxin, Wenxu Song, Zhenlin Tan, et al. 2019. <span>“Theory of Robot Mi
 <h4 class="anchored" data-anchor-id="hardware-platform">Hardware Platform</h4>
 <p>The robot platform used in this study was the Misty II social robot. Misty II is a mobile social robot equipped with an expressive display, articulated head and arms, and programmable RGB LEDs. These components were used to produce synchronized verbal and nonverbal behaviour, including eye expressions, head movements, arm gestures, and colour-based state indicators. Audio input was captured via the robot’s RTSP video stream, which provided real-time access to the microphone signal for downstream speech processing.</p>
 </section>
-<section id="software-architecture" class="level4">
-<h4 class="anchored" data-anchor-id="software-architecture">Software Architecture</h4>
-<p>All system components were implemented in Python (version 3.10) <span class="citation" data-cites="python">(<a href="#ref-python" role="doc-biblioref">Python Software Foundation 2023</a>)</span>. The software architecture integrated robot control, speech processing, dialogue management, task logic, and data logging into a single autonomous pipeline. Core dependencies included the Misty Robotics Python SDK for robot control, the Deepgram SDK for speech recognition <span class="citation" data-cites="mistyrobotics deepgram">(<a href="#ref-mistyrobotics" role="doc-biblioref">Furhat Robotics 2023</a>; <a href="#ref-deepgram" role="doc-biblioref">Deepgram 2024</a>)</span>, FFmpeg for audio stream processing, Flask and Flask-SocketIO for the web-based task interface, and DuckDB for structured data logging <span class="citation" data-cites="duckdb2026">(<a href="#ref-duckdb2026" role="doc-biblioref">Mühleisen and Raasveldt 2026</a>)</span>.</p>
-</section>
-<section id="dialogue-management-and-large-language-model-integration" class="level4">
-<h4 class="anchored" data-anchor-id="dialogue-management-and-large-language-model-integration">Dialogue Management and Large Language Model Integration</h4>
-<p>Dialogue was managed using the LangChain framework, which provided abstraction over message handling, memory persistence, and large language model integration <span class="citation" data-cites="Chase_LangChain_2022">(<a href="#ref-Chase_LangChain_2022" role="doc-biblioref">Chase 2022</a>)</span>. The system used Google’s Gemini API as the underlying language model, configured to produce strictly JSON-formatted outputs to ensure reliable downstream parsing and execution on the robot <span class="citation" data-cites="gemini">(<a href="#ref-gemini" role="doc-biblioref">Google 2024</a>)</span>.</p>
-<p>The deployed model was <code>gemini-2.5-flash-lite</code>, selected for its low-latency response characteristics. Generation temperature was set to 0.7 to balance coherence and variability. Conversation history was maintained using a buffer-based memory mechanism, allowing the robot to reference prior exchanges within a session while resetting memory between participants. Conversation histories were stored as session-specific JSON files to enable post-hoc analysis and recovery <span class="citation" data-cites="gemini">(<a href="#ref-gemini" role="doc-biblioref">Google 2024</a>)</span>.</p>
-</section>
-<section id="prompt-structure-and-context-injection" class="level4">
-<h4 class="anchored" data-anchor-id="prompt-structure-and-context-injection">Prompt Structure and Context Injection</h4>
-<p>System prompts were constructed dynamically at each dialogue turn. Each prompt consisted of a system message defining task rules, role constraints, and output format requirements, followed by the accumulated conversation history and the current participant utterance. In addition to transcribed speech, structured contextual variables were injected into the prompt as JSON fields, including the current task stage, detected emotion labels, timer expiration flags, and task submission status. This approach allowed the language model to access environmental state without embedding control information directly into conversational text.</p>
+<section id="software-architecture-and-dialogue-management" class="level4">
+<h4 class="anchored" data-anchor-id="software-architecture-and-dialogue-management">Software Architecture and Dialogue Management</h4>
+<p>All system components were implemented in Python (version 3.10) <span class="citation" data-cites="python">(<a href="#ref-python" role="doc-biblioref">Python Software Foundation 2023</a>)</span>, integrating robot control, speech processing, dialogue management, task logic, and interaction logging into a single autonomous pipeline. Full dependency details are available in the project repository (see Data and Code Availability).</p>
+<p>Dialogue was managed using the LangChain framework, which provided abstraction over message handling, memory persistence, and large language model integration <span class="citation" data-cites="Chase_LangChain_2022">(<a href="#ref-Chase_LangChain_2022" role="doc-biblioref">Chase 2022</a>)</span>. The system used Google’s Gemini 2.5 Flash Lite model as the underlying language model, selected for its low-latency response characteristics and configured to produce structured JSON-formatted outputs for reliable downstream parsing and robot execution <span class="citation" data-cites="gemini">(<a href="#ref-gemini" role="doc-biblioref">Google 2024</a>)</span>. Conversation history was maintained using a buffer-based memory mechanism, resetting between participants.</p>
+<p>System prompts were constructed dynamically at each dialogue turn, incorporating task rules, role constraints, accumulated conversation history, and structured contextual variables including current task stage, detected emotion, and timer state. This allowed the language model to access real-time interaction state without embedding control information into conversational text.</p>
 </section>
 </section>
 <section id="speech-processing" class="level3">
@@ -2509,7 +2527,7 @@ Zhang, Yaoxin, Wenxu Song, Zhenlin Tan, et al. 2019. <span>“Theory of Robot Mi
 <img src="images/misty-expressions.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-expressions-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: A selection of facial expressions the language model could choose from each turn. Retrieved from [1] N. T. White, B. Cagiltay, J. E. Michaelis, and B. Mutlu, “Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction,” in Interaction Design and Children, Athens Greece: ACM, Jun.&nbsp;2021, pp.&nbsp;314–325. doi: 10.1145/3459990.3460714.
+Figure&nbsp;8: A selection of facial expressions the language model could choose from each turn. Retrieved from [1] N. T. White, B. Cagiltay, J. E. Michaelis, and B. Mutlu, “Designing Emotionally Expressive Social Commentary to Facilitate Child-Robot Interaction,” in Interaction Design and Children, Athens Greece: ACM, Jun.&nbsp;2021, pp.&nbsp;314–325. doi: 10.1145/3459990.3460714.
 </figcaption>
 </figure>
 </div>
@@ -2517,20 +2535,15 @@ Figure&nbsp;7: A selection of facial expressions the language model could choose
 <section id="collaborative-tasks" class="level3">
 <h3 class="anchored" data-anchor-id="collaborative-tasks">Collaborative Tasks</h3>
 <p>The interaction consisted of two collaborative tasks inspired by the puzzle task designed by <span class="citation" data-cites="lin2022">Lin et al. (<a href="#ref-lin2022" role="doc-biblioref">2022</a>)</span>. In the first task, participants and the robot jointly solved a “who-dunnit” problem by eliminating suspects from a grid based on yes/no questions. The robot possessed ground-truth knowledge but was constrained to answering only feature-based yes/no queries. In the second task, participants and the robot attempted to locate a missing robot by interpreting cryptic system and sensor logs. In this task, the robot did not know the solution and instead provided guidance based on general technical knowledge and logical reasoning.</p>
-<p>Task information and participant responses were presented through a web-based dashboard. The dashboard displayed suspect grids, system logs, and response input fields, and communicated task progression events back to the robot via REST API calls.</p>
+<p>Task information and participant responses were presented through a web-based dashboard. The dashboard displayed suspect grids, system logs, and response input fields, and communicated task progression events back to the dialogue agent via a local server interface.</p>
 </section>
 <section id="data-collection-and-logging" class="level3">
 <h3 class="anchored" data-anchor-id="data-collection-and-logging">Data Collection and Logging</h3>
-<p>All interaction data were logged to a DuckDB relational database <span class="citation" data-cites="duckdb2026">(<a href="#ref-duckdb2026" role="doc-biblioref">Mühleisen and Raasveldt 2026</a>)</span>. Logged data included session metadata, turn-level dialogue transcripts, language model responses, nonverbal behaviour selections, response latencies, task submissions, detected emotions, and system events such as stage transitions and timer expirations. This structure enabled detailed post-hoc analysis of interaction dynamics, communication failures, and trust-related behaviours.</p>
+<p>All interaction data were logged to a structured relational database. Logged fields included session metadata, turn-level dialogue transcripts, language model responses, nonverbal behaviour selections, response latencies, task submissions, detected emotions, and system events such as stage transitions and timer expirations. This structure supported post-hoc analysis of interaction dynamics, communication failures, and trust-relevant behaviours.</p>
 </section>
 <section id="interaction-dynamics-and-control-policy" class="level3">
 <h3 class="anchored" data-anchor-id="interaction-dynamics-and-control-policy">Interaction Dynamics and Control Policy</h3>
-<p>Two interaction policies were implemented and toggled programmatically at runtime: a responsive mode and a control mode. In the responsive mode, the robot proactively offered assistance, adjusted its dialogue based on inferred affect, and produced supportive backchannel behaviours. In the control mode, the robot provided general guidance and more information only when explicitly prompted and did not adapt its behaviour based on affective cues. The active policy was set prior to each session and remained fixed throughout the interaction.</p>
-<p>Silence handling was implemented using a fixed threshold, after which the robot issued a check-in prompt. The phrasing of these prompts differed across conditions to reflect proactive versus reactive interaction strategies.</p>
-</section>
-<section id="inter-process-communication" class="level3">
-<h3 class="anchored" data-anchor-id="inter-process-communication">Inter-process Communication</h3>
-<p>System components communicated via a set of Flask-based REST endpoints <span class="citation" data-cites="pallets2024flask">(<a href="#ref-pallets2024flask" role="doc-biblioref">Pallets 2024</a>)</span>. These endpoints synchronized task stage state, detected participant submissions, managed timer events, and allowed limited facilitator override when necessary. All communication between the web interface and the robot occurred locally to ensure low latency and experimental reliability.</p>
+<p>Two interaction policies were implemented and toggled programmatically prior to each session. In the responsive mode, the robot proactively offered assistance, adjusted its dialogue based on inferred affect, and produced supportive backchannel behaviours. In the control mode, the robot provided general guidance and responded to requests only when explicitly prompted. Silence handling was implemented using a fixed threshold, after which the robot issued a check-in prompt; phrasing differed across conditions to reflect proactive versus reactive interaction strategies.</p>
 </section>
 </div></section><section id="sec-appendix-b" class="level2 appendix"><h2 class="anchored quarto-appendix-heading">Appendix B</h2><div class="quarto-appendix-contents">
 
