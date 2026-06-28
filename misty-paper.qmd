@@ -44,6 +44,7 @@ format:
       graphical-abstract: "![](images/visual-abstract.png)"
       #layout: twocolumn
       cite-style: authoryear
+      #cite-method: natbib
       highlights:
         - Robots that are responsive to users are rated more trustworthy than a robot that only reacts
         - Unprompted help and empathy from robots can build greater collaboration trust
@@ -1194,9 +1195,9 @@ This work was supported by IAMGOLD President's Innovation Fund (Grant No. 2025-2
 
 During the preparation of this work, the author(s) used Claude (Sonnet 4.6, Anthropic) to review the manuscript for clarity and readability. After reviewing the AI-generated suggestions, the author(s) made revisions to the text as appropriate. The author(s) takes full responsibility for the content of the published work.
 
-## References {#refs}
+## References
 
-::: {}
+::: {#sec-refs .unnumbered}
 :::
 
 ## Appendix A {#sec-appendix-a .appendix}
