@@ -6,7 +6,7 @@
 %
 \documentclass[
   authoryear,
-  preprint,
+  doubleblind,
   3p]{elsarticle}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
@@ -222,8 +222,8 @@ task accuracy. As language-mediated interaction degraded, this advantage
 attenuated, and ratings became less clearly interpretable as calibrated
 evaluations of collaborative competence. A tentative pattern in which
 experienced trust (TI-HRC) appeared more sensitive to communication
-breakdown than perceived trust (TPS-HRI) is reported descriptively; the
-small sample size and exploratory design preclude formal tests of
+breakdown than perceived trust (TPS-HRI) is reported descriptively as
+the small sample size and exploratory design preclude formal tests of
 differential sensitivity across trust dimensions. These preliminary
 findings are consistent with the interpretation that trust in autonomous
 human-robot interaction is shaped by process-level interaction dynamics
@@ -502,13 +502,13 @@ present sample is underpowered to support.
 
 \textbf{P2: Responsive interaction and collaborative performance.}
 Participants in the responsive condition were expected to show a
-performance advantage on tasks requiring sustained robot collaboration.
-This prediction follows from research suggesting that affective cues and
-proactive support promote mutual grounding and smoother task
-coordination \citep{emaminejad2022, lin2022}. Critically, this effect
-was expected to be contingent on task structure: enforced collaboration
+performance advantage on all tasks. This prediction follows from
+research suggesting that affective cues and proactive support promote
+mutual grounding and smoother task coordination
+\citep{emaminejad2022, lin2022}. Critically, this effect was not
+expected to be contingent on task structure: enforced collaboration
 tasks, where participants must rely on the robot to progress, were
-expected to benefit more from responsive interaction than optional
+expected to benefit as much from responsive interaction as optional
 collaboration tasks, where participants can complete the task
 independently regardless of robot behaviour.
 
@@ -1538,138 +1538,168 @@ mediator of interaction policy effects.
 
 \section{Discussion}\label{discussion}
 
-This pilot study examined how a responsive interaction policy influences
-trust during embodied, fully autonomous, spoken-language human-robot
-collaboration. Unlike much prior work in HRI trust research, all
-dialogue management, affect inference, task progression, and response
-generation were executed autonomously and in real time, without
-Wizard-of-Oz control or scripted repair. Participants were therefore
-exposed not only to adaptive interaction behaviour, but also to the
-latency, recognition errors, and coordination failures characteristic of
-deployed autonomous systems. The study was conducted as a pilot, with
-the primary aim of assessing feasibility and clarifying mechanisms under
-these realistic constraints rather than providing definitive
-confirmatory tests.
+This pilot study examined how a robot's interaction policy shapes user
+trust during embodied, fully autonomous, spoken-language collaboration.
+Although autonomous operation is now more common in social-robot
+research, studies of trust during fully autonomous, spoken
+collaboration--where the robot must sustain dialogue, estimate affect
+and joint problem-solve in real time--remain comparatively rare. Here,
+all dialogue management, affect inference, task progression, and
+response generation were executed autonomously, without Wizard-of-Oz
+control, human intervention, or scripted repair.Consequently,
+participants encountered the system not as an idealized interaction
+partner but under conditions approximating real-world deployment,
+including the latency, translation errors, and coordination failures
+characteristic of autonomous systems. As a pilot, the study aimed to
+establish feasibility--whether the hardware, software, and models could
+sustain the interaction, whether the protocol could run as intended in
+person, and what sample size a confirmatory study would require--while
+also beginning to clarify the mechanisms underlying trust formation
+under these constraints.
 
-Across analytic approaches, the responsive interaction policy was
-associated with higher post-interaction trust compared to a neutral,
-reactive control policy when interaction remained viable. These
-differences emerged without reliable differences in overall task
-accuracy. Although the robot-dependent task showed a descriptive
-advantage for the responsive condition (30\% vs.~64\% correct), this
-effect did not reach statistical significance in the present pilot
-sample, likely reflecting limited power rather than a true null effect
-given the magnitude of the observed difference. Taken together, this
-pattern suggests that trust judgments were shaped more strongly by the
-quality and tone of the interaction process than by instrumental task
-success alone -- consistent with P1 and directionally consistent with
-P2, as specified in the Theoretical Rationale. This aligns with
-theoretical accounts that conceptualize trust as an emergent property of
-interaction dynamics rather than a static attribute of the system or a
-simple function of performance outcomes \citep{lee2004, devisser2020}.
+Across analytic approaches, the responsive policy was associated with
+higher post-interaction trust than the neutral, reactive control when
+interaction remained viable, and this advantage arose without a
+corresponding difference in task accuracy. Participants did not, in
+other words, trust the responsive robot more because it helped them
+perform better--by objective task success the two conditions were
+comparable--but because of how the interaction itself unfolded. The
+robot-dependent `Who Dunnit' task did show a descriptive accuracy
+advantage for the responsive condition compared to control (64\%
+vs.~30\% correct), though this did not reach significance in the present
+sample. Given the magnitude of the difference, this most likely reflects
+limited statistical power rather than a true null effect. Taken
+together, the pattern indicates that trust was shaped more by the
+quality and tenor of the interaction process than by instrumental
+success alone. This is contrary to our central prediction that
+responsive interaction would raise trust (P1) across tasks, but is
+directionally consistent on the task requiring sustained collaboration
+with the robot (P2). This accords with accounts that treat trust as an
+emergent property of interaction dynamics rather than a static attribute
+of the system or a simple function of performance outcomes
+\citep{lee2004, devisser2020}.
 
-Several theoretical mechanisms may account for why responsive
-interaction produced higher trust independent of task accuracy. From a
-social presence perspective, proactive engagement cues -- including
-unsolicited offers of assistance, empathic acknowledgment of participant
-state, and collaborative dialogue orientation -- signal that the robot
-is monitoring and responding to the user as a social partner rather than
-merely as a task executor \citep{birnbaum2016, shayganfar2019}. This
-perceived attentiveness is associated with affective evaluations of
-trustworthiness and benevolence in human-agent interaction, independent
-of task outcome \citep{birnbaum2016}. Social exchange accounts offer a
-complementary explanation: unsolicited assistance constitutes a form of
-investment in the collaboration, and participants may have responded by
-extending reciprocal trust -- attributing cooperative intent to a robot
-that proactively supported them without being asked \citep{fartook2025}.
-Proactive dialogue also facilitates the mutual grounding necessary for
-participants to feel understood and coordinated with their robotic
-partner. When participants perceive the robot as accurately tracking
-their task state and emotional engagement, this supports both
-competence-based trust (the robot knows what it's doing) and
-rapport-based evaluations (the robot is working with me). These
-mechanisms are consistent with the process-oriented framing underlying
-P1: responsiveness operates not as a single cue but as a policy-level
-property that continuously updates the participant's evaluation of the
-robot's intent, capability, and collaborative orientation throughout the
-session.
+Several mechanisms could account for why responsiveness was associated
+with higher trust even when it did not improve task accuracy. From a
+social-presence perspective, proactive engagement cues -- unsolicited
+offers of assistance, empathic acknowledgment of the participant's
+state, and a collaborative dialogue orientation -- signal that the robot
+is attending to the user as a social partner rather than merely
+executing a task \citep{birnbaum2016, shayganfar2019}. This perceived
+attentiveness has been linked to affective judgments of trustworthiness
+and benevolence independent of task outcome \citep{birnbaum2016}. A
+social-exchange account offers a complementary reading: unprompted help
+functions as an investment in the collaboration, and participants may
+have reciprocated by extending trust, attributing cooperative intent to
+a robot that supported them without being asked \citep{fartook2025}.
+Proactive dialogue further supports the mutual grounding through which
+participants come to feel understood and coordinated with the robot;
+when the robot appears to track both the task state and user states as
+well as the user's engagement, it may reinforce competence-based trust
+(the robot knows what it is doing) and rapport-based trust (the robot is
+working with me; the robot is on my side) simultaneously. In practical
+terms, then, responsiveness fostered trust not through any single
+gesture but as a sustained property of the interaction -- one that
+continually updated participants' read on the robot's intent,
+capability, and willingness to collaborate. This is the process-level
+operation that P1 anticipates: trust rising with the quality of
+responsive interaction rather than with task success per se.
 
-Trust in human-robot interaction is widely recognized as
-multidimensional, encompassing perceptions of reliability and competence
-as well as affective comfort and perceived collaboration
-\citep{lee2004, devisser2020}. The use of two validated trust measures
-in the present study allowed these components to be examined in
-parallel. Rather than treating trust as a static attribute of the
-system, the results suggest that it functioned as an evaluation of the
-collaborative experience as it unfolded over time. Both instruments
-showed the responsive advantage under viable interaction, supporting P1
-convergently. A tentative pattern in which the experienced trust measure
-(TI-HRC) appeared somewhat more sensitive to interaction degradation
-than the perceived trust measure (TPS-HRI) is consistent with the
-conceptual distinction between these instruments, but we do not formally
-test this difference: the present sample is underpowered and lacks a
+Examining the two trust instruments separately helps clarify which
+aspect of trust responsiveness actually moved. The scales were chosen to
+tap different facets: the TI-HRC indexes \emph{experienced} trust -- how
+comfortable and at ease the robot made participants feel during the
+interaction (for example, whether its movement or proximity left them
+uneasy) -- whereas the TPS-HRI indexes \emph{perceived} trustworthiness,
+participants' appraisals of the robot's reliability and competence.
+Rather than behaving as a static attribute of the system, trust on both
+measures tracked the collaborative experience as it unfolded, and both
+showed the responsive advantage under viable interaction -- convergent
+support for P1 across instruments. One pattern is worth noting
+tentatively: experienced trust (TI-HRC) appeared somewhat more sensitive
+to interaction degradation than perceived trustworthiness (TPS-HRI).
+This would be consistent with the conceptual distinction between the two
+instruments: experienced trust depends on the interaction actually
+feeling collaborative from moment to moment, which never takes hold when
+the robot cannot understand what the participant is saying, whereas
+appraisals of the robot's underlying reliability and competence appear
+more insulated from that breakdown. We do not, however, test this
+difference formally, as the present sample is underpowered and lacks a
 validated multidimensional measurement model.
 
-These differences became particularly apparent under conditions of
-reduced communication viability, and the pattern of attenuation provides
-insight into the mechanism underlying the main effect. When speech
-recognition failures accumulated and conversational grounding could not
-be re-established, the trust advantage associated with responsiveness
-diminished substantially. This moderation can be understood
-mechanistically in terms of what affect-responsive policies require to
-function: they depend on an intact dialogue channel to perceive user
-state, infer affect, and generate contextually appropriate proactive
-responses. When the speech channel degrades, the robot's affect
-inference and task-state tracking break down, severing the feedback loop
-through which responsiveness is expressed. In this degraded state, the
-responsive policy continued generating proactive and engagement-oriented
-outputs -- but without accurate perception of user state, these outputs
-were increasingly mismatched to the actual interaction context.
-Proactive assistance or empathic framing generated in response to
-misrecognized input may be experienced as incoherent or unreliable,
-potentially amplifying the negative effects of communication failure
-rather than offsetting them. By contrast, the neutral, reactive policy
--- which makes fewer inferential demands on the speech channel and
-generates fewer unsolicited responses -- is more robust to degraded
-input. This differential robustness explains why the trust gap narrowed
-specifically under communication failure: it was not simply that both
-conditions deteriorated in parallel, but that the communicative
-infrastructure the responsive policy requires to express itself was
-unavailable, while the neutral policy's more restrained style remained
-serviceable. Affect-responsive policies thus operate within a
-communication viability window -- below that threshold, the adaptive
-machinery cannot function as intended, and the policy's characteristic
-behaviours may become a source of coordination burden rather than trust
-support. This boundary condition has direct implications for deployment:
-systems employing affect-responsive policies should incorporate explicit
-communication monitoring and graceful degradation strategies to limit
-this failure mode in real-world settings. Taken together, this pattern
-is consistent with the exploratory analyses reported under the
-P2-adjacent communication breakdown analysis and provides a mechanistic
-account of why dialogue continuity is a prerequisite for the trust
-benefits of responsiveness.
+It should be noted that the responsive advantage was not uniform: it
+depended on whether spoken communication ever got off the ground, and
+the way it failed is itself informative about the underlying mechanism.
+In the sessions where speech recognition faltered, conversational
+grounding was never established in the first place -- rather than a
+partnership breaking down, the interaction simply never connected, with
+the robot repeatedly signalling non-understanding (``My apologies, I'm
+sure you frustrated, but still I didn't get that -- could you repeat?'',
+rephrased many times over) while the participant, in most cases, pressed
+on and completed what they could without the robot's help. As these
+failures accumulated, the trust benefit of responsiveness fell away.
+This moderation follows from what a dialogue-dependent affect-responsive
+policy actually requires in order to work: an intact dialogue channel
+through which to read the user's state, infer affect, and time proactive
+responses to the moment. When that channel degrades, affect inference
+and task-state tracking fail together, severing the feedback loop that
+responsiveness runs on. The policy kept doing what it was designed to do
+-- offering help, acknowledging feeling, initiating engagement -- but
+now without an accurate read on the person, those outputs may have
+actually increased frustration. Proactive help or empathic framing
+offered in response to misheard input can come across as incoherent or
+irritating, which may deepen the sense of breakdown rather than ease it.
+The neutral, reactive policy, which asks less of the speech channel and
+volunteers fewer unprompted responses, degrades more quietly. This
+asymmetry offers an explanation for why the trust gap closed
+specifically under communication failure: the two conditions did not
+simply decline in parallel; rather, the responsive policy was missing
+the very channel it needs to express itself, while the neutral policy's
+more restrained style remained serviceable or in the very least: less
+irritating.
 
-A key aspect of this study is that these dynamics were observed under
-full autonomy. Because failures were not covertly repaired by a human
-experimenter, communication viability became an explicit feature of the
-interaction rather than a hidden nuisance variable. This visibility
-clarifies an important constraint: trust formation in spoken-language
-HRI presupposes sufficient linguistic grounding. When that grounding
-collapses, trust ratings may no longer reflect calibrated evaluations of
-competence or benevolence, but instead the breakdown of the
-collaborative process itself.
+Affect-responsive policies thus operate within a communication viability
+window: below some threshold of intelligibility, the adaptive machinery
+cannot do its job, and its characteristic behaviours shift from a source
+of trust to a source of coordination burden. The design implication is
+concrete: systems built on affect-responsive policies need explicit
+monitoring of communication quality, backup strategies should
+translation fail, and more graceful-degradation strategies -- falling
+back to simpler, more restrained behaviour or other tools like a
+language model that matches the speaker's dialect when intelligibility
+drops -- to manage this failure mode in deployment. These observations
+come from the post-hoc communication-breakdown analyses rather than a
+direct test of P2, and so are best read as hypothesis-generating; even
+so, they offer a coherent mechanistic account of why dialogue continuity
+is a precondition for the trust benefits of responsiveness.
 
-Taken together, the findings support a process-oriented account of trust
-in autonomous HRI. Trust appears to emerge from how a system manages
-uncertainty, repair, and coordination over time, rather than from task
-performance alone. This pilot study identifies both promising effects of
-affect-responsive interaction policies under viable conditions and clear
-constraints imposed by communication breakdown. These insights provide a
-concrete foundation for the design of subsequent studies aimed at
-stabilizing language grounding and more precisely isolating the
-mechanisms through which responsiveness shapes collaborative experience.
+That these dynamics were observable at all is a consequence of the
+study's full autonomy. Because no experimenter intervened to repair
+failures, communication viability was not a nuisance variable to be
+controlled but an explicit, measurable feature of each interaction --
+one that reflects the variability a deployed system would itself
+encounter. This visibility clarifies a constraint of broader relevance
+to the field: trust formation in spoken-language HRI presupposes a
+baseline of linguistic grounding. Where that grounding is absent, as in
+the breakdown sessions, trust ratings may reflect less a calibrated
+evaluation of the robot's competence or benevolence than the failure of
+the collaboration to take hold.
 
-\section{Limitations}\label{limitations}
+Taken together, these preliminary findings are consistent with a
+process-oriented account of trust in autonomous HRI, in which trust
+emerges from how a system manages uncertainty, repair, and coordination
+over time rather than from task performance alone. The study points in
+two directions at once: affect-responsive interaction shows real promise
+when communication holds, yet that promise is bounded by the system's
+ability to stay intelligible. In practical terms, the next gains may
+come less from making robots more responsive than from making
+responsiveness robust -- keeping the dialogue channel intact and
+introducing so that adaptive behaviour has something to act on. For
+research, this marks out a concrete agenda: stabilising language
+grounding and isolating, more precisely, the mechanisms through which
+responsiveness shapes the collaborative experience.
+
+\subsection{Limitations}\label{limitations}
 
 Several limitations constrain interpretation of the present findings and
 point directly to areas for refinement.
@@ -1714,43 +1744,31 @@ pre-specified dialogue viability criterion (more than 60\% of turns
 affected by ASR failure), applied consistently and independently of
 outcome values. However, communication viability was not fully
 independent of participant characteristics -- excluded sessions were
-concentrated among participants whose spoken English, while meeting
-pre-screening standards, was insufficiently recognized by the ASR
-pipeline during in-person interaction. If these participants differed
-systematically from retained participants on characteristics associated
-with trust outcomes -- for example, if the additional cognitive demand
-of working around communication failures also increased wariness toward
-the robot -- the effect estimates in the primary eligible-sample
-analyses could be upwardly biased. This risk is partially mitigated by
-the full-sample sensitivity analyses and the mechanism-focused analyses
-examining excluded sessions on interaction-process metrics; however,
-these approaches are insufficient to fully resolve the selection bias
-concern. Future studies should implement more robust and inclusive
-pre-screening procedures for ASR compatibility to reduce attrition of
-this kind.
+exclusively among participants whose spoken English was insufficiently
+recognized by the ASR pipeline during in-person interaction. If these
+participants differed systematically from retained participants on
+characteristics associated with trust outcomes -- for example, if the
+additional cognitive demand of working around communication failures
+also increased wariness toward the robot -- the effect estimates in the
+primary eligible-sample analyses could be upwardly biased. This risk is
+partially mitigated by the full-sample sensitivity analyses and the
+mechanism-focused analyses examining excluded sessions on
+interaction-process metrics; however, these approaches are insufficient
+to fully resolve the selection bias concern.
 
-Spoken-language interaction viability emerged as a central constraint,
-revealing an important direction for future research. Although English
-fluency was an eligibility requirement, substantial variability in
-functional spoken-language proficiency was observed during in-person
-sessions. In a subset of interactions, persistent speech recognition
-failure prevented the experimental manipulation from operating as
-intended, leading to exclusion from primary analyses on methodological
-grounds. Rather than reflecting a shortcoming of the experimental
-design, these cases highlight a fundamental challenge for autonomous
-spoken-language HRI: trust and collaboration presuppose a minimum level
-of linguistic grounding, and when that grounding fails, higher-level
-interaction constructs are no longer meaningfully instantiated.
-
-The visibility of this constraint is itself a consequence of autonomy.
-In scripted or Wizard-of-Oz paradigms, language breakdown can be
-covertly repaired or masked by human intervention. In fully autonomous
-systems, communication viability becomes an explicit property of the
-interaction that must be detected, managed, and responded to by the
-robot. This points to a clear research direction focused on interaction
-policies that recognize emerging language mismatch and adapt
-accordingly, rather than assuming linguistic competence as a fixed
-prerequisite.
+A related limitation concerns spoken-language screening. Although spoken
+English fluency was a self-reported eligibility criterion, functional
+spoken-language proficiency varied substantially during in-person
+sessions, and in a subset of interactions persistent speech-recognition
+failure prevented the manipulation from operating as intended, leading
+to exclusion on methodological grounds. As argued in the Discussion,
+this reflects a genuine property of autonomous spoken-language HRI
+rather than a flaw specific to this design: absent a human to mask
+breakdowns, a minimum level of linguistic grounding becomes a
+precondition for the constructs of interest to be instantiated at all.
+More inclusive ASR pre-screening, and interaction policies and systems
+that detect and adapt to emerging language mismatch, are accordingly
+priorities for future work (see Future Directions).
 
 Natural language understanding was also constrained by the task-specific
 policy design used in the robot-dependent task. Fixed mappings between
@@ -1798,48 +1816,44 @@ responsiveness, though such approaches introduce additional latency,
 orchestration complexity, and failure modes that were beyond the scope
 of this pilot study.
 
-\section{Conclusions and Future Work}\label{conclusions-and-future-work}
-
-This pilot study provides evidence that affect-responsive interaction
-policies can influence trust during fully autonomous, in-person
-human-robot collaboration. The observed effects emerged independently of
-overall task accuracy, reinforcing the central role of interaction
-quality and affective responsiveness in shaping collaborative
-experience.
-
-At the same time, the findings delineate clear boundary conditions.
-Trust advantages were most pronounced under viable interaction
-conditions and attenuated when communication breakdown accumulated. When
-communicative grounding collapsed, differences between interaction
-policies diminished and trust ratings became less interpretable as
-calibrated evaluations. Communication viability thus appears to function
-as a prerequisite for trust formation in spoken-language HRI rather than
-merely as a moderating variable.
+\subsection{Future Directions}\label{future-directions}
 
 These results directly inform the next phase of work at both empirical
-and systems levels. Larger samples will enable more precise estimation
-of effects and formal testing of mediation pathways linking
+and systems levels. Larger, balanced samples will enable more precise
+estimation of effects and formal testing of mediation pathways linking
 responsiveness, interaction fluency, affective engagement, and
-differentiated trust components. Designs that better stabilize language
+differentiated trust components. Designs that better stabilise language
 handling will allow responsiveness to be evaluated under more controlled
 grounding conditions.
 
 Architecturally, future iterations will move toward more explicit
 state-based or graph-oriented dialogue management, allowing conditional
 stage transitions, structured repair strategies, and flexible tool
-integration. Adaptive language management mechanisms will be explored to
-detect emerging communication mismatch, such as repeated recognition
-failures or repair loops, and to adjust linguistic complexity, pacing,
-or response format accordingly. These refinements are intended to expand
-the range of conditions under which affect-responsive policies can
-operate effectively.
+integration. Adaptive language-management mechanisms will be explored to
+detect emerging communication mismatch -- such as repeated recognition
+failures or repair loops -- and to adjust linguistic complexity, pacing,
+or response format accordingly, rather than assuming linguistic
+competence as a fixed prerequisite. These refinements are intended to
+expand the range of conditions under which affect-responsive policies
+can operate effectively.
 
-More broadly, this pilot study underscores the importance of evaluating
-trust in autonomous systems under conditions that expose, rather than
-conceal, system limitations. Understanding how trust is shaped,
-constrained, and potentially restored under real autonomy conditions is
-essential for the responsible deployment of social robots in
-collaborative environments.
+\section{Conclusion}\label{conclusion}
+
+This pilot study provides preliminary evidence that affect-responsive
+interaction policies can shape trust during fully autonomous, in-person
+human-robot collaboration. The observed effects emerged independently of
+overall task accuracy and were bounded by communication viability: where
+linguistic grounding failed, differences between policies diminished and
+trust ratings became less interpretable as calibrated evaluations.
+Communication viability thus appears to function as a precondition for
+trust formation in spoken-language HRI rather than merely as a
+moderating variable.
+
+More broadly, the study underscores the importance of evaluating trust
+in autonomous systems under conditions that expose, rather than conceal,
+system limitations. Understanding how trust is shaped, constrained, and
+potentially restored under real autonomy conditions is essential for the
+responsible deployment of social robots in collaborative environments.
 
 \section{Ethical Approval}\label{ethical-approval}
 
@@ -1889,8 +1903,6 @@ revisions to the text as appropriate. The author(s) takes full
 responsibility for the content of the published work.
 
 \section{References}\label{references}
-
-\bibliography{bibliography.bib}
 
 \protect\phantomsection\label{sec-refs}
 
@@ -2292,12 +2304,8 @@ treats the robot as a social agent. \\
 }
 
 
-
+\bibliography{bibliography.bib}
 
 
 
 \end{document}
-\section{References}\label{refs}
-
-\renewcommand{\bibsection}{}
-\bibliography{bibliography.bib}
